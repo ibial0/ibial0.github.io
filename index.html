@@ -25,7 +25,7 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:var(--font)}
 body{background:var(--bg);color:var(--white);line-height:1.6;min-height:100vh}
 
-/* ── Navbar ── */
+/* Navbar */
 header{
   background:rgba(30,35,41,0.95);backdrop-filter:blur(10px);
   padding:14px 30px;display:flex;justify-content:space-between;align-items:center;
@@ -36,35 +36,65 @@ header{
   background:linear-gradient(90deg,var(--yellow),#f0a500);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
-nav{display:flex;gap:6px;align-items:center}
-nav button{
+.desktop-nav{display:flex;gap:6px;align-items:center}
+.desktop-nav button{
   background:none;border:none;color:var(--gray);font-size:14px;font-weight:600;
   cursor:pointer;padding:8px 14px;border-radius:6px;transition:all 0.2s;
 }
-nav button:hover,nav button.active{color:var(--yellow);background:var(--yellow-dim)}
+.desktop-nav button:hover,.desktop-nav button.active{color:var(--yellow);background:var(--yellow-dim)}
 .btn-admin{
   background:linear-gradient(135deg,var(--yellow),#f0a500)!important;
   color:#000!important;padding:8px 18px!important;border-radius:6px!important;
-  font-weight:700!important;color:#000!important;-webkit-text-fill-color:#000!important;
+  font-weight:700!important;-webkit-text-fill-color:#000!important;
   box-shadow:0 4px 15px var(--yellow-glow);transition:transform 0.2s,box-shadow 0.2s!important;
 }
-.btn-admin:hover{transform:translateY(-2px);box-shadow:0 6px 20px var(--yellow-glow)!important}
+.btn-admin:hover{transform:translateY(-2px)!important}
 
-/* ── Layout ── */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px}
+
+.mobile-menu{
+  display:none;flex-direction:column;gap:4px;
+  background:var(--surface);border-top:1px solid var(--border);padding:12px 20px;
+}
+.mobile-menu button{
+  background:none;border:none;color:var(--gray);font-size:15px;font-weight:600;
+  cursor:pointer;padding:10px 14px;border-radius:6px;text-align:left;transition:all 0.2s;
+}
+.mobile-menu button:hover,.mobile-menu button.active{color:var(--yellow);background:var(--yellow-dim)}
+.mobile-menu .btn-admin{margin-top:6px;text-align:center!important;display:block;width:100%}
+
+@media(max-width:768px){
+  header{padding:12px 16px}
+  .desktop-nav{display:none}
+  .hamburger{display:flex}
+  main{padding:20px 14px}
+  .home-grid{grid-template-columns:1fr}
+  .hero-card{padding:20px}
+  .hero-timer{font-size:22px}
+  .list-card{grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:10px;padding:14px}
+  .reward-card{grid-template-columns:1fr 1fr}
+  .camp-info{grid-column:1/3}
+  .admin-controls{grid-column:1/3;justify-content:flex-end}
+  .modal-content{padding:22px 18px}
+  .det-timer{font-size:22px}
+  h2{font-size:17px}
+  .donation-box{padding:28px 20px}
+  .donation-side-icon{display:none}
+}
+
+/* Layout */
 main{padding:35px 30px;max-width:1200px;margin:0 auto;min-height:80vh}
 .section{display:none}
 .section.active{display:block;animation:fadeIn 0.3s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-h2{
-  margin-bottom:25px;color:var(--white);
-  display:flex;align-items:center;gap:10px;font-size:20px;
-}
+h2{margin-bottom:25px;color:var(--white);display:flex;align-items:center;gap:10px;font-size:20px}
 h2::before{content:'';display:inline-block;width:4px;height:22px;background:linear-gradient(180deg,var(--yellow),#f0a500);border-radius:2px}
 
-.tz-notice{text-align:right;color:var(--gray);font-size:12px;margin-bottom:20px;letter-spacing:0.3px}
+.tz-notice{text-align:right;color:var(--gray);font-size:12px;margin-bottom:20px}
 
-/* ── Hero Cards (Home) ── */
+/* Hero Cards */
 .home-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px;margin-bottom:40px}
 .hero-card{
   background:var(--surface);padding:28px;border-radius:14px;
@@ -76,7 +106,7 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
   background:linear-gradient(135deg,rgba(252,213,53,0.04) 0%,transparent 60%);
   pointer-events:none;
 }
-.hero-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.5),0 0 0 1px var(--border)}
+.hero-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.5)}
 .hero-card.urgent{border-color:var(--red);box-shadow:0 0 20px rgba(246,70,93,0.18)}
 .urgent-badge{
   position:absolute;top:-1px;right:22px;
@@ -89,36 +119,23 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
 
 .hero-top{display:flex;align-items:center;gap:14px;margin-bottom:16px}
 .hero-logo{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--border)}
-.hero-name{font-size:22px;font-weight:800;color:var(--white)}
-.hero-price{
-  color:var(--yellow);font-size:18px;font-weight:700;
-  margin-bottom:12px;display:flex;align-items:center;gap:6px;
-}
+.hero-name{font-size:22px;font-weight:800}
+.hero-price{color:var(--yellow);font-size:18px;font-weight:700;margin-bottom:12px}
 .hero-pool{font-size:14px;color:var(--gray);margin-bottom:20px;line-height:1.8}
 .hero-pool strong{color:var(--white);font-size:17px}
 .hero-pool .pool-usd{color:var(--yellow);font-size:13px;opacity:0.8}
 
-/* ── HERO TIMER (large, glowing) ── */
 .hero-timer-wrap{
   background:var(--bg);border-radius:10px;padding:14px 18px;
-  border:1px solid var(--border);text-align:center;position:relative;overflow:hidden;
+  border:1px solid var(--border);text-align:center;
 }
 .hero-timer-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:6px}
-.hero-timer{
-  font-family:'Courier New',monospace;font-size:30px;font-weight:800;
-  letter-spacing:2px;line-height:1;
-}
-.hero-timer.state-active{
-  color:var(--yellow);
-  text-shadow:0 0 20px var(--yellow-glow),0 0 40px rgba(252,213,53,0.2);
-}
-.hero-timer.state-reward{
-  color:var(--green);
-  text-shadow:0 0 20px var(--green-glow),0 0 40px rgba(14,203,129,0.15);
-}
+.hero-timer{font-family:'Courier New',monospace;font-size:30px;font-weight:800;letter-spacing:2px;line-height:1}
+.hero-timer.state-active{color:var(--yellow);text-shadow:0 0 20px var(--yellow-glow)}
+.hero-timer.state-reward{color:var(--green);text-shadow:0 0 20px var(--green-glow)}
 .hero-timer.state-ended{color:var(--gray);text-shadow:none}
 
-/* ── List Cards ── */
+/* List Cards */
 .list-card{
   background:var(--surface);border-radius:10px;padding:14px 20px;margin-bottom:12px;
   display:grid;grid-template-columns:2fr 1fr 2fr 2fr auto;align-items:center;gap:18px;
@@ -133,13 +150,14 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
 .camp-price{font-weight:700;color:var(--yellow);font-size:15px}
 .camp-est{color:var(--gray);font-size:13px;text-align:center}
 
-/* List timer states */
 .camp-timer{font-family:'Courier New',monospace;font-size:15px;font-weight:700;text-align:right;white-space:nowrap}
 .camp-timer.state-active{color:var(--yellow)}
 .camp-timer.state-reward{color:var(--green)}
 .camp-timer.state-ended{color:var(--gray)}
 .camp-timer.state-alert{color:var(--red);animation:blink 1s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.5}}
+
+.timer-state-label{font-size:10px;color:var(--gray);letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:2px}
 
 .reward-mid{text-align:center}
 .badge{padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
@@ -150,23 +168,18 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
 .pool-amt{font-weight:700;color:var(--white);font-size:15px}
 .pool-usd{font-size:12px;color:var(--gray);margin-top:2px}
 
-/* Admin Controls */
 .admin-controls{display:flex;gap:7px}
-.btn-del{background:var(--red);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:700;font-size:12px;transition:opacity 0.2s}
-.btn-edit{background:var(--border);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:700;font-size:12px;transition:opacity 0.2s}
+.btn-del{background:var(--red);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:700;font-size:12px}
+.btn-edit{background:var(--border);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:700;font-size:12px}
 .btn-del:hover,.btn-edit:hover{opacity:0.8}
 
-/* ── Timer state label ── */
-.timer-state-label{font-size:10px;color:var(--gray);letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:2px}
-
-/* ── Utilities ── */
 .empty-state{
   text-align:center;color:var(--gray);padding:60px 40px;
   background:var(--surface);border-radius:12px;border:1px dashed var(--border);
 }
 .empty-state h3{font-size:18px;color:var(--white);margin-bottom:8px}
 
-/* ── Donation Box ── */
+/* Donation */
 .donation-box{
   position:relative;overflow:hidden;
   background:linear-gradient(135deg,#181c22 0%,#1a1f27 50%,#181c22 100%);
@@ -195,47 +208,43 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
 .donation-side-icon.left{left:24px}
 .donation-side-icon.right{right:24px}
 
-/* ── About ── */
+/* About */
 .about-text{color:var(--gray);font-size:15px;line-height:1.9;white-space:pre-line}
 .social-link svg{width:28px;height:28px;fill:var(--white);transition:fill 0.2s}
 .social-link svg:hover{fill:var(--yellow)}
 
-/* ── Modals ── */
+/* Modals */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);justify-content:center;align-items:center;z-index:1000;padding:20px}
 .modal-content{
   background:var(--surface);padding:32px;border-radius:16px;width:520px;max-width:100%;
   position:relative;border:1px solid var(--border);
-  box-shadow:0 20px 60px rgba(0,0,0,0.7);
-  max-height:90vh;overflow-y:auto;
+  box-shadow:0 20px 60px rgba(0,0,0,0.7);max-height:90vh;overflow-y:auto;
 }
 .close-modal{position:absolute;top:16px;right:20px;color:var(--gray);cursor:pointer;font-size:22px;font-weight:700;transition:color 0.2s;line-height:1}
 .close-modal:hover{color:var(--white)}
 .form-group{margin-bottom:14px}
-.form-group label{display:block;margin-bottom:5px;color:var(--gray);font-size:13px;font-weight:600;letter-spacing:0.3px}
+.form-group label{display:block;margin-bottom:5px;color:var(--gray);font-size:13px;font-weight:600}
 .form-group input{
   width:100%;padding:11px 14px;background:var(--bg);
-  border:1px solid var(--border);color:white;border-radius:8px;font-size:14px;
-  transition:border-color 0.2s;
+  border:1px solid var(--border);color:white;border-radius:8px;font-size:14px;transition:border-color 0.2s;
 }
 .form-group input:focus{outline:none;border-color:var(--yellow)}
 .form-group .hint{font-size:11px;color:var(--gray);margin-top:4px;font-style:italic}
 .btn-submit{
   background:linear-gradient(135deg,var(--yellow),#f0a500);color:#000;border:none;
   padding:13px 20px;width:100%;font-weight:700;border-radius:8px;font-size:15px;
-  cursor:pointer;margin-top:12px;letter-spacing:0.3px;
-  box-shadow:0 4px 15px var(--yellow-glow);transition:transform 0.2s,box-shadow 0.2s;
+  cursor:pointer;margin-top:12px;box-shadow:0 4px 15px var(--yellow-glow);transition:transform 0.2s;
 }
-.btn-submit:hover{transform:translateY(-2px);box-shadow:0 6px 20px var(--yellow-glow)}
+.btn-submit:hover{transform:translateY(-2px)}
+.form-divider{border:none;border-top:1px solid var(--border);margin:16px 0}
+.form-section-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);font-weight:700;margin-bottom:12px;display:block}
 
-/* Details Modal specific */
+/* Details Modal */
 .det-header{text-align:center;margin-bottom:22px}
 .det-logo{width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid var(--border);margin-bottom:12px}
 .det-name{font-size:24px;font-weight:800;margin-bottom:4px}
-.det-price{font-size:22px;color:var(--yellow);font-weight:700;margin-bottom:0}
-.det-info-box{
-  background:var(--bg);padding:20px;border-radius:10px;
-  margin-bottom:20px;border:1px solid var(--border);
-}
+.det-price{font-size:22px;color:var(--yellow);font-weight:700}
+.det-info-box{background:var(--bg);padding:20px;border-radius:10px;margin-bottom:20px;border:1px solid var(--border)}
 .det-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border)}
 .det-row:last-child{border-bottom:none;padding-bottom:0}
 .det-key{color:var(--gray);font-size:13px;font-weight:600}
@@ -247,24 +256,31 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
 .det-timer.state-active{color:var(--yellow);text-shadow:0 0 20px var(--yellow-glow)}
 .det-timer.state-reward{color:var(--green);text-shadow:0 0 20px var(--green-glow)}
 .det-timer.state-ended{color:var(--gray)}
-
-/* Divider for form section */
-.form-divider{border:none;border-top:1px solid var(--border);margin:16px 0}
-.form-section-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);font-weight:700;margin-bottom:12px;display:block}
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo" onclick="nav('home')">Spot CTR</div>
-  <nav>
+  <nav class="desktop-nav">
     <button onclick="nav('home')" id="nav-home" class="active">Home</button>
     <button onclick="nav('all')" id="nav-all">All Campaigns</button>
     <button onclick="nav('reward')" id="nav-reward">Reward Board</button>
     <button onclick="nav('about')" id="nav-about">About</button>
     <button onclick="promptAdmin()" class="btn-admin">+ Add Campaign</button>
   </nav>
+  <button class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <button onclick="nav('home');toggleMenu()">Home</button>
+  <button onclick="nav('all');toggleMenu()">All Campaigns</button>
+  <button onclick="nav('reward');toggleMenu()">Reward Board</button>
+  <button onclick="nav('about');toggleMenu()">About</button>
+  <button onclick="promptAdmin();toggleMenu()" class="btn-admin">+ Add Campaign</button>
+</div>
 
 <main>
   <div class="tz-notice" id="tz-notice">Times shown in: UTC</div>
@@ -302,15 +318,13 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
   <section id="about" class="section">
     <h2>About Spot CTR</h2>
     <div class="about-text">
-This website was created with a simple purpose: to help traders save time and access important campaign information more efficiently. In many cases, users need to visit multiple announcements and pages to check different trading campaigns, which can be time-consuming and inconvenient. This platform brings the key campaign information together in one place so that users can quickly view active campaigns, check their remaining time, and understand the basic reward structure without searching through multiple sources. By presenting everything in a single dashboard, users can plan their participation more effectively and make quicker decisions.
+This website was created with a simple purpose: to help traders save time and access important campaign information more efficiently. In many cases, users need to visit multiple announcements and pages to check different trading campaigns, which can be time-consuming and inconvenient. This platform brings the key campaign information together in one place so that users can quickly view active campaigns, check their remaining time, and understand the basic reward structure without searching through multiple sources.
 
-You may notice that this website currently lists only spot trading campaigns and does not include futures trading campaigns. This decision is intentional. In my personal view, futures trading carries a very high level of risk and many participants experience significant losses rather than consistent profits. Because of these risks, I do not wish to promote or encourage this type of trading.
+You may notice that this website currently lists only spot trading campaigns and does not include futures trading campaigns. This decision is intentional. In my personal view, futures trading carries a very high level of risk and many participants experience significant losses rather than consistent profits.
 
-Additionally, from an Islamic financial perspective, many scholars consider futures and other derivative-based trading structures to be problematic because they often involve excessive uncertainty, speculation, or elements that resemble gambling, which are discouraged in Islamic finance principles. For this reason, this platform focuses only on spot trading-related campaigns and avoids listing futures trading opportunities.
+Additionally, from an Islamic financial perspective, many scholars consider futures and other derivative-based trading structures to be problematic because they often involve excessive uncertainty, speculation, or elements that resemble gambling, which are discouraged in Islamic finance principles.
 
-Another important point concerns the estimated reward values shown on this website. The reward per one thousand dollars of trading volume displayed here is based on personal analysis and publicly available campaign information. However, the final distribution of rewards in many campaigns depends on the total participation and overall trading volume of all participants. Because of this, the actual reward received may vary and could be higher or lower than the estimate presented here.
-
-Users should always conduct their own research and review the official campaign announcements before participating in any trading activity. This website is intended purely as an informational dashboard designed to simplify campaign tracking and help users stay informed more efficiently.
+Another important point concerns the estimated reward values shown on this website. The reward per one thousand dollars of trading volume displayed here is based on personal analysis and publicly available campaign information. However, the final distribution of rewards depends on total participation. Users should always conduct their own research before participating.
     </div>
     <br><h3>Contact</h3><br>
     <a href="https://x.com/_IBIAL" target="_blank" class="social-link" title="Twitter / X">
@@ -319,7 +333,7 @@ Users should always conduct their own research and review the official campaign 
   </section>
 </main>
 
-<!-- Admin / Add-Edit Modal -->
+<!-- Admin Modal -->
 <div class="modal" id="admin-modal">
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal('admin-modal')">×</span>
@@ -328,17 +342,17 @@ Users should always conduct their own research and review the official campaign 
       <input type="hidden" id="camp-id">
       <span class="form-section-label">Campaign Info</span>
       <div class="form-group"><label>Token Name (e.g., $KITE)</label><input type="text" id="token-name" required></div>
-      <div class="form-group"><label>CoinGecko Coin ID (e.g., bitcoin)</label><input type="text" id="coin-id" required><div class="hint">Used to fetch live price. Find it at coingecko.com</div></div>
+      <div class="form-group"><label>CoinGecko Coin ID (e.g., bitcoin)</label><input type="text" id="coin-id" required><div class="hint">Find it at coingecko.com</div></div>
       <div class="form-group"><label>Logo Image URL</label><input type="url" id="logo-url" required></div>
       <div class="form-group"><label>Total Reward Pool (Token Amount)</label><input type="number" id="reward-pool-amt" required></div>
-      <div class="form-group"><label>Est. Tokens per $1,000 Volume</label><input type="number" step="any" id="est-reward" required><div class="hint">Enter a number — USD equivalent will be calculated automatically</div></div>
+      <div class="form-group"><label>Est. Tokens per $1,000 Volume</label><input type="number" step="any" id="est-reward" required><div class="hint">USD equivalent calculated automatically</div></div>
       <hr class="form-divider">
       <span class="form-section-label">Campaign Period</span>
       <div class="form-group"><label>Start Date & Time</label><input type="datetime-local" id="start-date" required></div>
       <div class="form-group"><label>End Date & Time</label><input type="datetime-local" id="end-date" required></div>
       <hr class="form-divider">
       <span class="form-section-label">Reward Distribution (Optional)</span>
-      <div class="form-group"><label>Reward Distribution Deadline</label><input type="datetime-local" id="reward-date"><div class="hint">Leave blank if not announced yet. After campaign ends, a green countdown to this date will be shown.</div></div>
+      <div class="form-group"><label>Reward Distribution Deadline</label><input type="datetime-local" id="reward-date"><div class="hint">Leave blank if not announced. A green countdown will appear after campaign ends.</div></div>
       <button type="submit" class="btn-submit" id="submit-btn">Publish Campaign</button>
     </form>
   </div>
@@ -357,14 +371,8 @@ Users should always conduct their own research and review the official campaign 
       <div class="det-row"><span class="det-key">Starts</span><span class="det-val" id="det-start"></span></div>
       <div class="det-row"><span class="det-key">Ends</span><span class="det-val" id="det-end"></span></div>
       <div class="det-row" id="det-reward-row" style="display:none"><span class="det-key">Reward Deadline</span><span class="det-val" id="det-reward-date"></span></div>
-      <div class="det-row">
-        <span class="det-key">Total Reward Pool</span>
-        <span class="det-val" id="det-pool"></span>
-      </div>
-      <div class="det-row">
-        <span class="det-key">Est. per $1,000 Volume</span>
-        <span class="det-val" id="det-est"></span>
-      </div>
+      <div class="det-row"><span class="det-key">Total Reward Pool</span><span class="det-val" id="det-pool"></span></div>
+      <div class="det-row"><span class="det-key">Est. per $1,000 Volume</span><span class="det-val" id="det-est"></span></div>
     </div>
     <div class="det-timer-box">
       <div class="det-timer-label" id="det-timer-label">Time Remaining</div>
@@ -377,14 +385,20 @@ Users should always conduct their own research and review the official campaign 
 let campaigns = JSON.parse(localStorage.getItem('spotctr_campaigns')) || [];
 let livePrices = JSON.parse(localStorage.getItem('spotctr_prices')) || {};
 let isAdminActive = false;
+let activeModalCampId = null;
 
 const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const isBD = userTZ === 'Asia/Dhaka';
 document.getElementById('tz-notice').innerText = `Times shown in: ${isBD ? 'BST (Bangladesh Standard Time)' : 'UTC'}`;
 
+function toggleMenu() {
+  const m = document.getElementById('mobile-menu');
+  m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+}
+
 function nav(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.desktop-nav button').forEach(b => b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   const nb = document.getElementById('nav-' + id);
   if (nb) nb.classList.add('active');
@@ -413,7 +427,6 @@ function authAction(cb) {
 function openModal(id) { document.getElementById(id).style.display = 'flex'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-// ── Price Fetch ──
 async function fetchPrices() {
   if (!campaigns.length) return;
   const ids = [...new Set(campaigns.map(c => c.coinId))].join(',');
@@ -426,7 +439,6 @@ async function fetchPrices() {
   } catch(e) {}
 }
 
-// ── Save Campaign ──
 function saveCampaign(e) {
   e.preventDefault();
   const id = document.getElementById('camp-id').value || Date.now().toString();
@@ -478,7 +490,6 @@ function editCamp(id, ev) {
   });
 }
 
-// ── Timer Logic ──
 function pad(n) { return n.toString().padStart(2, '0'); }
 function formatDiff(diff) {
   const d = Math.floor(diff / 86400000);
@@ -492,11 +503,9 @@ function getTimerInfo(camp) {
   const now = Date.now();
   const end = new Date(camp.end).getTime();
   const rewardEnd = camp.rewardDate ? new Date(camp.rewardDate).getTime() : null;
-
   if (now < end) {
     const diff = end - now;
-    const isAlert = diff < 86400000; // under 24h
-    return { text: formatDiff(diff), state: isAlert ? 'alert' : 'active', label: 'Campaign Ends In', diff };
+    return { text: formatDiff(diff), state: diff < 86400000 ? 'alert' : 'active', label: 'Campaign Ends In', diff };
   } else if (rewardEnd && now < rewardEnd) {
     const diff = rewardEnd - now;
     return { text: formatDiff(diff), state: 'reward', label: 'Reward Distribution In', diff };
@@ -505,7 +514,6 @@ function getTimerInfo(camp) {
   }
 }
 
-// ── USD helpers ──
 function price(coinId) { return livePrices[coinId]?.usd || 0; }
 function fmtUSD(n) {
   if (!n) return null;
@@ -513,21 +521,22 @@ function fmtUSD(n) {
   if (n >= 1000) return `$${(n/1000).toFixed(1)}K`;
   return `$${n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}`;
 }
+function fmtPrice(p) {
+  if (!p) return '...';
+  if (p < 0.01) return `$${p.toFixed(6)}`;
+  if (p < 1) return `$${p.toFixed(4)}`;
+  return `$${p.toFixed(2)}`;
+}
 
-// ── Show Details ──
-let activeModalCampId = null;
 function showDetails(camp) {
   activeModalCampId = camp.id;
   document.getElementById('det-logo').src = camp.logo;
   document.getElementById('det-name').innerText = camp.name;
-
   const p = price(camp.coinId);
-  document.getElementById('det-price').innerText = p ? `$${p < 0.01 ? p.toFixed(6) : p < 1 ? p.toFixed(4) : p.toFixed(2)}` : 'Loading...';
-
+  document.getElementById('det-price').innerText = p ? fmtPrice(p) : 'Loading...';
   const fmt = { dateStyle:'medium', timeStyle:'short', timeZone: isBD ? 'Asia/Dhaka' : 'UTC' };
   document.getElementById('det-start').innerText = new Date(camp.start).toLocaleString('en-US', fmt);
   document.getElementById('det-end').innerText = new Date(camp.end).toLocaleString('en-US', fmt);
-
   const rdRow = document.getElementById('det-reward-row');
   if (camp.rewardDate) {
     rdRow.style.display = 'flex';
@@ -535,13 +544,8 @@ function showDetails(camp) {
   } else {
     rdRow.style.display = 'none';
   }
-
-  // Pool
   const poolUsdVal = p ? camp.poolAmt * p : 0;
-  const poolEl = document.getElementById('det-pool');
-  poolEl.innerHTML = `${camp.poolAmt.toLocaleString()} ${camp.name}${poolUsdVal ? `<span class="sub">≈ ${fmtUSD(poolUsdVal)}</span>` : ''}`;
-
-  // Est per $1K
+  document.getElementById('det-pool').innerHTML = `${camp.poolAmt.toLocaleString()} ${camp.name}${poolUsdVal ? `<span class="sub">≈ ${fmtUSD(poolUsdVal)}</span>` : ''}`;
   const estNum = parseFloat(camp.estReward);
   const estEl = document.getElementById('det-est');
   if (!isNaN(estNum)) {
@@ -550,7 +554,6 @@ function showDetails(camp) {
   } else {
     estEl.innerText = camp.estReward;
   }
-
   openModal('details-modal');
   updateDetTimer(camp);
 }
@@ -564,7 +567,6 @@ function updateDetTimer(camp) {
   lbl.innerText = info.label;
 }
 
-// ── Builders ──
 function adminBtns(id) {
   if (!isAdminActive) return '';
   return `<div class="admin-controls">
@@ -573,20 +575,16 @@ function adminBtns(id) {
   </div>`;
 }
 
-function escapeCamp(camp) {
-  return JSON.stringify(camp).replace(/'/g, "&#39;").replace(/"/g, '&quot;');
-}
-
 function buildHeroCard(camp, isUrgent) {
   const p = price(camp.coinId);
-  const priceStr = p ? `$${p < 0.01 ? p.toFixed(6) : p < 1 ? p.toFixed(4) : p.toFixed(2)}` : '...';
+  const priceStr = fmtPrice(p);
   const poolUsd = p ? `≈ ${fmtUSD(camp.poolAmt * p)}` : '';
   const info = getTimerInfo(camp);
   const urgentBadge = isUrgent ? `<div class="urgent-badge">Ending Soon</div>` : '';
   const cardCls = isUrgent ? 'hero-card urgent' : 'hero-card';
   const key = isUrgent ? 'hu' : 'hf';
-
-  return `<div class="${cardCls}" onclick='showDetails(JSON.parse(decodeURIComponent("${encodeURIComponent(JSON.stringify(camp))}")))'>
+  const enc = encodeURIComponent(JSON.stringify(camp));
+  return `<div class="${cardCls}" onclick='showDetails(JSON.parse(decodeURIComponent("${enc}")))'>
     ${urgentBadge}
     <div class="hero-top">
       <img src="${camp.logo}" class="hero-logo" onerror="this.style.background='#2b3139'">
@@ -601,16 +599,18 @@ function buildHeroCard(camp, isUrgent) {
   </div>`;
 }
 
-function buildListCard(camp, includeReward, rankIdx, grayed=false) {
+function buildListCard(camp, includeReward, rankIdx, grayed) {
+  grayed = grayed || false;
   const p = price(camp.coinId);
-  const priceStr = p ? `$${p < 0.01 ? p.toFixed(6) : p < 1 ? p.toFixed(4) : p.toFixed(2)}` : '...';
+  const priceStr = fmtPrice(p);
   const info = getTimerInfo(camp);
   const suf = includeReward ? 'r' : 'a';
-
   const grayStyle = grayed ? 'filter:grayscale(1);opacity:0.45;' : '';
   const grayText  = grayed ? 'color:#666!important' : '';
+  const enc = encodeURIComponent(JSON.stringify(camp));
 
-  let extraCols, cardCls = 'list-card';
+  let extraCols;
+  let cardCls = 'list-card';
   if (includeReward) {
     cardCls += ' reward-card';
     const badge = rankIdx < 3 ? `<span class="badge good">Good</span>` : `<span class="badge risky">Risky</span>`;
@@ -627,8 +627,7 @@ function buildListCard(camp, includeReward, rankIdx, grayed=false) {
   }
 
   const stateClass = grayed ? 'state-ended' : (info.state === 'alert' ? 'state-alert' : `state-${info.state}`);
-
-  return `<div class="${cardCls}" style="${grayStyle}" onclick='showDetails(JSON.parse(decodeURIComponent("${encodeURIComponent(JSON.stringify(camp))}")))'>
+  return `<div class="${cardCls}" style="${grayStyle}" onclick='showDetails(JSON.parse(decodeURIComponent("${enc}")))'>
     <div class="camp-info">
       <img src="${camp.logo}" class="camp-logo" onerror="this.style.background='#2b3139'">
       <span class="camp-name" style="${grayText}">${camp.name}</span>
@@ -643,7 +642,14 @@ function buildListCard(camp, includeReward, rankIdx, grayed=false) {
   </div>`;
 }
 
-// ── Render ──
+function sectionDivider(label, color) {
+  return `<div style="margin:30px 0 14px;display:flex;align-items:center;gap:12px">
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+    <span style="color:${color};font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap">${label}</span>
+    <div style="height:1px;flex:1;background:var(--border)"></div>
+  </div>`;
+}
+
 function renderViews() {
   const empty = `<div class="empty-state"><h3>No Campaigns Yet</h3><p>Click "+ Add Campaign" to get started.</p></div>`;
   if (!campaigns.length) {
@@ -654,60 +660,48 @@ function renderViews() {
   const nowMs = Date.now();
   const sortByVal = arr => [...arr].sort((a,b) => (b.poolAmt*(price(b.coinId)||0)) - (a.poolAmt*(price(a.coinId)||0)));
 
-  // Categorise once
-  const running      = campaigns.filter(c => new Date(c.end).getTime() > nowMs);
+  const running = campaigns.filter(c => new Date(c.end).getTime() > nowMs);
   const rewardPending = campaigns.filter(c => {
     const ended = new Date(c.end).getTime() <= nowMs;
     const rewardLive = c.rewardDate && new Date(c.rewardDate).getTime() > nowMs;
     return ended && rewardLive;
   }).sort((a,b) => new Date(a.rewardDate).getTime() - new Date(b.rewardDate).getTime());
-  const fullyEnded   = campaigns.filter(c => {
+  const fullyEnded = campaigns.filter(c => {
     const ended = new Date(c.end).getTime() <= nowMs;
     const rewardDone = !c.rewardDate || new Date(c.rewardDate).getTime() <= nowMs;
     return ended && rewardDone;
   });
 
-  // ── All Campaigns ──
+  // All Campaigns
   let allHtml = running.length
     ? running.map(c => buildListCard(c, false, null)).join('')
-    : `<div class="empty-state"><h3>No Active Campaigns</h3><p>Check back later for new campaigns.</p></div>`;
-
+    : `<div class="empty-state"><h3>No Active Campaigns</h3><p>Check back later.</p></div>`;
   if (rewardPending.length) {
-    allHtml += `<div style="margin:30px 0 14px;display:flex;align-items:center;gap:12px">
-      <div style="height:1px;flex:1;background:var(--border)"></div>
-      <span style="color:var(--green);font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap">⏳ Awaiting Reward Distribution</span>
-      <div style="height:1px;flex:1;background:var(--border)"></div>
-    </div>`;
+    allHtml += sectionDivider('⏳ Awaiting Reward Distribution', 'var(--green)');
     allHtml += rewardPending.map(c => buildListCard(c, false, null)).join('');
   }
   document.getElementById('all-content').innerHTML = allHtml;
 
-  // ── Reward Board ──
+  // Reward Board
   let rewardHtml = sortByVal(running).map((c,i) => buildListCard(c, true, i)).join('');
   if (fullyEnded.length) {
-    rewardHtml += `<div style="margin:30px 0 14px;display:flex;align-items:center;gap:12px">
-      <div style="height:1px;flex:1;background:var(--border)"></div>
-      <span style="color:var(--gray);font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap">Ended Campaigns</span>
-      <div style="height:1px;flex:1;background:var(--border)"></div>
-    </div>`;
+    rewardHtml += sectionDivider('Ended Campaigns', 'var(--gray)');
     rewardHtml += sortByVal(fullyEnded).map((c,i) => buildListCard(c, true, i, true)).join('');
   }
-  if (!rewardHtml) rewardHtml = empty;
-  document.getElementById('reward-content').innerHTML = rewardHtml;
+  document.getElementById('reward-content').innerHTML = rewardHtml || empty;
 
-  // ── Home ──
+  // Home
   if (!running.length) {
     document.getElementById('home-featured').innerHTML = `<div class="empty-state"><h3>No Active Campaigns</h3></div>`;
     document.getElementById('home-urgent').innerHTML = '';
     return;
   }
-  const featured = sortByVal(running).slice(0,2);
-  document.getElementById('home-featured').innerHTML = featured.map(c => buildHeroCard(c, false)).join('');
+  document.getElementById('home-featured').innerHTML = sortByVal(running).slice(0,2).map(c => buildHeroCard(c, false)).join('');
   const urgent = [...running].sort((a,b) => new Date(a.end)-new Date(b.end))[0];
   document.getElementById('home-urgent').innerHTML = buildHeroCard(urgent, true);
 }
 
-// ── Tick ──
+// Tick every second
 setInterval(() => {
   campaigns.forEach(c => {
     const info = getTimerInfo(c);
@@ -719,7 +713,6 @@ setInterval(() => {
       if (lbl) lbl.innerText = info.label;
     });
   });
-  // Update open details modal
   if (document.getElementById('details-modal').style.display === 'flex' && activeModalCampId) {
     const camp = campaigns.find(c => c.id === activeModalCampId);
     if (camp) updateDetTimer(camp);
