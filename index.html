@@ -68,32 +68,76 @@ header{
   header{padding:12px 16px}
   .desktop-nav{display:none}
   .hamburger{display:flex}
-  main{padding:20px 12px}
+  main{padding:16px 12px}
   .home-grid{grid-template-columns:1fr}
-  .hero-card{padding:20px}
-  .hero-timer{font-size:22px}
+  .hero-card{padding:18px}
+  .hero-timer{font-size:20px}
+  h2{font-size:16px}
+  .donation-box{padding:24px 16px}
+  .donation-side-icon{display:none}
+  .modal-content{padding:20px 14px}
+  .det-timer{font-size:20px}
 
-  /* List cards — stack everything vertically */
+  /* ── Mobile List Card ── */
   .list-card,
   .list-card.reward-card{
-    grid-template-columns:1fr;
-    gap:8px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:0;
     padding:14px;
+    border-radius:10px;
+    margin-bottom:10px;
   }
-  .camp-info{grid-column:auto}
-  .camp-price{font-size:14px}
-  .camp-est{text-align:left}
-  .camp-timer{text-align:left;font-size:14px}
-  .reward-mid{text-align:left}
-  .reward-pool{text-align:left}
-  .admin-controls{justify-content:flex-start}
-  .timer-state-label{display:inline}
 
-  .modal-content{padding:22px 16px}
-  .det-timer{font-size:22px}
-  h2{font-size:17px}
-  .donation-box{padding:28px 20px}
-  .donation-side-icon{display:none}
+  /* Logo + Name → left, takes ~65% */
+  .list-card .camp-info{
+    flex:1 1 65%;
+    min-width:0;
+    margin-bottom:6px;
+  }
+  .camp-name{font-size:15px;white-space:normal;word-break:break-word}
+  .camp-logo{width:34px;height:34px}
+
+  /* Price → right side of name row */
+  .list-card .camp-price{
+    flex:0 0 auto;
+    font-size:14px;
+    text-align:right;
+    margin-bottom:6px;
+  }
+
+  /* Est / Pool / Badge → full width row */
+  .list-card .camp-est,
+  .list-card .reward-pool,
+  .list-card .reward-mid{
+    flex:0 0 100%;
+    text-align:left;
+    background:var(--bg);
+    border-radius:6px;
+    padding:7px 10px;
+    margin-bottom:6px;
+    font-size:13px;
+  }
+  .reward-mid{padding:4px 0!important;background:transparent!important}
+  .pool-amt{font-size:13px}
+  .pool-usd{font-size:11px}
+
+  /* Timer → full width row */
+  .list-card > div:not(.camp-info):not(.admin-controls){
+    flex:0 0 100%;
+  }
+  .camp-timer{font-size:14px;text-align:left}
+  .timer-state-label{display:block;font-size:10px;margin-bottom:2px}
+
+  /* Admin buttons → full width, right aligned */
+  .list-card .admin-controls{
+    flex:0 0 100%;
+    justify-content:flex-end;
+    margin-top:8px;
+    padding-top:10px;
+    border-top:1px solid var(--border);
+  }
 }
 
 main{padding:35px 30px;max-width:1200px;margin:0 auto;min-height:80vh}
