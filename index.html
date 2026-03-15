@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spot CTR | Binance Campaign Tracker</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-database-compat.min.js"></script>
 <style>
 :root {
   --bg: #0b0e11;
@@ -25,7 +27,6 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:var(--font)}
 body{background:var(--bg);color:var(--white);line-height:1.6;min-height:100vh}
 
-/* Navbar */
 header{
   background:rgba(30,35,41,0.95);backdrop-filter:blur(10px);
   padding:14px 30px;display:flex;justify-content:space-between;align-items:center;
@@ -52,7 +53,6 @@ header{
 
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
 .hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px}
-
 .mobile-menu{
   display:none;flex-direction:column;gap:4px;
   background:var(--surface);border-top:1px solid var(--border);padding:12px 20px;
@@ -72,7 +72,7 @@ header{
   .home-grid{grid-template-columns:1fr}
   .hero-card{padding:20px}
   .hero-timer{font-size:22px}
-  .list-card{grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:10px;padding:14px}
+  .list-card{grid-template-columns:1fr 1fr;gap:10px;padding:14px}
   .reward-card{grid-template-columns:1fr 1fr}
   .camp-info{grid-column:1/3}
   .admin-controls{grid-column:1/3;justify-content:flex-end}
@@ -83,7 +83,6 @@ header{
   .donation-side-icon{display:none}
 }
 
-/* Layout */
 main{padding:35px 30px;max-width:1200px;margin:0 auto;min-height:80vh}
 .section{display:none}
 .section.active{display:block;animation:fadeIn 0.3s ease}
@@ -91,21 +90,15 @@ main{padding:35px 30px;max-width:1200px;margin:0 auto;min-height:80vh}
 
 h2{margin-bottom:25px;color:var(--white);display:flex;align-items:center;gap:10px;font-size:20px}
 h2::before{content:'';display:inline-block;width:4px;height:22px;background:linear-gradient(180deg,var(--yellow),#f0a500);border-radius:2px}
-
 .tz-notice{text-align:right;color:var(--gray);font-size:12px;margin-bottom:20px}
 
-/* Hero Cards */
 .home-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px;margin-bottom:40px}
 .hero-card{
   background:var(--surface);padding:28px;border-radius:14px;
   border:1px solid var(--border);cursor:pointer;position:relative;overflow:hidden;
   transition:transform 0.25s,box-shadow 0.25s;
 }
-.hero-card::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(252,213,53,0.04) 0%,transparent 60%);
-  pointer-events:none;
-}
+.hero-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(252,213,53,0.04) 0%,transparent 60%);pointer-events:none}
 .hero-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.5)}
 .hero-card.urgent{border-color:var(--red);box-shadow:0 0 20px rgba(246,70,93,0.18)}
 .urgent-badge{
@@ -116,7 +109,6 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
   animation:pulse 1.8s infinite;
 }
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.7}}
-
 .hero-top{display:flex;align-items:center;gap:14px;margin-bottom:16px}
 .hero-logo{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--border)}
 .hero-name{font-size:22px;font-weight:800}
@@ -124,18 +116,13 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
 .hero-pool{font-size:14px;color:var(--gray);margin-bottom:20px;line-height:1.8}
 .hero-pool strong{color:var(--white);font-size:17px}
 .hero-pool .pool-usd{color:var(--yellow);font-size:13px;opacity:0.8}
-
-.hero-timer-wrap{
-  background:var(--bg);border-radius:10px;padding:14px 18px;
-  border:1px solid var(--border);text-align:center;
-}
+.hero-timer-wrap{background:var(--bg);border-radius:10px;padding:14px 18px;border:1px solid var(--border);text-align:center}
 .hero-timer-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:6px}
 .hero-timer{font-family:'Courier New',monospace;font-size:30px;font-weight:800;letter-spacing:2px;line-height:1}
 .hero-timer.state-active{color:var(--yellow);text-shadow:0 0 20px var(--yellow-glow)}
 .hero-timer.state-reward{color:var(--green);text-shadow:0 0 20px var(--green-glow)}
-.hero-timer.state-ended{color:var(--gray);text-shadow:none}
+.hero-timer.state-ended{color:var(--gray)}
 
-/* List Cards */
 .list-card{
   background:var(--surface);border-radius:10px;padding:14px 20px;margin-bottom:12px;
   display:grid;grid-template-columns:2fr 1fr 2fr 2fr auto;align-items:center;gap:18px;
@@ -143,43 +130,38 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
 }
 .list-card:hover{border-color:var(--border);background:var(--surface2);transform:translateX(3px)}
 .reward-card{grid-template-columns:2fr 1fr 1fr 2fr 2fr auto}
-
 .camp-info{display:flex;align-items:center;gap:12px}
 .camp-logo{width:38px;height:38px;border-radius:50%;object-fit:cover;border:1px solid var(--border)}
 .camp-name{font-weight:700;font-size:16px;color:var(--white);white-space:nowrap}
 .camp-price{font-weight:700;color:var(--yellow);font-size:15px}
 .camp-est{color:var(--gray);font-size:13px;text-align:center}
-
 .camp-timer{font-family:'Courier New',monospace;font-size:15px;font-weight:700;text-align:right;white-space:nowrap}
 .camp-timer.state-active{color:var(--yellow)}
 .camp-timer.state-reward{color:var(--green)}
 .camp-timer.state-ended{color:var(--gray)}
 .camp-timer.state-alert{color:var(--red);animation:blink 1s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.5}}
-
 .timer-state-label{font-size:10px;color:var(--gray);letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:2px}
-
 .reward-mid{text-align:center}
 .badge{padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
 .badge.good{background:var(--green-dim);color:var(--green)}
 .badge.risky{background:var(--red-dim);color:var(--red)}
-
 .reward-pool{text-align:right}
 .pool-amt{font-weight:700;color:var(--white);font-size:15px}
 .pool-usd{font-size:12px;color:var(--gray);margin-top:2px}
-
 .admin-controls{display:flex;gap:7px}
 .btn-del{background:var(--red);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:700;font-size:12px}
 .btn-edit{background:var(--border);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:700;font-size:12px}
 .btn-del:hover,.btn-edit:hover{opacity:0.8}
 
-.empty-state{
-  text-align:center;color:var(--gray);padding:60px 40px;
-  background:var(--surface);border-radius:12px;border:1px dashed var(--border);
-}
+.empty-state{text-align:center;color:var(--gray);padding:60px 40px;background:var(--surface);border-radius:12px;border:1px dashed var(--border)}
 .empty-state h3{font-size:18px;color:var(--white);margin-bottom:8px}
 
-/* Donation */
+/* Loading */
+.loading{text-align:center;padding:60px;color:var(--gray)}
+.spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--yellow);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
 .donation-box{
   position:relative;overflow:hidden;
   background:linear-gradient(135deg,#181c22 0%,#1a1f27 50%,#181c22 100%);
@@ -187,59 +169,36 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
   border:1px solid rgba(252,213,53,0.3);
   box-shadow:0 0 40px rgba(252,213,53,0.08),inset 0 1px 0 rgba(252,213,53,0.1);
 }
-.donation-box::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at 50% 0%,rgba(252,213,53,0.07) 0%,transparent 70%);
-  pointer-events:none;
-}
+.donation-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(252,213,53,0.07) 0%,transparent 70%);pointer-events:none}
 .donation-gift{font-size:42px;margin-bottom:10px;display:block;animation:float 3s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .donation-title{font-size:18px;font-weight:700;color:var(--white);margin-bottom:6px}
 .donation-box p{color:var(--gray);margin-bottom:18px;font-size:14px}
-.donation-uid-wrap{
-  display:inline-flex;align-items:center;gap:12px;
-  background:var(--bg);border:1px solid rgba(252,213,53,0.35);
-  padding:12px 24px;border-radius:10px;
-  box-shadow:0 0 20px rgba(252,213,53,0.1);
-}
+.donation-uid-wrap{display:inline-flex;align-items:center;gap:12px;background:var(--bg);border:1px solid rgba(252,213,53,0.35);padding:12px 24px;border-radius:10px;box-shadow:0 0 20px rgba(252,213,53,0.1)}
 .donation-uid-label{color:var(--gray);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
 .donation-uid{font-size:22px;color:var(--yellow);font-weight:800;letter-spacing:4px}
 .donation-side-icon{font-size:36px;position:absolute;top:50%;transform:translateY(-50%);opacity:0.18}
 .donation-side-icon.left{left:24px}
 .donation-side-icon.right{right:24px}
 
-/* About */
 .about-text{color:var(--gray);font-size:15px;line-height:1.9;white-space:pre-line}
 .social-link svg{width:28px;height:28px;fill:var(--white);transition:fill 0.2s}
 .social-link svg:hover{fill:var(--yellow)}
 
-/* Modals */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);justify-content:center;align-items:center;z-index:1000;padding:20px}
-.modal-content{
-  background:var(--surface);padding:32px;border-radius:16px;width:520px;max-width:100%;
-  position:relative;border:1px solid var(--border);
-  box-shadow:0 20px 60px rgba(0,0,0,0.7);max-height:90vh;overflow-y:auto;
-}
-.close-modal{position:absolute;top:16px;right:20px;color:var(--gray);cursor:pointer;font-size:22px;font-weight:700;transition:color 0.2s;line-height:1}
+.modal-content{background:var(--surface);padding:32px;border-radius:16px;width:520px;max-width:100%;position:relative;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.7);max-height:90vh;overflow-y:auto}
+.close-modal{position:absolute;top:16px;right:20px;color:var(--gray);cursor:pointer;font-size:22px;font-weight:700;line-height:1}
 .close-modal:hover{color:var(--white)}
 .form-group{margin-bottom:14px}
 .form-group label{display:block;margin-bottom:5px;color:var(--gray);font-size:13px;font-weight:600}
-.form-group input{
-  width:100%;padding:11px 14px;background:var(--bg);
-  border:1px solid var(--border);color:white;border-radius:8px;font-size:14px;transition:border-color 0.2s;
-}
+.form-group input{width:100%;padding:11px 14px;background:var(--bg);border:1px solid var(--border);color:white;border-radius:8px;font-size:14px;transition:border-color 0.2s}
 .form-group input:focus{outline:none;border-color:var(--yellow)}
 .form-group .hint{font-size:11px;color:var(--gray);margin-top:4px;font-style:italic}
-.btn-submit{
-  background:linear-gradient(135deg,var(--yellow),#f0a500);color:#000;border:none;
-  padding:13px 20px;width:100%;font-weight:700;border-radius:8px;font-size:15px;
-  cursor:pointer;margin-top:12px;box-shadow:0 4px 15px var(--yellow-glow);transition:transform 0.2s;
-}
+.btn-submit{background:linear-gradient(135deg,var(--yellow),#f0a500);color:#000;border:none;padding:13px 20px;width:100%;font-weight:700;border-radius:8px;font-size:15px;cursor:pointer;margin-top:12px;box-shadow:0 4px 15px var(--yellow-glow);transition:transform 0.2s}
 .btn-submit:hover{transform:translateY(-2px)}
 .form-divider{border:none;border-top:1px solid var(--border);margin:16px 0}
 .form-section-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);font-weight:700;margin-bottom:12px;display:block}
 
-/* Details Modal */
 .det-header{text-align:center;margin-bottom:22px}
 .det-logo{width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid var(--border);margin-bottom:12px}
 .det-name{font-size:24px;font-weight:800;margin-bottom:4px}
@@ -287,7 +246,7 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
 
   <section id="home" class="section active">
     <h2>Featured Campaigns</h2>
-    <div id="home-featured" class="home-grid"></div>
+    <div id="home-featured" class="home-grid"><div class="loading"><div class="spinner"></div>Loading...</div></div>
     <h2 style="margin-top:10px">Ending Soon</h2>
     <div id="home-urgent" class="home-grid"></div>
     <div class="donation-box">
@@ -307,12 +266,12 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
 
   <section id="all" class="section">
     <h2>All Campaigns</h2>
-    <div id="all-content"></div>
+    <div id="all-content"><div class="loading"><div class="spinner"></div>Loading...</div></div>
   </section>
 
   <section id="reward" class="section">
     <h2>Reward Board — Ranked by Total Value</h2>
-    <div id="reward-content"></div>
+    <div id="reward-content"><div class="loading"><div class="spinner"></div>Loading...</div></div>
   </section>
 
   <section id="about" class="section">
@@ -382,7 +341,15 @@ Another important point concerns the estimated reward values shown on this websi
 </div>
 
 <script>
-let campaigns = JSON.parse(localStorage.getItem('spotctr_campaigns')) || [];
+// ── Firebase Init ──
+const firebaseConfig = {
+  databaseURL: "https://spotctr-default-rtdb.firebaseio.com"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const campsRef = db.ref('campaigns');
+
+let campaigns = [];
 let livePrices = JSON.parse(localStorage.getItem('spotctr_prices')) || {};
 let isAdminActive = false;
 let activeModalCampId = null;
@@ -390,6 +357,14 @@ let activeModalCampId = null;
 const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const isBD = userTZ === 'Asia/Dhaka';
 document.getElementById('tz-notice').innerText = `Times shown in: ${isBD ? 'BST (Bangladesh Standard Time)' : 'UTC'}`;
+
+// ── Firebase Live Listener ──
+campsRef.on('value', snapshot => {
+  const data = snapshot.val();
+  campaigns = data ? Object.values(data) : [];
+  fetchPrices();
+  renderViews();
+});
 
 function toggleMenu() {
   const m = document.getElementById('mobile-menu');
@@ -443,7 +418,8 @@ function saveCampaign(e) {
   e.preventDefault();
   const id = document.getElementById('camp-id').value || Date.now().toString();
   const camp = {
-    id, name: document.getElementById('token-name').value,
+    id,
+    name: document.getElementById('token-name').value,
     coinId: document.getElementById('coin-id').value.toLowerCase(),
     logo: document.getElementById('logo-url').value,
     poolAmt: parseFloat(document.getElementById('reward-pool-amt').value),
@@ -452,20 +428,16 @@ function saveCampaign(e) {
     end: document.getElementById('end-date').value,
     rewardDate: document.getElementById('reward-date').value || null
   };
-  const idx = campaigns.findIndex(c => c.id === id);
-  if (idx > -1) campaigns[idx] = camp; else campaigns.push(camp);
-  localStorage.setItem('spotctr_campaigns', JSON.stringify(campaigns));
+  // Save to Firebase
+  db.ref('campaigns/' + id).set(camp);
   closeModal('admin-modal');
-  fetchPrices();
 }
 
 function deleteCamp(id, ev) {
   ev.stopPropagation();
   authAction(() => {
     if (confirm("Delete this campaign?")) {
-      campaigns = campaigns.filter(c => c.id !== id);
-      localStorage.setItem('spotctr_campaigns', JSON.stringify(campaigns));
-      renderViews();
+      db.ref('campaigns/' + id).remove();
     }
   });
 }
@@ -547,12 +519,11 @@ function showDetails(camp) {
   const poolUsdVal = p ? camp.poolAmt * p : 0;
   document.getElementById('det-pool').innerHTML = `${camp.poolAmt.toLocaleString()} ${camp.name}${poolUsdVal ? `<span class="sub">≈ ${fmtUSD(poolUsdVal)}</span>` : ''}`;
   const estNum = parseFloat(camp.estReward);
-  const estEl = document.getElementById('det-est');
   if (!isNaN(estNum)) {
     const estUsd = p ? fmtUSD(estNum * p) : null;
-    estEl.innerHTML = `${estNum} ${camp.name}${estUsd ? `<span class="sub">≈ ${estUsd} per $1K Vol</span>` : ''}`;
+    document.getElementById('det-est').innerHTML = `${estNum} ${camp.name}${estUsd ? `<span class="sub">≈ ${estUsd} per $1K Vol</span>` : ''}`;
   } else {
-    estEl.innerText = camp.estReward;
+    document.getElementById('det-est').innerText = camp.estReward;
   }
   openModal('details-modal');
   updateDetTimer(camp);
@@ -561,10 +532,9 @@ function showDetails(camp) {
 function updateDetTimer(camp) {
   const info = getTimerInfo(camp);
   const el = document.getElementById('det-timer');
-  const lbl = document.getElementById('det-timer-label');
   el.innerText = info.text;
   el.className = `det-timer state-${info.state === 'alert' ? 'active' : info.state}`;
-  lbl.innerText = info.label;
+  document.getElementById('det-timer-label').innerText = info.label;
 }
 
 function adminBtns(id) {
@@ -577,24 +547,21 @@ function adminBtns(id) {
 
 function buildHeroCard(camp, isUrgent) {
   const p = price(camp.coinId);
-  const priceStr = fmtPrice(p);
-  const poolUsd = p ? `≈ ${fmtUSD(camp.poolAmt * p)}` : '';
   const info = getTimerInfo(camp);
-  const urgentBadge = isUrgent ? `<div class="urgent-badge">Ending Soon</div>` : '';
-  const cardCls = isUrgent ? 'hero-card urgent' : 'hero-card';
   const key = isUrgent ? 'hu' : 'hf';
   const enc = encodeURIComponent(JSON.stringify(camp));
-  return `<div class="${cardCls}" onclick='showDetails(JSON.parse(decodeURIComponent("${enc}")))'>
-    ${urgentBadge}
+  return `<div class="${isUrgent?'hero-card urgent':'hero-card'}" onclick='showDetails(JSON.parse(decodeURIComponent("${enc}")))'>
+    ${isUrgent ? '<div class="urgent-badge">Ending Soon</div>' : ''}
     <div class="hero-top">
       <img src="${camp.logo}" class="hero-logo" onerror="this.style.background='#2b3139'">
       <div class="hero-name">${camp.name}</div>
     </div>
-    <div class="hero-price">${priceStr}</div>
-    <div class="hero-pool">Total Pool: <strong>${camp.poolAmt.toLocaleString()} ${camp.name}</strong><br><span class="pool-usd">${poolUsd}</span></div>
+    <div class="hero-price">${fmtPrice(p)}</div>
+    <div class="hero-pool">Total Pool: <strong>${camp.poolAmt.toLocaleString()} ${camp.name}</strong><br>
+    <span class="pool-usd">${p ? `≈ ${fmtUSD(camp.poolAmt*p)}` : ''}</span></div>
     <div class="hero-timer-wrap">
       <div class="hero-timer-label" id="lbl-${camp.id}-${key}">${info.label}</div>
-      <div class="hero-timer state-${info.state === 'alert' ? 'active' : info.state}" id="tmr-${camp.id}-${key}">${info.text}</div>
+      <div class="hero-timer state-${info.state==='alert'?'active':info.state}" id="tmr-${camp.id}-${key}">${info.text}</div>
     </div>
   </div>`;
 }
@@ -602,47 +569,42 @@ function buildHeroCard(camp, isUrgent) {
 function buildListCard(camp, includeReward, rankIdx, grayed) {
   grayed = grayed || false;
   const p = price(camp.coinId);
-  const priceStr = fmtPrice(p);
   const info = getTimerInfo(camp);
   const suf = includeReward ? 'r' : 'a';
-  const grayStyle = grayed ? 'filter:grayscale(1);opacity:0.45;' : '';
-  const grayText  = grayed ? 'color:#666!important' : '';
+  const gs = grayed ? 'filter:grayscale(1);opacity:0.45;' : '';
+  const gt = grayed ? 'color:#666!important' : '';
   const enc = encodeURIComponent(JSON.stringify(camp));
-
-  let extraCols;
-  let cardCls = 'list-card';
+  let extra;
+  let cls = 'list-card';
   if (includeReward) {
-    cardCls += ' reward-card';
+    cls += ' reward-card';
     const badge = rankIdx < 3 ? `<span class="badge good">Good</span>` : `<span class="badge risky">Risky</span>`;
-    const poolUsd = p ? `≈ ${fmtUSD(camp.poolAmt * p)}` : '...';
-    extraCols = `<div class="reward-mid" style="${grayText}">${grayed ? '' : badge}</div>
+    extra = `<div class="reward-mid" style="${gt}">${grayed?'':badge}</div>
       <div class="reward-pool">
-        <div class="pool-amt" style="${grayText}">${camp.poolAmt.toLocaleString()} ${camp.name}</div>
-        <div class="pool-usd">${poolUsd}</div>
+        <div class="pool-amt" style="${gt}">${camp.poolAmt.toLocaleString()} ${camp.name}</div>
+        <div class="pool-usd">${p?`≈ ${fmtUSD(camp.poolAmt*p)}`:'...'}</div>
       </div>`;
   } else {
-    const estNum = parseFloat(camp.estReward);
-    const estStr = !isNaN(estNum) ? `${estNum} ${camp.name}` : camp.estReward;
-    extraCols = `<div class="camp-est">${estStr}<br>/&thinsp;$1K Vol</div>`;
+    const en = parseFloat(camp.estReward);
+    extra = `<div class="camp-est">${!isNaN(en)?en+' '+camp.name:camp.estReward}<br>/&thinsp;$1K Vol</div>`;
   }
-
-  const stateClass = grayed ? 'state-ended' : (info.state === 'alert' ? 'state-alert' : `state-${info.state}`);
-  return `<div class="${cardCls}" style="${grayStyle}" onclick='showDetails(JSON.parse(decodeURIComponent("${enc}")))'>
+  const sc = grayed ? 'state-ended' : (info.state==='alert'?'state-alert':`state-${info.state}`);
+  return `<div class="${cls}" style="${gs}" onclick='showDetails(JSON.parse(decodeURIComponent("${enc}")))'>
     <div class="camp-info">
       <img src="${camp.logo}" class="camp-logo" onerror="this.style.background='#2b3139'">
-      <span class="camp-name" style="${grayText}">${camp.name}</span>
+      <span class="camp-name" style="${gt}">${camp.name}</span>
     </div>
-    <div class="camp-price" style="${grayText}">${priceStr}</div>
-    ${extraCols}
+    <div class="camp-price" style="${gt}">${fmtPrice(p)}</div>
+    ${extra}
     <div>
       <span class="timer-state-label">${info.label}</span>
-      <span class="camp-timer ${stateClass}" id="tmr-${camp.id}-${suf}">${info.text}</span>
+      <span class="camp-timer ${sc}" id="tmr-${camp.id}-${suf}">${info.text}</span>
     </div>
     ${adminBtns(camp.id)}
   </div>`;
 }
 
-function sectionDivider(label, color) {
+function divider(label, color) {
   return `<div style="margin:30px 0 14px;display:flex;align-items:center;gap:12px">
     <div style="height:1px;flex:1;background:var(--border)"></div>
     <span style="color:${color};font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap">${label}</span>
@@ -656,39 +618,22 @@ function renderViews() {
     ['home-featured','home-urgent','all-content','reward-content'].forEach(id => document.getElementById(id).innerHTML = empty);
     return;
   }
-
   const nowMs = Date.now();
-  const sortByVal = arr => [...arr].sort((a,b) => (b.poolAmt*(price(b.coinId)||0)) - (a.poolAmt*(price(a.coinId)||0)));
-
+  const byVal = arr => [...arr].sort((a,b) => (b.poolAmt*(price(b.coinId)||0))-(a.poolAmt*(price(a.coinId)||0)));
   const running = campaigns.filter(c => new Date(c.end).getTime() > nowMs);
-  const rewardPending = campaigns.filter(c => {
-    const ended = new Date(c.end).getTime() <= nowMs;
-    const rewardLive = c.rewardDate && new Date(c.rewardDate).getTime() > nowMs;
-    return ended && rewardLive;
-  }).sort((a,b) => new Date(a.rewardDate).getTime() - new Date(b.rewardDate).getTime());
-  const fullyEnded = campaigns.filter(c => {
-    const ended = new Date(c.end).getTime() <= nowMs;
-    const rewardDone = !c.rewardDate || new Date(c.rewardDate).getTime() <= nowMs;
-    return ended && rewardDone;
-  });
+  const rewPending = campaigns.filter(c => new Date(c.end).getTime() <= nowMs && c.rewardDate && new Date(c.rewardDate).getTime() > nowMs)
+    .sort((a,b) => new Date(a.rewardDate)-new Date(b.rewardDate));
+  const fullyEnded = campaigns.filter(c => new Date(c.end).getTime() <= nowMs && (!c.rewardDate || new Date(c.rewardDate).getTime() <= nowMs));
 
-  // All Campaigns
-  let allHtml = running.length
-    ? running.map(c => buildListCard(c, false, null)).join('')
-    : `<div class="empty-state"><h3>No Active Campaigns</h3><p>Check back later.</p></div>`;
-  if (rewardPending.length) {
-    allHtml += sectionDivider('⏳ Awaiting Reward Distribution', 'var(--green)');
-    allHtml += rewardPending.map(c => buildListCard(c, false, null)).join('');
-  }
+  // All
+  let allHtml = running.length ? running.map(c=>buildListCard(c,false,null)).join('') : `<div class="empty-state"><h3>No Active Campaigns</h3></div>`;
+  if (rewPending.length) { allHtml += divider('⏳ Awaiting Reward Distribution','var(--green)'); allHtml += rewPending.map(c=>buildListCard(c,false,null)).join(''); }
   document.getElementById('all-content').innerHTML = allHtml;
 
   // Reward Board
-  let rewardHtml = sortByVal(running).map((c,i) => buildListCard(c, true, i)).join('');
-  if (fullyEnded.length) {
-    rewardHtml += sectionDivider('Ended Campaigns', 'var(--gray)');
-    rewardHtml += sortByVal(fullyEnded).map((c,i) => buildListCard(c, true, i, true)).join('');
-  }
-  document.getElementById('reward-content').innerHTML = rewardHtml || empty;
+  let rHtml = byVal(running).map((c,i)=>buildListCard(c,true,i)).join('');
+  if (fullyEnded.length) { rHtml += divider('Ended Campaigns','var(--gray)'); rHtml += byVal(fullyEnded).map((c,i)=>buildListCard(c,true,i,true)).join(''); }
+  document.getElementById('reward-content').innerHTML = rHtml || empty;
 
   // Home
   if (!running.length) {
@@ -696,31 +641,29 @@ function renderViews() {
     document.getElementById('home-urgent').innerHTML = '';
     return;
   }
-  document.getElementById('home-featured').innerHTML = sortByVal(running).slice(0,2).map(c => buildHeroCard(c, false)).join('');
-  const urgent = [...running].sort((a,b) => new Date(a.end)-new Date(b.end))[0];
-  document.getElementById('home-urgent').innerHTML = buildHeroCard(urgent, true);
+  document.getElementById('home-featured').innerHTML = byVal(running).slice(0,2).map(c=>buildHeroCard(c,false)).join('');
+  const urgent = [...running].sort((a,b)=>new Date(a.end)-new Date(b.end))[0];
+  document.getElementById('home-urgent').innerHTML = buildHeroCard(urgent,true);
 }
 
-// Tick every second
+// Ticker
 setInterval(() => {
   campaigns.forEach(c => {
     const info = getTimerInfo(c);
-    const stateClass = info.state === 'alert' ? 'state-alert' : `state-${info.state}`;
+    const sc = info.state==='alert'?'state-alert':`state-${info.state}`;
     ['hf','hu','a','r'].forEach(suf => {
       const el = document.getElementById(`tmr-${c.id}-${suf}`);
-      if (el) { el.innerText = info.text; el.className = (suf.startsWith('h') ? 'hero-timer ' : 'camp-timer ') + stateClass; }
+      if (el) { el.innerText = info.text; el.className = (suf.startsWith('h')?'hero-timer ':'camp-timer ')+sc; }
       const lbl = document.getElementById(`lbl-${c.id}-${suf}`);
       if (lbl) lbl.innerText = info.label;
     });
   });
-  if (document.getElementById('details-modal').style.display === 'flex' && activeModalCampId) {
-    const camp = campaigns.find(c => c.id === activeModalCampId);
+  if (document.getElementById('details-modal').style.display==='flex' && activeModalCampId) {
+    const camp = campaigns.find(c=>c.id===activeModalCampId);
     if (camp) updateDetTimer(camp);
   }
 }, 1000);
 
-renderViews();
-fetchPrices();
 setInterval(fetchPrices, 60000);
 </script>
 </body>
