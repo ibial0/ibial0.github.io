@@ -272,7 +272,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 </div>
 
 <div id="global-balance-bar">
-  <span class="gbb-label">Net Balance</span>
+  <span class="gbb-label">Est. Net Profit</span>
   <span class="gbb-amount" id="gbb-val">$0.00</span>
   <span class="gbb-sub" id="gbb-sub">0 campaigns joined</span>
 </div>
@@ -937,7 +937,7 @@ function renderDashboard() {
   // Balance card
   const isLoss=net<0;
   document.getElementById('dash-balance').innerHTML=`<div class="balance-card" style="background:linear-gradient(135deg,${isLoss?'#1f0f0f,#200d0d':'#0f1f15,#132018'});border-color:${isLoss?'rgba(246,70,93,0.4)':'rgba(14,203,129,0.4)'};">
-    <div class="balance-label">Net Balance (Reward − Fees)</div>
+    <div class="balance-label">Est. Net Profit (Reward − Fees)</div>
     <div class="balance-net" style="color:${isLoss?'var(--red)':'var(--green)'};text-shadow:0 0 22px ${isLoss?'rgba(246,70,93,0.4)':'var(--gglow)'}">
       ${isLoss?'-':'+'}${fmtUSD(Math.abs(net))}
     </div>
