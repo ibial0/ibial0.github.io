@@ -103,7 +103,6 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .loading{text-align:center;padding:48px;color:var(--gray)}
 .spinner{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--yellow);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
-/* Balance Card */
 .balance-card{border-radius:16px;padding:24px;margin-bottom:26px;border:1px solid;text-align:center}
 .balance-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:6px}
 .balance-net{font-family:'Courier New',monospace;font-size:40px;font-weight:800;line-height:1;margin-bottom:4px}
@@ -112,25 +111,23 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .bal-row{background:var(--bg);border-radius:8px;padding:12px;text-align:center}
 .bal-row-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:4px}
 .bal-row-val{font-family:'Courier New',monospace;font-size:16px;font-weight:800}
-/* Dashboard Campaign Cards */
 .dash-header-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px}
 .dash-all-toggle{background:var(--surface2);border:1px solid var(--border);color:var(--gray);padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px}
 .dash-all-toggle:hover{border-color:var(--yellow);color:var(--yellow)}
-.dash-camp{background:var(--surface);border-radius:12px;margin-bottom:10px;border:1px solid var(--border);overflow:hidden;transition:border-color 0.2s}
+.dash-camp{background:var(--surface);border-radius:12px;margin-bottom:10px;border:1px solid var(--border);overflow:hidden}
 .dash-camp-header{display:flex;justify-content:space-between;align-items:center;padding:14px 17px;cursor:pointer;gap:10px;flex-wrap:wrap}
 .dash-camp-header:hover{background:var(--surface2)}
 .dash-camp-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
 .dash-camp-right{display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap}
 .dash-camp-summary{font-size:12px;color:var(--green);font-weight:600;white-space:nowrap}
 .dash-camp-summary.no-data{color:var(--gray)}
-.btn-remove{background:var(--rdim);color:var(--red);border:1px solid rgba(246,70,93,0.3);padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.btn-remove{background:var(--rdim);color:var(--red);border:1px solid rgba(246,70,93,0.3);padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
 .btn-remove:hover{background:var(--red);color:#fff}
-.btn-expand{background:none;border:none;color:var(--gray);cursor:pointer;padding:4px;font-size:16px;line-height:1;transition:transform 0.25s,color 0.2s;flex-shrink:0}
+.btn-expand{background:none;border:none;color:var(--gray);cursor:pointer;padding:4px;font-size:16px;line-height:1;transition:transform 0.25s,color 0.2s}
 .btn-expand:hover{color:var(--yellow)}
 .btn-expand.open{transform:rotate(180deg)}
 .dash-camp-body{padding:0 17px 14px;border-top:1px solid var(--border)}
 .dash-camp-body.collapsed{display:none}
-/* Form elements in dash */
 .toggle-switch{position:relative;width:42px;height:22px;cursor:pointer;flex-shrink:0}
 .toggle-switch input{opacity:0;width:0;height:0;position:absolute}
 .toggle-track{position:absolute;inset:0;background:var(--border);border-radius:11px;transition:background 0.25s}
@@ -151,7 +148,6 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .dash-note{background:var(--bg);border-radius:8px;padding:10px 13px;color:var(--cyan);font-size:12px;border-left:3px solid var(--cyan);margin-top:10px}
 .dash-info-row{background:var(--bg);border-radius:8px;padding:10px 13px;font-size:12px;color:var(--gray);margin-bottom:6px;margin-top:10px}
 .dash-info-row strong{color:var(--white)}
-/* Calculator */
 .calc-section{margin-top:28px}
 .calc-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
 .calc-tab{background:var(--surface);border:1px solid var(--border);color:var(--gray);padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s}
@@ -164,7 +160,6 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .calc-key{color:var(--gray);font-size:13px}
 .calc-val{font-weight:700;font-size:14px;color:var(--white)}
 .savings-hint{border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;line-height:1.6;border:1px solid}
-/* Donation */
 .donation-box{position:relative;overflow:hidden;background:linear-gradient(135deg,#181c22,#1a1f27);padding:34px 46px;border-radius:16px;text-align:center;margin-top:46px;border:1px solid rgba(252,213,53,0.3)}
 .donation-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(252,213,53,0.07),transparent 70%);pointer-events:none}
 .donation-gift{font-size:38px;display:block;animation:float 3s ease-in-out infinite;margin-bottom:7px}
@@ -180,7 +175,6 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .about-text{color:var(--gray);font-size:14px;line-height:1.9;white-space:pre-line}
 .social-link svg{width:26px;height:26px;fill:var(--white);transition:fill 0.2s}
 .social-link svg:hover{fill:var(--yellow)}
-/* Modals */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);justify-content:center;align-items:center;z-index:1000;padding:14px}
 .modal-content{background:var(--surface);padding:26px;border-radius:16px;width:500px;max-width:100%;position:relative;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.7);max-height:92vh;overflow-y:auto}
 .close-modal{position:absolute;top:13px;right:16px;color:var(--gray);cursor:pointer;font-size:20px;font-weight:700;line-height:1}
@@ -246,7 +240,6 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo" onclick="nav('home')">Spot CTR</div>
   <nav class="desktop-nav">
@@ -259,7 +252,6 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
   </nav>
   <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </header>
-
 <div class="mobile-menu" id="mobile-menu">
   <button onclick="nav('home');toggleMenu()">Home</button>
   <button onclick="nav('all');toggleMenu()">All Campaigns</button>
@@ -268,16 +260,13 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
   <button onclick="nav('about');toggleMenu()">About</button>
   <button onclick="promptAdmin();toggleMenu()" class="btn-admin">+ Add Campaign</button>
 </div>
-
 <div id="gbb">
   <span class="gbb-label">Est. Net Profit</span>
-  <span class="gbb-amount" id="gbb-val">$0.00</span>
+  <span class="gbb-amount" id="gbb-val">+$0.00</span>
   <span class="gbb-sub" id="gbb-sub">0 campaigns joined</span>
 </div>
-
 <main>
   <div id="tz-notice" style="text-align:right;color:var(--gray);font-size:11px;margin-bottom:16px"></div>
-
   <section id="home" class="section active">
     <h2>Featured Campaigns</h2>
     <div id="home-featured" class="home-grid"><div class="loading"><div class="spinner"></div>Loading...</div></div>
@@ -294,24 +283,20 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       </div>
     </div>
   </section>
-
   <section id="all" class="section">
     <h2>All Campaigns</h2>
     <div id="all-content"><div class="loading"><div class="spinner"></div>Loading...</div></div>
   </section>
-
   <section id="reward" class="section">
     <h2>Reward Board</h2>
     <div id="reward-content"><div class="loading"><div class="spinner"></div>Loading...</div></div>
   </section>
-
   <section id="dash" class="section">
     <h2>My Dashboard</h2>
     <div id="dash-balance"></div>
     <div id="dash-joined"></div>
     <div id="dash-calc"></div>
   </section>
-
   <section id="about" class="section">
     <h2>About Spot CTR</h2>
     <div class="about-text">This website was created to help traders save time and access important campaign information more efficiently. This platform focuses only on spot trading campaigns and avoids listing futures trading opportunities, both due to risk concerns and Islamic finance principles. Reward estimates are based on personal analysis and public information. Always conduct your own research before participating.</div>
@@ -321,7 +306,6 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     </a>
   </section>
 </main>
-
 <!-- Admin Modal -->
 <div class="modal" id="admin-modal">
   <div class="modal-content">
@@ -330,9 +314,9 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     <form id="campaign-form" style="margin-top:16px" onsubmit="saveCampaign(event)">
       <input type="hidden" id="camp-id">
       <span class="form-section-label">Campaign Info</span>
-      <div class="form-group"><label>Campaign Title (optional description)</label><input type="text" id="camp-title" placeholder="e.g. BNB Spot Trading Campaign"><div class="hint">Shown in detail view only</div></div>
+      <div class="form-group"><label>Campaign Title (optional)</label><input type="text" id="camp-title" placeholder="e.g. BNB Spot Trading Campaign"><div class="hint">Shown in detail view only</div></div>
       <div class="form-group"><label>Token Name (e.g. $BNB)</label><input type="text" id="token-name" required></div>
-      <div class="form-group"><label>CoinGecko Coin ID</label><input type="text" id="coin-id" required><div class="hint">Find at coingecko.com (e.g. binancecoin)</div></div>
+      <div class="form-group"><label>CoinGecko Coin ID</label><input type="text" id="coin-id" required><div class="hint">e.g. binancecoin</div></div>
       <div class="form-group"><label>Logo Image URL</label><input type="url" id="logo-url" required></div>
       <div class="form-group"><label>Total Reward Pool (Token Amount)</label><input type="number" id="reward-pool-amt" required></div>
       <div class="form-group">
@@ -345,18 +329,14 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
           <option value="unestimable">Unestimable / Random</option>
         </select>
       </div>
-      <div id="fg-volume">
-        <div class="form-group"><label>Est. Tokens per $1,000 Volume</label><input type="number" step="any" id="est-reward"><div class="hint">Tokens earned per $1,000 traded</div></div>
-      </div>
-      <div id="fg-equal" style="display:none">
-        <div class="form-group"><label>Total Participants (joined so far)</label><input type="number" id="max-participants" min="1"><div class="hint">Reward = Pool divided by this number</div></div>
-      </div>
+      <div id="fg-volume"><div class="form-group"><label>Est. Tokens per $1,000 Volume</label><input type="number" step="any" id="est-reward"><div class="hint">Tokens earned per $1,000 traded</div></div></div>
+      <div id="fg-equal" style="display:none"><div class="form-group"><label>Total Participants (joined so far)</label><input type="number" id="max-participants" min="1"><div class="hint">Reward = Pool divided by this number</div></div></div>
       <div id="fg-points-lb" style="display:none">
         <div class="form-group"><label>Total Points on Leaderboard</label><input type="number" id="total-points" min="1"></div>
         <div class="form-group"><label>Est. Cost per Point (USD)</label><input type="number" step="any" id="cost-per-point"><div class="hint">e.g. 0.012</div></div>
       </div>
       <div id="fg-points-nl" style="display:none">
-        <div class="form-group"><label>Minimum Points Required</label><input type="number" id="min-points" min="1"><div class="hint">e.g. 500 points to qualify</div></div>
+        <div class="form-group"><label>Minimum Points Required</label><input type="number" id="min-points" min="1"></div>
         <div class="form-group"><label>Est. Cost per Point (USD)</label><input type="number" step="any" id="cost-per-point-nl"><div class="hint">e.g. 0.012</div></div>
       </div>
       <hr class="form-divider">
@@ -368,9 +348,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
           <option value="yes">Yes - Set minimum volume</option>
         </select>
       </div>
-      <div id="fg-minvol" style="display:none">
-        <div class="form-group"><label>Minimum Volume to be Eligible (USD)</label><input type="number" id="min-volume" min="0" placeholder="e.g. 1000"></div>
-      </div>
+      <div id="fg-minvol" style="display:none"><div class="form-group"><label>Minimum Volume (USD)</label><input type="number" id="min-volume" min="0" placeholder="e.g. 1000"></div></div>
       <hr class="form-divider">
       <span class="form-section-label">Campaign Period</span>
       <div class="form-group"><label>Start Date and Time</label><input type="datetime-local" id="start-date" required></div>
@@ -382,7 +360,6 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     </form>
   </div>
 </div>
-
 <!-- Details Modal -->
 <div class="modal" id="details-modal">
   <div class="modal-content" style="width:480px">
@@ -390,7 +367,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     <div class="det-header">
       <img id="det-logo" src="" class="det-logo">
       <div class="det-name" id="det-name"></div>
-      <div class="det-title" id="det-title"></div>
+      <div class="det-title" id="det-title" style="display:none"></div>
       <div id="det-type-badge" style="margin:4px 0 3px"></div>
       <div class="det-price" id="det-price"></div>
     </div>
@@ -408,7 +385,6 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     <button id="det-join-btn" onclick="toggleJoinFromModal()" style="width:100%;padding:10px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--gray);transition:all 0.2s">+ Join Campaign</button>
   </div>
 </div>
-
 <script>
 firebase.initializeApp({ databaseURL: "https://spotctr-default-rtdb.firebaseio.com" });
 var db = firebase.database();
@@ -419,6 +395,7 @@ var detailCampId = null;
 var userData = JSON.parse(localStorage.getItem('spotctr_user') || '{"joined":{}}');
 var userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
 var allExpanded = true;
+var endedExpanded = true;
 
 document.getElementById('tz-notice').innerText = 'Times shown in your local timezone (' + userTZ + ')';
 
@@ -428,146 +405,136 @@ db.ref('campaigns').on('value', function(snap) {
   fetchPrices();
   renderViews();
   updateGBB();
-  if (document.getElementById('dash').classList.contains('active')) renderDashboard();
+  if (document.getElementById('dash').classList.contains('active')) { renderDashboard(); }
 });
 
 function saveUD() { localStorage.setItem('spotctr_user', JSON.stringify(userData)); }
 function isJoined(id) { return !!userData.joined[id]; }
-
-function toggleJoin(id, ev) {
-  if (ev) ev.stopPropagation();
-  if (userData.joined[id]) delete userData.joined[id];
-  else userData.joined[id] = { volume: 0, bnb: false, points: 0, expanded: true };
-  saveUD();
-  renderViews();
-  updateGBB();
-  if (document.getElementById('dash').classList.contains('active')) renderDashboard();
+function isCampActive(camp) {
+  var nowMs = Date.now();
+  var ended = new Date(camp.end).getTime() <= nowMs;
+  var rewardDone = !camp.rewardDate || new Date(camp.rewardDate).getTime() <= nowMs;
+  return !(ended && rewardDone);
 }
 
+function toggleJoin(id, ev) {
+  if (ev) { ev.stopPropagation(); }
+  if (userData.joined[id]) { delete userData.joined[id]; }
+  else { userData.joined[id] = { volume: 0, bnb: false, points: 0, expanded: true }; }
+  saveUD(); renderViews(); updateGBB();
+  if (document.getElementById('dash').classList.contains('active')) { renderDashboard(); }
+}
 function toggleJoinFromModal() {
-  if (!detailCampId) return;
+  if (!detailCampId) { return; }
   toggleJoin(detailCampId, null);
   updateJoinBtn(detailCampId);
 }
-
 function updateJoinBtn(id) {
   var btn = document.getElementById('det-join-btn');
-  if (!btn) return;
+  if (!btn) { return; }
   var j = isJoined(id);
   btn.innerText = j ? 'Joined - Click to Leave' : '+ Join Campaign';
   btn.style.borderColor = j ? 'var(--green)' : 'var(--border)';
   btn.style.background = j ? 'var(--gdim)' : 'transparent';
   btn.style.color = j ? 'var(--green)' : 'var(--gray)';
 }
-
 function updateVol(id, val) {
-  if (!userData.joined[id]) return;
+  if (!userData.joined[id]) { return; }
   userData.joined[id].volume = parseFloat(val) || 0;
-  saveUD();
-  refreshReward(id);
-  updateGBB();
-  renderCalc();
+  saveUD(); refreshReward(id); updateGBB(); renderCalc();
 }
-
 function updatePts(id, val) {
-  if (!userData.joined[id]) return;
+  if (!userData.joined[id]) { return; }
   userData.joined[id].points = parseFloat(val) || 0;
-  saveUD();
-  refreshReward(id);
-  updateGBB();
-  renderCalc();
+  saveUD(); refreshReward(id); updateGBB(); renderCalc();
 }
-
 function updateBnb(id, checked) {
-  if (!userData.joined[id]) return;
+  if (!userData.joined[id]) { return; }
   userData.joined[id].bnb = checked;
-  saveUD();
-  refreshReward(id);
-  updateGBB();
-  renderCalc();
+  saveUD(); refreshReward(id); updateGBB(); renderCalc();
 }
-
 function toggleExpand(id) {
-  if (!userData.joined[id]) return;
+  if (!userData.joined[id]) { return; }
   userData.joined[id].expanded = !userData.joined[id].expanded;
   saveUD();
   var body = document.getElementById('dbody-' + id);
   var btn = document.getElementById('dexpand-' + id);
-  if (body) body.classList.toggle('collapsed', !userData.joined[id].expanded);
-  if (btn) btn.classList.toggle('open', userData.joined[id].expanded);
+  if (body) { body.classList.toggle('collapsed', !userData.joined[id].expanded); }
+  if (btn) { btn.classList.toggle('open', userData.joined[id].expanded); }
 }
-
 function toggleAllExpand() {
   allExpanded = !allExpanded;
-  var joined = campaigns.filter(function(c) { return isJoined(c.id); });
-  joined.forEach(function(c) {
-    if (userData.joined[c.id]) userData.joined[c.id].expanded = allExpanded;
-    var body = document.getElementById('dbody-' + c.id);
-    var btn = document.getElementById('dexpand-' + c.id);
-    if (body) body.classList.toggle('collapsed', !allExpanded);
-    if (btn) btn.classList.toggle('open', allExpanded);
-  });
+  var i, c;
+  for (i = 0; i < campaigns.length; i++) {
+    c = campaigns[i];
+    if (isJoined(c.id) && isCampActive(c) && userData.joined[c.id]) {
+      userData.joined[c.id].expanded = allExpanded;
+      var body = document.getElementById('dbody-' + c.id);
+      var btn = document.getElementById('dexpand-' + c.id);
+      if (body) { body.classList.toggle('collapsed', !allExpanded); }
+      if (btn) { btn.classList.toggle('open', allExpanded); }
+    }
+  }
   saveUD();
   var allBtn = document.getElementById('btn-all-expand');
-  if (allBtn) allBtn.innerHTML = allExpanded ? '&#9650; Collapse All' : '&#9660; Expand All';
+  if (allBtn) { allBtn.innerHTML = allExpanded ? '&#9650; Collapse All' : '&#9660; Expand All'; }
 }
-
+function toggleAllEnded() {
+  endedExpanded = !endedExpanded;
+  var list = document.getElementById('ended-expanded-list');
+  var row = document.getElementById('ended-collapsed-row');
+  var btn = document.getElementById('btn-ended-expand');
+  if (list) { list.style.display = endedExpanded ? 'block' : 'none'; }
+  if (row) { row.style.display = endedExpanded ? 'none' : 'flex'; }
+  if (btn) { btn.innerHTML = endedExpanded ? '&#9650; Collapse All' : '&#9660; Expand All'; }
+}
 function refreshReward(campId) {
-  var camp = campaigns.find(function(c) { return c.id === campId; });
-  if (!camp) return;
+  var camp = null;
+  for (var i = 0; i < campaigns.length; i++) { if (campaigns[i].id === campId) { camp = campaigns[i]; break; } }
+  if (!camp) { return; }
   var el = document.getElementById('dreward-' + campId);
-  if (!el) return;
-  var r = calcReward(camp);
-  var p = priceOf(camp.coinId);
+  if (!el) { return; }
+  var r = calcReward(camp), p = priceOf(camp.coinId);
   if (r && r.canCalc && r.tokens !== null) {
     el.innerHTML = '<span class="dr-label">Est. Reward</span>'
       + '<span class="dr-val">' + (r.tokens > 0 ? fmtToken(r.tokens) + ' ' + camp.name : 'Enter value above') + '</span>'
       + (r.tokens > 0 && p ? '<span class="dr-usd">approx ' + fmtUSD(r.usd) + '</span>' : '')
       + (r.pointsCost > 0 ? '<span class="dr-usd" style="color:var(--red)">Fee approx ' + fmtUSD(r.pointsCost) + '</span>' : '');
   }
-  updateSummary(campId);
-}
-
-function updateSummary(campId) {
-  var camp = campaigns.find(function(c) { return c.id === campId; });
-  if (!camp) return;
-  var el = document.getElementById('dsummary-' + campId);
-  if (!el) return;
-  var r = calcReward(camp);
-  var p = priceOf(camp.coinId);
-  if (r && r.canCalc && r.tokens !== null && r.tokens > 0) {
-    el.innerText = fmtToken(r.tokens) + ' ' + camp.name + (p ? ' (approx ' + fmtUSD(r.usd) + ')' : '');
-    el.className = 'dash-camp-summary';
-  } else {
-    el.innerText = 'Not set';
-    el.className = 'dash-camp-summary no-data';
+  var sumEl = document.getElementById('dsummary-' + campId);
+  if (sumEl) {
+    if (r && r.canCalc && r.tokens !== null && r.tokens > 0) {
+      sumEl.innerText = fmtToken(r.tokens) + ' ' + camp.name + (p ? ' (approx ' + fmtUSD(r.usd) + ')' : '');
+      sumEl.className = 'dash-camp-summary';
+    } else {
+      sumEl.innerText = 'Not set';
+      sumEl.className = 'dash-camp-summary no-data';
+    }
   }
 }
-
 function updateGBB() {
   var bal = getBalance();
-  var joined = campaigns.filter(function(c) { return isJoined(c.id); });
+  var cnt = 0;
+  for (var i = 0; i < campaigns.length; i++) {
+    if (isJoined(campaigns[i].id) && isCampActive(campaigns[i])) { cnt++; }
+  }
   var el = document.getElementById('gbb-val');
   el.style.color = bal.net < 0 ? 'var(--red)' : 'var(--green)';
   el.innerText = (bal.net < 0 ? '-' : '+') + fmtUSD(Math.abs(bal.net));
-  document.getElementById('gbb-sub').innerText = joined.length + ' campaign' + (joined.length !== 1 ? 's' : '') + ' joined';
+  document.getElementById('gbb-sub').innerText = cnt + ' active campaign' + (cnt !== 1 ? 's' : '') + ' joined';
 }
-
 function toggleMenu() {
   var m = document.getElementById('mobile-menu');
   m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
 }
-
 function nav(id) {
   document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
   document.querySelectorAll('.desktop-nav button').forEach(function(b) { b.classList.remove('active'); });
   document.getElementById(id).classList.add('active');
   var nb = document.getElementById('nav-' + id);
-  if (nb) nb.classList.add('active');
-  if (id === 'dash') renderDashboard();
-  else renderViews();
+  if (nb) { nb.classList.add('active'); }
+  if (id === 'dash') { renderDashboard(); } else { renderViews(); }
 }
-
 function promptAdmin() {
   var pass = prompt('Enter Admin Password:');
   if (pass === '@Sakib2020') {
@@ -576,22 +543,17 @@ function promptAdmin() {
     document.getElementById('camp-id').value = '';
     document.getElementById('modal-title').innerText = 'Add New Campaign';
     document.getElementById('submit-btn').innerText = 'Publish Campaign';
-    onTypeChange();
-    onMinVolChange();
-    openModal('admin-modal');
-  } else if (pass !== null) alert('Incorrect Password!');
+    onTypeChange(); onMinVolChange(); openModal('admin-modal');
+  } else if (pass !== null) { alert('Incorrect Password!'); }
 }
-
 function authAction(cb) {
   if (isAdmin) { cb(); return; }
   var pass = prompt('Enter Admin Password:');
   if (pass === '@Sakib2020') { isAdmin = true; cb(); }
-  else if (pass !== null) alert('Incorrect Password!');
+  else if (pass !== null) { alert('Incorrect Password!'); }
 }
-
 function openModal(id) { document.getElementById(id).style.display = 'flex'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-
 function onTypeChange() {
   var t = document.getElementById('camp-type') ? document.getElementById('camp-type').value : 'volume';
   document.getElementById('fg-volume').style.display = t === 'volume' ? '' : 'none';
@@ -599,38 +561,34 @@ function onTypeChange() {
   document.getElementById('fg-points-lb').style.display = t === 'points_lb' ? '' : 'none';
   document.getElementById('fg-points-nl').style.display = t === 'points_nl' ? '' : 'none';
 }
-
 function onMinVolChange() {
   var v = document.getElementById('has-min-vol') ? document.getElementById('has-min-vol').value : 'no';
   var fg = document.getElementById('fg-minvol');
-  if (fg) fg.style.display = v === 'yes' ? '' : 'none';
+  if (fg) { fg.style.display = v === 'yes' ? '' : 'none'; }
   var inp = document.getElementById('min-volume');
-  if (inp && v === 'no') inp.value = '';
+  if (inp && v === 'no') { inp.value = ''; }
 }
-
 function gv(id) { var el = document.getElementById(id); return el ? el.value : ''; }
 function gn(id) { return parseFloat(gv(id)) || 0; }
-
 async function fetchPrices() {
-  if (!campaigns.length) return;
+  if (!campaigns.length) { return; }
   var ids = [];
-  campaigns.forEach(function(c) { if (ids.indexOf(c.coinId) < 0) ids.push(c.coinId); });
+  for (var i = 0; i < campaigns.length; i++) {
+    if (ids.indexOf(campaigns[i].coinId) < 0) { ids.push(campaigns[i].coinId); }
+  }
   try {
     var res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=' + ids.join(',') + '&vs_currencies=usd');
     var data = await res.json();
     livePrices = data;
     localStorage.setItem('spotctr_prices', JSON.stringify(livePrices));
-    renderViews();
-    updateGBB();
-    if (document.getElementById('dash').classList.contains('active')) renderDashboard();
+    renderViews(); updateGBB();
+    if (document.getElementById('dash').classList.contains('active')) { renderDashboard(); }
   } catch(e) {}
 }
-
 function saveCampaign(e) {
   e.preventDefault();
   var id = gv('camp-id') || Date.now().toString();
-  var t = gv('camp-type');
-  var hasMinVol = gv('has-min-vol') === 'yes';
+  var t = gv('camp-type'), hasMinVol = gv('has-min-vol') === 'yes';
   db.ref('campaigns/' + id).set({
     id: id, title: gv('camp-title'), name: gv('token-name'),
     coinId: gv('coin-id').toLowerCase(), logo: gv('logo-url'),
@@ -647,17 +605,16 @@ function saveCampaign(e) {
   });
   closeModal('admin-modal');
 }
-
 function deleteCamp(id, ev) {
   ev.stopPropagation();
-  authAction(function() { if (confirm('Delete this campaign?')) db.ref('campaigns/' + id).remove(); });
+  authAction(function() { if (confirm('Delete this campaign?')) { db.ref('campaigns/' + id).remove(); } });
 }
-
 function editCamp(id, ev) {
   ev.stopPropagation();
   authAction(function() {
-    var c = campaigns.find(function(x) { return x.id === id; });
-    if (!c) return;
+    var c = null;
+    for (var i = 0; i < campaigns.length; i++) { if (campaigns[i].id === id) { c = campaigns[i]; break; } }
+    if (!c) { return; }
     document.getElementById('camp-id').value = c.id;
     document.getElementById('camp-title').value = c.title || '';
     document.getElementById('token-name').value = c.name;
@@ -679,11 +636,9 @@ function editCamp(id, ev) {
     document.getElementById('reward-date').value = c.rewardDate || '';
     document.getElementById('modal-title').innerText = 'Edit Campaign';
     document.getElementById('submit-btn').innerText = 'Save Changes';
-    onTypeChange();
-    openModal('admin-modal');
+    onTypeChange(); openModal('admin-modal');
   });
 }
-
 function pad(n) { return n.toString().padStart(2, '0'); }
 function fmtDiff(d) {
   return pad(Math.floor(d/86400000)) + 'd ' + pad(Math.floor((d%86400000)/3600000)) + 'h ' + pad(Math.floor((d%3600000)/60000)) + 'm ' + pad(Math.floor((d%60000)/1000)) + 's';
@@ -692,34 +647,29 @@ function getTimerInfo(camp) {
   var now = Date.now(), end = new Date(camp.end).getTime();
   var re = camp.rewardDate ? new Date(camp.rewardDate).getTime() : null;
   if (now < end) { var diff = end - now; return { text: fmtDiff(diff), state: diff < 86400000 ? 'alert' : 'active', label: 'Campaign Ends In' }; }
-  if (re && now < re) return { text: fmtDiff(re - now), state: 'reward', label: 'Reward Distribution In' };
+  if (re && now < re) { return { text: fmtDiff(re - now), state: 'reward', label: 'Reward Distribution In' }; }
   return { text: 'ENDED', state: 'ended', label: 'Campaign Ended' };
 }
-
 function priceOf(coinId) { return (livePrices[coinId] && livePrices[coinId].usd) ? livePrices[coinId].usd : 0; }
-
 function fmtUSD(n) {
-  if (!n || isNaN(n)) return '$0.00';
-  if (n >= 1000000) return '$' + (n/1000000).toFixed(2) + 'M';
-  if (n >= 1000) return '$' + (n/1000).toFixed(1) + 'K';
+  if (!n || isNaN(n)) { return '$0.00'; }
+  if (n >= 1000000) { return '$' + (n/1000000).toFixed(2) + 'M'; }
+  if (n >= 1000) { return '$' + (n/1000).toFixed(1) + 'K'; }
   return '$' + n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
-
 function fmtToken(n) {
-  if (!n || isNaN(n)) return '0';
-  if (n >= 1000) return n.toLocaleString(undefined, { maximumFractionDigits: 2 });
-  if (n >= 1) return n.toFixed(4);
-  if (n >= 0.0001) return n.toFixed(6);
+  if (!n || isNaN(n)) { return '0'; }
+  if (n >= 1000) { return n.toLocaleString(undefined, { maximumFractionDigits: 2 }); }
+  if (n >= 1) { return n.toFixed(4); }
+  if (n >= 0.0001) { return n.toFixed(6); }
   return n.toFixed(8);
 }
-
 function fmtPrice(p) {
-  if (!p) return '...';
-  if (p < 0.01) return '$' + p.toFixed(6);
-  if (p < 1) return '$' + p.toFixed(4);
+  if (!p) { return '...'; }
+  if (p < 0.01) { return '$' + p.toFixed(6); }
+  if (p < 1) { return '$' + p.toFixed(4); }
   return '$' + p.toFixed(2);
 }
-
 var typeLabels = {
   volume: { label: 'Vol. Based', cls: 'type-volume' },
   equal: { label: 'Equal Share', cls: 'type-equal' },
@@ -729,27 +679,24 @@ var typeLabels = {
   points_nd: { label: 'Unestimable', cls: 'type-unestimable' }
 };
 function typeBadge(t) { var i = typeLabels[t] || typeLabels.volume; return '<span class="type-badge ' + i.cls + '">' + i.label + '</span>'; }
-
 function calcReward(camp) {
   var j = userData.joined[camp.id];
-  if (!j) return null;
+  if (!j) { return null; }
   var p = priceOf(camp.coinId), t = camp.type || 'volume';
   if (t === 'volume') {
-    var en = parseFloat(camp.estReward) || 0;
-    var tok = (j.volume / 1000) * en;
+    var en = parseFloat(camp.estReward) || 0, tok = (j.volume / 1000) * en;
     return { tokens: tok, usd: tok * p, canCalc: true, pointsCost: 0 };
   }
   if (t === 'equal') {
-    var mp = parseFloat(camp.maxParticipants) || 1;
-    var tok2 = camp.poolAmt / mp;
+    var mp = parseFloat(camp.maxParticipants) || 1, tok2 = camp.poolAmt / mp;
     var minV = camp.minVolume || 0, rate = j.bnb ? 0.00075 : 0.001;
-    return { tokens: tok2, usd: tok2 * p, canCalc: true, isFixed: true, minVol: minV, feeCost: minV * rate, pointsCost: 0 };
+    return { tokens: tok2, usd: tok2 * p, canCalc: true, minVol: minV, feeCost: minV * rate, pointsCost: 0 };
   }
   if (t === 'points_lb') {
     var tp = parseFloat(camp.totalPoints) || 1, userPts = j.points || 0;
     var tok3 = userPts > 0 ? (userPts / tp) * camp.poolAmt : 0;
     var cpp = parseFloat(camp.costPerPoint) || 0;
-    return { tokens: tok3, usd: tok3 * p, canCalc: true, pointsCost: userPts * cpp, costPerPt: cpp };
+    return { tokens: tok3, usd: tok3 * p, canCalc: true, pointsCost: userPts * cpp };
   }
   if (t === 'points_nl') {
     var minPts = parseFloat(camp.minPoints) || 0, cpp2 = parseFloat(camp.costPerPointNl) || 0;
@@ -757,35 +704,27 @@ function calcReward(camp) {
   }
   return { tokens: null, usd: null, canCalc: false, pointsCost: 0 };
 }
-
-function isCampActive(camp) {
-  var nowMs = Date.now();
-  var ended = new Date(camp.end).getTime() <= nowMs;
-  var rewardDone = !camp.rewardDate || new Date(camp.rewardDate).getTime() <= nowMs;
-  return !(ended && rewardDone);
-}
-
 function getBalance() {
   var totalReward = 0, totalFee = 0, cnt = 0;
-  campaigns.forEach(function(c) {
-    if (!isJoined(c.id) || !isCampActive(c)) return;
+  for (var i = 0; i < campaigns.length; i++) {
+    var c = campaigns[i];
+    if (!isJoined(c.id) || !isCampActive(c)) { continue; }
     var j = userData.joined[c.id], r = calcReward(c), t = c.type || 'volume';
     if (r && r.usd !== null) { totalReward += r.usd; cnt++; }
-    if (t === 'volume') totalFee += (j.volume || 0) * (j.bnb ? 0.00075 : 0.001);
-    else if (t === 'equal' && r && r.feeCost) totalFee += r.feeCost;
-    else if (t === 'points_lb' && r && r.pointsCost) totalFee += r.pointsCost;
-  });
+    if (t === 'volume') { totalFee += (j.volume || 0) * (j.bnb ? 0.00075 : 0.001); }
+    else if (t === 'equal' && r && r.feeCost) { totalFee += r.feeCost; }
+    else if (t === 'points_lb' && r && r.pointsCost) { totalFee += r.pointsCost; }
+  }
   return { net: totalReward - totalFee, totalReward: totalReward, totalFee: totalFee, cnt: cnt };
 }
-
 function showDetails(enc) {
   var camp = JSON.parse(decodeURIComponent(enc));
   detailCampId = camp.id;
   document.getElementById('det-logo').src = camp.logo;
   document.getElementById('det-name').innerText = camp.name;
   var titleEl = document.getElementById('det-title');
-  titleEl.innerText = camp.title || '';
-  titleEl.style.display = camp.title ? 'block' : 'none';
+  if (camp.title) { titleEl.innerText = camp.title; titleEl.style.display = 'block'; }
+  else { titleEl.style.display = 'none'; }
   document.getElementById('det-type-badge').innerHTML = typeBadge(camp.type || 'volume');
   var p = priceOf(camp.coinId);
   document.getElementById('det-price').innerText = p ? fmtPrice(p) : 'Loading...';
@@ -794,59 +733,51 @@ function showDetails(enc) {
   document.getElementById('det-end').innerText = new Date(camp.end).toLocaleString('en-US', fmt);
   var rdr = document.getElementById('det-reward-row');
   if (camp.rewardDate) { rdr.style.display = 'flex'; document.getElementById('det-reward-date').innerText = new Date(camp.rewardDate).toLocaleString('en-US', fmt); }
-  else rdr.style.display = 'none';
+  else { rdr.style.display = 'none'; }
   var pu = p ? camp.poolAmt * p : 0;
   document.getElementById('det-pool').innerHTML = camp.poolAmt.toLocaleString() + ' ' + camp.name + (pu ? '<span class="sub">approx ' + fmtUSD(pu) + '</span>' : '');
-  var t = camp.type || 'volume';
-  var estEl = document.getElementById('det-est'), estRow = document.getElementById('det-est-row');
+  var t = camp.type || 'volume', estEl = document.getElementById('det-est'), estRow = document.getElementById('det-est-row');
   if (t === 'volume') {
     var en = parseFloat(camp.estReward), eu = p && !isNaN(en) ? fmtUSD(en * p) : null;
     estEl.innerHTML = en + ' ' + camp.name + (eu ? '<span class="sub">approx ' + eu + ' per $1K Vol</span>' : '');
     estRow.style.display = 'flex';
   } else if (t === 'equal') {
     var mp2 = camp.maxParticipants || '?', minV2 = camp.minVolume || 0;
-    var rpp = camp.poolAmt / (camp.maxParticipants || 1);
-    estEl.innerHTML = fmtToken(rpp) + ' ' + camp.name + ' each<span class="sub">' + mp2 + ' participants' + (minV2 ? ' | Min vol: $' + minV2.toLocaleString() : '') + '</span>';
+    estEl.innerHTML = fmtToken(camp.poolAmt / (camp.maxParticipants || 1)) + ' ' + camp.name + ' each<span class="sub">' + mp2 + ' participants' + (minV2 ? ' | Min vol: $' + minV2.toLocaleString() : '') + '</span>';
     estRow.style.display = 'flex';
   } else if (t === 'points_lb') {
-    var tp2 = camp.totalPoints || '?';
-    estEl.innerHTML = 'Points-based<span class="sub">Total LB points: ' + (typeof tp2 === 'number' ? tp2.toLocaleString() : tp2) + '</span>';
+    estEl.innerHTML = 'Points-based<span class="sub">Total LB points: ' + ((camp.totalPoints || 0).toLocaleString()) + '</span>';
     estRow.style.display = 'flex';
   } else if (t === 'points_nl') {
-    var mnp2 = camp.minPoints || '?', cpp3 = camp.costPerPointNl || 0;
-    estEl.innerHTML = 'Points (no leaderboard)<span class="sub">Min pts: ' + mnp2 + (cpp3 ? ' | Cost/pt: $' + cpp3 : '') + '</span>';
+    estEl.innerHTML = 'Points (no leaderboard)<span class="sub">Min pts: ' + (camp.minPoints || '?') + (camp.costPerPointNl ? ' | Cost/pt: $' + camp.costPerPointNl : '') + '</span>';
     estRow.style.display = 'flex';
   } else { estRow.style.display = 'none'; }
   updateJoinBtn(camp.id);
   openModal('details-modal');
   updateDetTimer(camp);
 }
-
 function updateDetTimer(camp) {
   var info = getTimerInfo(camp), el = document.getElementById('det-timer');
   el.innerText = info.text;
   el.className = 'det-timer state-' + (info.state === 'alert' ? 'active' : info.state);
   document.getElementById('det-timer-label').innerText = info.label;
 }
-
 function joinBtn(id) {
   var j = isJoined(id);
   return '<button class="btn-join btn-join-sm' + (j ? ' joined' : '') + '" onclick="toggleJoin(\'' + id + '\',event)">' + (j ? 'Joined' : '+ Join') + '</button>';
 }
 function adminBtns(id) {
-  if (!isAdmin) return '';
+  if (!isAdmin) { return ''; }
   return '<div class="admin-controls"><button class="btn-edit" onclick="editCamp(\'' + id + '\',event)">Edit</button><button class="btn-del" onclick="deleteCamp(\'' + id + '\',event)">Del</button></div>';
 }
-
 function getEstText(camp) {
   var t = camp.type || 'volume';
   if (t === 'volume') { var en = parseFloat(camp.estReward); return !isNaN(en) ? en + ' ' + camp.name + ' / $1K' : '-'; }
   if (t === 'equal') { return fmtToken(camp.poolAmt / (camp.maxParticipants || 1)) + ' ' + camp.name + ' each'; }
-  if (t === 'points_lb') return 'Points + LB';
-  if (t === 'points_nl') return 'Points (No LB)';
+  if (t === 'points_lb') { return 'Points + LB'; }
+  if (t === 'points_nl') { return 'Points (No LB)'; }
   return 'Unestimable';
 }
-
 function buildHeroCard(camp, isUrgent) {
   var p = priceOf(camp.coinId), info = getTimerInfo(camp), key = isUrgent ? 'hu' : 'hf';
   var enc = encodeURIComponent(JSON.stringify(camp));
@@ -861,7 +792,6 @@ function buildHeroCard(camp, isUrgent) {
     + '<div class="hero-timer state-' + (info.state === 'alert' ? 'active' : info.state) + '" id="tmr-' + camp.id + '-' + key + '">' + info.text + '</div></div>'
     + joinBtn(camp.id) + '</div>';
 }
-
 function buildListCard(camp, inclRew, rankIdx, grayed) {
   grayed = grayed || false;
   var p = priceOf(camp.coinId), info = getTimerInfo(camp), suf = inclRew ? 'r' : 'a';
@@ -886,56 +816,53 @@ function buildListCard(camp, inclRew, rankIdx, grayed) {
     + '<span class="camp-timer ' + sc + '" id="tmr-' + camp.id + '-' + suf + '">' + info.text + '</span></div>'
     + joinBtn(camp.id) + adminBtns(camp.id) + '</div>';
 }
-
 function divider(label, color) {
   return '<div style="margin:22px 0 12px;display:flex;align-items:center;gap:10px">'
     + '<div style="height:1px;flex:1;background:var(--border)"></div>'
     + '<span style="color:' + color + ';font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap">' + label + '</span>'
     + '<div style="height:1px;flex:1;background:var(--border)"></div></div>';
 }
-
 function renderViews() {
   var empty = '<div class="empty-state"><h3>No Campaigns Yet</h3><p>Click "+ Add Campaign" to get started.</p></div>';
   if (!campaigns.length) {
-    ['home-featured','home-urgent','all-content','reward-content'].forEach(function(id) { document.getElementById(id).innerHTML = empty; });
+    var ids = ['home-featured','home-urgent','all-content','reward-content'];
+    for (var x = 0; x < ids.length; x++) { document.getElementById(ids[x]).innerHTML = empty; }
     return;
   }
-  var nowMs = Date.now();
+  var nowMs = Date.now(), i, c;
+  var running = [], rewPending = [], fullyEnded = [];
+  for (i = 0; i < campaigns.length; i++) {
+    c = campaigns[i];
+    var endT = new Date(c.end).getTime(), reT = c.rewardDate ? new Date(c.rewardDate).getTime() : null;
+    if (endT > nowMs) { running.push(c); }
+    else if (reT && reT > nowMs) { rewPending.push(c); }
+    else { fullyEnded.push(c); }
+  }
+  rewPending.sort(function(a,b) { return new Date(a.rewardDate) - new Date(b.rewardDate); });
   function byVal(arr) { return arr.slice().sort(function(a,b) { return (b.poolAmt*(priceOf(b.coinId)||0)) - (a.poolAmt*(priceOf(a.coinId)||0)); }); }
-  var running = campaigns.filter(function(c) { return new Date(c.end).getTime() > nowMs; });
-  var rewPending = campaigns.filter(function(c) {
-    return new Date(c.end).getTime() <= nowMs && c.rewardDate && new Date(c.rewardDate).getTime() > nowMs;
-  }).sort(function(a,b) { return new Date(a.rewardDate) - new Date(b.rewardDate); });
-  var fullyEnded = campaigns.filter(function(c) {
-    return new Date(c.end).getTime() <= nowMs && (!c.rewardDate || new Date(c.rewardDate).getTime() <= nowMs);
-  });
-  var allHtml = running.length ? running.map(function(c) { return buildListCard(c,false,null); }).join('') : '<div class="empty-state"><h3>No Active Campaigns</h3></div>';
-  if (rewPending.length) { allHtml += divider('Awaiting Reward Distribution', 'var(--green)'); allHtml += rewPending.map(function(c) { return buildListCard(c,false,null); }).join(''); }
+  var allHtml = running.length ? running.map(function(c2) { return buildListCard(c2,false,null); }).join('') : '<div class="empty-state"><h3>No Active Campaigns</h3></div>';
+  if (rewPending.length) { allHtml += divider('Awaiting Reward Distribution', 'var(--green)'); allHtml += rewPending.map(function(c2) { return buildListCard(c2,false,null); }).join(''); }
   document.getElementById('all-content').innerHTML = allHtml;
-  var rHtml = byVal(running).map(function(c,i) { return buildListCard(c,true,i); }).join('');
-  if (fullyEnded.length) { rHtml += divider('Ended Campaigns', 'var(--gray)'); rHtml += byVal(fullyEnded).map(function(c,i) { return buildListCard(c,true,i,true); }).join(''); }
+  var rHtml = byVal(running).map(function(c2,i2) { return buildListCard(c2,true,i2); }).join('');
+  if (fullyEnded.length) { rHtml += divider('Ended Campaigns', 'var(--gray)'); rHtml += byVal(fullyEnded).map(function(c2,i2) { return buildListCard(c2,true,i2,true); }).join(''); }
   document.getElementById('reward-content').innerHTML = rHtml || empty;
   if (!running.length) { document.getElementById('home-featured').innerHTML = '<div class="empty-state"><h3>No Active Campaigns</h3></div>'; document.getElementById('home-urgent').innerHTML = ''; return; }
-  document.getElementById('home-featured').innerHTML = byVal(running).slice(0,2).map(function(c) { return buildHeroCard(c,false); }).join('');
+  document.getElementById('home-featured').innerHTML = byVal(running).slice(0,2).map(function(c2) { return buildHeroCard(c2,false); }).join('');
   var urgent = running.slice().sort(function(a,b) { return new Date(a.end) - new Date(b.end); })[0];
   document.getElementById('home-urgent').innerHTML = buildHeroCard(urgent, true);
 }
-
 function buildDashCard(camp) {
   var j = userData.joined[camp.id];
-  if (!j) return '';
+  if (!j) { return ''; }
   var p = priceOf(camp.coinId), info = getTimerInfo(camp), r = calcReward(camp), t = camp.type || 'volume';
   var sc = info.state === 'alert' ? 'state-alert' : 'state-' + info.state;
-  var bnbOn = j.bnb || false;
-  var isExpanded = j.expanded !== false;
-  var hasData = j.volume > 0 || j.points > 0;
-
-  var summaryTxt = 'Not set', summaryCls = 'dash-camp-summary no-data';
+  var bnbOn = j.bnb || false, isExpanded = j.expanded !== false;
+  var hasData = (j.volume > 0 || j.points > 0);
+  var sumTxt = 'Not set', sumCls = 'dash-camp-summary no-data';
   if (r && r.canCalc && r.tokens !== null && r.tokens > 0) {
-    summaryTxt = fmtToken(r.tokens) + ' ' + camp.name + (p ? ' (approx ' + fmtUSD(r.usd) + ')' : '');
-    summaryCls = 'dash-camp-summary';
+    sumTxt = fmtToken(r.tokens) + ' ' + camp.name + (p ? ' (approx ' + fmtUSD(r.usd) + ')' : '');
+    sumCls = 'dash-camp-summary';
   }
-
   var bodyHtml = '';
   if (t === 'volume' && r && r.canCalc) {
     bodyHtml = '<div class="dash-vol-row">'
@@ -976,19 +903,17 @@ function buildDashCard(camp) {
     bodyHtml = '<div class="dash-info-row">Min Points: <strong>' + r.minPoints.toLocaleString() + '</strong>'
       + (r.costPerPt ? ' | Cost/pt: <strong style="color:var(--red)">$' + r.costPerPt + '</strong>' : '')
       + (r.minCost ? ' | Min cost approx <strong style="color:var(--red)">' + fmtUSD(r.minCost) + '</strong>' : '') + '</div>'
-      + '<div class="dash-note">Reward distribution is points-based but leaderboard is unavailable - exact reward cannot be calculated.</div>';
+      + '<div class="dash-note">Points-based but leaderboard unavailable - exact reward cannot be calculated.</div>';
   } else {
-    bodyHtml = '<div class="dash-note">This campaign reward cannot be estimated - distribution is random or unannounced.</div>';
+    bodyHtml = '<div class="dash-note">Reward cannot be estimated - distribution is random or unannounced.</div>';
   }
-
-  var showArrow = hasData || t === 'equal' || (r && r.isPointsNl) || t === 'unestimable';
-
+  var showArrow = hasData || t === 'equal' || (r && r.isPointsNl) || t === 'unestimable' || t === 'points_lb' || t === 'points_nl';
   return '<div class="dash-camp" id="dcard-' + camp.id + '">'
     + '<div class="dash-camp-header" onclick="toggleExpand(\'' + camp.id + '\')">'
     + '<div class="dash-camp-left"><img src="' + camp.logo + '" class="camp-logo" onerror="this.style.background=\'#2b3139\'">'
     + '<div><div class="camp-name">' + camp.name + '</div>' + typeBadge(t) + '</div></div>'
     + '<div class="dash-camp-right">'
-    + '<span id="dsummary-' + camp.id + '" class="' + summaryCls + '">' + summaryTxt + '</span>'
+    + '<span id="dsummary-' + camp.id + '" class="' + sumCls + '">' + sumTxt + '</span>'
     + '<span class="camp-timer ' + sc + '" style="font-size:11px">' + info.text + '</span>'
     + '<button class="btn-remove" onclick="toggleJoin(\'' + camp.id + '\',event)">Remove</button>'
     + (showArrow ? '<button class="btn-expand ' + (isExpanded ? 'open' : '') + '" id="dexpand-' + camp.id + '" onclick="event.stopPropagation();toggleExpand(\'' + camp.id + '\')">&#9660;</button>' : '')
@@ -996,63 +921,84 @@ function buildDashCard(camp) {
     + '<div class="dash-camp-body ' + (isExpanded ? '' : 'collapsed') + '" id="dbody-' + camp.id + '">' + bodyHtml + '</div>'
     + '</div>';
 }
-
 function renderDashboard() {
-  var joined = campaigns.filter(function(c) { return isJoined(c.id); });
-  var bal = getBalance(), isLoss = bal.net < 0;
-  var bg = isLoss ? '#1f0f0f,#200d0d' : '#0f1f15,#132018';
-  var bdr = isLoss ? 'rgba(246,70,93,0.4)' : 'rgba(14,203,129,0.4)';
+  var i, c;
+  var activeJ = [], endedJ = [];
+  for (i = 0; i < campaigns.length; i++) {
+    c = campaigns[i];
+    if (!isJoined(c.id)) { continue; }
+    if (isCampActive(c)) { activeJ.push(c); } else { endedJ.push(c); }
+  }
+  var bal = getBalance();
+  var isLoss = bal.net < 0;
   var nc = isLoss ? 'var(--red)' : 'var(--green)';
-  var sh = isLoss ? 'rgba(246,70,93,0.4)' : 'var(--gglow)';
-  document.getElementById('dash-balance').innerHTML = '<div class="balance-card" style="background:linear-gradient(135deg,' + bg + ');border-color:' + bdr + '">'
+  document.getElementById('dash-balance').innerHTML =
+    '<div class="balance-card" style="background:linear-gradient(135deg,' + (isLoss?'#1f0f0f,#200d0d':'#0f1f15,#132018') + ');border-color:' + (isLoss?'rgba(246,70,93,0.4)':'rgba(14,203,129,0.4)') + '">'
     + '<div class="balance-label">Est. Net Profit (Reward minus Fees)</div>'
-    + '<div class="balance-net" style="color:' + nc + ';text-shadow:0 0 22px ' + sh + '">' + (isLoss ? '-' : '+') + fmtUSD(Math.abs(bal.net)) + '</div>'
-    + '<div class="balance-sub">' + joined.length + ' joined | ' + bal.cnt + ' calculable</div>'
+    + '<div class="balance-net" style="color:' + nc + ';text-shadow:0 0 22px ' + (isLoss?'rgba(246,70,93,0.4)':'var(--gglow)') + '">' + (isLoss?'-':'+') + fmtUSD(Math.abs(bal.net)) + '</div>'
+    + '<div class="balance-sub">' + activeJ.length + ' active | ' + bal.cnt + ' calculable</div>'
     + '<div class="balance-rows">'
     + '<div class="bal-row"><div class="bal-row-label">Total Reward</div><div class="bal-row-val" style="color:var(--green)">' + fmtUSD(bal.totalReward) + '</div></div>'
     + '<div class="bal-row"><div class="bal-row-label">Total Fees</div><div class="bal-row-val" style="color:var(--red)">-' + fmtUSD(bal.totalFee) + '</div></div>'
-    + '<div class="bal-row"><div class="bal-row-label">Net</div><div class="bal-row-val" style="color:' + nc + '">' + (isLoss ? '-' : '+') + fmtUSD(Math.abs(bal.net)) + '</div></div>'
+    + '<div class="bal-row"><div class="bal-row-label">Net</div><div class="bal-row-val" style="color:' + nc + '">' + (isLoss?'-':'+') + fmtUSD(Math.abs(bal.net)) + '</div></div>'
     + '</div></div>';
-
-  var activeJoined = joined.filter(function(c) { return isCampActive(c); });
-  var endedJoined = joined.filter(function(c) { return !isCampActive(c); });
   var html = '';
-  if (!activeJoined.length && !endedJoined.length) {
+  if (activeJ.length === 0 && endedJ.length === 0) {
     html = '<div class="empty-state" style="margin-bottom:22px"><h3>No Campaigns Joined</h3><p>Click "+ Join" on any campaign to track your rewards here.</p></div>';
   } else {
-    if (activeJoined.length) {
+    if (activeJ.length > 0) {
       html += '<div class="dash-header-row">'
-        + '<h2 style="margin-bottom:0">Joined Campaigns (' + activeJoined.length + ')</h2>'
+        + '<h2 style="margin-bottom:0">Joined Campaigns (' + activeJ.length + ')</h2>'
         + '<button class="dash-all-toggle" id="btn-all-expand" onclick="toggleAllExpand()">&#9650; Collapse All</button>'
         + '</div>';
-      html += activeJoined.map(buildDashCard).join('');
+      for (i = 0; i < activeJ.length; i++) { html += buildDashCard(activeJ[i]); }
     } else {
-      html = '<div class="empty-state" style="margin-bottom:22px"><h3>No Active Joined Campaigns</h3></div>';
+      html += '<div class="empty-state" style="margin-bottom:22px"><h3>No Active Joined Campaigns</h3></div>';
     }
-    if (endedJoined.length) {
+    if (endedJ.length > 0) {
       html += divider('Completed Campaigns', 'var(--gray)');
-      html += endedJoined.map(function(c) {
-        return '<div class="dash-camp" style="filter:grayscale(1);opacity:0.4">'
-          + '<div class="dash-camp-header"><div class="dash-camp-left">'
-          + '<img src="' + c.logo + '" class="camp-logo"><div><div class="camp-name">' + c.name + '</div>' + typeBadge(c.type||'volume') + '</div></div>'
-          + '<span style="color:var(--gray);font-size:12px;font-family:monospace">COMPLETED</span></div></div>';
-      }).join('');
+      html += '<div style="display:flex;justify-content:flex-end;margin-bottom:10px">'
+        + '<button class="dash-all-toggle" id="btn-ended-expand" onclick="toggleAllEnded()">&#9650; Collapse All</button>'
+        + '</div>';
+      html += '<div id="ended-collapsed-row" style="display:none;flex-wrap:wrap;gap:6px;margin-bottom:10px;align-items:center">';
+      for (i = 0; i < endedJ.length; i++) {
+        html += '<img src="' + endedJ[i].logo + '" title="' + endedJ[i].name + '" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1px solid #333;filter:grayscale(1);opacity:0.5">';
+      }
+      html += '<span style="color:var(--gray);font-size:12px;margin-left:4px">' + endedJ.length + ' completed</span></div>';
+      html += '<div id="ended-expanded-list">';
+      for (i = 0; i < endedJ.length; i++) {
+        var ec = endedJ[i], er = calcReward(ec), ep = priceOf(ec.coinId);
+        var earnedUsd = (er && er.canCalc && er.tokens && er.tokens > 0 && ep) ? er.usd : 0;
+        html += '<div class="dash-camp" style="filter:grayscale(1);opacity:0.5">'
+          + '<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 17px;gap:10px;flex-wrap:wrap">'
+          + '<div style="display:flex;align-items:center;gap:10px">'
+          + '<img src="' + ec.logo + '" class="camp-logo">'
+          + '<div><div class="camp-name">' + ec.name + '</div>' + typeBadge(ec.type || 'volume') + '</div>'
+          + '</div>'
+          + '<span style="color:var(--gray);font-size:12px;font-family:monospace">COMPLETED</span>'
+          + '</div>'
+          + (earnedUsd > 0 ? '<div style="text-align:center;padding:10px 17px 14px;border-top:1px solid #2b3139">'
+            + '<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:4px">Earned</div>'
+            + '<div style="font-family:Courier New,monospace;font-size:22px;font-weight:800;color:#888">' + fmtUSD(earnedUsd) + '</div>'
+            + '</div>' : '')
+          + '</div>';
+      }
+      html += '</div>';
     }
   }
   document.getElementById('dash-joined').innerHTML = html;
   renderCalc();
 }
-
 function renderCalc() {
   var calcEl = document.getElementById('dash-calc');
-  if (!calcEl) return;
-  var bal = getBalance(), totalVol = 0, bnbVol = 0;
-  campaigns.forEach(function(c) {
-    var j = userData.joined[c.id];
-    if (!j) return;
+  if (!calcEl) { return; }
+  var bal = getBalance(), totalVol = 0, bnbVol = 0, i, c, j;
+  for (i = 0; i < campaigns.length; i++) {
+    c = campaigns[i]; j = userData.joined[c.id];
+    if (!j) { continue; }
     totalVol += j.volume || 0;
-    if (j.bnb) bnbVol += j.volume || 0;
-  });
+    if (j.bnb) { bnbVol += j.volume || 0; }
+  }
   var bnbPct = totalVol > 0 ? Math.round((bnbVol / totalVol) * 100) : 0;
   var potSave = (totalVol - bnbVol) * 0.001 * 0.25;
   calcEl.innerHTML = '<div class="calc-section"><h2 style="margin-bottom:14px">Cost Calculator</h2>'
@@ -1063,9 +1009,9 @@ function renderCalc() {
     + '<div class="calc-row"><span class="calc-key">BNB Fee Used</span><span class="calc-val" style="color:var(--yellow)">' + fmtUSD(bnbVol) + ' (' + bnbPct + '%)</span></div>'
     + '<div class="calc-row"><span class="calc-key">Total Trading Fee</span><span class="calc-val" style="color:var(--red)">-' + fmtUSD(bal.totalFee) + '</span></div>'
     + '<div class="calc-row"><span class="calc-key">Total Est. Reward</span><span class="calc-val" style="color:var(--green)">' + fmtUSD(bal.totalReward) + '</span></div>'
-    + '<div class="calc-row"><span class="calc-key" style="font-weight:700">Net Profit / Loss</span><span class="calc-val" style="color:' + (bal.net >= 0 ? 'var(--green)' : 'var(--red)') + ';font-size:16px">' + (bal.net >= 0 ? '+' : '-') + fmtUSD(Math.abs(bal.net)) + '</span></div>'
+    + '<div class="calc-row"><span class="calc-key" style="font-weight:700">Net Profit / Loss</span><span class="calc-val" style="color:' + (bal.net>=0?'var(--green)':'var(--red)') + ';font-size:16px">' + (bal.net>=0?'+':'-') + fmtUSD(Math.abs(bal.net)) + '</span></div>'
     + '</div>'
-    + (bnbPct < 100 && potSave > 0.001 ? '<div class="savings-hint" style="background:var(--ydim);border-color:rgba(252,213,53,0.3);color:var(--yellow)">Tip: If you used BNB fee on all trades, you could save an extra <strong>' + fmtUSD(potSave) + '</strong>.</div>' : '')
+    + (bnbPct < 100 && potSave > 0.001 ? '<div class="savings-hint" style="background:var(--ydim);border-color:rgba(252,213,53,0.3);color:var(--yellow)">Tip: Using BNB on all trades could save you <strong>' + fmtUSD(potSave) + '</strong> more.</div>' : '')
     + (bnbPct === 100 && totalVol > 0 ? '<div class="savings-hint" style="background:var(--gdim);border-color:rgba(14,203,129,0.3);color:var(--green)">Using BNB fee on 100% of trades. Maximum savings!</div>' : '')
     + '</div>'
     + '<div id="calc-manual" class="calc-panel"><div class="calc-card">'
@@ -1079,41 +1025,41 @@ function renderCalc() {
     + '<div class="calc-row" style="padding:7px 0;border-bottom:none"><span class="calc-key">If BNB, you would save</span><span class="calc-val" style="color:var(--yellow)" id="m-save">-</span></div>'
     + '</div></div></div>';
 }
-
 function switchTab(tab, btn) {
   document.querySelectorAll('.calc-tab').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
   var a = document.getElementById('calc-auto'), m = document.getElementById('calc-manual');
-  if (a) a.classList.toggle('active', tab === 'auto');
-  if (m) m.classList.toggle('active', tab === 'manual');
+  if (a) { a.classList.toggle('active', tab === 'auto'); }
+  if (m) { m.classList.toggle('active', tab === 'manual'); }
 }
-
 function calcManual() {
-  var vol = parseFloat((document.getElementById('m-vol') || {}).value) || 0;
-  var bnb = (document.getElementById('m-bnb') || {}).checked || false;
+  var vEl = document.getElementById('m-vol'), bEl = document.getElementById('m-bnb');
+  var vol = vEl ? (parseFloat(vEl.value) || 0) : 0, bnb = bEl ? bEl.checked : false;
   var fee = vol * (bnb ? 0.00075 : 0.001), save = vol * 0.001 * 0.25;
   var r = document.getElementById('m-rate'), f = document.getElementById('m-fee'), s = document.getElementById('m-save');
-  if (r) r.innerText = bnb ? '0.075% (BNB)' : '0.100%';
-  if (f) f.innerText = vol > 0 ? '-' + fmtUSD(fee) : '-';
-  if (s) s.innerText = vol > 0 && !bnb ? fmtUSD(save) : (bnb ? 'Already using BNB' : '-');
+  if (r) { r.innerText = bnb ? '0.075% (BNB)' : '0.100%'; }
+  if (f) { f.innerText = vol > 0 ? '-' + fmtUSD(fee) : '-'; }
+  if (s) { s.innerText = vol > 0 && !bnb ? fmtUSD(save) : (bnb ? 'Already using BNB' : '-'); }
 }
-
 setInterval(function() {
-  campaigns.forEach(function(c) {
-    var info = getTimerInfo(c), sc = info.state === 'alert' ? 'state-alert' : 'state-' + info.state;
-    ['hf','hu','a','r'].forEach(function(suf) {
-      var el = document.getElementById('tmr-' + c.id + '-' + suf);
-      if (el) { el.innerText = info.text; el.className = (suf.indexOf('h') === 0 ? 'hero-timer ' : 'camp-timer ') + sc; }
-      var lb = document.getElementById('lbl-' + c.id + '-' + suf);
-      if (lb) lb.innerText = info.label;
-    });
-  });
+  var i, c, info, sc, el, lb;
+  for (i = 0; i < campaigns.length; i++) {
+    c = campaigns[i]; info = getTimerInfo(c);
+    sc = info.state === 'alert' ? 'state-alert' : 'state-' + info.state;
+    var sufs = ['hf','hu','a','r'];
+    for (var s = 0; s < sufs.length; s++) {
+      el = document.getElementById('tmr-' + c.id + '-' + sufs[s]);
+      if (el) { el.innerText = info.text; el.className = (sufs[s].indexOf('h') === 0 ? 'hero-timer ' : 'camp-timer ') + sc; }
+      lb = document.getElementById('lbl-' + c.id + '-' + sufs[s]);
+      if (lb) { lb.innerText = info.label; }
+    }
+  }
   if (document.getElementById('details-modal').style.display === 'flex' && detailCampId) {
-    var c = campaigns.find(function(x) { return x.id === detailCampId; });
-    if (c) updateDetTimer(c);
+    var dc = null;
+    for (i = 0; i < campaigns.length; i++) { if (campaigns[i].id === detailCampId) { dc = campaigns[i]; break; } }
+    if (dc) { updateDetTimer(dc); }
   }
 }, 1000);
-
 setInterval(fetchPrices, 60000);
 </script>
 </body>
