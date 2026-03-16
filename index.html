@@ -4,291 +4,247 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spot CTR | Binance Campaign Tracker</title>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M21ZTEQY07"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-M21ZTEQY07');
-</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M21ZTEQY07');</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-database-compat.min.js"></script>
 <style>
-:root {
-  --bg: #0b0e11;
-  --surface: #1e2329;
-  --surface2: #242a31;
-  --yellow: #fcd535;
-  --yellow-dim: rgba(252,213,53,0.12);
-  --yellow-glow: rgba(252,213,53,0.4);
-  --green: #0ecb81;
-  --green-dim: rgba(14,203,129,0.12);
-  --green-glow: rgba(14,203,129,0.35);
-  --red: #f6465d;
-  --red-dim: rgba(246,70,93,0.12);
-  --gray: #848e9c;
-  --border: #2b3139;
-  --white: #ffffff;
-  --font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+:root{
+  --bg:#0b0e11;--surface:#1e2329;--surface2:#242a31;
+  --yellow:#fcd535;--ydim:rgba(252,213,53,0.12);--yglow:rgba(252,213,53,0.4);
+  --green:#0ecb81;--gdim:rgba(14,203,129,0.12);--gglow:rgba(14,203,129,0.35);
+  --red:#f6465d;--rdim:rgba(246,70,93,0.12);
+  --purple:#8b5cf6;--pdim:rgba(139,92,246,0.12);
+  --orange:#f59e0b;--odim:rgba(245,158,11,0.12);
+  --cyan:#06b6d4;--cdim:rgba(6,182,212,0.12);
+  --gray:#848e9c;--border:#2b3139;--white:#fff;
+  --font:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:var(--font)}
 body{background:var(--bg);color:var(--white);line-height:1.6;min-height:100vh}
 
-header{
-  background:rgba(30,35,41,0.95);backdrop-filter:blur(10px);
-  padding:14px 30px;display:flex;justify-content:space-between;align-items:center;
-  border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;
-}
-.logo{
-  font-size:22px;font-weight:800;cursor:pointer;letter-spacing:-0.5px;
-  background:linear-gradient(90deg,var(--yellow),#f0a500);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.desktop-nav{display:flex;gap:6px;align-items:center}
-.desktop-nav button{
-  background:none;border:none;color:var(--gray);font-size:14px;font-weight:600;
-  cursor:pointer;padding:8px 14px;border-radius:6px;transition:all 0.2s;
-}
-.desktop-nav button:hover,.desktop-nav button.active{color:var(--yellow);background:var(--yellow-dim)}
-.btn-admin{
-  background:linear-gradient(135deg,var(--yellow),#f0a500)!important;
-  color:#000!important;padding:8px 18px!important;border-radius:6px!important;
-  font-weight:700!important;-webkit-text-fill-color:#000!important;
-  box-shadow:0 4px 15px var(--yellow-glow);transition:transform 0.2s,box-shadow 0.2s!important;
-}
-.btn-admin:hover{transform:translateY(-2px)!important}
-
+header{background:rgba(30,35,41,0.97);backdrop-filter:blur(10px);padding:13px 30px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.logo{font-size:21px;font-weight:800;cursor:pointer;background:linear-gradient(90deg,var(--yellow),#f0a500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.desktop-nav{display:flex;gap:4px;align-items:center}
+.desktop-nav button{background:none;border:none;color:var(--gray);font-size:13px;font-weight:600;cursor:pointer;padding:7px 12px;border-radius:6px;transition:all 0.2s}
+.desktop-nav button:hover,.desktop-nav button.active{color:var(--yellow);background:var(--ydim)}
+.btn-admin{background:linear-gradient(135deg,var(--yellow),#f0a500)!important;color:#000!important;padding:7px 15px!important;border-radius:6px!important;font-weight:700!important;-webkit-text-fill-color:#000!important;box-shadow:0 3px 10px var(--yglow)!important}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
-.hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px}
-.mobile-menu{
-  display:none;flex-direction:column;gap:4px;
-  background:var(--surface);border-top:1px solid var(--border);padding:12px 20px;
-}
-.mobile-menu button{
-  background:none;border:none;color:var(--gray);font-size:15px;font-weight:600;
-  cursor:pointer;padding:10px 14px;border-radius:6px;text-align:left;transition:all 0.2s;
-}
-.mobile-menu button:hover,.mobile-menu button.active{color:var(--yellow);background:var(--yellow-dim)}
-.mobile-menu .btn-admin{margin-top:6px;text-align:center!important;display:block;width:100%}
+.hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px}
+.mobile-menu{display:none;flex-direction:column;gap:3px;background:var(--surface);border-top:1px solid var(--border);padding:10px 14px}
+.mobile-menu button{background:none;border:none;color:var(--gray);font-size:14px;font-weight:600;cursor:pointer;padding:10px 12px;border-radius:6px;text-align:left;transition:all 0.2s}
+.mobile-menu button:hover,.mobile-menu button.active{color:var(--yellow);background:var(--ydim)}
+.mobile-menu .btn-admin{background:linear-gradient(135deg,var(--yellow),#f0a500)!important;color:#000!important;-webkit-text-fill-color:#000!important;margin-top:4px;text-align:center!important}
 
-@media(max-width:768px){
-  header{padding:12px 16px}
-  .desktop-nav{display:none}
-  .hamburger{display:flex}
-  main{padding:16px 12px}
-  .home-grid{grid-template-columns:1fr}
-  .hero-card{padding:18px}
-  .hero-timer{font-size:20px}
-  h2{font-size:16px}
-  .donation-box{padding:24px 16px}
-  .donation-side-icon{display:none}
-  .modal-content{padding:20px 14px}
-  .det-timer{font-size:20px}
+#global-balance-bar{background:rgba(14,203,129,0.07);border-bottom:1px solid rgba(14,203,129,0.2);padding:7px 30px;display:flex;align-items:center;justify-content:center;gap:10px;position:sticky;top:57px;z-index:99;backdrop-filter:blur(8px)}
+.gbb-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray)}
+.gbb-amount{font-family:'Courier New',monospace;font-size:15px;font-weight:800}
+.gbb-sub{font-size:11px;color:var(--gray)}
 
-  /* ── All Campaigns card (non-reward) ── */
-  .list-card:not(.reward-card){
-    display:flex !important;
-    flex-direction:column !important;
-    gap:8px;
-    padding:14px;
-  }
-  .list-card:not(.reward-card) .camp-info{
-    display:flex;align-items:center;gap:10px;
-  }
-  .list-card:not(.reward-card) .camp-price{
-    font-size:13px;
-    padding:5px 8px;
-    background:var(--bg);
-    border-radius:6px;
-    display:inline-block;
-    width:fit-content;
-  }
-  .list-card:not(.reward-card) .camp-est{
-    font-size:13px;
-    padding:7px 10px;
-    background:var(--bg);
-    border-radius:6px;
-    text-align:left;
-    color:var(--gray);
-  }
-  .list-card:not(.reward-card) .camp-timer{
-    font-size:15px;
-    text-align:left;
-  }
-  .list-card:not(.reward-card) .timer-state-label{
-    display:block;font-size:10px;margin-bottom:2px;
-  }
-  .list-card:not(.reward-card) .admin-controls{
-    justify-content:flex-end;
-    padding-top:8px;
-    border-top:1px solid var(--border);
-  }
-
-  /* ── Reward Board card ── */
-  .list-card.reward-card{
-    display:flex !important;
-    flex-wrap:wrap !important;
-    gap:0;
-    padding:14px;
-  }
-  .list-card.reward-card .camp-info{
-    flex:1 1 65%;min-width:0;margin-bottom:6px;
-  }
-  .list-card.reward-card .camp-price{
-    flex:0 0 auto;font-size:13px;text-align:right;margin-bottom:6px;
-  }
-  .list-card.reward-card .reward-mid{
-    flex:0 0 auto;margin-bottom:6px;margin-right:8px;
-  }
-  .list-card.reward-card .reward-pool{
-    flex:1 1 auto;text-align:left;margin-bottom:6px;
-  }
-  .pool-amt{font-size:13px}
-  .pool-usd{font-size:11px}
-  .list-card.reward-card > div:last-of-type:not(.admin-controls):not(.camp-info):not(.reward-mid):not(.reward-pool){
-    flex:0 0 100%;
-  }
-  .camp-timer{font-size:14px;text-align:left}
-  .timer-state-label{display:block;font-size:10px;margin-bottom:2px}
-  .list-card.reward-card .admin-controls{
-    flex:0 0 100%;justify-content:flex-end;
-    margin-top:8px;padding-top:8px;border-top:1px solid var(--border);
-  }
-}
-
-main{padding:35px 30px;max-width:1200px;margin:0 auto;min-height:80vh}
+main{padding:26px 30px;max-width:1200px;margin:0 auto;min-height:80vh}
 .section{display:none}
 .section.active{display:block;animation:fadeIn 0.3s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+h2{margin-bottom:20px;color:var(--white);display:flex;align-items:center;gap:10px;font-size:18px}
+h2::before{content:'';display:inline-block;width:4px;height:19px;background:linear-gradient(180deg,var(--yellow),#f0a500);border-radius:2px;flex-shrink:0}
+.tz-notice{text-align:right;color:var(--gray);font-size:11px;margin-bottom:16px}
 
-h2{margin-bottom:25px;color:var(--white);display:flex;align-items:center;gap:10px;font-size:20px}
-h2::before{content:'';display:inline-block;width:4px;height:22px;background:linear-gradient(180deg,var(--yellow),#f0a500);border-radius:2px}
-.tz-notice{text-align:right;color:var(--gray);font-size:12px;margin-bottom:20px}
-
-.home-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px;margin-bottom:40px}
-.hero-card{
-  background:var(--surface);padding:28px;border-radius:14px;
-  border:1px solid var(--border);cursor:pointer;position:relative;overflow:hidden;
-  transition:transform 0.25s,box-shadow 0.25s;
-}
-.hero-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(252,213,53,0.04) 0%,transparent 60%);pointer-events:none}
-.hero-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.5)}
-.hero-card.urgent{border-color:var(--red);box-shadow:0 0 20px rgba(246,70,93,0.18)}
-.urgent-badge{
-  position:absolute;top:-1px;right:22px;
-  background:linear-gradient(90deg,var(--red),#c0392b);
-  color:white;padding:4px 14px;border-radius:0 0 10px 10px;
-  font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;
-  animation:pulse 1.8s infinite;
-}
+.home-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;margin-bottom:32px}
+.hero-card{background:var(--surface);padding:22px;border-radius:14px;border:1px solid var(--border);cursor:pointer;position:relative;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s}
+.hero-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(252,213,53,0.03) 0%,transparent 60%);pointer-events:none}
+.hero-card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(0,0,0,0.5)}
+.hero-card.urgent{border-color:var(--red);box-shadow:0 0 18px rgba(246,70,93,0.15)}
+.urgent-badge{position:absolute;top:-1px;right:18px;background:linear-gradient(90deg,var(--red),#c0392b);color:#fff;padding:4px 13px;border-radius:0 0 10px 10px;font-weight:700;font-size:10px;letter-spacing:1px;text-transform:uppercase;animation:pulse 1.8s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.7}}
-.hero-top{display:flex;align-items:center;gap:14px;margin-bottom:16px}
-.hero-logo{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--border)}
-.hero-name{font-size:22px;font-weight:800}
-.hero-price{color:var(--yellow);font-size:18px;font-weight:700;margin-bottom:12px}
-.hero-pool{font-size:14px;color:var(--gray);margin-bottom:20px;line-height:1.8}
-.hero-pool strong{color:var(--white);font-size:17px}
-.hero-pool .pool-usd{color:var(--yellow);font-size:13px;opacity:0.8}
-.hero-timer-wrap{background:var(--bg);border-radius:10px;padding:14px 18px;border:1px solid var(--border);text-align:center}
-.hero-timer-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:6px}
-.hero-timer{font-family:'Courier New',monospace;font-size:30px;font-weight:800;letter-spacing:2px;line-height:1}
-.hero-timer.state-active{color:var(--yellow);text-shadow:0 0 20px var(--yellow-glow)}
-.hero-timer.state-reward{color:var(--green);text-shadow:0 0 20px var(--green-glow)}
+.hero-top{display:flex;align-items:center;gap:12px;margin-bottom:13px}
+.hero-logo{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--border)}
+.hero-name{font-size:19px;font-weight:800}
+.hero-price{color:var(--yellow);font-size:16px;font-weight:700;margin-bottom:10px}
+.hero-pool{font-size:13px;color:var(--gray);margin-bottom:14px;line-height:1.8}
+.hero-pool strong{color:var(--white);font-size:15px}
+.hero-pool .pool-usd{color:var(--yellow);font-size:12px;opacity:0.85}
+.hero-timer-wrap{background:var(--bg);border-radius:10px;padding:11px 15px;border:1px solid var(--border);text-align:center;margin-bottom:11px}
+.hero-timer-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:4px}
+.hero-timer{font-family:'Courier New',monospace;font-size:24px;font-weight:800;letter-spacing:2px;line-height:1}
+.hero-timer.state-active{color:var(--yellow);text-shadow:0 0 16px var(--yglow)}
+.hero-timer.state-reward{color:var(--green);text-shadow:0 0 16px var(--gglow)}
 .hero-timer.state-ended{color:var(--gray)}
 
-.list-card{
-  background:var(--surface);border-radius:10px;padding:14px 20px;margin-bottom:12px;
-  display:grid;grid-template-columns:2fr 1fr 2fr 2fr auto;align-items:center;gap:18px;
-  transition:all 0.2s;cursor:pointer;border:1px solid transparent;
-}
+.btn-join{border:1.5px solid var(--border);background:transparent;color:var(--gray);padding:7px 15px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:5px;width:100%;justify-content:center}
+.btn-join:hover{border-color:var(--green);color:var(--green);background:var(--gdim)}
+.btn-join.joined{border-color:var(--green);background:var(--gdim);color:var(--green)}
+.btn-join-sm{width:auto;font-size:11px;padding:5px 12px}
+
+/* Type Badges */
+.type-badge{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px}
+.type-volume{background:var(--ydim);color:var(--yellow)}
+.type-equal{background:var(--pdim);color:var(--purple)}
+.type-points_lb{background:var(--odim);color:var(--orange)}
+.type-unestimable{background:var(--cdim);color:var(--cyan)}
+
+.list-card{background:var(--surface);border-radius:10px;padding:13px 17px;margin-bottom:10px;display:grid;grid-template-columns:2fr 1fr 2fr 2fr auto auto;align-items:center;gap:13px;transition:all 0.2s;cursor:pointer;border:1px solid transparent}
 .list-card:hover{border-color:var(--border);background:var(--surface2);transform:translateX(3px)}
-.reward-card{grid-template-columns:2fr 1fr 1fr 2fr 2fr auto}
-.camp-info{display:flex;align-items:center;gap:12px}
-.camp-logo{width:38px;height:38px;border-radius:50%;object-fit:cover;border:1px solid var(--border)}
-.camp-name{font-weight:700;font-size:16px;color:var(--white);white-space:nowrap}
-.camp-price{font-weight:700;color:var(--yellow);font-size:15px}
-.camp-est{color:var(--gray);font-size:13px;text-align:center}
-.camp-timer{font-family:'Courier New',monospace;font-size:15px;font-weight:700;text-align:right;white-space:nowrap}
+.reward-card{grid-template-columns:2fr 1fr 1fr 2fr 2fr auto auto}
+.camp-info{display:flex;align-items:center;gap:10px}
+.camp-logo{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid var(--border);flex-shrink:0}
+.camp-name{font-weight:700;font-size:15px;color:var(--white)}
+.camp-price{font-weight:700;color:var(--yellow);font-size:14px}
+.camp-est{color:var(--gray);font-size:12px;text-align:center}
+.camp-timer{font-family:'Courier New',monospace;font-size:13px;font-weight:700;text-align:right;white-space:nowrap}
 .camp-timer.state-active{color:var(--yellow)}
 .camp-timer.state-reward{color:var(--green)}
 .camp-timer.state-ended{color:var(--gray)}
 .camp-timer.state-alert{color:var(--red);animation:blink 1s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.5}}
-.timer-state-label{font-size:10px;color:var(--gray);letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:2px}
+.timer-state-label{font-size:9px;color:var(--gray);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:1px}
 .reward-mid{text-align:center}
-.badge{padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
-.badge.good{background:var(--green-dim);color:var(--green)}
-.badge.risky{background:var(--red-dim);color:var(--red)}
+.badge{padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase}
+.badge.good{background:var(--gdim);color:var(--green)}
+.badge.risky{background:var(--rdim);color:var(--red)}
 .reward-pool{text-align:right}
-.pool-amt{font-weight:700;color:var(--white);font-size:15px}
-.pool-usd{font-size:12px;color:var(--gray);margin-top:2px}
-.admin-controls{display:flex;gap:7px}
-.btn-del{background:var(--red);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:700;font-size:12px}
-.btn-edit{background:var(--border);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:700;font-size:12px}
-.btn-del:hover,.btn-edit:hover{opacity:0.8}
+.pool-amt{font-weight:700;color:var(--white);font-size:13px}
+.pool-usd{font-size:11px;color:var(--gray);margin-top:1px}
+.admin-controls{display:flex;gap:5px}
+.btn-del{background:var(--red);color:#fff;border:none;padding:5px 9px;border-radius:6px;cursor:pointer;font-weight:700;font-size:10px}
+.btn-edit{background:var(--border);color:#fff;border:none;padding:5px 9px;border-radius:6px;cursor:pointer;font-weight:700;font-size:10px}
 
-.empty-state{text-align:center;color:var(--gray);padding:60px 40px;background:var(--surface);border-radius:12px;border:1px dashed var(--border)}
-.empty-state h3{font-size:18px;color:var(--white);margin-bottom:8px}
-
-/* Loading */
-.loading{text-align:center;padding:60px;color:var(--gray)}
-.spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--yellow);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px}
+.empty-state{text-align:center;color:var(--gray);padding:48px 28px;background:var(--surface);border-radius:12px;border:1px dashed var(--border)}
+.empty-state h3{font-size:16px;color:var(--white);margin-bottom:5px}
+.loading{text-align:center;padding:48px;color:var(--gray)}
+.spinner{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--yellow);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-.donation-box{
-  position:relative;overflow:hidden;
-  background:linear-gradient(135deg,#181c22 0%,#1a1f27 50%,#181c22 100%);
-  padding:40px 50px;border-radius:16px;text-align:center;margin-top:50px;
-  border:1px solid rgba(252,213,53,0.3);
-  box-shadow:0 0 40px rgba(252,213,53,0.08),inset 0 1px 0 rgba(252,213,53,0.1);
-}
-.donation-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(252,213,53,0.07) 0%,transparent 70%);pointer-events:none}
-.donation-gift{font-size:42px;margin-bottom:10px;display:block;animation:float 3s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.donation-title{font-size:18px;font-weight:700;color:var(--white);margin-bottom:6px}
-.donation-box p{color:var(--gray);margin-bottom:18px;font-size:14px}
-.donation-uid-wrap{display:inline-flex;align-items:center;gap:12px;background:var(--bg);border:1px solid rgba(252,213,53,0.35);padding:12px 24px;border-radius:10px;box-shadow:0 0 20px rgba(252,213,53,0.1)}
-.donation-uid-label{color:var(--gray);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
-.donation-uid{font-size:22px;color:var(--yellow);font-weight:800;letter-spacing:4px}
-.donation-side-icon{font-size:36px;position:absolute;top:50%;transform:translateY(-50%);opacity:0.18}
-.donation-side-icon.left{left:24px}
-.donation-side-icon.right{right:24px}
+/* Dashboard */
+.balance-card{border-radius:16px;padding:24px;margin-bottom:26px;border:1px solid;text-align:center}
+.balance-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:6px}
+.balance-rows{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:14px}
+.bal-row{background:var(--bg);border-radius:8px;padding:12px;text-align:center}
+.bal-row-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:4px}
+.bal-row-val{font-family:'Courier New',monospace;font-size:16px;font-weight:800}
+.balance-net{font-family:'Courier New',monospace;font-size:40px;font-weight:800;line-height:1;margin-bottom:4px}
+.balance-sub{color:var(--gray);font-size:12px}
 
-.about-text{color:var(--gray);font-size:15px;line-height:1.9;white-space:pre-line}
-.social-link svg{width:28px;height:28px;fill:var(--white);transition:fill 0.2s}
+.dash-camp{background:var(--surface);border-radius:12px;padding:17px;margin-bottom:11px;border:1px solid var(--border);transition:border-color 0.2s}
+.dash-camp:hover{border-color:rgba(14,203,129,0.2)}
+.dash-camp-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.dash-camp-info{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.dash-camp-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.btn-remove{background:var(--rdim);color:var(--red);border:1px solid rgba(246,70,93,0.3);padding:5px 11px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.btn-remove:hover{background:var(--red);color:#fff}
+
+.toggle-switch{position:relative;width:42px;height:22px;cursor:pointer;flex-shrink:0}
+.toggle-switch input{opacity:0;width:0;height:0;position:absolute}
+.toggle-track{position:absolute;inset:0;background:var(--border);border-radius:11px;transition:background 0.25s}
+.toggle-thumb{position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:transform 0.25s;box-shadow:0 1px 4px rgba(0,0,0,0.4)}
+.toggle-switch input:checked ~ .toggle-track{background:var(--yellow)}
+.toggle-switch input:checked ~ .toggle-thumb{transform:translateX(20px)}
+.bnb-toggle-wrap{display:flex;align-items:center;gap:8px}
+.bnb-label-txt{font-size:11px;font-weight:600;color:var(--gray);white-space:nowrap}
+
+.dash-vol-row{display:flex;gap:10px;align-items:flex-end;margin-bottom:10px;flex-wrap:wrap}
+.dash-field{flex:1;min-width:120px}
+.dash-field label{display:block;font-size:11px;color:var(--gray);font-weight:600;margin-bottom:4px;letter-spacing:0.3px}
+.vol-input{width:100%;padding:9px 12px;background:var(--bg);border:1px solid var(--border);color:var(--white);border-radius:8px;font-size:14px;transition:border-color 0.2s}
+.vol-input:focus{outline:none;border-color:var(--yellow)}
+.dash-reward{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:8px;padding:10px 13px;flex-wrap:wrap}
+.dr-label{font-size:10px;color:var(--gray);text-transform:uppercase;letter-spacing:1px;flex-shrink:0}
+.dr-val{font-weight:700;color:var(--white);font-size:14px;margin-left:auto}
+.dr-usd{font-size:12px;color:var(--green);font-weight:600}
+.dash-note{background:var(--bg);border-radius:8px;padding:10px 13px;color:var(--cyan);font-size:12px;border-left:3px solid var(--cyan)}
+.dash-info-row{background:var(--bg);border-radius:8px;padding:10px 13px;font-size:12px;color:var(--gray);margin-bottom:6px}
+.dash-info-row strong{color:var(--white)}
+
+.calc-section{margin-top:28px}
+.calc-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.calc-tab{background:var(--surface);border:1px solid var(--border);color:var(--gray);padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s}
+.calc-tab.active{background:var(--ydim);border-color:var(--yellow);color:var(--yellow)}
+.calc-panel{display:none}.calc-panel.active{display:block}
+.calc-card{background:var(--surface);border-radius:14px;padding:22px;border:1px solid var(--border)}
+.calc-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border)}
+.calc-row:last-child{border-bottom:none;padding-bottom:0}
+.calc-key{color:var(--gray);font-size:13px}
+.calc-val{font-weight:700;font-size:14px;color:var(--white)}
+.savings-hint{border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;line-height:1.6;border:1px solid}
+
+.donation-box{position:relative;overflow:hidden;background:linear-gradient(135deg,#181c22,#1a1f27);padding:34px 46px;border-radius:16px;text-align:center;margin-top:46px;border:1px solid rgba(252,213,53,0.3);box-shadow:0 0 34px rgba(252,213,53,0.07)}
+.donation-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(252,213,53,0.07) 0%,transparent 70%);pointer-events:none}
+.donation-gift{font-size:38px;display:block;animation:float 3s ease-in-out infinite;margin-bottom:7px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.donation-title{font-size:16px;font-weight:700;color:var(--white);margin-bottom:5px}
+.donation-box p{color:var(--gray);margin-bottom:14px;font-size:13px}
+.donation-uid-wrap{display:inline-flex;background:var(--bg);border:1px solid rgba(252,213,53,0.35);padding:10px 20px;border-radius:10px;box-shadow:0 0 16px rgba(252,213,53,0.09)}
+.donation-uid-label{color:var(--gray);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
+.donation-uid{font-size:19px;color:var(--yellow);font-weight:800;letter-spacing:4px}
+.donation-side-icon{font-size:30px;position:absolute;top:50%;transform:translateY(-50%);opacity:0.14}
+.donation-side-icon.left{left:18px}.donation-side-icon.right{right:18px}
+.about-text{color:var(--gray);font-size:14px;line-height:1.9;white-space:pre-line}
+.social-link svg{width:26px;height:26px;fill:var(--white);transition:fill 0.2s}
 .social-link svg:hover{fill:var(--yellow)}
 
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);justify-content:center;align-items:center;z-index:1000;padding:20px}
-.modal-content{background:var(--surface);padding:32px;border-radius:16px;width:520px;max-width:100%;position:relative;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.7);max-height:90vh;overflow-y:auto}
-.close-modal{position:absolute;top:16px;right:20px;color:var(--gray);cursor:pointer;font-size:22px;font-weight:700;line-height:1}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);justify-content:center;align-items:center;z-index:1000;padding:14px}
+.modal-content{background:var(--surface);padding:26px;border-radius:16px;width:500px;max-width:100%;position:relative;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.7);max-height:92vh;overflow-y:auto}
+.close-modal{position:absolute;top:13px;right:16px;color:var(--gray);cursor:pointer;font-size:20px;font-weight:700;line-height:1;transition:color 0.2s}
 .close-modal:hover{color:var(--white)}
-.form-group{margin-bottom:14px}
-.form-group label{display:block;margin-bottom:5px;color:var(--gray);font-size:13px;font-weight:600}
-.form-group input{width:100%;padding:11px 14px;background:var(--bg);border:1px solid var(--border);color:white;border-radius:8px;font-size:14px;transition:border-color 0.2s}
-.form-group input:focus{outline:none;border-color:var(--yellow)}
-.form-group .hint{font-size:11px;color:var(--gray);margin-top:4px;font-style:italic}
-.btn-submit{background:linear-gradient(135deg,var(--yellow),#f0a500);color:#000;border:none;padding:13px 20px;width:100%;font-weight:700;border-radius:8px;font-size:15px;cursor:pointer;margin-top:12px;box-shadow:0 4px 15px var(--yellow-glow);transition:transform 0.2s}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;margin-bottom:4px;color:var(--gray);font-size:12px;font-weight:600;letter-spacing:0.3px}
+.form-group input,.form-group select{width:100%;padding:10px 12px;background:var(--bg);border:1px solid var(--border);color:var(--white);border-radius:8px;font-size:14px;transition:border-color 0.2s}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--yellow)}
+.form-group select option{background:var(--surface)}
+.form-group .hint{font-size:10px;color:var(--gray);margin-top:3px;font-style:italic}
+.btn-submit{background:linear-gradient(135deg,var(--yellow),#f0a500);color:#000;border:none;padding:11px 18px;width:100%;font-weight:700;border-radius:8px;font-size:14px;cursor:pointer;margin-top:9px;box-shadow:0 4px 12px var(--yglow);transition:transform 0.2s}
 .btn-submit:hover{transform:translateY(-2px)}
-.form-divider{border:none;border-top:1px solid var(--border);margin:16px 0}
-.form-section-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);font-weight:700;margin-bottom:12px;display:block}
+.form-divider{border:none;border-top:1px solid var(--border);margin:13px 0}
+.form-section-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);font-weight:700;margin-bottom:9px;display:block}
 
-.det-header{text-align:center;margin-bottom:22px}
-.det-logo{width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid var(--border);margin-bottom:12px}
-.det-name{font-size:24px;font-weight:800;margin-bottom:4px}
-.det-price{font-size:22px;color:var(--yellow);font-weight:700}
-.det-info-box{background:var(--bg);padding:20px;border-radius:10px;margin-bottom:20px;border:1px solid var(--border)}
-.det-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border)}
+.det-header{text-align:center;margin-bottom:18px}
+.det-logo{width:68px;height:68px;border-radius:50%;object-fit:cover;border:2px solid var(--border);margin-bottom:9px}
+.det-name{font-size:21px;font-weight:800;margin-bottom:3px}
+.det-price{font-size:19px;color:var(--yellow);font-weight:700}
+.det-info-box{background:var(--bg);padding:16px;border-radius:10px;margin-bottom:16px;border:1px solid var(--border)}
+.det-row{display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--border)}
 .det-row:last-child{border-bottom:none;padding-bottom:0}
-.det-key{color:var(--gray);font-size:13px;font-weight:600}
-.det-val{color:var(--white);font-weight:700;font-size:14px;text-align:right}
-.det-val .sub{color:var(--yellow);font-size:12px;font-weight:400;display:block;margin-top:2px}
-.det-timer-box{text-align:center}
-.det-timer-label{font-size:11px;letter-spacing:2px;color:var(--gray);text-transform:uppercase;margin-bottom:6px}
-.det-timer{font-family:'Courier New',monospace;font-size:30px;font-weight:800;letter-spacing:2px}
-.det-timer.state-active{color:var(--yellow);text-shadow:0 0 20px var(--yellow-glow)}
-.det-timer.state-reward{color:var(--green);text-shadow:0 0 20px var(--green-glow)}
+.det-key{color:var(--gray);font-size:12px;font-weight:600}
+.det-val{color:var(--white);font-weight:700;font-size:13px;text-align:right}
+.det-val .sub{color:var(--yellow);font-size:11px;font-weight:400;display:block;margin-top:1px}
+.det-timer-box{text-align:center;margin-bottom:14px}
+.det-timer-label{font-size:10px;letter-spacing:2px;color:var(--gray);text-transform:uppercase;margin-bottom:4px}
+.det-timer{font-family:'Courier New',monospace;font-size:26px;font-weight:800;letter-spacing:2px}
+.det-timer.state-active{color:var(--yellow);text-shadow:0 0 16px var(--yglow)}
+.det-timer.state-reward{color:var(--green);text-shadow:0 0 16px var(--gglow)}
 .det-timer.state-ended{color:var(--gray)}
+
+@media(max-width:768px){
+  header{padding:11px 14px}
+  #global-balance-bar{top:49px;padding:6px 12px;gap:6px;flex-wrap:wrap;justify-content:center}
+  .desktop-nav{display:none}
+  .hamburger{display:flex}
+  main{padding:12px 11px}
+  .home-grid{grid-template-columns:1fr}
+  .hero-card{padding:15px}
+  .hero-timer{font-size:18px}
+  h2{font-size:15px}
+  .donation-box{padding:22px 13px}
+  .donation-side-icon{display:none}
+  .modal-content{padding:17px 13px}
+  .det-timer{font-size:18px}
+  .balance-rows{grid-template-columns:1fr}
+  .balance-net{font-size:30px}
+  .dash-camp-top{flex-direction:column}
+  .dash-camp-actions{width:100%;justify-content:space-between}
+  .calc-tabs{flex-wrap:wrap}
+  .list-card,.list-card.reward-card{display:flex!important;flex-direction:column!important;gap:8px;padding:13px}
+  .camp-info{width:100%}
+  .camp-name{font-size:14px;white-space:normal}
+  .camp-price{font-size:13px;padding:4px 9px;background:var(--bg);border-radius:6px;display:inline-block;width:fit-content}
+  .camp-est,.reward-pool{text-align:left;padding:7px 9px;background:var(--bg);border-radius:6px;font-size:12px}
+  .reward-mid{text-align:left}
+  .camp-timer{font-size:13px;text-align:left}
+  .timer-state-label{display:block;font-size:9px;margin-bottom:2px}
+  .admin-controls{justify-content:flex-end;padding-top:7px;border-top:1px solid var(--border)}
+  .btn-join{font-size:11px;padding:6px 12px}
+  .pool-amt{font-size:12px}.pool-usd{font-size:10px}
+  .dash-vol-row{flex-direction:column;gap:8px}
+}
 </style>
 </head>
 <body>
@@ -299,20 +255,26 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
     <button onclick="nav('home')" id="nav-home" class="active">Home</button>
     <button onclick="nav('all')" id="nav-all">All Campaigns</button>
     <button onclick="nav('reward')" id="nav-reward">Reward Board</button>
+    <button onclick="nav('dash')" id="nav-dash">My Dashboard</button>
     <button onclick="nav('about')" id="nav-about">About</button>
     <button onclick="promptAdmin()" class="btn-admin">+ Add Campaign</button>
   </nav>
-  <button class="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </header>
 
 <div class="mobile-menu" id="mobile-menu">
   <button onclick="nav('home');toggleMenu()">Home</button>
   <button onclick="nav('all');toggleMenu()">All Campaigns</button>
   <button onclick="nav('reward');toggleMenu()">Reward Board</button>
+  <button onclick="nav('dash');toggleMenu()">My Dashboard</button>
   <button onclick="nav('about');toggleMenu()">About</button>
   <button onclick="promptAdmin();toggleMenu()" class="btn-admin">+ Add Campaign</button>
+</div>
+
+<div id="global-balance-bar">
+  <span class="gbb-label">Net Balance</span>
+  <span class="gbb-amount" id="gbb-val">$0.00</span>
+  <span class="gbb-sub" id="gbb-sub">0 campaigns joined</span>
 </div>
 
 <main>
@@ -321,19 +283,15 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
   <section id="home" class="section active">
     <h2>Featured Campaigns</h2>
     <div id="home-featured" class="home-grid"><div class="loading"><div class="spinner"></div>Loading...</div></div>
-    <h2 style="margin-top:10px">Ending Soon</h2>
+    <h2 style="margin-top:6px">Ending Soon</h2>
     <div id="home-urgent" class="home-grid"></div>
     <div class="donation-box">
-      <span class="donation-side-icon left">🎁</span>
-      <span class="donation-side-icon right">🎁</span>
+      <span class="donation-side-icon left">🎁</span><span class="donation-side-icon right">🎁</span>
       <span class="donation-gift">🎁</span>
       <div class="donation-title">Support Spot CTR</div>
       <p>If this platform saves you time and helps you trade smarter,<br>consider sending a small gift — it means a lot!</p>
       <div class="donation-uid-wrap">
-        <div>
-          <div class="donation-uid-label">Binance UID</div>
-          <div class="donation-uid">448509126</div>
-        </div>
+        <div><div class="donation-uid-label">Binance UID</div><div class="donation-uid">448509126</div></div>
       </div>
     </div>
   </section>
@@ -348,6 +306,13 @@ h2::before{content:'';display:inline-block;width:4px;height:22px;background:line
     <div id="reward-content"><div class="loading"><div class="spinner"></div>Loading...</div></div>
   </section>
 
+  <section id="dash" class="section">
+    <h2>My Dashboard</h2>
+    <div id="dash-balance"></div>
+    <div id="dash-joined"></div>
+    <div id="dash-calc"></div>
+  </section>
+
   <section id="about" class="section">
     <h2>About Spot CTR</h2>
     <div class="about-text">
@@ -357,7 +322,7 @@ You may notice that this website currently lists only spot trading campaigns and
 
 Additionally, from an Islamic financial perspective, many scholars consider futures and other derivative-based trading structures to be problematic because they often involve excessive uncertainty, speculation, or elements that resemble gambling, which are discouraged in Islamic finance principles.
 
-Another important point concerns the estimated reward values shown on this website. The reward per one thousand dollars of trading volume displayed here is based on personal analysis and publicly available campaign information. However, the final distribution of rewards depends on total participation. Users should always conduct their own research before participating.
+Another important point: the estimated reward values shown here are based on personal analysis. The final distribution depends on total participation. Always conduct your own research before participating.
     </div>
     <br><h3>Contact</h3><br>
     <a href="https://x.com/_IBIAL" target="_blank" class="social-link" title="Twitter / X">
@@ -371,21 +336,66 @@ Another important point concerns the estimated reward values shown on this websi
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal('admin-modal')">×</span>
     <h2 id="modal-title" style="border:none;padding:0;display:block">Add New Campaign</h2>
-    <form id="campaign-form" style="margin-top:20px" onsubmit="saveCampaign(event)">
+    <form id="campaign-form" style="margin-top:16px" onsubmit="saveCampaign(event)">
       <input type="hidden" id="camp-id">
       <span class="form-section-label">Campaign Info</span>
       <div class="form-group"><label>Token Name (e.g., $KITE)</label><input type="text" id="token-name" required></div>
-      <div class="form-group"><label>CoinGecko Coin ID (e.g., bitcoin)</label><input type="text" id="coin-id" required><div class="hint">Find it at coingecko.com</div></div>
+      <div class="form-group"><label>CoinGecko Coin ID (e.g., bitcoin)</label><input type="text" id="coin-id" required><div class="hint">Find at coingecko.com</div></div>
       <div class="form-group"><label>Logo Image URL</label><input type="url" id="logo-url" required></div>
       <div class="form-group"><label>Total Reward Pool (Token Amount)</label><input type="number" id="reward-pool-amt" required></div>
-      <div class="form-group"><label>Est. Tokens per $1,000 Volume</label><input type="number" step="any" id="est-reward" required><div class="hint">USD equivalent calculated automatically</div></div>
+      <div class="form-group">
+        <label>Campaign Type</label>
+        <select id="camp-type" onchange="onTypeChange()">
+          <option value="volume">Volume Based (per $1K reward)</option>
+          <option value="equal">Equal Share (fixed per person)</option>
+          <option value="points_lb">Points Based (with leaderboard)</option>
+          <option value="unestimable">Unestimable / Random</option>
+        </select>
+      </div>
+
+      <!-- Volume fields -->
+      <div id="fg-volume">
+        <div class="form-group">
+          <label>Est. Tokens per $1,000 Volume</label>
+          <input type="number" step="any" id="est-reward">
+          <div class="hint">How many tokens does a trader earn per $1,000 traded?</div>
+        </div>
+      </div>
+
+      <!-- Equal Share fields -->
+      <div id="fg-equal" style="display:none">
+        <div class="form-group">
+          <label>Total Participants (joined so far)</label>
+          <input type="number" id="max-participants" min="1">
+          <div class="hint">Reward per person = Pool ÷ this number. Update as more people join.</div>
+        </div>
+        <div class="form-group">
+          <label>Minimum Volume to be Eligible (USD)</label>
+          <input type="number" id="min-volume" min="0">
+          <div class="hint">Minimum trading volume required to qualify</div>
+        </div>
+      </div>
+
+      <!-- Points LB fields -->
+      <div id="fg-points" style="display:none">
+        <div class="form-group">
+          <label>Total Points on Leaderboard (all users combined)</label>
+          <input type="number" id="total-points" min="1">
+          <div class="hint">Sum of all participants' points. Reward per point = Pool ÷ Total Points</div>
+        </div>
+      </div>
+
       <hr class="form-divider">
       <span class="form-section-label">Campaign Period</span>
       <div class="form-group"><label>Start Date & Time</label><input type="datetime-local" id="start-date" required></div>
       <div class="form-group"><label>End Date & Time</label><input type="datetime-local" id="end-date" required></div>
       <hr class="form-divider">
       <span class="form-section-label">Reward Distribution (Optional)</span>
-      <div class="form-group"><label>Reward Distribution Deadline</label><input type="datetime-local" id="reward-date"><div class="hint">Leave blank if not announced. A green countdown will appear after campaign ends.</div></div>
+      <div class="form-group">
+        <label>Reward Distribution Deadline</label>
+        <input type="datetime-local" id="reward-date">
+        <div class="hint">Leave blank if not announced. Green countdown shown after campaign ends.</div>
+      </div>
       <button type="submit" class="btn-submit" id="submit-btn">Publish Campaign</button>
     </form>
   </div>
@@ -398,347 +408,668 @@ Another important point concerns the estimated reward values shown on this websi
     <div class="det-header">
       <img id="det-logo" src="" class="det-logo">
       <div class="det-name" id="det-name"></div>
+      <div id="det-type-badge" style="margin:4px 0 3px"></div>
       <div class="det-price" id="det-price"></div>
     </div>
     <div class="det-info-box">
       <div class="det-row"><span class="det-key">Starts</span><span class="det-val" id="det-start"></span></div>
       <div class="det-row"><span class="det-key">Ends</span><span class="det-val" id="det-end"></span></div>
       <div class="det-row" id="det-reward-row" style="display:none"><span class="det-key">Reward Deadline</span><span class="det-val" id="det-reward-date"></span></div>
-      <div class="det-row"><span class="det-key">Total Reward Pool</span><span class="det-val" id="det-pool"></span></div>
-      <div class="det-row"><span class="det-key">Est. per $1,000 Volume</span><span class="det-val" id="det-est"></span></div>
+      <div class="det-row"><span class="det-key">Total Pool</span><span class="det-val" id="det-pool"></span></div>
+      <div class="det-row" id="det-est-row"><span class="det-key">Est. Reward</span><span class="det-val" id="det-est"></span></div>
     </div>
     <div class="det-timer-box">
       <div class="det-timer-label" id="det-timer-label">Time Remaining</div>
       <div class="det-timer state-active" id="det-timer"></div>
     </div>
+    <button id="det-join-btn" onclick="toggleJoinFromModal()" style="width:100%;padding:10px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--gray);transition:all 0.2s">+ Join Campaign</button>
   </div>
 </div>
 
 <script>
-// ── Firebase Init ──
-const firebaseConfig = {
-  databaseURL: "https://spotctr-default-rtdb.firebaseio.com"
-};
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp({ databaseURL:"https://spotctr-default-rtdb.firebaseio.com" });
 const db = firebase.database();
-const campsRef = db.ref('campaigns');
 
 let campaigns = [];
 let livePrices = JSON.parse(localStorage.getItem('spotctr_prices')) || {};
 let isAdminActive = false;
 let activeModalCampId = null;
+let userData = JSON.parse(localStorage.getItem('spotctr_user')) || { joined:{} };
 
 const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const isBD = userTZ === 'Asia/Dhaka';
-document.getElementById('tz-notice').innerText = `Times shown in: ${isBD ? 'BST (Bangladesh Standard Time)' : 'UTC'}`;
+document.getElementById('tz-notice').innerText = `Times shown in: ${isBD?'BST (Bangladesh Standard Time)':'UTC'}`;
 
-// ── Firebase Live Listener ──
-campsRef.on('value', snapshot => {
-  const data = snapshot.val();
-  campaigns = data ? Object.values(data) : [];
+db.ref('campaigns').on('value', snap => {
+  const d = snap.val();
+  campaigns = d ? Object.values(d) : [];
   fetchPrices();
   renderViews();
+  updateGlobalBar();
+  if (document.getElementById('dash').classList.contains('active')) renderDashboard();
 });
 
+// ── User Data ──
+function saveUD() { localStorage.setItem('spotctr_user', JSON.stringify(userData)); }
+function isJoined(id) { return !!userData.joined[id]; }
+
+function toggleJoin(id, ev) {
+  if (ev) ev.stopPropagation();
+  if (userData.joined[id]) delete userData.joined[id];
+  else userData.joined[id] = { volume:0, bnb:false, points:0 };
+  saveUD(); renderViews(); updateGlobalBar();
+  if (document.getElementById('dash').classList.contains('active')) renderDashboard();
+}
+
+function toggleJoinFromModal() {
+  if (!activeModalCampId) return;
+  toggleJoin(activeModalCampId, null);
+  updateModalJoinBtn(activeModalCampId);
+}
+
+function updateModalJoinBtn(id) {
+  const btn = document.getElementById('det-join-btn');
+  if (!btn) return;
+  const j = isJoined(id);
+  btn.innerText = j ? '✓ Joined — Click to Leave' : '+ Join Campaign';
+  btn.style.borderColor = j ? 'var(--green)' : 'var(--border)';
+  btn.style.background = j ? 'var(--gdim)' : 'transparent';
+  btn.style.color = j ? 'var(--green)' : 'var(--gray)';
+}
+
+function updateVol(id, val) {
+  if (!userData.joined[id]) return;
+  userData.joined[id].volume = parseFloat(val) || 0;
+  saveUD(); refreshDashCard(id); updateGlobalBar();
+}
+
+function updatePts(id, val) {
+  if (!userData.joined[id]) return;
+  userData.joined[id].points = parseFloat(val) || 0;
+  saveUD(); refreshDashCard(id); updateGlobalBar();
+}
+
+function updateBnb(id, checked) {
+  if (!userData.joined[id]) return;
+  userData.joined[id].bnb = checked;
+  saveUD(); refreshDashCard(id); updateGlobalBar();
+}
+
+// ── Global Balance Bar ──
+function updateGlobalBar() {
+  const { net, cnt } = getBalance();
+  const joined = campaigns.filter(c => isJoined(c.id));
+  const el = document.getElementById('gbb-val');
+  el.innerText = fmtUSD(Math.abs(net));
+  el.style.color = net < 0 ? 'var(--red)' : 'var(--green)';
+  el.innerText = (net < 0 ? '-' : '+') + fmtUSD(Math.abs(net));
+  document.getElementById('gbb-sub').innerText = `${joined.length} campaign${joined.length!==1?'s':''} joined`;
+}
+
+// ── Nav ──
 function toggleMenu() {
   const m = document.getElementById('mobile-menu');
-  m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+  m.style.display = m.style.display==='flex' ? 'none' : 'flex';
 }
-
 function nav(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.desktop-nav button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.desktop-nav button').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  const nb = document.getElementById('nav-' + id);
-  if (nb) nb.classList.add('active');
-  renderViews();
+  const nb = document.getElementById('nav-'+id); if(nb) nb.classList.add('active');
+  if (id==='dash') renderDashboard(); else renderViews();
 }
 
+// ── Admin ──
 function promptAdmin() {
   const pass = prompt("Enter Admin Password:");
-  if (pass === "@Sakib2020") {
-    isAdminActive = true;
+  if (pass==="@Sakib2020") {
+    isAdminActive=true;
     document.getElementById('campaign-form').reset();
-    document.getElementById('camp-id').value = '';
-    document.getElementById('modal-title').innerText = 'Add New Campaign';
-    document.getElementById('submit-btn').innerText = 'Publish Campaign';
-    openModal('admin-modal');
-  } else if (pass !== null) alert("Incorrect Password!");
+    document.getElementById('camp-id').value='';
+    document.getElementById('modal-title').innerText='Add New Campaign';
+    document.getElementById('submit-btn').innerText='Publish Campaign';
+    onTypeChange(); openModal('admin-modal');
+  } else if (pass!==null) alert("Incorrect Password!");
 }
-
 function authAction(cb) {
-  if (isAdminActive) { cb(); return; }
-  const pass = prompt("Enter Admin Password:");
-  if (pass === "@Sakib2020") { isAdminActive = true; cb(); }
-  else if (pass !== null) alert("Incorrect Password!");
+  if (isAdminActive){cb();return;}
+  const pass=prompt("Enter Admin Password:");
+  if (pass==="@Sakib2020"){isAdminActive=true;cb();}
+  else if (pass!==null) alert("Incorrect Password!");
+}
+function openModal(id){document.getElementById(id).style.display='flex';}
+function closeModal(id){document.getElementById(id).style.display='none';}
+
+function onTypeChange() {
+  const t = document.getElementById('camp-type')?.value || 'volume';
+  document.getElementById('fg-volume').style.display = t==='volume' ? '' : 'none';
+  document.getElementById('fg-equal').style.display = t==='equal' ? '' : 'none';
+  document.getElementById('fg-points').style.display = t==='points_lb' ? '' : 'none';
+  // required
+  document.getElementById('est-reward').required = t==='volume';
+  const mp = document.getElementById('max-participants');
+  const cp = document.getElementById('current-participants');
+  const tp = document.getElementById('total-points');
+  if(mp) mp.required = t==='equal';
+  const mv = document.getElementById('min-volume');
+  if(mv) mv.required = false; // optional
+  if(tp) tp.required = t==='points_lb';
 }
 
-function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-
+// ── Prices ──
 async function fetchPrices() {
   if (!campaigns.length) return;
-  const ids = [...new Set(campaigns.map(c => c.coinId))].join(',');
+  const ids=[...new Set(campaigns.map(c=>c.coinId))].join(',');
   try {
-    const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd`);
-    const data = await res.json();
-    livePrices = data;
-    localStorage.setItem('spotctr_prices', JSON.stringify(livePrices));
-    renderViews();
-  } catch(e) {}
+    const res=await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd`);
+    const data=await res.json();
+    livePrices=data; localStorage.setItem('spotctr_prices',JSON.stringify(livePrices));
+    renderViews(); updateGlobalBar();
+    if(document.getElementById('dash').classList.contains('active')) renderDashboard();
+  } catch(e){}
 }
 
+// ── Save Campaign ──
 function saveCampaign(e) {
   e.preventDefault();
   const id = document.getElementById('camp-id').value || Date.now().toString();
+  const t = document.getElementById('camp-type').value;
   const camp = {
-    id,
-    name: document.getElementById('token-name').value,
-    coinId: document.getElementById('coin-id').value.toLowerCase(),
-    logo: document.getElementById('logo-url').value,
-    poolAmt: parseFloat(document.getElementById('reward-pool-amt').value),
-    estReward: document.getElementById('est-reward').value,
-    start: document.getElementById('start-date').value,
-    end: document.getElementById('end-date').value,
-    rewardDate: document.getElementById('reward-date').value || null
+    id, name:document.getElementById('token-name').value,
+    coinId:document.getElementById('coin-id').value.toLowerCase(),
+    logo:document.getElementById('logo-url').value,
+    poolAmt:parseFloat(document.getElementById('reward-pool-amt').value),
+    type:t,
+    estReward: t==='volume' ? document.getElementById('est-reward').value : '0',
+    maxParticipants: t==='equal' ? parseFloat(document.getElementById('max-participants').value)||0 : null,
+    minVolume: t==='equal' ? parseFloat(document.getElementById('min-volume').value)||0 : null,
+    currentParticipants: null,
+    totalPoints: t==='points_lb' ? parseFloat(document.getElementById('total-points').value)||0 : null,
+    start:document.getElementById('start-date').value,
+    end:document.getElementById('end-date').value,
+    rewardDate:document.getElementById('reward-date').value||null
   };
-  // Save to Firebase
-  db.ref('campaigns/' + id).set(camp);
+  db.ref('campaigns/'+id).set(camp);
   closeModal('admin-modal');
 }
 
-function deleteCamp(id, ev) {
+function deleteCamp(id,ev){ev.stopPropagation();authAction(()=>{if(confirm("Delete?"))db.ref('campaigns/'+id).remove();});}
+function editCamp(id,ev){
   ev.stopPropagation();
-  authAction(() => {
-    if (confirm("Delete this campaign?")) {
-      db.ref('campaigns/' + id).remove();
-    }
+  authAction(()=>{
+    const c=campaigns.find(x=>x.id===id); if(!c)return;
+    document.getElementById('camp-id').value=c.id;
+    document.getElementById('token-name').value=c.name;
+    document.getElementById('coin-id').value=c.coinId;
+    document.getElementById('logo-url').value=c.logo;
+    document.getElementById('reward-pool-amt').value=c.poolAmt;
+    document.getElementById('camp-type').value=c.type||'volume';
+    document.getElementById('est-reward').value=c.estReward||'';
+    document.getElementById('max-participants').value=c.maxParticipants||'';
+    document.getElementById('min-volume').value=c.minVolume||'';
+    document.getElementById('total-points').value=c.totalPoints||'';
+    document.getElementById('start-date').value=c.start;
+    document.getElementById('end-date').value=c.end;
+    document.getElementById('reward-date').value=c.rewardDate||'';
+    document.getElementById('modal-title').innerText='Edit Campaign';
+    document.getElementById('submit-btn').innerText='Save Changes';
+    onTypeChange(); openModal('admin-modal');
   });
 }
 
-function editCamp(id, ev) {
-  ev.stopPropagation();
-  authAction(() => {
-    const c = campaigns.find(x => x.id === id);
-    if (!c) return;
-    document.getElementById('camp-id').value = c.id;
-    document.getElementById('token-name').value = c.name;
-    document.getElementById('coin-id').value = c.coinId;
-    document.getElementById('logo-url').value = c.logo;
-    document.getElementById('reward-pool-amt').value = c.poolAmt;
-    document.getElementById('est-reward').value = c.estReward;
-    document.getElementById('start-date').value = c.start;
-    document.getElementById('end-date').value = c.end;
-    document.getElementById('reward-date').value = c.rewardDate || '';
-    document.getElementById('modal-title').innerText = 'Edit Campaign';
-    document.getElementById('submit-btn').innerText = 'Save Changes';
-    openModal('admin-modal');
-  });
+// ── Timer ──
+function pad(n){return n.toString().padStart(2,'0');}
+function fmtDiff(d){return `${pad(Math.floor(d/86400000))}d ${pad(Math.floor((d%86400000)/3600000))}h ${pad(Math.floor((d%3600000)/60000))}m ${pad(Math.floor((d%60000)/1000))}s`;}
+function getTimerInfo(camp){
+  const now=Date.now(), end=new Date(camp.end).getTime(), re=camp.rewardDate?new Date(camp.rewardDate).getTime():null;
+  if(now<end){const diff=end-now;return{text:fmtDiff(diff),state:diff<86400000?'alert':'active',label:'Campaign Ends In'};}
+  if(re&&now<re)return{text:fmtDiff(re-now),state:'reward',label:'Reward Distribution In'};
+  return{text:'ENDED',state:'ended',label:'Campaign Ended'};
 }
 
-function pad(n) { return n.toString().padStart(2, '0'); }
-function formatDiff(diff) {
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  return `${pad(d)}d ${pad(h)}h ${pad(m)}m ${pad(s)}s`;
+// ── Helpers ──
+function price(id){return livePrices[id]?.usd||0;}
+function fmtUSD(n){
+  if(!n||isNaN(n))return'$0.00';
+  if(n>=1000000)return`$${(n/1000000).toFixed(2)}M`;
+  if(n>=1000)return`$${(n/1000).toFixed(1)}K`;
+  return`$${n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}`;
 }
+function fmtPrice(p){if(!p)return'...';if(p<0.01)return`$${p.toFixed(6)}`;if(p<1)return`$${p.toFixed(4)}`;return`$${p.toFixed(2)}`;}
 
-function getTimerInfo(camp) {
-  const now = Date.now();
-  const end = new Date(camp.end).getTime();
-  const rewardEnd = camp.rewardDate ? new Date(camp.rewardDate).getTime() : null;
-  if (now < end) {
-    const diff = end - now;
-    return { text: formatDiff(diff), state: diff < 86400000 ? 'alert' : 'active', label: 'Campaign Ends In', diff };
-  } else if (rewardEnd && now < rewardEnd) {
-    const diff = rewardEnd - now;
-    return { text: formatDiff(diff), state: 'reward', label: 'Reward Distribution In', diff };
-  } else {
-    return { text: 'ENDED', state: 'ended', label: 'Campaign Ended', diff: -1 };
+const typeInfo = {
+  volume:      { label:'Vol. Based',   cls:'type-volume' },
+  equal:       { label:'Equal Share',  cls:'type-equal' },
+  points_lb:   { label:'Points',       cls:'type-points_lb' },
+  unestimable: { label:'Unestimable',  cls:'type-unestimable' },
+  points_nd:   { label:'Unestimable',  cls:'type-unestimable' } // backward compat
+};
+function typeBadge(t){ const i=typeInfo[t]||typeInfo.volume; return`<span class="type-badge ${i.cls}">${i.label}</span>`; }
+
+// ── Reward Calc ──
+function calcReward(camp) {
+  const j = userData.joined[camp.id]; if(!j) return null;
+  const p = price(camp.coinId);
+  const t = camp.type || 'volume';
+
+  if (t === 'volume') {
+    const en = parseFloat(camp.estReward) || 0;
+    const tokens = (j.volume/1000) * en;
+    return { tokens, usd:tokens*p, canCalc:true };
   }
+  if (t === 'equal') {
+    const mp = parseFloat(camp.maxParticipants) || 1;
+    const tokens = camp.poolAmt / mp;
+    const minVol = camp.minVolume || 0;
+    return { tokens, usd:tokens*p, canCalc:true, isFixed:true, minVol };
+  }
+  if (t === 'points_lb') {
+    const tp = parseFloat(camp.totalPoints) || 1;
+    const userPts = j.points || 0;
+    const tokens = userPts > 0 ? (userPts / tp) * camp.poolAmt : 0;
+    return { tokens, usd:tokens*p, canCalc:true, needsPoints:true };
+  }
+  // unestimable / points_nd
+  return { tokens:null, usd:null, canCalc:false };
 }
 
-function price(coinId) { return livePrices[coinId]?.usd || 0; }
-function fmtUSD(n) {
-  if (!n) return null;
-  if (n >= 1000000) return `$${(n/1000000).toFixed(2)}M`;
-  if (n >= 1000) return `$${(n/1000).toFixed(1)}K`;
-  return `$${n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}`;
-}
-function fmtPrice(p) {
-  if (!p) return '...';
-  if (p < 0.01) return `$${p.toFixed(6)}`;
-  if (p < 1) return `$${p.toFixed(4)}`;
-  return `$${p.toFixed(2)}`;
+// ── Balance — only active + reward-pending campaigns ──
+function isCampActive(camp) {
+  const nowMs = Date.now();
+  const ended = new Date(camp.end).getTime() <= nowMs;
+  const rewardDone = !camp.rewardDate || new Date(camp.rewardDate).getTime() <= nowMs;
+  // fully ended = exclude from balance
+  return !(ended && rewardDone);
 }
 
+function getBalance() {
+  let totalReward=0, totalFee=0, cnt=0;
+  campaigns.forEach(c => {
+    if (!isJoined(c.id)) return;
+    if (!isCampActive(c)) return; // skip fully ended
+    const j = userData.joined[c.id];
+    const r = calcReward(c);
+    if (r && r.usd !== null) { totalReward += r.usd; cnt++; }
+    const vol = j.volume || 0;
+    const rate = (j.bnb) ? 0.00075 : 0.001;
+    totalFee += vol * rate;
+  });
+  const net = totalReward - totalFee;
+  return { net, totalReward, totalFee, cnt };
+}
+
+// ── Details Modal ──
 function showDetails(camp) {
   activeModalCampId = camp.id;
   document.getElementById('det-logo').src = camp.logo;
   document.getElementById('det-name').innerText = camp.name;
+  document.getElementById('det-type-badge').innerHTML = typeBadge(camp.type||'volume');
   const p = price(camp.coinId);
   document.getElementById('det-price').innerText = p ? fmtPrice(p) : 'Loading...';
-  const fmt = { dateStyle:'medium', timeStyle:'short', timeZone: isBD ? 'Asia/Dhaka' : 'UTC' };
-  document.getElementById('det-start').innerText = new Date(camp.start).toLocaleString('en-US', fmt);
-  document.getElementById('det-end').innerText = new Date(camp.end).toLocaleString('en-US', fmt);
-  const rdRow = document.getElementById('det-reward-row');
-  if (camp.rewardDate) {
-    rdRow.style.display = 'flex';
-    document.getElementById('det-reward-date').innerText = new Date(camp.rewardDate).toLocaleString('en-US', fmt);
+  const fmt = { dateStyle:'medium', timeStyle:'short', timeZone:isBD?'Asia/Dhaka':'UTC' };
+  document.getElementById('det-start').innerText = new Date(camp.start).toLocaleString('en-US',fmt);
+  document.getElementById('det-end').innerText = new Date(camp.end).toLocaleString('en-US',fmt);
+  const rdr = document.getElementById('det-reward-row');
+  if (camp.rewardDate) { rdr.style.display='flex'; document.getElementById('det-reward-date').innerText=new Date(camp.rewardDate).toLocaleString('en-US',fmt); }
+  else rdr.style.display='none';
+  const pu = p ? camp.poolAmt*p : 0;
+  document.getElementById('det-pool').innerHTML = `${camp.poolAmt.toLocaleString()} ${camp.name}${pu?`<span class="sub">≈ ${fmtUSD(pu)}</span>`:''}`;
+  const t = camp.type||'volume';
+  const estEl = document.getElementById('det-est');
+  const estRow = document.getElementById('det-est-row');
+  if (t==='volume') {
+    const en=parseFloat(camp.estReward); const eu=p&&!isNaN(en)?fmtUSD(en*p):null;
+    estEl.innerHTML=`${en} ${camp.name}${eu?`<span class="sub">≈ ${eu} per $1K Vol</span>`:''}`;
+    estRow.style.display='flex';
+  } else if (t==='equal') {
+    const cp=camp.maxParticipants||'?';
+    const minV=camp.minVolume||0;
+    const rpp=camp.poolAmt/(camp.maxParticipants||1);
+    estEl.innerHTML=`${rpp.toFixed(2)} ${camp.name} each<span class="sub">${cp} participants • Min vol: $${minV.toLocaleString()}</span>`;
+    estRow.style.display='flex';
+  } else if (t==='points_lb') {
+    const tp=camp.totalPoints||'?';
+    estEl.innerHTML=`Points-based<span class="sub">Total LB points: ${typeof tp==='number'?tp.toLocaleString():tp}</span>`;
+    estRow.style.display='flex';
   } else {
-    rdRow.style.display = 'none';
+    estRow.style.display='none';
   }
-  const poolUsdVal = p ? camp.poolAmt * p : 0;
-  document.getElementById('det-pool').innerHTML = `${camp.poolAmt.toLocaleString()} ${camp.name}${poolUsdVal ? `<span class="sub">≈ ${fmtUSD(poolUsdVal)}</span>` : ''}`;
-  const estNum = parseFloat(camp.estReward);
-  if (!isNaN(estNum)) {
-    const estUsd = p ? fmtUSD(estNum * p) : null;
-    document.getElementById('det-est').innerHTML = `${estNum} ${camp.name}${estUsd ? `<span class="sub">≈ ${estUsd} per $1K Vol</span>` : ''}`;
-  } else {
-    document.getElementById('det-est').innerText = camp.estReward;
-  }
-  openModal('details-modal');
-  updateDetTimer(camp);
+  updateModalJoinBtn(camp.id);
+  openModal('details-modal'); updateDetTimer(camp);
+}
+function updateDetTimer(camp){
+  const info=getTimerInfo(camp);
+  const el=document.getElementById('det-timer');
+  el.innerText=info.text; el.className=`det-timer state-${info.state==='alert'?'active':info.state}`;
+  document.getElementById('det-timer-label').innerText=info.label;
 }
 
-function updateDetTimer(camp) {
-  const info = getTimerInfo(camp);
-  const el = document.getElementById('det-timer');
-  el.innerText = info.text;
-  el.className = `det-timer state-${info.state === 'alert' ? 'active' : info.state}`;
-  document.getElementById('det-timer-label').innerText = info.label;
+// ── Card Builders ──
+function joinBtnHtml(id){
+  const j=isJoined(id);
+  return`<button class="btn-join btn-join-sm${j?' joined':''}" onclick="toggleJoin('${id}',event)">${j?'✓ Joined':'+ Join'}</button>`;
 }
-
-function adminBtns(id) {
-  if (!isAdminActive) return '';
-  return `<div class="admin-controls">
-    <button class="btn-edit" onclick="editCamp('${id}',event)">Edit</button>
-    <button class="btn-del" onclick="deleteCamp('${id}',event)">Del</button>
-  </div>`;
+function adminBtns(id){
+  if(!isAdminActive)return'';
+  return`<div class="admin-controls"><button class="btn-edit" onclick="editCamp('${id}',event)">Edit</button><button class="btn-del" onclick="deleteCamp('${id}',event)">Del</button></div>`;
 }
 
 function buildHeroCard(camp, isUrgent) {
-  const p = price(camp.coinId);
-  const info = getTimerInfo(camp);
-  const key = isUrgent ? 'hu' : 'hf';
-  const enc = encodeURIComponent(JSON.stringify(camp));
-  return `<div class="${isUrgent?'hero-card urgent':'hero-card'}" onclick='showDetails(JSON.parse(decodeURIComponent("${enc}")))'>
-    ${isUrgent ? '<div class="urgent-badge">Ending Soon</div>' : ''}
+  const p=price(camp.coinId), info=getTimerInfo(camp), key=isUrgent?'hu':'hf';
+  const enc=encodeURIComponent(JSON.stringify(camp));
+  return`<div class="${isUrgent?'hero-card urgent':'hero-card'}" onclick='showDetails(JSON.parse(decodeURIComponent("${enc}")))'>
+    ${isUrgent?'<div class="urgent-badge">Ending Soon</div>':''}
     <div class="hero-top">
       <img src="${camp.logo}" class="hero-logo" onerror="this.style.background='#2b3139'">
-      <div class="hero-name">${camp.name}</div>
+      <div><div class="hero-name">${camp.name}</div>${typeBadge(camp.type||'volume')}</div>
     </div>
     <div class="hero-price">${fmtPrice(p)}</div>
     <div class="hero-pool">Total Pool: <strong>${camp.poolAmt.toLocaleString()} ${camp.name}</strong><br>
-    <span class="pool-usd">${p ? `≈ ${fmtUSD(camp.poolAmt*p)}` : ''}</span></div>
+    <span class="pool-usd">${p?`≈ ${fmtUSD(camp.poolAmt*p)}`:''}</span></div>
     <div class="hero-timer-wrap">
       <div class="hero-timer-label" id="lbl-${camp.id}-${key}">${info.label}</div>
       <div class="hero-timer state-${info.state==='alert'?'active':info.state}" id="tmr-${camp.id}-${key}">${info.text}</div>
     </div>
+    ${joinBtnHtml(camp.id)}
   </div>`;
 }
 
-function buildListCard(camp, includeReward, rankIdx, grayed) {
-  grayed = grayed || false;
-  const p = price(camp.coinId);
-  const info = getTimerInfo(camp);
-  const suf = includeReward ? 'r' : 'a';
-  const gs = grayed ? 'filter:grayscale(1);opacity:0.45;' : '';
-  const gt = grayed ? 'color:#666!important' : '';
-  const enc = encodeURIComponent(JSON.stringify(camp));
-  let extra;
-  let cls = 'list-card';
-  if (includeReward) {
-    cls += ' reward-card';
-    const badge = rankIdx < 3 ? `<span class="badge good">Good</span>` : `<span class="badge risky">Risky</span>`;
-    extra = `<div class="reward-mid" style="${gt}">${grayed?'':badge}</div>
-      <div class="reward-pool">
-        <div class="pool-amt" style="${gt}">${camp.poolAmt.toLocaleString()} ${camp.name}</div>
-        <div class="pool-usd">${p?`≈ ${fmtUSD(camp.poolAmt*p)}`:'...'}</div>
-      </div>`;
+function getEstText(camp) {
+  const t=camp.type||'volume';
+  if (t==='volume') { const en=parseFloat(camp.estReward); return !isNaN(en)?`${en} ${camp.name} / $1K`:'—'; }
+  if (t==='equal') { const cp=camp.currentParticipants||1; return`${(camp.poolAmt/cp).toFixed(1)} ${camp.name} each`; }
+  if (t==='points_lb') return 'Points Based';
+  return 'Unestimable';
+}
+
+function buildListCard(camp, inclRew, rankIdx, grayed) {
+  grayed=grayed||false;
+  const p=price(camp.coinId), info=getTimerInfo(camp), suf=inclRew?'r':'a';
+  const gs=grayed?'filter:grayscale(1);opacity:0.45;':'', gt=grayed?'color:#555!important':'';
+  const enc=encodeURIComponent(JSON.stringify(camp));
+  let extra, cls='list-card';
+  if (inclRew) {
+    cls+=' reward-card';
+    const badge=rankIdx<3?`<span class="badge good">Good</span>`:`<span class="badge risky">Risky</span>`;
+    extra=`<div class="reward-mid" style="${gt}">${grayed?'':badge}</div>
+      <div class="reward-pool"><div class="pool-amt" style="${gt}">${camp.poolAmt.toLocaleString()} ${camp.name}</div>
+      <div class="pool-usd">${p?`≈ ${fmtUSD(camp.poolAmt*p)}`:'...'}</div></div>`;
   } else {
-    const en = parseFloat(camp.estReward);
-    extra = `<div class="camp-est">${!isNaN(en)?en+' '+camp.name:camp.estReward}<br>/&thinsp;$1K Vol</div>`;
+    extra=`<div class="camp-est">${getEstText(camp)}</div>`;
   }
-  const sc = grayed ? 'state-ended' : (info.state==='alert'?'state-alert':`state-${info.state}`);
-  return `<div class="${cls}" style="${gs}" onclick='showDetails(JSON.parse(decodeURIComponent("${enc}")))'>
-    <div class="camp-info">
-      <img src="${camp.logo}" class="camp-logo" onerror="this.style.background='#2b3139'">
-      <span class="camp-name" style="${gt}">${camp.name}</span>
+  const sc=grayed?'state-ended':(info.state==='alert'?'state-alert':`state-${info.state}`);
+  return`<div class="${cls}" style="${gs}" onclick='showDetails(JSON.parse(decodeURIComponent("${enc}")))'>
+    <div class="camp-info"><img src="${camp.logo}" class="camp-logo" onerror="this.style.background='#2b3139'">
+      <div><div class="camp-name" style="${gt}">${camp.name}</div>${typeBadge(camp.type||'volume')}</div>
     </div>
     <div class="camp-price" style="${gt}">${fmtPrice(p)}</div>
     ${extra}
-    <div>
-      <span class="timer-state-label">${info.label}</span>
+    <div><span class="timer-state-label">${info.label}</span>
       <span class="camp-timer ${sc}" id="tmr-${camp.id}-${suf}">${info.text}</span>
     </div>
+    ${joinBtnHtml(camp.id)}
     ${adminBtns(camp.id)}
   </div>`;
 }
 
-function divider(label, color) {
-  return `<div style="margin:30px 0 14px;display:flex;align-items:center;gap:12px">
+function divider(label,color){
+  return`<div style="margin:22px 0 12px;display:flex;align-items:center;gap:10px">
     <div style="height:1px;flex:1;background:var(--border)"></div>
-    <span style="color:${color};font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap">${label}</span>
+    <span style="color:${color};font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap">${label}</span>
     <div style="height:1px;flex:1;background:var(--border)"></div>
   </div>`;
 }
 
-function renderViews() {
-  const empty = `<div class="empty-state"><h3>No Campaigns Yet</h3><p>Click "+ Add Campaign" to get started.</p></div>`;
-  if (!campaigns.length) {
-    ['home-featured','home-urgent','all-content','reward-content'].forEach(id => document.getElementById(id).innerHTML = empty);
-    return;
-  }
-  const nowMs = Date.now();
-  const byVal = arr => [...arr].sort((a,b) => (b.poolAmt*(price(b.coinId)||0))-(a.poolAmt*(price(a.coinId)||0)));
-  const running = campaigns.filter(c => new Date(c.end).getTime() > nowMs);
-  const rewPending = campaigns.filter(c => new Date(c.end).getTime() <= nowMs && c.rewardDate && new Date(c.rewardDate).getTime() > nowMs)
-    .sort((a,b) => new Date(a.rewardDate)-new Date(b.rewardDate));
-  const fullyEnded = campaigns.filter(c => new Date(c.end).getTime() <= nowMs && (!c.rewardDate || new Date(c.rewardDate).getTime() <= nowMs));
+// ── Render Views ──
+function renderViews(){
+  const empty=`<div class="empty-state"><h3>No Campaigns Yet</h3><p>Click "+ Add Campaign" to get started.</p></div>`;
+  if(!campaigns.length){['home-featured','home-urgent','all-content','reward-content'].forEach(id=>document.getElementById(id).innerHTML=empty);return;}
+  const nowMs=Date.now(), byVal=arr=>[...arr].sort((a,b)=>(b.poolAmt*(price(b.coinId)||0))-(a.poolAmt*(price(a.coinId)||0)));
+  const running=campaigns.filter(c=>new Date(c.end).getTime()>nowMs);
+  const rewPending=campaigns.filter(c=>{const e=new Date(c.end).getTime()<=nowMs,rl=c.rewardDate&&new Date(c.rewardDate).getTime()>nowMs;return e&&rl;}).sort((a,b)=>new Date(a.rewardDate)-new Date(b.rewardDate));
+  const fullyEnded=campaigns.filter(c=>{const e=new Date(c.end).getTime()<=nowMs,rd=!c.rewardDate||new Date(c.rewardDate).getTime()<=nowMs;return e&&rd;});
 
-  // All
-  let allHtml = running.length ? running.map(c=>buildListCard(c,false,null)).join('') : `<div class="empty-state"><h3>No Active Campaigns</h3></div>`;
-  if (rewPending.length) { allHtml += divider('⏳ Awaiting Reward Distribution','var(--green)'); allHtml += rewPending.map(c=>buildListCard(c,false,null)).join(''); }
-  document.getElementById('all-content').innerHTML = allHtml;
+  let allHtml=running.length?running.map(c=>buildListCard(c,false,null)).join(''):`<div class="empty-state"><h3>No Active Campaigns</h3></div>`;
+  if(rewPending.length){allHtml+=divider('⏳ Awaiting Reward Distribution','var(--green)');allHtml+=rewPending.map(c=>buildListCard(c,false,null)).join('');}
+  document.getElementById('all-content').innerHTML=allHtml;
 
-  // Reward Board
-  let rHtml = byVal(running).map((c,i)=>buildListCard(c,true,i)).join('');
-  if (fullyEnded.length) { rHtml += divider('Ended Campaigns','var(--gray)'); rHtml += byVal(fullyEnded).map((c,i)=>buildListCard(c,true,i,true)).join(''); }
-  document.getElementById('reward-content').innerHTML = rHtml || empty;
+  let rHtml=byVal(running).map((c,i)=>buildListCard(c,true,i)).join('');
+  if(fullyEnded.length){rHtml+=divider('Ended Campaigns','var(--gray)');rHtml+=byVal(fullyEnded).map((c,i)=>buildListCard(c,true,i,true)).join('');}
+  document.getElementById('reward-content').innerHTML=rHtml||empty;
 
-  // Home
-  if (!running.length) {
-    document.getElementById('home-featured').innerHTML = `<div class="empty-state"><h3>No Active Campaigns</h3></div>`;
-    document.getElementById('home-urgent').innerHTML = '';
-    return;
-  }
-  document.getElementById('home-featured').innerHTML = byVal(running).slice(0,2).map(c=>buildHeroCard(c,false)).join('');
-  const urgent = [...running].sort((a,b)=>new Date(a.end)-new Date(b.end))[0];
-  document.getElementById('home-urgent').innerHTML = buildHeroCard(urgent,true);
+  if(!running.length){document.getElementById('home-featured').innerHTML=`<div class="empty-state"><h3>No Active Campaigns</h3></div>`;document.getElementById('home-urgent').innerHTML='';return;}
+  document.getElementById('home-featured').innerHTML=byVal(running).slice(0,2).map(c=>buildHeroCard(c,false)).join('');
+  const urgent=[...running].sort((a,b)=>new Date(a.end)-new Date(b.end))[0];
+  document.getElementById('home-urgent').innerHTML=buildHeroCard(urgent,true);
 }
 
-// Ticker
-setInterval(() => {
-  campaigns.forEach(c => {
-    const info = getTimerInfo(c);
-    const sc = info.state==='alert'?'state-alert':`state-${info.state}`;
-    ['hf','hu','a','r'].forEach(suf => {
-      const el = document.getElementById(`tmr-${c.id}-${suf}`);
-      if (el) { el.innerText = info.text; el.className = (suf.startsWith('h')?'hero-timer ':'camp-timer ')+sc; }
-      const lbl = document.getElementById(`lbl-${c.id}-${suf}`);
-      if (lbl) lbl.innerText = info.label;
+// ── Dashboard ──
+function buildDashCard(camp) {
+  const j=userData.joined[camp.id]; if(!j)return'';
+  const p=price(camp.coinId), info=getTimerInfo(camp), r=calcReward(camp), t=camp.type||'volume';
+  const sc=info.state==='alert'?'state-alert':`state-${info.state}`;
+  const bnbOn=j.bnb||false;
+  let rewardHtml='';
+
+  if (t==='volume' && r && r.canCalc) {
+    rewardHtml=`<div class="dash-vol-row">
+      <div class="dash-field"><label>Your Trade Volume (USD)</label>
+        <input type="number" class="vol-input" placeholder="e.g. 5000" value="${j.volume||''}" oninput="updateVol('${camp.id}',this.value)" min="0">
+      </div>
+      <div class="dash-field" style="max-width:155px">
+        <label>BNB Fee Discount</label>
+        <div class="bnb-toggle-wrap" style="padding-top:8px">
+          <label class="toggle-switch">
+            <input type="checkbox" ${bnbOn?'checked':''} onchange="updateBnb('${camp.id}',this.checked)">
+            <div class="toggle-track"></div><div class="toggle-thumb"></div>
+          </label>
+          <span class="bnb-label-txt">${bnbOn?'BNB On':'BNB Off'}</span>
+        </div>
+      </div>
+    </div>
+    <div class="dash-reward" id="dreward-${camp.id}">
+      <span class="dr-label">Est. Reward</span>
+      <span class="dr-val">${r.tokens>0?`${r.tokens.toFixed(2)} ${camp.name}`:'Enter volume above'}</span>
+      ${r.tokens>0&&p?`<span class="dr-usd">≈ ${fmtUSD(r.usd)}</span>`:''}
+    </div>`;
+  } else if (t==='equal' && r && r.canCalc) {
+    const cp=camp.maxParticipants||1, minV=camp.minVolume||0;
+    rewardHtml=`<div class="dash-info-row">👥 Participants so far: <strong>${cp.toLocaleString()}</strong>${minV?` • Min eligible volume: <strong>$${minV.toLocaleString()}</strong>`:''}</div>
+    <div class="dash-reward">
+      <span class="dr-label">Your Fixed Reward</span>
+      <span class="dr-val">${r.tokens.toFixed(2)} ${camp.name}</span>
+      ${p?`<span class="dr-usd">≈ ${fmtUSD(r.usd)}</span>`:''}
+    </div>`;
+  } else if (t==='points_lb' && r) {
+    const tp=camp.totalPoints||1;
+    rewardHtml=`<div class="dash-info-row">📊 Total LB Points: <strong>${tp.toLocaleString()}</strong></div>
+    <div class="dash-vol-row">
+      <div class="dash-field"><label>Your Points</label>
+        <input type="number" class="vol-input" placeholder="e.g. 1500" value="${j.points||''}" oninput="updatePts('${camp.id}',this.value)" min="0">
+      </div>
+    </div>
+    <div class="dash-reward" id="dreward-${camp.id}">
+      <span class="dr-label">Est. Reward</span>
+      <span class="dr-val">${r.tokens>0?`${r.tokens.toFixed(2)} ${camp.name}`:'Enter your points above'}</span>
+      ${r.tokens>0&&p?`<span class="dr-usd">≈ ${fmtUSD(r.usd)}</span>`:''}
+    </div>`;
+  } else {
+    rewardHtml=`<div class="dash-note">⚡ This campaign's reward cannot be estimated — distribution method is random or unannounced.</div>`;
+  }
+
+  return`<div class="dash-camp" id="dcard-${camp.id}">
+    <div class="dash-camp-top">
+      <div class="dash-camp-info">
+        <img src="${camp.logo}" class="camp-logo" onerror="this.style.background='#2b3139'">
+        <div><div class="camp-name">${camp.name}</div>${typeBadge(t)}</div>
+      </div>
+      <div class="dash-camp-actions">
+        <span class="camp-timer ${sc}" style="font-size:12px">${info.text}</span>
+        <button class="btn-remove" onclick="toggleJoin('${camp.id}',event)">✕ Remove</button>
+      </div>
+    </div>
+    ${rewardHtml}
+  </div>`;
+}
+
+function refreshDashCard(campId) {
+  const camp = campaigns.find(c=>c.id===campId);
+  if (!camp) return;
+  // Only update the reward display, NOT the whole card (to preserve input focus)
+  const rewardEl = document.getElementById('dreward-'+campId);
+  if (rewardEl) {
+    const r = calcReward(camp);
+    const p = price(camp.coinId);
+    if (r && r.canCalc && r.tokens !== null) {
+      rewardEl.innerHTML = `<span class="dr-label">Est. Reward</span>
+        <span class="dr-val">${r.tokens>0?`${r.tokens.toFixed(2)} ${camp.name}`:'Enter value above'}</span>
+        ${r.tokens>0&&p?`<span class="dr-usd">≈ ${fmtUSD(r.usd)}</span>`:''}`;
+    }
+  }
+  renderCalc();
+  updateGlobalBar();
+}
+
+function renderDashboard() {
+  const joined=campaigns.filter(c=>isJoined(c.id));
+  const {net,totalReward,totalFee,cnt}=getBalance();
+
+  // Balance card
+  const isLoss=net<0;
+  document.getElementById('dash-balance').innerHTML=`<div class="balance-card" style="background:linear-gradient(135deg,${isLoss?'#1f0f0f,#200d0d':'#0f1f15,#132018'});border-color:${isLoss?'rgba(246,70,93,0.4)':'rgba(14,203,129,0.4)'};">
+    <div class="balance-label">Net Balance (Reward − Fees)</div>
+    <div class="balance-net" style="color:${isLoss?'var(--red)':'var(--green)'};text-shadow:0 0 22px ${isLoss?'rgba(246,70,93,0.4)':'var(--gglow)'}">
+      ${isLoss?'-':'+'}${fmtUSD(Math.abs(net))}
+    </div>
+    <div class="balance-sub">${joined.length} joined • ${cnt} calculable</div>
+    <div class="balance-rows">
+      <div class="bal-row"><div class="bal-row-label">Total Reward</div><div class="bal-row-val" style="color:var(--green)">${fmtUSD(totalReward)}</div></div>
+      <div class="bal-row"><div class="bal-row-label">Total Fees</div><div class="bal-row-val" style="color:var(--red)">-${fmtUSD(totalFee)}</div></div>
+      <div class="bal-row"><div class="bal-row-label">Net Profit/Loss</div><div class="bal-row-val" style="color:${isLoss?'var(--red)':'var(--green)'}">${isLoss?'-':'+'}${fmtUSD(Math.abs(net))}</div></div>
+    </div>
+  </div>`;
+
+  // Joined cards — only show active + reward-pending
+  const activeJoined = joined.filter(c => isCampActive(c));
+  const endedJoined  = joined.filter(c => !isCampActive(c));
+  const jEl=document.getElementById('dash-joined');
+  if(!activeJoined.length && !endedJoined.length) {
+    jEl.innerHTML=`<div class="empty-state" style="margin-bottom:22px"><h3>No Campaigns Joined</h3><p>Click "+ Join" on any campaign to track your rewards here.</p></div>`;
+  } else {
+    let html = activeJoined.length
+      ? `<h2 style="margin-bottom:14px">Joined Campaigns (${activeJoined.length})</h2>` + activeJoined.map(c=>buildDashCard(c)).join('')
+      : `<div class="empty-state" style="margin-bottom:22px"><h3>No Active Joined Campaigns</h3></div>`;
+    if (endedJoined.length) {
+      html += divider('Completed Campaigns', 'var(--gray)');
+      html += endedJoined.map(c => `<div class="dash-camp" style="filter:grayscale(1);opacity:0.4">
+        <div class="dash-camp-top">
+          <div class="dash-camp-info">
+            <img src="${c.logo}" class="camp-logo">
+            <div><div class="camp-name">${c.name}</div>${typeBadge(c.type||'volume')}</div>
+          </div>
+          <span style="color:var(--gray);font-size:12px;font-family:monospace">COMPLETED</span>
+        </div>
+      </div>`).join('');
+    }
+    jEl.innerHTML = html;
+  }
+  renderCalc();
+}
+
+function renderCalc() {
+  const calcEl=document.getElementById('dash-calc');
+  if(!calcEl)return;
+  const {net,totalReward,totalFee}=getBalance();
+
+  // auto stats
+  let totalVol=0, bnbVol=0;
+  campaigns.forEach(c=>{
+    const j=userData.joined[c.id]; if(!j)return;
+    const vol=j.volume||0; totalVol+=vol;
+    if(j.bnb)bnbVol+=vol;
+  });
+  const bnbPct=totalVol>0?Math.round((bnbVol/totalVol)*100):0;
+  // What if ALL volume used BNB?
+  const nonBnbVol=totalVol-bnbVol;
+  const potentialSaving=nonBnbVol*0.001*0.25; // 25% of standard fee on non-BNB volume
+
+  calcEl.innerHTML=`<div class="calc-section">
+    <h2 style="margin-bottom:14px">Cost Calculator</h2>
+    <div class="calc-tabs">
+      <button class="calc-tab active" onclick="switchCalcTab('auto',this)">📊 Auto Summary</button>
+      <button class="calc-tab" onclick="switchCalcTab('manual',this)">✏️ Manual What-If</button>
+    </div>
+
+    <div id="calc-auto" class="calc-panel active">
+      <div class="calc-card">
+        <div class="calc-row"><span class="calc-key">Total Trade Volume</span><span class="calc-val">${fmtUSD(totalVol)}</span></div>
+        <div class="calc-row"><span class="calc-key">BNB Fee Used</span><span class="calc-val" style="color:var(--yellow)">${fmtUSD(bnbVol)} <span style="font-size:12px;color:var(--gray)">(${bnbPct}%)</span></span></div>
+        <div class="calc-row"><span class="calc-key">Total Trading Fee</span><span class="calc-val" style="color:var(--red)">-${fmtUSD(totalFee)}</span></div>
+        <div class="calc-row"><span class="calc-key">Total Est. Reward</span><span class="calc-val" style="color:var(--green)">${fmtUSD(totalReward)}</span></div>
+        <div class="calc-row"><span class="calc-key" style="font-weight:700">Net Profit / Loss</span><span class="calc-val" style="color:${net>=0?'var(--green)':'var(--red)'};font-size:16px">${net>=0?'+':`-`}${fmtUSD(Math.abs(net))}</span></div>
+      </div>
+      ${bnbPct<100&&potentialSaving>0.001?`<div class="savings-hint" style="background:var(--ydim);border-color:rgba(252,213,53,0.3);color:var(--yellow)">
+        💡 If you used <strong>BNB fee on all trades</strong>, you could save an extra <strong>${fmtUSD(potentialSaving)}</strong>.
+      </div>`:''}
+      ${bnbPct===100&&totalVol>0?`<div class="savings-hint" style="background:var(--gdim);border-color:rgba(14,203,129,0.3);color:var(--green)">✓ You're using BNB fee on 100% of trades. Maximum savings achieved!</div>`:''}
+    </div>
+
+    <div id="calc-manual" class="calc-panel">
+      <div class="calc-card">
+        <div class="form-group" style="margin-bottom:12px">
+          <label style="display:block;margin-bottom:4px;color:var(--gray);font-size:12px;font-weight:600">Trade Volume (USD)</label>
+          <input type="number" class="vol-input" id="m-vol" placeholder="e.g. 10,000" value="${totalVol||''}" oninput="updateManualCalc()">
+        </div>
+        <div class="bnb-toggle-wrap" style="padding:10px 0;margin-bottom:12px;border-bottom:1px solid var(--border)">
+          <label class="toggle-switch">
+            <input type="checkbox" id="m-bnb" onchange="updateManualCalc()">
+            <div class="toggle-track"></div><div class="toggle-thumb"></div>
+          </label>
+          <span class="bnb-label-txt">BNB Fee Discount (25% off)</span>
+        </div>
+        <div class="calc-row" style="padding:7px 0"><span class="calc-key">Fee Rate</span><span class="calc-val" id="m-rate">0.100%</span></div>
+        <div class="calc-row" style="padding:7px 0"><span class="calc-key">Trading Fee</span><span class="calc-val" style="color:var(--red)" id="m-fee">—</span></div>
+        <div class="calc-row" style="padding:7px 0;border-bottom:none"><span class="calc-key">If BNB used, you'd save</span><span class="calc-val" style="color:var(--yellow)" id="m-save">—</span></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function switchCalcTab(tab,btn){
+  document.querySelectorAll('.calc-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('calc-auto').classList.toggle('active',tab==='auto');
+  document.getElementById('calc-manual').classList.toggle('active',tab==='manual');
+}
+
+function updateManualCalc(){
+  const vol=parseFloat(document.getElementById('m-vol')?.value)||0;
+  const bnb=document.getElementById('m-bnb')?.checked;
+  const rate=bnb?0.00075:0.001;
+  const fee=vol*rate;
+  const save=vol*0.001*0.25;
+  document.getElementById('m-rate').innerText=bnb?'0.075% (BNB)':'0.100%';
+  document.getElementById('m-fee').innerText=vol>0?`-${fmtUSD(fee)}`:'—';
+  document.getElementById('m-save').innerText=vol>0&&!bnb?fmtUSD(save):(bnb?'Already using BNB':'—');
+}
+
+// ── Tick ──
+setInterval(()=>{
+  campaigns.forEach(c=>{
+    const info=getTimerInfo(c), sc=info.state==='alert'?'state-alert':`state-${info.state}`;
+    ['hf','hu','a','r'].forEach(suf=>{
+      const el=document.getElementById(`tmr-${c.id}-${suf}`);
+      if(el){el.innerText=info.text;el.className=(suf.startsWith('h')?'hero-timer ':'camp-timer ')+sc;}
+      const lb=document.getElementById(`lbl-${c.id}-${suf}`);
+      if(lb)lb.innerText=info.label;
     });
   });
-  if (document.getElementById('details-modal').style.display==='flex' && activeModalCampId) {
-    const camp = campaigns.find(c=>c.id===activeModalCampId);
-    if (camp) updateDetTimer(camp);
+  if(document.getElementById('details-modal').style.display==='flex'&&activeModalCampId){
+    const c=campaigns.find(x=>x.id===activeModalCampId);if(c)updateDetTimer(c);
   }
-}, 1000);
+},1000);
 
-setInterval(fetchPrices, 60000);
+setInterval(fetchPrices,60000);
 </script>
 </body>
 </html>
