@@ -954,8 +954,9 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       document.getElementById('home-urgent').innerHTML = '';
       return;
     }
-    featCamps = byVal(running).slice(0, 4); featIdx = 0;
-    document.getElementById('home-featured').innerHTML = buildCarousel(featCamps, false, 'feat', 'on-y');
+    featCamps = []; featIdx = 0;
+    var topTwo = byVal(running).slice(0, 2);
+    document.getElementById('home-featured').innerHTML = '<div class="home-grid">' + topTwo.map(function(c2) { return buildHeroCard(c2, false); }).join('') + '</div>';
     urgCamps = running.slice().sort(function(a,b) { return new Date(a.end) - new Date(b.end); }).slice(0, 3);
     urgIdx = 0;
     document.getElementById('home-urgent').innerHTML = buildCarousel(urgCamps, true, 'urg', 'on-r');
