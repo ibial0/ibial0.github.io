@@ -1001,7 +1001,9 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     rewPending.sort(function(a,b) { return new Date(a.rewardDate) - new Date(b.rewardDate); });
     function byVal(arr) { return arr.slice().sort(function(a,b) { return (b.poolAmt*(priceOf(b.coinId)||0)) - (a.poolAmt*(priceOf(a.coinId)||0)); }); }
     var runningByDiff = running.slice().sort(function(a,b) {
-      return (diffOrder[a.difficulty || ''] || 4) - (diffOrder[b.difficulty || ''] || 4);
+      var da = diffOrder[a.difficulty] !== undefined ? diffOrder[a.difficulty] : 4;
+      var db = diffOrder[b.difficulty] !== undefined ? diffOrder[b.difficulty] : 4;
+      return da - db;
     });
     var allHtml = runningByDiff.length ? runningByDiff.map(function(c2) { return buildListCard(c2,false,null); }).join('') : '<div class="empty-state"><h3>No Active Campaigns</h3></div>';
     if (rewPending.length) { allHtml += divider('Awaiting Reward Distribution', 'var(--green)'); allHtml += rewPending.map(function(c2) { return buildListCard(c2,false,null); }).join(''); }
