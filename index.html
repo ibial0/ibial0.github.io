@@ -44,13 +44,11 @@ main{padding:26px 30px;max-width:1200px;margin:0 auto;min-height:80vh}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 h2{margin-bottom:20px;color:var(--white);display:flex;align-items:center;gap:10px;font-size:18px}
 h2::before{content:'';display:inline-block;width:4px;height:19px;background:linear-gradient(180deg,var(--yellow),#f0a500);border-radius:2px;flex-shrink:0}
-/* Carousel */
 .carousel-wrap{position:relative;overflow:hidden;margin-bottom:32px}
 .carousel-track{display:flex;transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)}
 .carousel-slide{flex-shrink:0;width:100%;padding:0 0 4px}
 .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:10px}
 .c-dot{width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:all 0.25s;background:var(--border)}
-.c-dot.on-y{background:var(--yellow);transform:scale(1.3)}
 .c-dot.on-r{background:var(--red);transform:scale(1.3)}
 .home-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
 .hero-card{background:var(--surface);padding:22px;border-radius:14px;border:1px solid var(--border);cursor:pointer;position:relative;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s}
@@ -79,8 +77,14 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .type-badge{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px}
 .type-volume{background:var(--ydim);color:var(--yellow)}
 .type-equal{background:var(--pdim);color:var(--purple)}
+.type-ranked{background:rgba(251,113,133,0.15);color:#fb7185}
 .type-points{background:var(--odim);color:var(--orange)}
 .type-unestimable{background:var(--cdim);color:var(--cyan)}
+.diff-badge{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.4px}
+.diff-easy{background:var(--gdim);color:var(--green)}
+.diff-medium{background:var(--odim);color:var(--orange)}
+.diff-hard{background:var(--rdim);color:var(--red)}
+.diff-vhard{background:var(--pdim);color:var(--purple)}
 .list-card{background:var(--surface);border-radius:10px;padding:13px 17px;margin-bottom:10px;display:grid;grid-template-columns:2fr 1fr 2fr 2fr auto auto;align-items:center;gap:13px;transition:all 0.2s;cursor:pointer;border:1px solid transparent}
 .list-card:hover{border-color:var(--border);background:var(--surface2);transform:translateX(3px)}
 .reward-card{grid-template-columns:2fr 1fr 1fr 2fr 2fr auto auto}
@@ -154,6 +158,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .dr-val{font-weight:700;color:var(--white);font-size:14px;margin-left:auto}
 .dr-usd{font-size:12px;color:var(--green);font-weight:600}
 .dash-note{background:var(--bg);border-radius:8px;padding:10px 13px;color:var(--cyan);font-size:12px;border-left:3px solid var(--cyan);margin-top:10px}
+.dash-warn{background:var(--bg);border-radius:8px;padding:10px 13px;color:var(--orange);font-size:12px;border-left:3px solid var(--orange);margin-top:8px}
 .dash-info-row{background:var(--bg);border-radius:8px;padding:10px 13px;font-size:12px;color:var(--gray);margin-bottom:6px;margin-top:10px}
 .dash-info-row strong{color:var(--white)}
 .calc-section{margin-top:28px}
@@ -279,39 +284,24 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     <h2 style="margin-top:6px">Ending Soon</h2>
     <div id="home-urgent"></div>
     <div class="donation-box">
-      <span class="donation-side-icon left">&#127873;</span>
-      <span class="donation-side-icon right">&#127873;</span>
+      <span class="donation-side-icon left">&#127873;</span><span class="donation-side-icon right">&#127873;</span>
       <span class="donation-gift">&#127873;</span>
       <div class="donation-title">Support Spot CTR</div>
       <p>If this platform saves you time and helps you trade smarter, consider sending a small gift.</p>
-      <div class="donation-uid-wrap">
-        <div><div class="donation-uid-label">Binance UID</div><div class="donation-uid">448509126</div></div>
-      </div>
+      <div class="donation-uid-wrap"><div><div class="donation-uid-label">Binance UID</div><div class="donation-uid">448509126</div></div></div>
     </div>
   </section>
-  <section id="all" class="section">
-    <h2>All Campaigns</h2>
-    <div id="all-content"><div class="loading"><div class="spinner"></div>Loading...</div></div>
-  </section>
-  <section id="reward" class="section">
-    <h2>Reward Board</h2>
-    <div id="reward-content"><div class="loading"><div class="spinner"></div>Loading...</div></div>
-  </section>
-  <section id="dash" class="section">
-    <h2>My Dashboard</h2>
-    <div id="dash-balance"></div>
-    <div id="dash-joined"></div>
-    <div id="dash-calc"></div>
-  </section>
+  <section id="all" class="section"><h2>All Campaigns</h2><div id="all-content"><div class="loading"><div class="spinner"></div>Loading...</div></div></section>
+  <section id="reward" class="section"><h2>Reward Board</h2><div id="reward-content"><div class="loading"><div class="spinner"></div>Loading...</div></div></section>
+  <section id="dash" class="section"><h2>My Dashboard</h2><div id="dash-balance"></div><div id="dash-joined"></div><div id="dash-calc"></div></section>
   <section id="about" class="section">
     <h2>About Spot CTR</h2>
     <div class="about-text">This website was created to help traders save time and access important campaign information more efficiently. This platform focuses only on spot trading campaigns. Reward estimates are based on personal analysis. Always conduct your own research before participating.</div>
     <br><h3>Contact</h3><br>
-    <a href="https://x.com/_IBIAL" target="_blank" class="social-link">
-      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-    </a>
+    <a href="https://x.com/_IBIAL" target="_blank" class="social-link"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
   </section>
 </main>
+<!-- Admin Modal -->
 <div class="modal" id="admin-modal">
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal('admin-modal')">&#x2715;</span>
@@ -319,7 +309,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     <form id="campaign-form" style="margin-top:16px" onsubmit="saveCampaign(event)">
       <input type="hidden" id="camp-id">
       <span class="form-section-label">Campaign Info</span>
-      <div class="form-group"><label>Campaign Title (optional)</label><input type="text" id="camp-title" placeholder="e.g. BNB Spot Trading Campaign"><div class="hint">Shown in detail view only</div></div>
+      <div class="form-group"><label>Campaign Title (optional)</label><input type="text" id="camp-title"><div class="hint">Shown in detail view only</div></div>
       <div class="form-group"><label>Token Name (e.g. $BNB)</label><input type="text" id="token-name" required></div>
       <div class="form-group"><label>CoinGecko Coin ID</label><input type="text" id="coin-id" required><div class="hint">e.g. binancecoin</div></div>
       <div class="form-group"><label>Logo Image URL</label><input type="url" id="logo-url" required></div>
@@ -329,17 +319,29 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
         <select id="camp-type" onchange="onTypeChange()">
           <option value="volume">Volume Based (per $1K reward)</option>
           <option value="equal">Equal Share (fixed per person)</option>
+          <option value="ranked_fixed">Ranked Fixed Reward</option>
           <option value="points_lb">Points + Leaderboard</option>
           <option value="points_nl">Points (No Leaderboard)</option>
           <option value="unestimable">Unestimable / Random</option>
         </select>
       </div>
+      <!-- Volume -->
       <div id="fg-volume"><div class="form-group"><label>Est. Tokens per $1,000 Volume</label><input type="number" step="any" id="est-reward"><div class="hint">Tokens earned per $1,000 traded</div></div></div>
+      <!-- Equal -->
       <div id="fg-equal" style="display:none"><div class="form-group"><label>Total Participants (joined so far)</label><input type="number" id="max-participants" min="1"><div class="hint">Reward = Pool divided by this number</div></div></div>
+      <!-- Ranked Fixed -->
+      <div id="fg-ranked" style="display:none">
+        <div class="form-group"><label>Rank Range Start (e.g. 1)</label><input type="number" id="rank-start" min="1"></div>
+        <div class="form-group"><label>Rank Range End (e.g. 5000)</label><input type="number" id="rank-end" min="1"><div class="hint">Reward split equally among rank-start to rank-end</div></div>
+        <div class="form-group"><label>Min Volume to be Eligible (USD)</label><input type="number" id="rank-elig-vol" min="0"><div class="hint">Must trade at least this much to qualify</div></div>
+        <div class="form-group"><label>Est. Min Volume to Enter Rank Range (USD)</label><input type="number" id="rank-min-vol" min="0"><div class="hint">Approx volume needed to reach this rank (changes over time)</div></div>
+      </div>
+      <!-- Points LB -->
       <div id="fg-points-lb" style="display:none">
         <div class="form-group"><label>Total Points on Leaderboard</label><input type="number" id="total-points" min="1"></div>
         <div class="form-group"><label>Est. Cost per Point (USD)</label><input type="number" step="any" id="cost-per-point"><div class="hint">e.g. 0.012</div></div>
       </div>
+      <!-- Points NL -->
       <div id="fg-points-nl" style="display:none">
         <div class="form-group"><label>Minimum Points Required</label><input type="number" id="min-points" min="1"></div>
         <div class="form-group"><label>Est. Cost per Point (USD)</label><input type="number" step="any" id="cost-per-point-nl"><div class="hint">e.g. 0.012</div></div>
@@ -355,6 +357,18 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       </div>
       <div id="fg-minvol" style="display:none"><div class="form-group"><label>Minimum Volume (USD)</label><input type="number" id="min-volume" min="0" placeholder="e.g. 1000"></div></div>
       <hr class="form-divider">
+      <span class="form-section-label">Campaign Difficulty</span>
+      <div class="form-group">
+        <label>Difficulty Level</label>
+        <select id="camp-difficulty">
+          <option value="">Not Set</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+          <option value="Very Hard">Very Hard</option>
+        </select>
+      </div>
+      <hr class="form-divider">
       <span class="form-section-label">Campaign Period</span>
       <div class="form-group"><label>Start Date and Time</label><input type="datetime-local" id="start-date" required></div>
       <div class="form-group"><label>End Date and Time</label><input type="datetime-local" id="end-date" required></div>
@@ -365,6 +379,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     </form>
   </div>
 </div>
+<!-- Details Modal -->
 <div class="modal" id="details-modal">
   <div class="modal-content" style="width:480px">
     <span class="close-modal" onclick="closeModal('details-modal')">&#x2715;</span>
@@ -402,8 +417,6 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
   var allExpanded = true;
   var endedExpanded = false;
   var tickCount = 0;
-  var featCamps = [];
-  var featIdx = 0;
   var urgCamps = [];
   var urgIdx = 0;
 
@@ -415,9 +428,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     fetchPrices();
     renderViews();
     updateGBB();
-    if (document.getElementById('dash').classList.contains('active')) {
-      renderDashboard();
-    }
+    if (document.getElementById('dash').classList.contains('active')) { renderDashboard(); }
   });
 
   function saveUD() { localStorage.setItem('spotctr_user', JSON.stringify(userData)); }
@@ -522,14 +533,11 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     for (var i = 0; i < 10; i++) {
       var d = document.getElementById(prefix + '-d' + i);
       if (!d) { break; }
-      d.classList.remove('on-y');
       d.classList.remove('on-r');
     }
     var active = document.getElementById(prefix + '-d' + idx);
-    if (active) {
-      active.classList.add(prefix === 'feat' ? 'on-y' : 'on-r');
-    }
-    if (prefix === 'feat') { featIdx = idx; } else { urgIdx = idx; }
+    if (active) { active.classList.add('on-r'); }
+    if (prefix === 'urg') { urgIdx = idx; }
   }
   window.goSlide = goSlide;
 
@@ -617,6 +625,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     var t = document.getElementById('camp-type') ? document.getElementById('camp-type').value : 'volume';
     document.getElementById('fg-volume').style.display = t === 'volume' ? '' : 'none';
     document.getElementById('fg-equal').style.display = t === 'equal' ? '' : 'none';
+    document.getElementById('fg-ranked').style.display = t === 'ranked_fixed' ? '' : 'none';
     document.getElementById('fg-points-lb').style.display = t === 'points_lb' ? '' : 'none';
     document.getElementById('fg-points-nl').style.display = t === 'points_nl' ? '' : 'none';
   }
@@ -658,8 +667,13 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       id: id, title: gv('camp-title'), name: gv('token-name'),
       coinId: gv('coin-id').toLowerCase(), logo: gv('logo-url'),
       poolAmt: gn('reward-pool-amt'), type: t,
+      difficulty: gv('camp-difficulty') || null,
       estReward: t === 'volume' ? gv('est-reward') : '0',
       maxParticipants: t === 'equal' ? gn('max-participants') : null,
+      rankStart: t === 'ranked_fixed' ? gn('rank-start') : null,
+      rankEnd: t === 'ranked_fixed' ? gn('rank-end') : null,
+      rankEligVol: t === 'ranked_fixed' ? gn('rank-elig-vol') : null,
+      rankMinVol: t === 'ranked_fixed' ? gn('rank-min-vol') : null,
       totalPoints: t === 'points_lb' ? gn('total-points') : null,
       costPerPoint: t === 'points_lb' ? gn('cost-per-point') : null,
       minPoints: t === 'points_nl' ? gn('min-points') : null,
@@ -691,8 +705,13 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       document.getElementById('logo-url').value = c.logo;
       document.getElementById('reward-pool-amt').value = c.poolAmt;
       document.getElementById('camp-type').value = c.type || 'volume';
+      document.getElementById('camp-difficulty').value = c.difficulty || '';
       document.getElementById('est-reward').value = c.estReward || '';
       document.getElementById('max-participants').value = c.maxParticipants || '';
+      document.getElementById('rank-start').value = c.rankStart || '';
+      document.getElementById('rank-end').value = c.rankEnd || '';
+      document.getElementById('rank-elig-vol').value = c.rankEligVol || '';
+      document.getElementById('rank-min-vol').value = c.rankMinVol || '';
       document.getElementById('total-points').value = c.totalPoints || '';
       document.getElementById('cost-per-point').value = c.costPerPoint || '';
       document.getElementById('min-points').value = c.minPoints || '';
@@ -747,14 +766,18 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
   var typeLabels = {
     volume: { label: 'Vol. Based', cls: 'type-volume' },
     equal: { label: 'Equal Share', cls: 'type-equal' },
+    ranked_fixed: { label: 'Ranked', cls: 'type-ranked' },
     points_lb: { label: 'Points+LB', cls: 'type-points' },
     points_nl: { label: 'Points', cls: 'type-points' },
     unestimable: { label: 'Unestimable', cls: 'type-unestimable' },
     points_nd: { label: 'Unestimable', cls: 'type-unestimable' }
   };
-  function typeBadge(t) {
-    var i = typeLabels[t] || typeLabels.volume;
-    return '<span class="type-badge ' + i.cls + '">' + i.label + '</span>';
+  function typeBadge(t) { var i = typeLabels[t] || typeLabels.volume; return '<span class="type-badge ' + i.cls + '">' + i.label + '</span>'; }
+
+  function diffBadge(d) {
+    if (!d) { return ''; }
+    var cls = d === 'Easy' ? 'diff-easy' : d === 'Medium' ? 'diff-medium' : d === 'Very Hard' ? 'diff-vhard' : 'diff-hard';
+    return '<span class="diff-badge ' + cls + '">' + d + '</span>';
   }
 
   function calcReward(camp) {
@@ -770,11 +793,27 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       var minV = camp.minVolume || 0, rate = j.bnb ? 0.00075 : 0.001;
       return { tokens: tok2, usd: tok2 * p, canCalc: true, minVol: minV, feeCost: minV * rate, pointsCost: 0 };
     }
+    if (t === 'ranked_fixed') {
+      var rs = parseFloat(camp.rankStart) || 1, re = parseFloat(camp.rankEnd) || 1;
+      var count = Math.max(re - rs + 1, 1), tok3 = camp.poolAmt / count;
+      var eligVol = camp.rankEligVol || 0, rankVol = camp.rankMinVol || 0;
+      var rrate = j.bnb ? 0.00075 : 0.001;
+      var userVol = j.volume || 0;
+      var inRank = userVol >= rankVol && rankVol > 0;
+      var eligible = userVol >= eligVol;
+      return {
+        tokens: tok3, usd: tok3 * p, canCalc: true,
+        rankStart: rs, rankEnd: re, eligVol: eligVol, rankMinVol: rankVol,
+        inRank: inRank, eligible: eligible,
+        feeCost: rankVol > 0 ? rankVol * rrate : eligVol * rrate,
+        pointsCost: 0
+      };
+    }
     if (t === 'points_lb') {
       var tp = parseFloat(camp.totalPoints) || 1, userPts = j.points || 0;
-      var tok3 = userPts > 0 ? (userPts / tp) * camp.poolAmt : 0;
+      var tok4 = userPts > 0 ? (userPts / tp) * camp.poolAmt : 0;
       var cpp = parseFloat(camp.costPerPoint) || 0;
-      return { tokens: tok3, usd: tok3 * p, canCalc: true, pointsCost: userPts * cpp };
+      return { tokens: tok4, usd: tok4 * p, canCalc: true, pointsCost: userPts * cpp };
     }
     if (t === 'points_nl') {
       var minPts = parseFloat(camp.minPoints) || 0, cpp2 = parseFloat(camp.costPerPointNl) || 0;
@@ -789,9 +828,13 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       var c = campaigns[i];
       if (!isJoined(c.id) || !isCampActive(c)) { continue; }
       var j = userData.joined[c.id], r = calcReward(c), t = c.type || 'volume';
-      if (r && r.usd !== null) { totalReward += r.usd; cnt++; }
+      if (r && r.usd !== null) {
+        if (t === 'ranked_fixed') {
+          if (r.inRank) { totalReward += r.usd; cnt++; }
+        } else { totalReward += r.usd; cnt++; }
+      }
       if (t === 'volume') { totalFee += (j.volume || 0) * (j.bnb ? 0.00075 : 0.001); }
-      else if (t === 'equal' && r && r.feeCost) { totalFee += r.feeCost; }
+      else if ((t === 'equal' || t === 'ranked_fixed') && r && r.feeCost) { totalFee += r.feeCost; }
       else if (t === 'points_lb' && r && r.pointsCost) { totalFee += r.pointsCost; }
     }
     return { net: totalReward - totalFee, totalReward: totalReward, totalFee: totalFee, cnt: cnt };
@@ -823,6 +866,12 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       estRow.style.display = 'flex';
     } else if (t === 'equal') {
       estEl.innerHTML = fmtToken(camp.poolAmt / (camp.maxParticipants || 1)) + ' ' + camp.name + ' each<span class="sub">' + (camp.maxParticipants || '?') + ' participants' + (camp.minVolume ? ' | Min vol: $' + camp.minVolume.toLocaleString() : '') + '</span>';
+      estRow.style.display = 'flex';
+    } else if (t === 'ranked_fixed') {
+      var cnt2 = Math.max((camp.rankEnd || 1) - (camp.rankStart || 1) + 1, 1);
+      estEl.innerHTML = fmtToken(camp.poolAmt / cnt2) + ' ' + camp.name + ' each<span class="sub">Rank ' + (camp.rankStart || 1) + ' to ' + (camp.rankEnd || 1)
+        + (camp.rankEligVol ? ' | Elig. vol: $' + camp.rankEligVol.toLocaleString() : '')
+        + (camp.rankMinVol ? ' | Est. rank vol: $' + camp.rankMinVol.toLocaleString() : '') + '</span>';
       estRow.style.display = 'flex';
     } else if (t === 'points_lb') {
       estEl.innerHTML = 'Points-based<span class="sub">Total LB pts: ' + ((camp.totalPoints || 0).toLocaleString()) + '</span>';
@@ -856,6 +905,10 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     var t = camp.type || 'volume';
     if (t === 'volume') { var en = parseFloat(camp.estReward); return !isNaN(en) ? en + ' ' + camp.name + ' / $1K' : '-'; }
     if (t === 'equal') { return fmtToken(camp.poolAmt / (camp.maxParticipants || 1)) + ' ' + camp.name + ' each'; }
+    if (t === 'ranked_fixed') {
+      var cnt = Math.max((camp.rankEnd || 1) - (camp.rankStart || 1) + 1, 1);
+      return fmtToken(camp.poolAmt / cnt) + ' ' + camp.name + ' (Rank ' + (camp.rankStart || 1) + '-' + (camp.rankEnd || 1) + ')';
+    }
     if (t === 'points_lb') { return 'Points + LB'; }
     if (t === 'points_nl') { return 'Points (No LB)'; }
     return 'Unestimable';
@@ -876,18 +929,16 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       + joinBtn(camp.id) + '</div>';
   }
 
-  function buildCarousel(camps, isUrgent, prefix, dotCls) {
+  function buildCarousel(camps, isUrgent, prefix) {
     if (!camps.length) { return ''; }
-    if (camps.length === 1) {
-      return '<div class="home-grid">' + buildHeroCard(camps[0], isUrgent) + '</div>';
-    }
+    if (camps.length === 1) { return '<div class="home-grid">' + buildHeroCard(camps[0], isUrgent) + '</div>'; }
     var html = '<div class="carousel-wrap"><div class="carousel-track" id="' + prefix + '-trk">';
     for (var i = 0; i < camps.length; i++) {
       html += '<div class="carousel-slide"><div class="home-grid">' + buildHeroCard(camps[i], isUrgent) + '</div></div>';
     }
     html += '</div><div class="carousel-dots">';
     for (var j = 0; j < camps.length; j++) {
-      html += '<button class="c-dot' + (j === 0 ? ' ' + dotCls : '') + '" id="' + prefix + '-d' + j + '" onclick="goSlide(\'' + prefix + '\',' + j + ')"></button>';
+      html += '<button class="c-dot' + (j === 0 ? ' on-r' : '') + '" id="' + prefix + '-d' + j + '" onclick="goSlide(\'' + prefix + '\',' + j + ')"></button>';
     }
     html += '</div></div>';
     return html;
@@ -906,7 +957,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
         + '<div class="reward-pool"><div class="pool-amt" style="' + gt + '">' + camp.poolAmt.toLocaleString() + ' ' + camp.name + '</div>'
         + '<div class="pool-usd">' + (p ? 'approx ' + fmtUSD(camp.poolAmt * p) : '...') + '</div></div>';
     } else {
-      extra = '<div class="camp-est">' + getEstText(camp) + '</div>';
+      extra = '<div class="camp-est">' + getEstText(camp) + (camp.difficulty ? '<br>' + diffBadge(camp.difficulty) : '') + '</div>';
     }
     var sc = grayed ? 'state-ended' : (info.state === 'alert' ? 'state-alert' : 'state-' + info.state);
     return '<div class="' + cls + '" style="' + gs + '" onclick="showDetails(\'' + enc + '\')">'
@@ -954,12 +1005,11 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       document.getElementById('home-urgent').innerHTML = '';
       return;
     }
-    featCamps = []; featIdx = 0;
     var topTwo = byVal(running).slice(0, 2);
     document.getElementById('home-featured').innerHTML = '<div class="home-grid">' + topTwo.map(function(c2) { return buildHeroCard(c2, false); }).join('') + '</div>';
     urgCamps = running.slice().sort(function(a,b) { return new Date(a.end) - new Date(b.end); }).slice(0, 3);
     urgIdx = 0;
-    document.getElementById('home-urgent').innerHTML = buildCarousel(urgCamps, true, 'urg', 'on-r');
+    document.getElementById('home-urgent').innerHTML = buildCarousel(urgCamps, true, 'urg');
   }
 
   function buildDashCard(camp) {
@@ -971,8 +1021,13 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     var hasData = (j.volume > 0 || j.points > 0);
     var sumTxt = 'Not set', sumCls = 'dash-camp-summary no-data';
     if (r && r.canCalc && r.tokens !== null && r.tokens > 0) {
-      sumTxt = fmtToken(r.tokens) + ' ' + camp.name + (p ? ' (approx ' + fmtUSD(r.usd) + ')' : '');
-      sumCls = 'dash-camp-summary';
+      if (t === 'ranked_fixed') {
+        sumTxt = r.inRank ? fmtToken(r.tokens) + ' ' + camp.name + (p ? ' (approx ' + fmtUSD(r.usd) + ')' : '') : 'Not in rank';
+        sumCls = r.inRank ? 'dash-camp-summary' : 'dash-camp-summary no-data';
+      } else {
+        sumTxt = fmtToken(r.tokens) + ' ' + camp.name + (p ? ' (approx ' + fmtUSD(r.usd) + ')' : '');
+        sumCls = 'dash-camp-summary';
+      }
     }
     var bodyHtml = '';
     if (t === 'volume' && r && r.canCalc) {
@@ -988,10 +1043,31 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
         + '<span class="dr-label">Est. Reward</span>'
         + '<span class="dr-val">' + (r.tokens > 0 ? fmtToken(r.tokens) + ' ' + camp.name : 'Enter volume above') + '</span>'
         + (r.tokens > 0 && p ? '<span class="dr-usd">approx ' + fmtUSD(r.usd) + '</span>' : '') + '</div>';
+    } else if (t === 'ranked_fixed' && r && r.canCalc) {
+      var rrate2 = bnbOn ? 0.00075 : 0.001;
+      var userVol2 = j.volume || 0;
+      var estFee = userVol2 * rrate2;
+      bodyHtml = '<div class="dash-info-row">Rank <strong>' + r.rankStart + '</strong> to <strong>' + r.rankEnd + '</strong>'
+        + (r.eligVol ? ' | Min eligible vol: <strong>$' + r.eligVol.toLocaleString() + '</strong>' : '')
+        + (r.rankMinVol ? ' | Est. rank entry vol: <strong>$' + r.rankMinVol.toLocaleString() + '</strong>' : '') + '</div>'
+        + '<div class="dash-vol-row">'
+        + '<div class="dash-field"><label>Your Trade Volume (USD)</label>'
+        + '<input type="number" class="vol-input" placeholder="e.g. 10000" value="' + (j.volume || '') + '" oninput="updateVol(\'' + camp.id + '\',this.value)" min="0"></div>'
+        + '<div class="dash-field" style="max-width:155px"><label>BNB Fee</label>'
+        + '<div class="bnb-wrap" style="padding-top:8px"><label class="toggle-switch">'
+        + '<input type="checkbox" ' + (bnbOn ? 'checked' : '') + ' onchange="updateBnb(\'' + camp.id + '\',this.checked)">'
+        + '<div class="toggle-track"></div><div class="toggle-thumb"></div></label>'
+        + '<span class="bnb-txt">' + (bnbOn ? 'BNB On' : 'BNB Off') + '</span></div></div></div>'
+        + (userVol2 > 0 ? '<div class="dash-reward"><span class="dr-label">Trading Fee</span><span class="dr-val" style="color:var(--red)">-' + fmtUSD(estFee) + '</span></div>' : '')
+        + (userVol2 > 0 && r.inRank
+          ? '<div class="dash-reward" style="margin-top:6px"><span class="dr-label">Est. Reward (in rank)</span><span class="dr-val">' + fmtToken(r.tokens) + ' ' + camp.name + '</span>' + (p ? '<span class="dr-usd">approx ' + fmtUSD(r.usd) + '</span>' : '') + '</div>'
+          : (userVol2 > 0 && !r.inRank && r.rankMinVol > 0
+            ? '<div class="dash-warn">Your volume is below the estimated rank entry (~$' + r.rankMinVol.toLocaleString() + '). Reward not included in balance.</div>'
+            : ''));
     } else if (t === 'equal' && r && r.canCalc) {
-      var fc = (camp.minVolume || 0) * (bnbOn ? 0.00075 : 0.001);
+      var fc2 = (camp.minVolume || 0) * (bnbOn ? 0.00075 : 0.001);
       bodyHtml = '<div class="dash-info-row">Participants: <strong>' + (camp.maxParticipants||1).toLocaleString() + '</strong>'
-        + (camp.minVolume ? ' | Min vol: <strong>$' + camp.minVolume.toLocaleString() + '</strong> <span style="color:var(--red)">(fee approx ' + fmtUSD(fc) + ')</span>' : '') + '</div>'
+        + (camp.minVolume ? ' | Min vol: <strong>$' + camp.minVolume.toLocaleString() + '</strong> <span style="color:var(--red)">(fee approx ' + fmtUSD(fc2) + ')</span>' : '') + '</div>'
         + '<div class="dash-vol-row"><div class="dash-field" style="max-width:155px"><label>BNB Fee</label>'
         + '<div class="bnb-wrap" style="padding-top:8px"><label class="toggle-switch">'
         + '<input type="checkbox" ' + (bnbOn ? 'checked' : '') + ' onchange="updateBnb(\'' + camp.id + '\',this.checked)">'
@@ -1018,7 +1094,6 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     } else {
       bodyHtml = '<div class="dash-note">Reward cannot be estimated - distribution is random or unannounced.</div>';
     }
-    var showArrow = hasData || t !== 'volume';
     return '<div class="dash-camp" id="dcard-' + camp.id + '">'
       + '<div class="dash-camp-header" onclick="toggleExpand(\'' + camp.id + '\')">'
       + '<div class="dash-camp-left"><img src="' + camp.logo + '" class="camp-logo" onerror="this.style.background=\'#2b3139\'">'
@@ -1027,7 +1102,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       + '<span id="dsummary-' + camp.id + '" class="' + sumCls + '">' + sumTxt + '</span>'
       + '<span class="camp-timer ' + sc + '" style="font-size:11px">' + info.text + '</span>'
       + '<button class="btn-remove" onclick="toggleJoin(\'' + camp.id + '\',event)">Remove</button>'
-      + (showArrow ? '<button class="btn-expand ' + (isExp ? 'open' : '') + '" id="dexpand-' + camp.id + '" onclick="event.stopPropagation();toggleExpand(\'' + camp.id + '\')">&#9660;</button>' : '')
+      + '<button class="btn-expand ' + (isExp ? 'open' : '') + '" id="dexpand-' + camp.id + '" onclick="event.stopPropagation();toggleExpand(\'' + camp.id + '\')">&#9660;</button>'
       + '</div></div>'
       + '<div class="dash-camp-body ' + (isExp ? '' : 'collapsed') + '" id="dbody-' + camp.id + '">' + bodyHtml + '</div>'
       + '</div>';
@@ -1066,8 +1141,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       }
       if (endedJ.length > 0) {
         html += divider('Completed Campaigns', 'var(--gray)');
-        html += '<div style="display:flex;justify-content:flex-end;margin-bottom:10px">'
-          + '<button class="dash-all-toggle" id="btn-ended-expand" onclick="toggleAllEnded()">&#9660; Expand All</button></div>';
+        html += '<div style="display:flex;justify-content:flex-end;margin-bottom:10px"><button class="dash-all-toggle" id="btn-ended-expand" onclick="toggleAllEnded()">&#9660; Expand All</button></div>';
         html += '<div id="ended-collapsed-row" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;align-items:center">';
         for (i = 0; i < endedJ.length; i++) {
           html += '<img src="' + endedJ[i].logo + '" title="' + endedJ[i].name + '" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1px solid #333;filter:grayscale(1);opacity:0.5">';
@@ -1082,9 +1156,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
             + '<div style="display:flex;align-items:center;gap:10px"><img src="' + ec.logo + '" class="camp-logo">'
             + '<div><div class="camp-name">' + ec.name + '</div>' + typeBadge(ec.type || 'volume') + '</div></div>'
             + '<span style="color:var(--gray);font-size:12px;font-family:monospace">COMPLETED</span></div>'
-            + (earnedUsd > 0 ? '<div style="text-align:center;padding:10px 17px 14px;border-top:1px solid #2b3139">'
-              + '<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:4px">Earned</div>'
-              + '<div style="font-family:Courier New,monospace;font-size:22px;font-weight:800;color:#888">' + fmtUSD(earnedUsd) + '</div></div>' : '')
+            + (earnedUsd > 0 ? '<div style="text-align:center;padding:10px 17px 14px;border-top:1px solid #2b3139"><div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:4px">Earned</div><div style="font-family:Courier New,monospace;font-size:22px;font-weight:800;color:#888">' + fmtUSD(earnedUsd) + '</div></div>' : '')
             + '</div>';
         }
         html += '</div>';
@@ -1116,10 +1188,9 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       + '<div class="calc-row"><span class="calc-key">Total Est. Reward</span><span class="calc-val" style="color:var(--green)">' + fmtUSD(bal.totalReward) + '</span></div>'
       + '<div class="calc-row"><span class="calc-key" style="font-weight:700">Net Profit / Loss</span><span class="calc-val" style="color:' + (bal.net>=0?'var(--green)':'var(--red)') + ';font-size:16px">' + (bal.net>=0?'+':'-') + fmtUSD(Math.abs(bal.net)) + '</span></div>'
       + '</div>'
-      + (bnbPct < 100 && potSave > 0.001 ? '<div class="savings-hint" style="background:var(--ydim);border-color:rgba(252,213,53,0.3);color:var(--yellow)">Tip: Using BNB on all trades could save you <strong>' + fmtUSD(potSave) + '</strong> more.</div>' : '')
+      + (bnbPct < 100 && potSave > 0.001 ? '<div class="savings-hint" style="background:var(--ydim);border-color:rgba(252,213,53,0.3);color:var(--yellow)">Tip: BNB on all trades saves you <strong>' + fmtUSD(potSave) + '</strong> more.</div>' : '')
       + (bnbPct === 100 && totalVol > 0 ? '<div class="savings-hint" style="background:var(--gdim);border-color:rgba(14,203,129,0.3);color:var(--green)">Using BNB on 100% of trades!</div>' : '')
-      + '</div>'
-      + '<div id="calc-manual" class="calc-panel"><div class="calc-card">'
+      + '</div><div id="calc-manual" class="calc-panel"><div class="calc-card">'
       + '<div class="form-group" style="margin-bottom:12px"><label style="display:block;margin-bottom:4px;color:var(--gray);font-size:12px;font-weight:600">Trade Volume (USD)</label>'
       + '<input type="number" class="vol-input" id="m-vol" placeholder="e.g. 10000" value="' + (totalVol || '') + '" oninput="calcManual()"></div>'
       + '<div class="bnb-wrap" style="padding:10px 0;margin-bottom:12px;border-bottom:1px solid var(--border)">'
@@ -1127,7 +1198,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       + '<span class="bnb-txt">BNB Fee Discount (25% off)</span></div>'
       + '<div class="calc-row" style="padding:7px 0"><span class="calc-key">Fee Rate</span><span class="calc-val" id="m-rate">0.100%</span></div>'
       + '<div class="calc-row" style="padding:7px 0"><span class="calc-key">Trading Fee</span><span class="calc-val" style="color:var(--red)" id="m-fee">-</span></div>'
-      + '<div class="calc-row" style="padding:7px 0;border-bottom:none"><span class="calc-key">If BNB, you would save</span><span class="calc-val" style="color:var(--yellow)" id="m-save">-</span></div>'
+      + '<div class="calc-row" style="padding:7px 0;border-bottom:none"><span class="calc-key">If BNB, you save</span><span class="calc-val" style="color:var(--yellow)" id="m-save">-</span></div>'
       + '</div></div></div>';
   }
 
@@ -1171,7 +1242,6 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     }
     tickCount++;
     if (tickCount % 5 === 0) {
-      if (featCamps.length > 1) { featIdx = (featIdx + 1) % featCamps.length; goSlide('feat', featIdx); }
       if (urgCamps.length > 1) { urgIdx = (urgIdx + 1) % urgCamps.length; goSlide('urg', urgIdx); }
     }
   }, 1000);
