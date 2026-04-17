@@ -5,11 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spot CTR | Binance Campaign Tracker</title>
-<meta property="fc:frame" content="vNext"/>
-<meta property="fc:frame:image" content="https://ibial0.github.io/preview.png"/>
-<meta property="fc:frame:button:1" content="🚀 Open Spot CTR"/>
-<meta property="fc:frame:button:1:action" content="link"/>
-<meta property="fc:frame:button:1:target" content="https://ibial0.github.io"/>
 <meta property="og:title" content="Spot CTR | Binance Campaign Tracker"/>
 <meta property="og:description" content="Track Binance Spot Trading campaigns in one place."/>
 <meta property="og:image" content="https://ibial0.github.io/preview.png"/>
@@ -19,17 +14,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-database-compat.min.js"></script>
 <style>
-:root{
-  --bg:#0b0e11;--surface:#1e2329;--surface2:#242a31;
-  --yellow:#fcd535;--ydim:rgba(252,213,53,0.12);--yglow:rgba(252,213,53,0.4);
-  --green:#0ecb81;--gdim:rgba(14,203,129,0.12);--gglow:rgba(14,203,129,0.35);
-  --red:#f6465d;--rdim:rgba(246,70,93,0.12);
-  --purple:#8b5cf6;--pdim:rgba(139,92,246,0.12);
-  --orange:#f59e0b;--odim:rgba(245,158,11,0.12);
-  --cyan:#06b6d4;--cdim:rgba(6,182,212,0.12);
-  --gray:#848e9c;--border:#2b3139;--white:#fff;
-  --font:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-}
+:root{--bg:#0b0e11;--surface:#1e2329;--surface2:#242a31;--yellow:#fcd535;--ydim:rgba(252,213,53,0.12);--yglow:rgba(252,213,53,0.4);--green:#0ecb81;--gdim:rgba(14,203,129,0.12);--gglow:rgba(14,203,129,0.35);--red:#f6465d;--rdim:rgba(246,70,93,0.12);--purple:#8b5cf6;--pdim:rgba(139,92,246,0.12);--orange:#f59e0b;--odim:rgba(245,158,11,0.12);--cyan:#06b6d4;--cdim:rgba(6,182,212,0.12);--gray:#848e9c;--border:#2b3139;--white:#fff;--font:'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box;font-family:var(--font)}
 body{background:var(--bg);color:var(--white);line-height:1.6;min-height:100vh}
 header{background:rgba(30,35,41,0.97);backdrop-filter:blur(10px);padding:13px 30px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
@@ -38,7 +23,8 @@ header{background:rgba(30,35,41,0.97);backdrop-filter:blur(10px);padding:13px 30
 .desktop-nav button{background:none;border:none;color:var(--gray);font-size:13px;font-weight:600;cursor:pointer;padding:7px 12px;border-radius:6px;transition:all 0.2s}
 .desktop-nav button:hover,.desktop-nav button.active{color:var(--yellow);background:var(--ydim)}
 .btn-admin{background:linear-gradient(135deg,var(--yellow),#f0a500)!important;color:#000!important;padding:7px 15px!important;border-radius:6px!important;font-weight:700!important;-webkit-text-fill-color:#000!important;box-shadow:0 3px 10px var(--yglow)!important}
-.nav-live{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:5px;vertical-align:middle;flex-shrink:0;animation:livepulse 2s infinite}
+.nav-notif{display:inline-flex;align-items:center;justify-content:center;background:var(--red);color:#fff;font-size:10px;font-weight:800;min-width:16px;height:16px;border-radius:8px;padding:0 4px;margin-left:4px;vertical-align:middle}
+.nav-live{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:4px;vertical-align:middle;animation:livepulse 2s infinite;flex-shrink:0}
 @keyframes livepulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
 .hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px}
@@ -56,13 +42,9 @@ main{padding:26px 30px;max-width:1200px;margin:0 auto;min-height:80vh}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 h2{margin-bottom:20px;color:var(--white);display:flex;align-items:center;gap:10px;font-size:18px}
 h2::before{content:'';display:inline-block;width:4px;height:19px;background:linear-gradient(180deg,var(--yellow),#f0a500);border-radius:2px;flex-shrink:0}
-.carousel-wrap{position:relative;overflow:hidden;margin-bottom:32px}
-.carousel-track{display:flex;transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)}
-.carousel-slide{flex-shrink:0;width:100%;padding:0 0 4px}
-.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:10px}
-.c-dot{width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:all 0.25s;background:var(--border)}
-.c-dot.on-r{background:var(--red);transform:scale(1.3)}
-.home-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+/* Home grid */
+.home-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;margin-bottom:32px}
+/* Hero card */
 .hero-card{background:var(--surface);padding:22px;border-radius:14px;border:1px solid var(--border);cursor:pointer;position:relative;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s}
 .hero-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(252,213,53,0.03),transparent 60%);pointer-events:none}
 .hero-card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(0,0,0,0.5)}
@@ -82,7 +64,28 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .hero-timer.state-active{color:var(--yellow);text-shadow:0 0 16px var(--yglow)}
 .hero-timer.state-reward{color:var(--green);text-shadow:0 0 16px var(--gglow)}
 .hero-timer.state-upcoming{color:var(--cyan);text-shadow:0 0 16px rgba(6,182,212,0.4)}
-.camp-timer.state-upcoming{color:var(--cyan)}
+/* Notice card */
+.notice-card{background:linear-gradient(135deg,#1a1608,#1c1a0a);border:1px solid rgba(245,158,11,0.35);padding:22px;border-radius:14px;cursor:pointer;position:relative;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;display:flex;flex-direction:column}
+.notice-card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(245,158,11,0.15)}
+.notice-header-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.3);color:var(--orange);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:12px;width:fit-content}
+.notice-title{font-size:17px;font-weight:800;color:var(--white);margin-bottom:8px;line-height:1.3}
+.notice-camp-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.notice-camp-logo{width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid var(--border)}
+.notice-camp-name{font-size:12px;font-weight:700;color:var(--orange)}
+.notice-desc{font-size:13px;color:var(--gray);line-height:1.7;flex:1;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.notice-footer{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid rgba(245,158,11,0.15)}
+.notice-view-btn{color:var(--orange);font-size:12px;font-weight:700}
+.notice-nav{display:flex;gap:6px}
+.notice-nav-btn{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);color:var(--orange);width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:background 0.2s}
+.notice-nav-btn:hover{background:rgba(245,158,11,0.25)}
+/* Carousel */
+.carousel-wrap{position:relative;overflow:hidden;margin-bottom:4px}
+.carousel-track{display:flex;transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)}
+.carousel-slide{flex-shrink:0;width:100%}
+.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:10px}
+.c-dot{width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:all 0.25s;background:var(--border)}
+.c-dot.on-r{background:var(--red);transform:scale(1.3)}
+/* Join/type/diff badges */
 .btn-join{border:1.5px solid var(--border);background:transparent;color:var(--gray);padding:7px 15px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:5px;width:100%;justify-content:center}
 .btn-join:hover{border-color:var(--green);color:var(--green);background:var(--gdim)}
 .btn-join.joined{border-color:var(--green);background:var(--gdim);color:var(--green)}
@@ -98,6 +101,9 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .diff-medium{background:var(--odim);color:var(--orange)}
 .diff-hard{background:rgba(239,100,30,0.14);color:#ef641e}
 .diff-vhard{background:var(--rdim);color:var(--red)}
+.tbd-badge{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;background:rgba(139,92,246,0.15);color:var(--purple)}
+.postponed-badge{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;background:rgba(245,158,11,0.15);color:var(--orange)}
+/* List card */
 .list-card{background:var(--surface);border-radius:10px;padding:13px 17px;margin-bottom:10px;display:grid;grid-template-columns:2fr 1fr 1fr 2fr 2fr auto auto;align-items:center;gap:13px;transition:all 0.2s;cursor:pointer;border:1px solid transparent}
 .list-card:hover{border-color:var(--border);background:var(--surface2);transform:translateX(3px)}
 .camp-info{display:flex;align-items:center;gap:10px}
@@ -105,20 +111,18 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .camp-name{font-weight:700;font-size:15px;color:var(--white)}
 .camp-price{font-weight:700;color:var(--yellow);font-size:14px}
 .camp-est{color:var(--gray);font-size:12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
+.reward-mid{text-align:center}
+.reward-pool{text-align:right}
+.pool-amt{font-weight:700;color:var(--white);font-size:13px}
+.pool-usd{font-size:11px;color:var(--gray);margin-top:1px}
 .camp-timer{font-family:'Courier New',monospace;font-size:13px;font-weight:700;text-align:right;white-space:nowrap}
 .camp-timer.state-active{color:var(--yellow)}
 .camp-timer.state-reward{color:var(--green)}
 .camp-timer.state-ended{color:var(--gray)}
 .camp-timer.state-alert{color:var(--red);animation:blink 1s infinite}
+.camp-timer.state-upcoming{color:var(--cyan)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.5}}
 .timer-state-label{font-size:9px;color:var(--gray);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:1px}
-.reward-mid{text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
-.badge{padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase}
-.badge.good{background:var(--gdim);color:var(--green)}
-.badge.risky{background:var(--rdim);color:var(--red)}
-.reward-pool{text-align:right}
-.pool-amt{font-weight:700;color:var(--white);font-size:13px}
-.pool-usd{font-size:11px;color:var(--gray);margin-top:1px}
 .admin-controls{display:flex;gap:5px}
 .btn-del{background:var(--red);color:#fff;border:none;padding:5px 9px;border-radius:6px;cursor:pointer;font-weight:700;font-size:10px}
 .btn-edit{background:var(--border);color:#fff;border:none;padding:5px 9px;border-radius:6px;cursor:pointer;font-weight:700;font-size:10px}
@@ -127,6 +131,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .loading{text-align:center;padding:48px;color:var(--gray)}
 .spinner{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--yellow);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
+/* Dashboard */
 .balance-card{border-radius:16px;padding:24px;margin-bottom:26px;border:1px solid;text-align:center}
 .balance-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:6px}
 .balance-net{font-family:'Courier New',monospace;font-size:40px;font-weight:800;line-height:1;margin-bottom:4px}
@@ -148,7 +153,6 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .btn-remove{background:var(--rdim);color:var(--red);border:1px solid rgba(246,70,93,0.3);padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
 .btn-remove:hover{background:var(--red);color:#fff}
 .btn-expand{background:none;border:none;color:var(--gray);cursor:pointer;padding:4px;font-size:16px;line-height:1;transition:transform 0.25s,color 0.2s}
-.btn-expand:hover{color:var(--yellow)}
 .btn-expand.open{transform:rotate(180deg)}
 .dash-camp-body{padding:0 17px 14px;border-top:1px solid var(--border)}
 .dash-camp-body.collapsed{display:none}
@@ -156,8 +160,8 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .toggle-switch input{opacity:0;width:0;height:0;position:absolute}
 .toggle-track{position:absolute;inset:0;background:var(--border);border-radius:11px;transition:background 0.25s}
 .toggle-thumb{position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:transform 0.25s;box-shadow:0 1px 4px rgba(0,0,0,0.4)}
-.toggle-switch input:checked ~ .toggle-track{background:var(--yellow)}
-.toggle-switch input:checked ~ .toggle-thumb{transform:translateX(20px)}
+.toggle-switch input:checked~.toggle-track{background:var(--yellow)}
+.toggle-switch input:checked~.toggle-thumb{transform:translateX(20px)}
 .bnb-wrap{display:flex;align-items:center;gap:8px}
 .bnb-txt{font-size:11px;font-weight:600;color:var(--gray);white-space:nowrap}
 .dash-vol-row{display:flex;gap:10px;align-items:flex-end;margin-bottom:10px;flex-wrap:wrap;padding-top:12px}
@@ -181,68 +185,81 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .calc-panel.active{display:block}
 .calc-card{background:var(--surface);border-radius:14px;padding:22px;border:1px solid var(--border)}
 .calc-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border)}
-.calc-row:last-child{border-bottom:none;padding-bottom:0}
+.calc-row:last-child{border-bottom:none}
 .calc-key{color:var(--gray);font-size:13px}
 .calc-val{font-weight:700;font-size:14px;color:var(--white)}
 .savings-hint{border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;line-height:1.6;border:1px solid}
-/* About */
-.about-card{background:var(--surface);border-radius:12px;padding:20px 24px;border:1px solid var(--border);margin-bottom:14px}
-.about-card-title{color:var(--yellow);font-size:14px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.about-card p{color:var(--gray);font-size:13px;line-height:1.9}
-.about-warn{background:var(--rdim);border:1px solid rgba(246,70,93,0.25);border-radius:10px;padding:14px 18px;margin-bottom:14px;font-size:13px;color:#f87;line-height:1.8}
-.about-social{display:flex;align-items:center;gap:14px;margin-top:18px}
-.social-link svg{width:26px;height:26px;fill:var(--white);transition:fill 0.2s}
-.social-link svg:hover{fill:var(--yellow)}
-/* Community CTA on home */
-.community-cta{position:relative;overflow:hidden;background:linear-gradient(135deg,#181c22,#1a1f27);padding:30px 36px;border-radius:16px;text-align:center;margin-top:40px;border:1px solid rgba(14,203,129,0.25)}
-.community-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(14,203,129,0.06),transparent 70%);pointer-events:none}
-.cta-icon{font-size:36px;display:block;margin-bottom:8px}
-.cta-title{font-size:16px;font-weight:700;color:var(--white);margin-bottom:5px}
-.community-cta p{color:var(--gray);font-size:13px;margin-bottom:16px}
-.btn-cta{background:linear-gradient(135deg,var(--green),#0aa870);color:#000;border:none;padding:10px 26px;border-radius:20px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 4px 12px var(--gglow)}
-.btn-cta:hover{transform:translateY(-2px)}
-/* Chat */
-.chat-wrap{background:var(--surface);border-radius:14px;border:1px solid var(--border);display:flex;flex-direction:column;height:65vh;min-height:420px;overflow:hidden;position:relative}
-.chat-header{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:var(--surface2)}
+/* Community / Chat */
+.chat-wrap{background:var(--surface);border-radius:14px;border:1px solid var(--border);display:flex;flex-direction:column;height:68vh;min-height:440px;overflow:hidden}
+.chat-header{padding:11px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;background:var(--surface2);flex-shrink:0;flex-wrap:wrap}
 .chat-header-info{flex:1}
 .chat-header-title{font-size:15px;font-weight:700}
 .chat-header-sub{font-size:11px;color:var(--gray)}
-.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.chat-hdr-btn{background:var(--surface);border:1px solid var(--border);color:var(--gray);padding:5px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.2s}
+.chat-hdr-btn:hover{border-color:var(--yellow);color:var(--yellow)}
+.chat-hdr-btn.active{background:var(--ydim);border-color:var(--yellow);color:var(--yellow)}
+.chat-notif-bar{background:rgba(252,213,53,0.08);border-bottom:1px solid rgba(252,213,53,0.2);padding:8px 14px;display:flex;align-items:center;gap:10px;font-size:12px;flex-shrink:0}
+.chat-notif-bar .nbar-txt{flex:1;color:var(--yellow);font-weight:600}
+.chat-notif-bar button{background:var(--ydim);border:1px solid rgba(252,213,53,0.3);color:var(--yellow);padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer}
+.chat-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px}
 .chat-messages::-webkit-scrollbar{width:4px}
-.chat-messages::-webkit-scrollbar-track{background:transparent}
 .chat-messages::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.chat-msg{display:flex;gap:8px;align-items:flex-end;max-width:82%;animation:fadeIn 0.2s ease}
+.chat-msg{display:flex;gap:8px;align-items:flex-end;max-width:85%;animation:fadeIn 0.2s ease}
 .chat-msg-me{flex-direction:row-reverse;align-self:flex-end}
 .chat-msg-other{align-self:flex-start}
-.chat-avatar{font-size:24px;line-height:1;flex-shrink:0;user-select:none}
-.chat-bubble{background:var(--surface2);border-radius:12px 12px 12px 4px;padding:9px 12px;max-width:100%;border:1px solid var(--border)}
+.chat-avatar{font-size:22px;line-height:1;flex-shrink:0;user-select:none}
+.chat-bubble-wrap{display:flex;flex-direction:column}
+.chat-msg-me .chat-bubble-wrap{align-items:flex-end}
+.chat-bubble{background:var(--surface2);border-radius:12px 12px 12px 4px;padding:8px 12px;border:1px solid var(--border);max-width:100%}
 .chat-msg-me .chat-bubble{background:rgba(252,213,53,0.09);border-radius:12px 12px 4px 12px;border-color:rgba(252,213,53,0.18)}
-.chat-reply-quote{background:var(--bg);border-left:3px solid var(--yellow);padding:5px 9px;border-radius:4px;font-size:11px;color:var(--gray);margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px}
+.chat-reply-quote{background:var(--bg);border-left:3px solid var(--yellow);padding:4px 8px;border-radius:4px;font-size:11px;color:var(--gray);margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px}
 .chat-text{font-size:14px;color:var(--white);word-break:break-word;white-space:pre-wrap;line-height:1.5}
-.chat-meta{font-size:10px;color:var(--gray);margin-top:5px;display:flex;align-items:center;gap:6px}
-.chat-reply-btn{background:none;border:none;color:var(--gray);font-size:10px;cursor:pointer;padding:0;transition:color 0.2s}
-.chat-reply-btn:hover{color:var(--yellow)}
+.chat-img-msg{max-width:220px;max-height:180px;border-radius:8px;object-fit:cover;cursor:pointer;display:block}
+.chat-edited{font-size:10px;color:var(--gray);margin-top:2px;font-style:italic}
+.chat-meta{display:flex;align-items:center;gap:8px;margin-top:4px}
+.chat-time{font-size:10px;color:var(--gray)}
+.msg-action-bar{display:flex;gap:4px;opacity:0;transition:opacity 0.15s}
+.chat-msg:hover .msg-action-bar{opacity:1}
+.mac-btn{background:var(--surface2);border:1px solid var(--border);color:var(--gray);padding:3px 7px;border-radius:5px;font-size:11px;cursor:pointer;white-space:nowrap;transition:background 0.15s}
+.mac-btn:hover{background:var(--surface);color:var(--white)}
+.reaction-bar{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.rxn-pill{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:2px 7px;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:3px;transition:all 0.15s;line-height:1.4}
+.rxn-pill:hover{border-color:var(--yellow)}
+.rxn-pill.mine{background:var(--ydim);border-color:rgba(252,213,53,0.35);color:var(--yellow)}
+.rxn-count{font-size:11px;font-weight:700;color:var(--gray)}
+.rxn-pill.mine .rxn-count{color:var(--yellow)}
+/* Reaction popup */
+#rxn-popup{position:fixed;display:none;background:var(--surface);border:1px solid var(--border);border-radius:30px;padding:6px 10px;gap:4px;z-index:500;box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+#rxn-popup button{background:none;border:none;font-size:20px;cursor:pointer;padding:4px 5px;border-radius:8px;transition:transform 0.1s,background 0.15s;line-height:1}
+#rxn-popup button:hover{transform:scale(1.3);background:var(--surface2)}
+/* Reply indicator */
 .reply-indicator{display:none;align-items:center;gap:8px;padding:7px 14px;background:var(--ydim);border-top:1px solid rgba(252,213,53,0.18);font-size:12px;color:var(--yellow);flex-shrink:0}
 .reply-indicator .ri-text{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .reply-cancel{background:none;border:none;color:var(--gray);cursor:pointer;font-size:16px;padding:0;line-height:1}
-.reply-cancel:hover{color:var(--white)}
-.chat-input-area{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid var(--border);background:var(--surface);flex-shrink:0}
-.chat-input{flex:1;padding:9px 14px;background:var(--bg);border:1px solid var(--border);color:var(--white);border-radius:20px;font-size:14px;transition:border-color 0.2s;resize:none;outline:none}
+/* Chat input area */
+.chat-input-area{display:flex;align-items:center;gap:7px;padding:10px 12px;border-top:1px solid var(--border);background:var(--surface);flex-shrink:0}
+.chat-input{flex:1;padding:9px 13px;background:var(--bg);border:1px solid var(--border);color:var(--white);border-radius:20px;font-size:14px;transition:border-color 0.2s;outline:none}
 .chat-input:focus{border-color:var(--yellow)}
-.emoji-toggle-btn{background:none;border:none;font-size:20px;cursor:pointer;padding:4px 6px;border-radius:6px;transition:background 0.2s;flex-shrink:0;line-height:1}
-.emoji-toggle-btn:hover{background:var(--surface2)}
+.chat-img-btn{background:var(--surface2);border:1px solid var(--border);color:var(--gray);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;flex-shrink:0;transition:all 0.2s}
+.chat-img-btn:hover{border-color:var(--cyan);color:var(--cyan)}
 .chat-send-btn{background:linear-gradient(135deg,var(--yellow),#f0a500);color:#000;border:none;padding:9px 16px;border-radius:20px;font-weight:700;font-size:13px;cursor:pointer;flex-shrink:0;transition:transform 0.2s}
 .chat-send-btn:hover{transform:translateY(-1px)}
-.emoji-picker{display:none;flex-wrap:wrap;gap:2px;padding:10px 12px;background:var(--surface);border-top:1px solid var(--border);max-height:130px;overflow-y:auto;flex-shrink:0}
-.emoji-picker button{background:none;border:none;font-size:20px;cursor:pointer;padding:4px 6px;border-radius:4px;transition:background 0.2s;line-height:1}
-.emoji-picker button:hover{background:var(--surface2)}
-.chat-notice{background:var(--bg);border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;color:var(--gray);margin:4px 0;letter-spacing:0.5px}
+.chat-notice{background:var(--bg);border-radius:8px;padding:6px 12px;text-align:center;font-size:11px;color:var(--gray);margin:2px 0;letter-spacing:0.5px}
+/* About */
+.about-card{background:var(--surface);border-radius:12px;padding:20px 24px;border:1px solid var(--border);margin-bottom:14px}
+.about-card-title{color:var(--yellow);font-size:14px;font-weight:700;margin-bottom:8px}
+.about-card p{color:var(--gray);font-size:13px;line-height:1.9}
+.about-warn{background:var(--rdim);border:1px solid rgba(246,70,93,0.25);border-radius:10px;padding:14px 18px;margin-bottom:14px;font-size:13px;color:#f87;line-height:1.8}
+/* Share */
+.share-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.share-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:transform 0.15s}
+.share-btn:hover{transform:translateY(-1px)}
+.share-btn-copy{background:var(--surface2);border:1px solid var(--border);color:var(--white)}
+.share-btn-share{background:var(--ydim);border:1px solid rgba(252,213,53,0.3);color:var(--yellow)}
 /* FAB */
 .fab-chat{position:fixed;bottom:22px;right:22px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),#f0a500);border:none;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(252,213,53,0.4);z-index:98;transition:transform 0.2s,box-shadow 0.2s}
-.fab-chat:hover{transform:scale(1.1);box-shadow:0 6px 26px rgba(252,213,53,0.55)}
-/* Official link */
-.det-official-link{display:flex;align-items:center;gap:8px;background:var(--ydim);border:1px solid rgba(252,213,53,0.25);border-radius:8px;padding:10px 14px;margin-bottom:14px;text-decoration:none;color:var(--yellow);font-size:13px;font-weight:600;transition:background 0.2s;cursor:pointer}
-.det-official-link:hover{background:rgba(252,213,53,0.2)}
+.fab-chat:hover{transform:scale(1.1)}
+.fab-notif{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;font-size:9px;font-weight:800;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 3px}
 /* Modal */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);justify-content:center;align-items:center;z-index:1000;padding:14px}
 .modal-content{background:var(--surface);padding:26px;border-radius:16px;width:500px;max-width:100%;position:relative;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.7);max-height:92vh;overflow-y:auto}
@@ -250,14 +267,23 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .close-modal:hover{color:var(--white)}
 .form-group{margin-bottom:12px}
 .form-group label{display:block;margin-bottom:4px;color:var(--gray);font-size:12px;font-weight:600}
-.form-group input,.form-group select{width:100%;padding:10px 12px;background:var(--bg);border:1px solid var(--border);color:var(--white);border-radius:8px;font-size:14px;transition:border-color 0.2s}
-.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--yellow)}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 12px;background:var(--bg);border:1px solid var(--border);color:var(--white);border-radius:8px;font-size:14px;transition:border-color 0.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--yellow)}
+.form-group textarea{resize:vertical;min-height:90px}
 .form-group select option{background:var(--surface)}
 .form-group .hint{font-size:10px;color:var(--gray);margin-top:3px;font-style:italic}
+.form-group .check-row{display:flex;align-items:center;gap:8px;padding:8px 0}
+.form-group .check-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--yellow);flex-shrink:0}
+.form-group .check-row label{margin:0;color:var(--white);font-size:13px}
 .btn-submit{background:linear-gradient(135deg,var(--yellow),#f0a500);color:#000;border:none;padding:11px 18px;width:100%;font-weight:700;border-radius:8px;font-size:14px;cursor:pointer;margin-top:9px;box-shadow:0 4px 12px var(--yglow);transition:transform 0.2s}
 .btn-submit:hover{transform:translateY(-2px)}
 .form-divider{border:none;border-top:1px solid var(--border);margin:13px 0}
 .form-section-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);font-weight:700;margin-bottom:9px;display:block}
+/* Admin mode tabs */
+.admin-mode-tabs{display:flex;gap:6px;margin-bottom:18px;background:var(--bg);border-radius:8px;padding:4px}
+.admin-mode-tab{flex:1;padding:8px;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;background:transparent;color:var(--gray);transition:all 0.2s}
+.admin-mode-tab.active{background:var(--ydim);color:var(--yellow)}
+/* Details modal */
 .det-header{text-align:center;margin-bottom:18px}
 .det-logo{width:68px;height:68px;border-radius:50%;object-fit:cover;border:2px solid var(--border);margin-bottom:9px}
 .det-name{font-size:21px;font-weight:800;margin-bottom:3px}
@@ -265,7 +291,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .det-price{font-size:19px;color:var(--yellow);font-weight:700}
 .det-info-box{background:var(--bg);padding:16px;border-radius:10px;margin-bottom:16px;border:1px solid var(--border)}
 .det-row{display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--border)}
-.det-row:last-child{border-bottom:none;padding-bottom:0}
+.det-row:last-child{border-bottom:none}
 .det-key{color:var(--gray);font-size:12px;font-weight:600}
 .det-val{color:var(--white);font-weight:700;font-size:13px;text-align:right}
 .det-val .sub{color:var(--yellow);font-size:11px;font-weight:400;display:block;margin-top:1px}
@@ -275,11 +301,29 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 .det-timer.state-active{color:var(--yellow);text-shadow:0 0 16px var(--yglow)}
 .det-timer.state-reward{color:var(--green);text-shadow:0 0 16px var(--gglow)}
 .det-timer.state-ended{color:var(--gray)}
-/* Divider */
+.det-official-link{display:flex;align-items:center;gap:8px;background:var(--ydim);border:1px solid rgba(252,213,53,0.25);border-radius:8px;padding:10px 14px;margin-bottom:14px;text-decoration:none;color:var(--yellow);font-size:13px;font-weight:600;transition:background 0.2s}
+.det-official-link:hover{background:rgba(252,213,53,0.2)}
+/* Rules modal */
+.rule-item{background:var(--bg);border-radius:8px;padding:12px 15px;margin-bottom:8px;border-left:3px solid var(--border);font-size:13px;color:var(--gray);line-height:1.7}
+.rule-item strong{color:var(--white);display:block;margin-bottom:3px;font-size:13px}
+.rule-section{color:var(--yellow);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin:16px 0 8px}
+/* Notice detail modal */
+.notice-detail-head{text-align:center;padding:14px 0 18px;border-bottom:1px solid var(--border);margin-bottom:16px}
+.notice-detail-icon{font-size:36px;margin-bottom:8px}
+.notice-detail-title{font-size:19px;font-weight:800;color:var(--white);margin-bottom:6px}
+.notice-linked-camp{display:inline-flex;align-items:center;gap:8px;background:var(--odim);border-radius:8px;padding:6px 12px;cursor:pointer;transition:background 0.2s}
+.notice-linked-camp:hover{background:rgba(245,158,11,0.2)}
+/* Section divider */
 .section-divider{display:flex;align-items:center;gap:10px;margin:22px 0 12px}
 .section-divider::before,.section-divider::after{content:'';height:1px;flex:1;background:var(--border)}
 .section-divider span{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap}
-/* ===== MOBILE ===== */
+/* CTA */
+.community-cta{background:linear-gradient(135deg,#181c22,#1a1f27);padding:28px 32px;border-radius:16px;text-align:center;margin-top:36px;border:1px solid rgba(14,203,129,0.25)}
+.btn-cta{background:linear-gradient(135deg,var(--green),#0aa870);color:#000;border:none;padding:10px 26px;border-radius:20px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 4px 12px var(--gglow)}
+/* Image viewer modal */
+#img-viewer{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:2000;justify-content:center;align-items:center;cursor:zoom-out}
+#img-viewer img{max-width:95vw;max-height:90vh;border-radius:8px;object-fit:contain}
+/* Mobile */
 @media(max-width:768px){
   header{padding:11px 14px}
   #gbb{top:49px;padding:6px 12px;gap:6px}
@@ -287,33 +331,27 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
   .hamburger{display:flex}
   main{padding:12px 11px}
   .home-grid{grid-template-columns:1fr}
-  .hero-card{padding:15px}
+  .hero-card,.notice-card{padding:15px}
   .hero-timer{font-size:18px}
   h2{font-size:15px}
-  .community-cta{padding:22px 16px}
   .modal-content{padding:17px 13px}
   .det-timer{font-size:18px}
   .balance-rows{grid-template-columns:1fr}
   .balance-net{font-size:30px}
-  /* Mobile list card: simple column layout */
   .list-card{display:flex!important;flex-direction:column!important;gap:8px;padding:13px}
-  /* Hide type/diff badges and est column in list on mobile */
-  .list-card .type-badge,.list-card .diff-badge,.list-card .camp-est{display:none!important}
+  .list-card .type-badge,.list-card .diff-badge,.list-card .camp-est,.reward-mid{display:none!important}
   .camp-info{width:100%}
-  .camp-name{font-size:14px;white-space:normal}
+  .camp-name{font-size:14px}
   .camp-price{font-size:13px;padding:4px 9px;background:var(--bg);border-radius:6px;display:inline-block;width:fit-content}
-  .reward-mid{display:none!important}
-  .reward-pool{text-align:left;padding:7px 9px;background:var(--bg);border-radius:6px;font-size:12px}
+  .reward-pool{text-align:left;padding:7px 9px;background:var(--bg);border-radius:6px}
   .camp-timer{font-size:13px;text-align:left}
-  .timer-state-label{display:block;font-size:9px;margin-bottom:2px}
   .admin-controls{justify-content:flex-end;padding-top:7px;border-top:1px solid var(--border)}
   .btn-join{font-size:11px;padding:6px 12px}
-  .pool-amt{font-size:12px}.pool-usd{font-size:10px}
   .dash-vol-row{flex-direction:column;gap:8px}
   .dash-camp-right{width:100%;justify-content:space-between}
-  .fab-chat{bottom:16px;right:16px;width:46px;height:46px;font-size:19px}
-  .emoji-picker{max-height:110px}
-  .chat-reply-quote{max-width:180px}
+  .fab-chat{bottom:16px;right:16px;width:46px;height:46px;font-size:18px}
+  .msg-action-bar{opacity:1}
+  .chat-img-msg{max-width:160px;max-height:140px}
 }
 </style>
 </head>
@@ -324,9 +362,9 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
     <button onclick="nav('home')" id="nav-home" class="active">Home</button>
     <button onclick="nav('reward')" id="nav-reward">Reward Board</button>
     <button onclick="nav('dash')" id="nav-dash">My Dashboard</button>
-    <button onclick="nav('community')" id="nav-community"><span class="nav-live"></span>Community</button>
+    <button onclick="nav('community')" id="nav-community"><span class="nav-live"></span>Community<span class="nav-notif" id="nav-notif-count" style="display:none"></span></button>
     <button onclick="nav('about')" id="nav-about">About</button>
-    <button onclick="promptAdmin()" class="btn-admin">+ Add Campaign</button>
+    <button onclick="promptAdmin()" class="btn-admin">+ Add</button>
   </nav>
   <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </header>
@@ -336,7 +374,7 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
   <button onclick="nav('dash');toggleMenu()">My Dashboard</button>
   <button onclick="nav('community');toggleMenu()">💬 Community</button>
   <button onclick="nav('about');toggleMenu()">About</button>
-  <button onclick="promptAdmin();toggleMenu()" class="btn-admin">+ Add Campaign</button>
+  <button onclick="promptAdmin();toggleMenu()" class="btn-admin">+ Add</button>
 </div>
 <div id="gbb">
   <span class="gbb-label">Est. Net Profit</span>
@@ -345,213 +383,167 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
 </div>
 <main>
   <div id="tz-notice" style="text-align:right;color:var(--gray);font-size:11px;margin-bottom:16px"></div>
-
   <!-- HOME -->
   <section id="home" class="section active">
     <h2>Featured Campaigns</h2>
     <div id="home-featured"><div class="loading"><div class="spinner"></div>Loading...</div></div>
-    <h2 style="margin-top:6px">Ending Soon</h2>
+    <h2>Ending Soon</h2>
     <div id="home-urgent"></div>
     <div class="community-cta">
-      <span class="cta-icon">💬</span>
-      <div class="cta-title">Join the Community Chat</div>
-      <p>Discuss campaigns, share strategies, and connect with fellow Binance spot traders — all in one place.</p>
+      <div style="font-size:34px;margin-bottom:8px">💬</div>
+      <div style="font-size:16px;font-weight:700;margin-bottom:5px">Join the Community Chat</div>
+      <p style="color:var(--gray);font-size:13px;margin-bottom:14px">Discuss campaigns, share screenshots, and connect with fellow traders.</p>
       <button class="btn-cta" onclick="nav('community')">Open Chat →</button>
     </div>
   </section>
-
-  <!-- REWARD BOARD (merged) -->
-  <section id="reward" class="section">
-    <h2>Reward Board</h2>
-    <div id="reward-content"><div class="loading"><div class="spinner"></div>Loading...</div></div>
-  </section>
-
+  <!-- REWARD BOARD -->
+  <section id="reward" class="section"><h2>Reward Board</h2><div id="reward-content"><div class="loading"><div class="spinner"></div>Loading...</div></div></section>
   <!-- DASHBOARD -->
-  <section id="dash" class="section">
-    <h2>My Dashboard</h2>
-    <div id="dash-balance"></div>
-    <div id="dash-joined"></div>
-    <div id="dash-calc"></div>
-  </section>
-
-  <!-- COMMUNITY CHAT -->
+  <section id="dash" class="section"><h2>My Dashboard</h2><div id="dash-balance"></div><div id="dash-joined"></div><div id="dash-calc"></div></section>
+  <!-- COMMUNITY -->
   <section id="community" class="section">
-    <h2>Community Chat</h2>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="margin-bottom:0">Community Chat</h2>
+      <button class="share-btn share-btn-share" onclick="shareWebsite()" style="font-size:12px">🔗 Share Spot CTR</button>
+    </div>
     <div class="chat-wrap" id="chat-wrap">
       <div class="chat-header">
         <span style="font-size:20px">💬</span>
         <div class="chat-header-info">
           <div class="chat-header-title">Spot CTR Community</div>
-          <div class="chat-header-sub">Open chat — no account needed</div>
+          <div class="chat-header-sub">Open chat · No account needed</div>
         </div>
-        <span id="chat-online-count" style="font-size:11px;color:var(--green);font-weight:600"></span>
+        <button class="chat-hdr-btn" id="translate-btn" onclick="toggleTranslate()" title="Auto-translate messages to English">🌐 Translate</button>
+        <button class="chat-hdr-btn" onclick="showRules()">📋 Rules</button>
+      </div>
+      <div id="chat-notif-bar" class="chat-notif-bar" style="display:none">
+        <span class="nbar-txt" id="notif-bar-txt"></span>
+        <button onclick="navigateToReply()">View →</button>
+        <button onclick="document.getElementById('chat-notif-bar').style.display='none'" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:16px;padding:0">×</button>
       </div>
       <div class="chat-messages" id="chat-messages">
         <div class="loading"><div class="spinner"></div>Loading messages...</div>
       </div>
       <div class="reply-indicator" id="reply-indicator">
-        <span style="color:var(--gray);font-size:11px;flex-shrink:0">Replying to</span>
+        <span style="color:var(--gray);font-size:11px;flex-shrink:0" id="reply-mode-label">Replying to</span>
         <span class="ri-text" id="reply-indicator-text"></span>
-        <button class="reply-cancel" onclick="cancelReply()">✕</button>
-      </div>
-      <div class="emoji-picker" id="emoji-picker">
-        <button onclick="insertEmoji('😀')">😀</button><button onclick="insertEmoji('😂')">😂</button>
-        <button onclick="insertEmoji('😍')">😍</button><button onclick="insertEmoji('🥰')">🥰</button>
-        <button onclick="insertEmoji('😎')">😎</button><button onclick="insertEmoji('🤩')">🤩</button>
-        <button onclick="insertEmoji('😅')">😅</button><button onclick="insertEmoji('🤔')">🤔</button>
-        <button onclick="insertEmoji('😮')">😮</button><button onclick="insertEmoji('😱')">😱</button>
-        <button onclick="insertEmoji('🤯')">🤯</button><button onclick="insertEmoji('🥺')">🥺</button>
-        <button onclick="insertEmoji('😭')">😭</button><button onclick="insertEmoji('🤬')">🤬</button>
-        <button onclick="insertEmoji('👀')">👀</button><button onclick="insertEmoji('🔥')">🔥</button>
-        <button onclick="insertEmoji('💯')">💯</button><button onclick="insertEmoji('🚀')">🚀</button>
-        <button onclick="insertEmoji('💎')">💎</button><button onclick="insertEmoji('💰')">💰</button>
-        <button onclick="insertEmoji('🤑')">🤑</button><button onclick="insertEmoji('🏆')">🏆</button>
-        <button onclick="insertEmoji('🎯')">🎯</button><button onclick="insertEmoji('✅')">✅</button>
-        <button onclick="insertEmoji('❌')">❌</button><button onclick="insertEmoji('⚠️')">⚠️</button>
-        <button onclick="insertEmoji('📈')">📈</button><button onclick="insertEmoji('📉')">📉</button>
-        <button onclick="insertEmoji('💡')">💡</button><button onclick="insertEmoji('🎉')">🎉</button>
-        <button onclick="insertEmoji('👍')">👍</button><button onclick="insertEmoji('👎')">👎</button>
-        <button onclick="insertEmoji('👋')">👋</button><button onclick="insertEmoji('🙏')">🙏</button>
-        <button onclick="insertEmoji('💪')">💪</button><button onclick="insertEmoji('🤝')">🤝</button>
-        <button onclick="insertEmoji('😁')">😁</button><button onclick="insertEmoji('🌙')">🌙</button>
-        <button onclick="insertEmoji('⭐')">⭐</button><button onclick="insertEmoji('🎮')">🎮</button>
+        <button class="reply-cancel" onclick="cancelReplyOrEdit()">✕</button>
       </div>
       <div class="chat-input-area">
-        <button class="emoji-toggle-btn" onclick="toggleEmojiPicker()" title="Emoji">😊</button>
+        <button class="chat-img-btn" onclick="document.getElementById('img-file-input').click()" title="Send image">📷</button>
         <input class="chat-input" id="chat-input" type="text" placeholder="Type a message… (Enter to send)" maxlength="500" onkeydown="chatKeydown(event)">
         <button class="chat-send-btn" onclick="sendMsg()">Send</button>
       </div>
     </div>
   </section>
-
   <!-- ABOUT -->
   <section id="about" class="section">
     <h2>About Spot CTR</h2>
-
-    <div class="about-warn">
-      ⚠️ <strong>Disclaimer:</strong> Spot CTR is a personal, independent tracking tool. It is <strong>not affiliated with, endorsed by, or operated by Binance</strong> in any way. All reward estimates are based on personal analysis and are provided for informational purposes only. Never make financial decisions based solely on this data.
-    </div>
-
-    <div class="about-card">
-      <div class="about-card-title">🧭 What is Spot CTR?</div>
-      <p>Spot CTR is a personal tracking platform built to help Binance spot traders keep up with active trading campaigns — all in one clean, organized interface. Instead of hunting through multiple pages on Binance, you can check estimated rewards, timers, and campaign details right here. The platform focuses exclusively on <strong>spot trading campaigns</strong> and is maintained by a single individual as a personal project.</p>
-    </div>
-
-    <div class="about-card">
-      <div class="about-card-title">📊 How Are Estimates Calculated?</div>
-      <p>All reward estimates shown on this platform are based on personal analysis and independent research. Figures are calculated using available campaign parameters such as pool size, participant count, and trading volume requirements. <strong>These estimates are not guaranteed to be accurate</strong> — actual rewards depend on real-time market conditions, total participation, and Binance's final distribution. Always treat these numbers as rough guidance, not a guarantee.<br><br>
-      To account for real-world variability, displayed estimates may be slightly adjusted above or below the raw calculated value. This helps reduce the gap between estimated and actual outcomes, and is done entirely in good faith.</p>
-    </div>
-
-    <div class="about-card">
-      <div class="about-card-title">🎯 Which Campaigns Are Listed Here?</div>
-      <p>Only campaigns that offer a genuine earning opportunity to <strong>regular, everyday traders</strong> are added here. Campaigns are intentionally filtered as follows:<br><br>
-      If a campaign offers a separate prize pool for top-ranked traders (e.g., Rank #1–100 or Rank #1–1,000 receiving a fixed large reward), that exclusive portion is <strong>excluded</strong> from calculations. For example: if a campaign awards $100,000 to the top 1,000 traders and splits $800,000 among everyone ranked 1,001 and beyond — only the general reward (1,001+) is calculated and displayed here.<br><br>
-      This is intentional. Top leaderboard positions are almost always dominated by market makers and institutional-volume traders. The general reward pool is where most everyday traders can realistically participate and benefit.</p>
-    </div>
-
-    <div class="about-card">
-      <div class="about-card-title">⏳ A Note on Timeliness & Updates</div>
-      <p>Spot CTR is maintained by a single person. When Binance launches a new campaign or tournament, there may be a short delay — sometimes a few hours, sometimes a day or more — before it appears here. Campaign parameters (such as estimated participant count or volume data) may also take a few days to update after a campaign goes live.<br><br>
-      Your patience is sincerely appreciated. Every update is made as promptly as possible.</p>
-    </div>
-
-    <div class="about-card">
-      <div class="about-card-title">🔍 Do Your Own Research</div>
-      <p>Always verify campaign details directly on <strong>Binance's official platform</strong> before committing any funds. This platform exists to save you time and give you a useful starting point — not to make decisions for you. Past estimates do not guarantee future accuracy. Trade responsibly.</p>
-    </div>
-
-    <div class="about-card">
-      <div class="about-card-title">📣 Share the Platform</div>
-      <p>If Spot CTR has saved you time, helped you spot a good campaign, or made your trading life a little easier — please share it with your fellow traders! Every share helps keep this project alive and growing. 😁</p>
-    </div>
-
-    <div class="about-social">
-      <span style="color:var(--gray);font-size:13px">Contact / Follow:</span>
-      <a href="https://x.com/_IBIAL" target="_blank" class="social-link"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-    </div>
+    <div class="about-warn">⚠️ <strong>Disclaimer:</strong> Spot CTR is an independent, personal tracking tool. It is <strong>not affiliated with or endorsed by Binance</strong>. All reward estimates are based on personal analysis only.</div>
+    <div class="about-card"><div class="about-card-title">🧭 What is Spot CTR?</div><p>Spot CTR is a personal tracking platform built to help Binance spot traders keep up with active trading campaigns — all in one clean interface. Instead of hunting through multiple pages, you can check estimated rewards, timers, and campaign details right here.</p></div>
+    <div class="about-card"><div class="about-card-title">📊 How Are Estimates Calculated?</div><p>All reward estimates are based on personal analysis. They are calculated using available campaign parameters such as pool size, participant count, and trading volume requirements. <strong>These estimates are not guaranteed to be accurate</strong>. Always treat them as rough guidance.</p></div>
+    <div class="about-card"><div class="about-card-title">🎯 Which Campaigns Are Listed?</div><p>Only campaigns offering a genuine earning opportunity to regular traders are listed. Top leaderboard positions (e.g. Rank #1–1,000 with fixed large prizes) are excluded from calculations since those are dominated by institutional-volume traders. Only the general pool is calculated.</p></div>
+    <div class="about-card"><div class="about-card-title">⏳ Timeliness &amp; Updates</div><p>Spot CTR is maintained by a single person. There may be a short delay before new campaigns appear. Campaign parameters may take a few days to update after launch. Your patience is appreciated.</p></div>
+    <div class="about-card"><div class="about-card-title">📣 Share the Platform</div><p>If Spot CTR has helped you — please share it with fellow traders! Every share helps keep this project alive. 😁</p>
+    <div class="share-bar" style="margin-top:14px"><button class="share-btn share-btn-share" onclick="shareWebsite()">🔗 Share Spot CTR</button><button class="share-btn share-btn-copy" onclick="copyLink('https://ibial0.github.io')">📋 Copy Link</button></div></div>
+    <div style="margin-top:18px;display:flex;align-items:center;gap:14px"><span style="color:var(--gray);font-size:13px">Follow:</span><a href="https://x.com/_IBIAL" target="_blank" style="color:var(--gray)"><svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></div>
   </section>
 </main>
 
-<!-- Floating Chat Button -->
-<button class="fab-chat" id="fab-chat" onclick="nav('community')" title="Open Community Chat">💬</button>
+<!-- FAB -->
+<button class="fab-chat" id="fab-chat" onclick="nav('community')" title="Community Chat">💬<span class="fab-notif" id="fab-notif" style="display:none"></span></button>
 
-<!-- Admin Modal -->
+<!-- Reaction popup -->
+<div id="rxn-popup"></div>
+
+<!-- Image viewer -->
+<div id="img-viewer" onclick="document.getElementById('img-viewer').style.display='none'"><img id="img-viewer-img" src=""></div>
+
+<!-- File input -->
+<input type="file" id="img-file-input" accept="image/*" style="display:none" onchange="handleImgUpload(event)">
+
+<!-- ===== ADMIN MODAL ===== -->
 <div class="modal" id="admin-modal">
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal('admin-modal')">&#x2715;</span>
-    <h2 id="modal-title" style="border:none;padding:0;display:block">Add New Campaign</h2>
-    <form id="campaign-form" style="margin-top:16px" onsubmit="saveCampaign(event)">
-      <input type="hidden" id="camp-id">
-      <span class="form-section-label">Campaign Info</span>
-      <div class="form-group"><label>Campaign Title (optional)</label><input type="text" id="camp-title"><div class="hint">Shown in detail view only</div></div>
-      <div class="form-group"><label>Token Name (e.g. $BNB)</label><input type="text" id="token-name" required></div>
-      <div class="form-group"><label>CoinGecko Coin ID</label><input type="text" id="coin-id" required><div class="hint">e.g. binancecoin</div></div>
-      <div class="form-group"><label>Logo Image URL</label><input type="url" id="logo-url" required></div>
-      <div class="form-group"><label>Official Campaign Link (optional)</label><input type="url" id="camp-link"><div class="hint">e.g. https://www.binance.com/en/activity/... </div></div>
-      <div class="form-group"><label>Total Reward Pool (Token Amount)</label><input type="number" id="reward-pool-amt" required></div>
-      <div class="form-group">
-        <label>Campaign Type</label>
-        <select id="camp-type" onchange="onTypeChange()">
-          <option value="volume">Volume Based (per $1K reward)</option>
-          <option value="equal">Equal Share (fixed per person)</option>
-          <option value="ranked_fixed">Ranked Fixed Reward</option>
-          <option value="points_lb">Points + Leaderboard</option>
-          <option value="points_nl">Points (No Leaderboard)</option>
-          <option value="unestimable">Unestimable / Random</option>
-        </select>
-      </div>
-      <div id="fg-volume"><div class="form-group"><label>Est. Tokens per $1,000 Volume</label><input type="number" step="any" id="est-reward"><div class="hint">Tokens earned per $1,000 traded</div></div></div>
-      <div id="fg-equal" style="display:none"><div class="form-group"><label>Total Participants (joined so far)</label><input type="number" id="max-participants" min="1"></div></div>
-      <div id="fg-ranked" style="display:none">
-        <div class="form-group"><label>Rank Range Start</label><input type="number" id="rank-start" min="1"></div>
-        <div class="form-group"><label>Rank Range End</label><input type="number" id="rank-end" min="1"></div>
-        <div class="form-group"><label>Min Volume to be Eligible (USD)</label><input type="number" id="rank-elig-vol" min="0"></div>
-        <div class="form-group"><label>Est. Min Volume to Enter Rank Range (USD)</label><input type="number" id="rank-min-vol" min="0"></div>
-      </div>
-      <div id="fg-points-lb" style="display:none">
-        <div class="form-group"><label>Total Points on Leaderboard</label><input type="number" id="total-points" min="1"></div>
-        <div class="form-group"><label>Est. Cost per Point (USD)</label><input type="number" step="any" id="cost-per-point"></div>
-      </div>
-      <div id="fg-points-nl" style="display:none">
-        <div class="form-group"><label>Minimum Points Required</label><input type="number" id="min-points" min="1"></div>
-        <div class="form-group"><label>Est. Cost per Point (USD)</label><input type="number" step="any" id="cost-per-point-nl"></div>
-      </div>
-      <hr class="form-divider">
-      <span class="form-section-label">Minimum Volume Requirement</span>
-      <div class="form-group">
-        <label>Has Minimum Volume Requirement?</label>
-        <select id="has-min-vol" onchange="onMinVolChange()">
-          <option value="no">No - Anyone can participate</option>
-          <option value="yes">Yes - Set minimum volume</option>
-        </select>
-      </div>
-      <div id="fg-minvol" style="display:none"><div class="form-group"><label>Minimum Volume (USD)</label><input type="number" id="min-volume" min="0" placeholder="e.g. 1000"></div></div>
-      <hr class="form-divider">
-      <span class="form-section-label">Campaign Difficulty</span>
-      <div class="form-group">
-        <label>Difficulty Level</label>
-        <select id="camp-difficulty">
-          <option value="">Not Set</option>
-          <option value="Easy">Easy</option>
-          <option value="Medium">Medium</option>
-          <option value="Hard">Hard</option>
-          <option value="Very Hard">Very Hard</option>
-        </select>
-      </div>
-      <hr class="form-divider">
-      <span class="form-section-label">Campaign Period</span>
-      <div class="form-group"><label>Start Date and Time</label><input type="datetime-local" id="start-date" required></div>
-      <div class="form-group"><label>End Date and Time</label><input type="datetime-local" id="end-date" required></div>
-      <hr class="form-divider">
-      <span class="form-section-label">Reward Distribution (Optional)</span>
-      <div class="form-group"><label>Reward Distribution Deadline</label><input type="datetime-local" id="reward-date"><div class="hint">Leave blank if not announced.</div></div>
-      <button type="submit" class="btn-submit" id="submit-btn">Publish Campaign</button>
-    </form>
+    <div class="admin-mode-tabs">
+      <button class="admin-mode-tab active" id="mode-tab-campaign" onclick="setAdminMode('campaign')">📊 Campaign</button>
+      <button class="admin-mode-tab" id="mode-tab-notice" onclick="setAdminMode('notice')">📢 Notice</button>
+    </div>
+    <!-- Campaign form -->
+    <div id="admin-campaign-form">
+      <h2 id="modal-title" style="border:none;padding:0;display:block;margin-bottom:16px">Add New Campaign</h2>
+      <form id="campaign-form" onsubmit="saveCampaign(event)">
+        <input type="hidden" id="camp-id">
+        <span class="form-section-label">Campaign Info</span>
+        <div class="form-group"><label>Campaign Title (optional)</label><input type="text" id="camp-title"></div>
+        <div class="form-group"><label>Token Name (e.g. $BNB)</label><input type="text" id="token-name" required></div>
+        <div class="form-group"><label>CoinGecko Coin ID</label><input type="text" id="coin-id" required><div class="hint">e.g. binancecoin</div></div>
+        <div class="form-group"><label>Logo Image URL</label><input type="url" id="logo-url" required></div>
+        <div class="form-group"><label>Official Campaign Link (optional)</label><input type="url" id="camp-link"><div class="hint">Direct link to the Binance campaign page</div></div>
+        <div class="form-group"><label>Total Reward Pool (Token Amount)</label><input type="number" id="reward-pool-amt" required></div>
+        <div class="form-group"><label>Campaign Type</label>
+          <select id="camp-type" onchange="onTypeChange()">
+            <option value="volume">Volume Based</option><option value="equal">Equal Share</option>
+            <option value="ranked_fixed">Ranked Fixed</option><option value="points_lb">Points + Leaderboard</option>
+            <option value="points_nl">Points (No LB)</option><option value="unestimable">Unestimable</option>
+          </select>
+        </div>
+        <div id="fg-volume"><div class="form-group"><label>Est. Tokens per $1,000 Volume</label><input type="number" step="any" id="est-reward"></div></div>
+        <div id="fg-equal" style="display:none"><div class="form-group"><label>Total Participants</label><input type="number" id="max-participants" min="1"></div></div>
+        <div id="fg-ranked" style="display:none">
+          <div class="form-group"><label>Rank Start</label><input type="number" id="rank-start" min="1"></div>
+          <div class="form-group"><label>Rank End</label><input type="number" id="rank-end" min="1"></div>
+          <div class="form-group"><label>Min Eligible Volume (USD)</label><input type="number" id="rank-elig-vol" min="0"></div>
+          <div class="form-group"><label>Est. Min Volume to Enter Rank (USD)</label><input type="number" id="rank-min-vol" min="0"></div>
+        </div>
+        <div id="fg-points-lb" style="display:none">
+          <div class="form-group"><label>Total Points on Leaderboard</label><input type="number" id="total-points" min="1"></div>
+          <div class="form-group"><label>Est. Cost per Point (USD)</label><input type="number" step="any" id="cost-per-point"></div>
+        </div>
+        <div id="fg-points-nl" style="display:none">
+          <div class="form-group"><label>Minimum Points Required</label><input type="number" id="min-points" min="1"></div>
+          <div class="form-group"><label>Est. Cost per Point (USD)</label><input type="number" step="any" id="cost-per-point-nl"></div>
+        </div>
+        <hr class="form-divider">
+        <span class="form-section-label">Min Volume Requirement</span>
+        <div class="form-group"><select id="has-min-vol" onchange="onMinVolChange()"><option value="no">No minimum</option><option value="yes">Yes – set minimum</option></select></div>
+        <div id="fg-minvol" style="display:none"><div class="form-group"><label>Min Volume (USD)</label><input type="number" id="min-volume" min="0"></div></div>
+        <hr class="form-divider">
+        <span class="form-section-label">Difficulty</span>
+        <div class="form-group"><select id="camp-difficulty"><option value="">Not Set</option><option value="Easy">Easy</option><option value="Medium">Medium</option><option value="Hard">Hard</option><option value="Very Hard">Very Hard</option></select></div>
+        <hr class="form-divider">
+        <span class="form-section-label">Campaign Period</span>
+        <div class="form-group"><label>Start Date &amp; Time</label><input type="datetime-local" id="start-date" required></div>
+        <div class="form-group"><label>End Date &amp; Time</label><input type="datetime-local" id="end-date" required></div>
+        <hr class="form-divider">
+        <span class="form-section-label">Reward Distribution</span>
+        <div class="form-group"><label>Reward Deadline</label><input type="datetime-local" id="reward-date"><div class="hint">Leave blank if not announced</div></div>
+        <div class="form-group">
+          <div class="check-row"><input type="checkbox" id="reward-tbd"><label for="reward-tbd">Reward date not yet announced (TBD)</label></div>
+          <div class="check-row"><input type="checkbox" id="reward-postponed"><label for="reward-postponed">⚠️ Mark reward as postponed/delayed</label></div>
+        </div>
+        <button type="submit" class="btn-submit" id="submit-btn">Publish Campaign</button>
+      </form>
+    </div>
+    <!-- Notice form -->
+    <div id="admin-notice-form" style="display:none">
+      <h2 style="border:none;padding:0;display:block;margin-bottom:16px">📢 Add Notice</h2>
+      <form id="notice-form" onsubmit="saveNotice(event)">
+        <input type="hidden" id="notice-id">
+        <div class="form-group"><label>Notice Title</label><input type="text" id="notice-title" required placeholder="e.g. Reward Distribution Delayed"></div>
+        <div class="form-group"><label>Description</label><textarea id="notice-desc" required placeholder="Provide details about this notice..."></textarea></div>
+        <div class="form-group"><label>Linked Campaign (optional)</label>
+          <select id="notice-camp-select"><option value="">— None —</option></select>
+          <div class="hint">Select the campaign this notice is about</div>
+        </div>
+        <button type="submit" class="btn-submit">Publish Notice</button>
+      </form>
+    </div>
   </div>
 </div>
 
-<!-- Details Modal -->
+<!-- ===== DETAILS MODAL ===== -->
 <div class="modal" id="details-modal">
   <div class="modal-content" style="width:480px">
     <span class="close-modal" onclick="closeModal('details-modal')">&#x2715;</span>
@@ -574,913 +566,1071 @@ h2::before{content:'';display:inline-block;width:4px;height:19px;background:line
       <div class="det-timer-label" id="det-timer-label">Time Remaining</div>
       <div class="det-timer state-active" id="det-timer"></div>
     </div>
-    <button id="det-join-btn" onclick="toggleJoinFromModal()" style="width:100%;padding:10px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--gray);transition:all 0.2s">+ Join Campaign</button>
+    <button id="det-join-btn" onclick="toggleJoinFromModal()" style="width:100%;padding:10px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--gray);transition:all 0.2s;margin-bottom:10px">+ Join Campaign</button>
+    <div id="det-share-wrap"></div>
+  </div>
+</div>
+
+<!-- RULES MODAL -->
+<div class="modal" id="rules-modal">
+  <div class="modal-content" style="width:540px">
+    <span class="close-modal" onclick="closeModal('rules-modal')">&#x2715;</span>
+    <h2 style="border:none;padding:0;display:block;margin-bottom:16px">📋 Community Rules &amp; Features</h2>
+    <div class="rule-section">Community Guidelines</div>
+    <div class="rule-item"><strong>🚫 No harmful content</strong>Offensive language, hate speech, racism, or personal attacks are strictly prohibited. Violations result in message removal.</div>
+    <div class="rule-item"><strong>🔞 No adult content</strong>Sending inappropriate images or explicit content of any kind is not allowed and will be removed immediately.</div>
+    <div class="rule-item"><strong>💰 No financial advice</strong>Do not give or take financial advice here. All discussions are for informational and educational purposes only. Always DYOR.</div>
+    <div class="rule-item"><strong>🔗 No spam or scams</strong>Do not share referral links, promotional spam, phishing links, or impersonate others. Scam attempts will be permanently removed.</div>
+    <div class="rule-item"><strong>🌐 Any language welcome</strong>You can write in your native language. Use the Translate toggle (🌐) to auto-convert your message to English before sending.</div>
+    <div class="rule-section">Chat Features</div>
+    <div class="rule-item"><strong>📷 Image sharing</strong>Click the 📷 button to share a screenshot from your device (compressed automatically).</div>
+    <div class="rule-item"><strong>↩ Reply</strong>Click "Reply" on any message to quote and respond directly to it.</div>
+    <div class="rule-item"><strong>😊 Reactions</strong>Click "React" on any message to add an emoji reaction (👍 ❤️ 😂 😮 😢 🔥 💯 🚀).</div>
+    <div class="rule-item"><strong>✏️ Edit</strong>You can edit your own messages at any time by clicking "Edit" on your message.</div>
+    <div class="rule-item"><strong>🗑️ Delete</strong>Messages can be deleted using the admin password. Contact the admin if a message needs removal.</div>
+    <div class="rule-item"><strong>🌐 Auto-Translate</strong>Toggle the Translate button (🌐) in the chat header. When ON, your messages are automatically translated to English before being sent — so everyone can understand you.</div>
+    <div class="rule-item"><strong>📩 Reply Notifications</strong>When you return to the Community tab, you'll see a notification banner if someone replied to your messages since your last visit.</div>
+  </div>
+</div>
+
+<!-- NOTICE DETAIL MODAL -->
+<div class="modal" id="notice-modal">
+  <div class="modal-content" style="width:460px">
+    <span class="close-modal" onclick="closeModal('notice-modal')">&#x2715;</span>
+    <div id="notice-modal-body"></div>
   </div>
 </div>
 
 <script>
 (function(){
-  firebase.initializeApp({databaseURL:"https://spotctr-default-rtdb.firebaseio.com"});
-  var db = firebase.database();
-  var campaigns = [];
-  var livePrices = JSON.parse(localStorage.getItem('spotctr_prices')||'{}');
-  var isAdmin = false;
-  var detailCampId = null;
-  var userData = JSON.parse(localStorage.getItem('spotctr_user')||'{"joined":{}}');
-  var userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  var allExpanded = true;
-  var endedExpanded = false;
-  var tickCount = 0;
-  var urgCamps = [];
-  var urgIdx = 0;
+'use strict';
+firebase.initializeApp({databaseURL:'https://spotctr-default-rtdb.firebaseio.com'});
+var db=firebase.database();
 
-  // Chat state
-  var CHAT_EMOJIS = ['🦊','🐺','🦁','🐯','🐻','🦅','🦋','🐬','🦄','🐙','🦈','🐲','🦉','🐸','🦜','🐧','🦊','🐨','🦩','🦒','🦓','🐼','🦔','🐞','🦀','🦑','🐝','🦆'];
-  var myEmoji = localStorage.getItem('spotctr_emoji') || assignEmoji();
-  var myId = localStorage.getItem('spotctr_uid') || assignId();
-  var replyingTo = null;
-  var chatMsgMap = {};
-  var chatInitialized = false;
-  var chatAtBottom = true;
+// State
+var campaigns=[],notices=[],livePrices=JSON.parse(localStorage.getItem('spotctr_prices')||'{}');
+var isAdmin=false,detailCampId=null;
+var userData=JSON.parse(localStorage.getItem('spotctr_user')||'{"joined":{}}');
+var userTZ=Intl.DateTimeFormat().resolvedOptions().timeZone;
+var allExpanded=true,endedExpanded=false,tickCount=0;
+var urgCamps=[],urgIdx=0,noticeIdx=0;
 
-  function assignEmoji(){var e=CHAT_EMOJIS[Math.floor(Math.random()*CHAT_EMOJIS.length)];localStorage.setItem('spotctr_emoji',e);return e;}
-  function assignId(){var i='u'+Math.random().toString(36).substr(2,9);localStorage.setItem('spotctr_uid',i);return i;}
+// Chat state
+var AVATARS=['🦊','🐺','🦁','🐯','🐻','🦅','🦋','🐬','🦄','🐙','🦈','🐲','🦉','🐸','🦜','🐧','🐨','🦩','🦒','🦓','🐼','🦔','🐞','🦀','🦑','🐝','🦆'];
+var myEmoji=localStorage.getItem('spotctr_emoji')||assignAvatar();
+var myId=localStorage.getItem('spotctr_uid')||assignId();
+var replyingTo=null,editingId=null;
+var chatMsgMap={},chatInit=false,translateOn=false;
+var lastVisit=parseInt(localStorage.getItem('spotctr_lastVisit')||'0');
+var unreadReplies=[],newReplyCount=0;
 
-  document.getElementById('tz-notice').innerText='Times shown in your local timezone ('+userTZ+')';
+var REACT_EMOJIS=[{k:'r1',e:'👍'},{k:'r2',e:'❤️'},{k:'r3',e:'😂'},{k:'r4',e:'😮'},{k:'r5',e:'😢'},{k:'r6',e:'🔥'},{k:'r7',e:'💯'},{k:'r8',e:'🚀'}];
+var emojiMap={};REACT_EMOJIS.forEach(function(x){emojiMap[x.k]=x.e;});
 
-  db.ref('campaigns').on('value',function(snap){
-    var d=snap.val();
-    campaigns=d?Object.values(d):[];
-    fetchPrices();
-    renderViews();
-    updateGBB();
-    if(document.getElementById('dash').classList.contains('active')){renderDashboard();}
+var BAD_WORDS=['fuck','shit','asshole','bitch','cunt','motherfucker','nigger','faggot','bastard'];
+
+function assignAvatar(){var e=AVATARS[Math.floor(Math.random()*AVATARS.length)];localStorage.setItem('spotctr_emoji',e);return e;}
+function assignId(){var i='u'+Math.random().toString(36).substr(2,9);localStorage.setItem('spotctr_uid',i);return i;}
+
+document.getElementById('tz-notice').innerText='Times shown in your local timezone ('+userTZ+')';
+
+// === FIREBASE LISTENERS ===
+db.ref('campaigns').on('value',function(snap){
+  var d=snap.val();campaigns=d?Object.values(d):[];
+  fetchPrices();renderViews();updateGBB();
+  if(document.getElementById('dash').classList.contains('active'))renderDashboard();
+});
+db.ref('notices').on('value',function(snap){
+  var d=snap.val();notices=d?Object.values(d).filter(function(n){return n.active;}).sort(function(a,b){return b.createdAt-a.createdAt;}):[];
+  renderViews();
+});
+
+// === UTILS ===
+function saveUD(){localStorage.setItem('spotctr_user',JSON.stringify(userData));}
+function isJoined(id){return!!userData.joined[id];}
+function isCampActive(c){
+  var n=Date.now(),ended=new Date(c.end).getTime()<=n;
+  var rDone=!c.rewardDate||new Date(c.rewardDate).getTime()<=n;
+  return!(ended&&rDone);
+}
+function pad(n){return n.toString().padStart(2,'0');}
+function fmtDiff(d){return pad(Math.floor(d/86400000))+'d '+pad(Math.floor((d%86400000)/3600000))+'h '+pad(Math.floor((d%3600000)/60000))+'m '+pad(Math.floor((d%60000)/1000))+'s';}
+function getTimerInfo(c){
+  var now=Date.now(),start=new Date(c.start).getTime(),end=new Date(c.end).getTime();
+  var re=c.rewardDate?new Date(c.rewardDate).getTime():null;
+  if(now<start)return{text:fmtDiff(start-now),state:'upcoming',label:'Starts In'};
+  if(now<end){var diff=end-now;return{text:fmtDiff(diff),state:diff<86400000?'alert':'active',label:'Campaign Ends In'};}
+  if(re&&now<re)return{text:fmtDiff(re-now),state:'reward',label:'Reward Distribution In'};
+  return{text:'ENDED',state:'ended',label:'Campaign Ended'};
+}
+function priceOf(id){return(livePrices[id]&&livePrices[id].usd)?livePrices[id].usd:0;}
+function fmtUSD(n){if(!n||isNaN(n))return'$0.00';if(n>=1e6)return'$'+(n/1e6).toFixed(2)+'M';if(n>=1000)return'$'+(n/1000).toFixed(1)+'K';return'$'+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmtToken(n){if(!n||isNaN(n))return'0';if(n>=1000)return n.toLocaleString(undefined,{maximumFractionDigits:2});if(n>=1)return n.toFixed(4);if(n>=0.0001)return n.toFixed(6);return n.toFixed(8);}
+function fmtPrice(p){if(!p)return'...';if(p<0.01)return'$'+p.toFixed(6);if(p<1)return'$'+p.toFixed(4);return'$'+p.toFixed(2);}
+var typeLabels={volume:{label:'Vol. Based',cls:'type-volume'},equal:{label:'Equal Share',cls:'type-equal'},ranked_fixed:{label:'Ranked',cls:'type-ranked'},points_lb:{label:'Points+LB',cls:'type-points'},points_nl:{label:'Points',cls:'type-points'},unestimable:{label:'Unestimable',cls:'type-unestimable'}};
+function typeBadge(t){var i=typeLabels[t]||typeLabels.volume;return'<span class="type-badge '+i.cls+'">'+i.label+'</span>';}
+function diffBadge(d){if(!d)return'';var cls=d==='Easy'?'diff-easy':d==='Medium'?'diff-medium':d==='Very Hard'?'diff-vhard':'diff-hard';return'<span class="diff-badge '+cls+'">'+d+'</span>';}
+function escHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function hasBadWord(t){var l=t.toLowerCase();return BAD_WORDS.some(function(w){return l.indexOf(w)!==-1;});}
+function dividerHtml(label,color){return'<div class="section-divider"><span style="color:'+color+'">'+label+'</span></div>';}
+
+async function fetchPrices(){
+  if(!campaigns.length)return;
+  var ids=[];campaigns.forEach(function(c){if(ids.indexOf(c.coinId)<0)ids.push(c.coinId);});
+  try{
+    var r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids='+ids.join(',')+'&vs_currencies=usd');
+    livePrices=await r.json();
+    localStorage.setItem('spotctr_prices',JSON.stringify(livePrices));
+    renderViews();updateGBB();
+    if(document.getElementById('dash').classList.contains('active'))renderDashboard();
+  }catch(e){}
+}
+
+// === JOIN ===
+function toggleJoin(id,ev){
+  if(ev)ev.stopPropagation();
+  if(userData.joined[id])delete userData.joined[id];
+  else userData.joined[id]={volume:0,bnb:false,points:0,expanded:true};
+  saveUD();renderViews();updateGBB();
+  if(document.getElementById('dash').classList.contains('active'))renderDashboard();
+}
+window.toggleJoin=toggleJoin;
+function toggleJoinFromModal(){if(!detailCampId)return;toggleJoin(detailCampId,null);updateJoinBtn(detailCampId);}
+window.toggleJoinFromModal=toggleJoinFromModal;
+function updateJoinBtn(id){
+  var btn=document.getElementById('det-join-btn');if(!btn)return;
+  var j=isJoined(id);
+  btn.innerText=j?'✓ Joined — Click to Leave':'+ Join Campaign';
+  btn.style.borderColor=j?'var(--green)':'var(--border)';
+  btn.style.background=j?'var(--gdim)':'transparent';
+  btn.style.color=j?'var(--green)':'var(--gray)';
+}
+function joinBtn(id){var j=isJoined(id);return'<button class="btn-join btn-join-sm'+(j?' joined':'')+'" onclick="toggleJoin(\''+id+'\',event)">'+(j?'✓ Joined':'+ Join')+'</button>';}
+function adminBtns(id){if(!isAdmin)return'';return'<div class="admin-controls"><button class="btn-edit" onclick="editCamp(\''+id+'\',event)">Edit</button><button class="btn-del" onclick="deleteCamp(\''+id+'\',event)">Del</button></div>';}
+
+// === GBB ===
+function updateGBB(){
+  var bal=getBalance(),cnt=0;
+  campaigns.forEach(function(c){if(isJoined(c.id)&&isCampActive(c))cnt++;});
+  var el=document.getElementById('gbb-val');
+  el.style.color=bal.net<0?'var(--red)':'var(--green)';
+  el.innerText=(bal.net<0?'-':'+')+fmtUSD(Math.abs(bal.net));
+  document.getElementById('gbb-sub').innerText=cnt+' active campaign'+(cnt!==1?'s':'')+' joined';
+}
+
+// === RENDER ===
+function renderViews(){
+  var empty='<div class="empty-state"><h3>No Campaigns Yet</h3><p>Click "+ Add" to get started.</p></div>';
+  if(!campaigns.length){
+    document.getElementById('home-featured').innerHTML=empty;
+    document.getElementById('home-urgent').innerHTML='';
+    document.getElementById('reward-content').innerHTML=empty;
+    return;
+  }
+  var nowMs=Date.now(),running=[],rewPending=[],fullyEnded=[];
+  campaigns.forEach(function(c){
+    var endT=new Date(c.end).getTime(),reT=c.rewardDate?new Date(c.rewardDate).getTime():null;
+    if(endT>nowMs)running.push(c);
+    else if(reT&&reT>nowMs)rewPending.push(c);
+    else fullyEnded.push(c);
   });
+  function byVal(arr){return arr.slice().sort(function(a,b){return(b.poolAmt*(priceOf(b.coinId)||0))-(a.poolAmt*(priceOf(a.coinId)||0));});}
+  var sorted=byVal(running);
 
-  function saveUD(){localStorage.setItem('spotctr_user',JSON.stringify(userData));}
-  function isJoined(id){return !!userData.joined[id];}
-  function isCampActive(camp){
-    var nowMs=Date.now();
-    var ended=new Date(camp.end).getTime()<=nowMs;
-    var rewardDone=!camp.rewardDate||new Date(camp.rewardDate).getTime()<=nowMs;
-    return !(ended&&rewardDone);
-  }
+  // Reward Board
+  var rHtml=sorted.length?sorted.map(function(c){return buildListCard(c,false);}).join(''):'<div class="empty-state"><h3>No Active Campaigns</h3></div>';
+  if(rewPending.length){rewPending.sort(function(a,b){return new Date(a.rewardDate)-new Date(b.rewardDate);});rHtml+=dividerHtml('⏳ Awaiting Reward Distribution','var(--green)');rHtml+=rewPending.map(function(c){return buildListCard(c,false);}).join('');}
+  if(fullyEnded.length){rHtml+=dividerHtml('✓ Ended Campaigns','var(--gray)');rHtml+=byVal(fullyEnded).map(function(c){return buildListCard(c,true);}).join('');}
+  document.getElementById('reward-content').innerHTML=rHtml||empty;
 
-  function toggleJoin(id,ev){
-    if(ev){ev.stopPropagation();}
-    if(userData.joined[id]){delete userData.joined[id];}
-    else{userData.joined[id]={volume:0,bnb:false,points:0,expanded:true};}
-    saveUD();renderViews();updateGBB();
-    if(document.getElementById('dash').classList.contains('active')){renderDashboard();}
-  }
-  window.toggleJoin=toggleJoin;
+  // Home
+  if(!running.length){document.getElementById('home-featured').innerHTML='<div class="empty-state"><h3>No Active Campaigns</h3></div>';document.getElementById('home-urgent').innerHTML='';return;}
+  var leftCard=sorted[0]?buildHeroCard(sorted[0],false):'';
+  var rightCard='';
+  if(notices.length>0){rightCard=buildNoticeSlot();}
+  else if(sorted[1]){rightCard=buildHeroCard(sorted[1],false);}
+  document.getElementById('home-featured').innerHTML='<div class="home-grid">'+leftCard+rightCard+'</div>';
+  if(notices.length>0)attachNoticeSwipe();
 
-  function toggleJoinFromModal(){
-    if(!detailCampId){return;}
-    toggleJoin(detailCampId,null);
-    updateJoinBtn(detailCampId);
-  }
-  window.toggleJoinFromModal=toggleJoinFromModal;
+  urgCamps=running.slice().sort(function(a,b){return new Date(a.end)-new Date(b.end);}).slice(0,3);
+  urgIdx=0;
+  document.getElementById('home-urgent').innerHTML=buildCarousel(urgCamps,'urg');
+}
 
-  function updateJoinBtn(id){
-    var btn=document.getElementById('det-join-btn');
-    if(!btn){return;}
-    var j=isJoined(id);
-    btn.innerText=j?'Joined ✓  — Click to Leave':'+ Join Campaign';
-    btn.style.borderColor=j?'var(--green)':'var(--border)';
-    btn.style.background=j?'var(--gdim)':'transparent';
-    btn.style.color=j?'var(--green)':'var(--gray)';
-  }
+function buildNoticeSlot(){
+  if(!notices.length)return'';
+  var n=notices[noticeIdx]||notices[0];
+  var linked=null;
+  if(n.linkedCampId){for(var i=0;i<campaigns.length;i++){if(campaigns[i].id===n.linkedCampId){linked=campaigns[i];break;}}}
+  var html='<div class="notice-card" id="notice-card-main" onclick="showNotice(\''+escHtml(n.id)+'\')">';
+  html+='<div class="notice-header-badge">📢 NOTICE</div>';
+  html+='<div class="notice-title">'+escHtml(n.title)+'</div>';
+  if(linked){html+='<div class="notice-camp-row"><img src="'+escHtml(linked.logo)+'" class="notice-camp-logo"><span class="notice-camp-name">'+escHtml(linked.name)+'</span></div>';}
+  html+='<div class="notice-desc">'+escHtml(n.description)+'</div>';
+  html+='<div class="notice-footer"><span class="notice-view-btn">Tap for details →</span>';
+  if(notices.length>1){
+    html+='<div class="notice-nav">'
+      +'<button class="notice-nav-btn" onclick="event.stopPropagation();moveNotice(-1)">‹</button>'
+      +'<span style="font-size:10px;color:var(--gray);align-self:center">'+(noticeIdx+1)+'/'+notices.length+'</span>'
+      +'<button class="notice-nav-btn" onclick="event.stopPropagation();moveNotice(1)">›</button>';
+    if(isAdmin)html+='<button class="notice-nav-btn" onclick="event.stopPropagation();deleteNotice(\''+n.id+'\')" style="background:var(--rdim);border-color:var(--rdim);color:var(--red)">×</button>';
+    html+='</div>';
+  }else if(isAdmin){html+='<button class="notice-nav-btn" onclick="event.stopPropagation();deleteNotice(\''+n.id+'\')" style="background:var(--rdim);border-color:var(--rdim);color:var(--red);margin-left:4px">× Del</button>';}
+  html+='</div></div>';
+  return html;
+}
 
-  function updateVol(id,val){if(!userData.joined[id]){return;}userData.joined[id].volume=parseFloat(val)||0;saveUD();refreshReward(id);updateGBB();renderCalc();}
-  window.updateVol=updateVol;
-  function updatePts(id,val){if(!userData.joined[id]){return;}userData.joined[id].points=parseFloat(val)||0;saveUD();refreshReward(id);updateGBB();renderCalc();}
-  window.updatePts=updatePts;
-  function updateBnb(id,checked){if(!userData.joined[id]){return;}userData.joined[id].bnb=checked;saveUD();refreshReward(id);updateGBB();renderCalc();}
-  window.updateBnb=updateBnb;
+function attachNoticeSwipe(){
+  var card=document.getElementById('notice-card-main');
+  if(!card||notices.length<=1)return;
+  var startX=0;
+  card.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;},{passive:true});
+  card.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-startX;
+    if(Math.abs(dx)>50){moveNotice(dx>0?-1:1);}
+  },{passive:true});
+}
 
-  function toggleExpand(id){
-    if(!userData.joined[id]){return;}
-    userData.joined[id].expanded=!userData.joined[id].expanded;
-    saveUD();
-    var body=document.getElementById('dbody-'+id);
-    var btn=document.getElementById('dexpand-'+id);
-    if(body){body.classList.toggle('collapsed',!userData.joined[id].expanded);}
-    if(btn){btn.classList.toggle('open',userData.joined[id].expanded);}
-  }
-  window.toggleExpand=toggleExpand;
+function moveNotice(dir){
+  if(!notices.length)return;
+  noticeIdx=(noticeIdx+dir+notices.length)%notices.length;
+  var slot=document.getElementById('notice-card-main');
+  if(slot)slot.parentElement.innerHTML=buildNoticeSlot();
+  attachNoticeSwipe();
+}
+window.moveNotice=moveNotice;
 
-  function toggleAllExpand(){
-    allExpanded=!allExpanded;
-    for(var i=0;i<campaigns.length;i++){
-      var c=campaigns[i];
-      if(isJoined(c.id)&&isCampActive(c)&&userData.joined[c.id]){
-        userData.joined[c.id].expanded=allExpanded;
-        var body=document.getElementById('dbody-'+c.id);
-        var btn=document.getElementById('dexpand-'+c.id);
-        if(body){body.classList.toggle('collapsed',!allExpanded);}
-        if(btn){btn.classList.toggle('open',allExpanded);}
-      }
+function showNotice(id){
+  var n=null;for(var i=0;i<notices.length;i++){if(notices[i].id===id){n=notices[i];break;}}
+  if(!n)return;
+  var linked=null;
+  if(n.linkedCampId){for(var j=0;j<campaigns.length;j++){if(campaigns[j].id===n.linkedCampId){linked=campaigns[j];break;}}}
+  var html='<div class="notice-detail-head"><div class="notice-detail-icon">📢</div><div class="notice-detail-title">'+escHtml(n.title)+'</div>';
+  if(linked){html+='<div style="margin-top:8px"><div class="notice-linked-camp" onclick="closeModal(\'notice-modal\');showDetails(\''+encodeURIComponent(JSON.stringify(linked))+'\')"><img src="'+escHtml(linked.logo)+'" style="width:24px;height:24px;border-radius:50%;object-fit:cover"><span style="font-size:12px;font-weight:700;color:var(--orange)">'+escHtml(linked.name)+'</span><span style="font-size:11px;color:var(--gray)">→ View Campaign</span></div></div>';}
+  html+='</div><p style="color:var(--gray);font-size:14px;line-height:1.8">'+escHtml(n.description)+'</p>';
+  if(isAdmin)html+='<button class="btn-del" style="margin-top:16px;width:100%;padding:9px" onclick="deleteNotice(\''+n.id+'\')">Delete Notice</button>';
+  document.getElementById('notice-modal-body').innerHTML=html;
+  openModal('notice-modal');
+}
+window.showNotice=showNotice;
+
+function deleteNotice(id){
+  if(!confirm('Delete this notice?'))return;
+  db.ref('notices/'+id).remove();
+  closeModal('notice-modal');
+}
+window.deleteNotice=deleteNotice;
+
+function buildHeroCard(c,isUrgent){
+  var p=priceOf(c.coinId),info=getTimerInfo(c),key=isUrgent?'hu':'hf';
+  var enc=encodeURIComponent(JSON.stringify(c));
+  return'<div class="'+(isUrgent?'hero-card urgent':'hero-card')+'" onclick="showDetails(\''+enc+'\')">'
+    +(isUrgent?'<div class="urgent-badge">Ending Soon</div>':'')
+    +'<div class="hero-top"><img src="'+c.logo+'" class="hero-logo" onerror="this.style.background=\'#2b3139\'">'
+    +'<div><div class="hero-name">'+escHtml(c.name)+'</div>'+typeBadge(c.type||'volume')+'</div></div>'
+    +'<div class="hero-price">'+fmtPrice(p)+'</div>'
+    +'<div class="hero-pool">Total Pool: <strong>'+c.poolAmt.toLocaleString()+' '+escHtml(c.name)+'</strong><br>'
+    +'<span class="pool-usd">'+(p?'approx '+fmtUSD(c.poolAmt*p):'')+'</span></div>'
+    +'<div class="hero-timer-wrap"><div class="hero-timer-label" id="lbl-'+c.id+'-'+key+'">'+info.label+'</div>'
+    +'<div class="hero-timer state-'+(info.state==='alert'?'active':info.state)+'" id="tmr-'+c.id+'-'+key+'">'+info.text+'</div></div>'
+    +joinBtn(c.id)+'</div>';
+}
+
+function buildCarousel(camps,prefix){
+  if(!camps.length)return'';
+  if(camps.length===1)return'<div class="home-grid" style="margin-bottom:28px">'+buildHeroCard(camps[0],true)+'</div>';
+  var html='<div class="carousel-wrap"><div class="carousel-track" id="'+prefix+'-trk">';
+  camps.forEach(function(c){html+='<div class="carousel-slide"><div class="home-grid">'+buildHeroCard(c,true)+'</div></div>';});
+  html+='</div><div class="carousel-dots">';
+  camps.forEach(function(_,j){html+='<button class="c-dot'+(j===0?' on-r':'')+'" id="'+prefix+'-d'+j+'" onclick="goSlide(\''+prefix+'\','+j+')"></button>';});
+  html+='</div></div>';
+  return html;
+}
+
+function buildListCard(c,grayed){
+  grayed=grayed||false;
+  var p=priceOf(c.coinId),info=getTimerInfo(c);
+  var gs=grayed?'filter:grayscale(1);opacity:0.45;':'',gt=grayed?'color:#555!important':'';
+  var enc=encodeURIComponent(JSON.stringify(c));
+  var sc=grayed?'state-ended':(info.state==='alert'?'state-alert':'state-'+info.state);
+  var diffCol=(!grayed&&c.difficulty)?diffBadge(c.difficulty):'';
+  var extraBadges='';
+  if(c.rewardDateTBD)extraBadges+='<span class="tbd-badge">⏳ TBD</span>';
+  if(c.rewardPostponed)extraBadges+='<span class="postponed-badge">⚠️ Delayed</span>';
+  return'<div class="list-card" style="'+gs+'" onclick="showDetails(\''+enc+'\')">'
+    +'<div class="camp-info"><img src="'+c.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'">'
+    +'<div><div class="camp-name" style="'+gt+'">'+escHtml(c.name)+'</div>'+typeBadge(c.type||'volume')+extraBadges+'</div></div>'
+    +'<div class="camp-price" style="'+gt+'">'+fmtPrice(p)+'</div>'
+    +'<div class="reward-mid">'+diffCol+'</div>'
+    +'<div class="reward-pool"><div class="pool-amt" style="'+gt+'">'+c.poolAmt.toLocaleString()+' '+escHtml(c.name)+'</div>'
+    +'<div class="pool-usd">'+(p?'approx '+fmtUSD(c.poolAmt*p):'...')+'</div></div>'
+    +'<div><span class="timer-state-label">'+info.label+'</span><span class="camp-timer '+sc+'" id="tmr-'+c.id+'-r">'+info.text+'</span></div>'
+    +joinBtn(c.id)+adminBtns(c.id)+'</div>';
+}
+
+function goSlide(prefix,idx){
+  var trk=document.getElementById(prefix+'-trk');
+  if(trk)trk.style.transform='translateX(-'+(idx*100)+'%)';
+  for(var i=0;i<10;i++){var d=document.getElementById(prefix+'-d'+i);if(!d)break;d.classList.remove('on-r');}
+  var active=document.getElementById(prefix+'-d'+idx);
+  if(active)active.classList.add('on-r');
+  if(prefix==='urg')urgIdx=idx;
+}
+window.goSlide=goSlide;
+
+// === DETAILS ===
+function showDetails(enc){
+  var c=JSON.parse(decodeURIComponent(enc));
+  detailCampId=c.id;
+  document.getElementById('det-logo').src=c.logo;
+  document.getElementById('det-name').innerText=c.name;
+  var titleEl=document.getElementById('det-title');
+  if(c.title){titleEl.innerText=c.title;titleEl.style.display='block';}else titleEl.style.display='none';
+  var badges=typeBadge(c.type||'volume');
+  if(c.difficulty)badges+=' '+diffBadge(c.difficulty);
+  if(c.rewardDateTBD)badges+=' <span class="tbd-badge">⏳ TBD</span>';
+  if(c.rewardPostponed)badges+=' <span class="postponed-badge">⚠️ Delayed</span>';
+  document.getElementById('det-type-badge').innerHTML=badges;
+  var p=priceOf(c.coinId);
+  document.getElementById('det-price').innerText=p?fmtPrice(p):'Loading...';
+  var fmt={dateStyle:'medium',timeStyle:'short',timeZone:userTZ};
+  document.getElementById('det-start').innerText=new Date(c.start).toLocaleString('en-US',fmt);
+  document.getElementById('det-end').innerText=new Date(c.end).toLocaleString('en-US',fmt);
+  var rdr=document.getElementById('det-reward-row');
+  if(c.rewardDateTBD){rdr.style.display='flex';document.getElementById('det-reward-date').innerHTML='<span class="tbd-badge">⏳ Not Announced Yet</span>';}
+  else if(c.rewardDate){rdr.style.display='flex';document.getElementById('det-reward-date').innerText=new Date(c.rewardDate).toLocaleString('en-US',fmt);}
+  else rdr.style.display='none';
+  var pu=p?c.poolAmt*p:0;
+  document.getElementById('det-pool').innerHTML=c.poolAmt.toLocaleString()+' '+escHtml(c.name)+(pu?'<span class="sub">approx '+fmtUSD(pu)+'</span>':'');
+  var t=c.type||'volume',estEl=document.getElementById('det-est'),estRow=document.getElementById('det-est-row');
+  if(t==='volume'){var en=parseFloat(c.estReward),eu=p&&!isNaN(en)?fmtUSD(en*p):null;estEl.innerHTML=en+' '+escHtml(c.name)+(eu?'<span class="sub">approx '+eu+' per $1K Vol</span>':'');estRow.style.display='flex';}
+  else if(t==='equal'){estEl.innerHTML=fmtToken(c.poolAmt/(c.maxParticipants||1))+' '+escHtml(c.name)+' each<span class="sub">'+(c.maxParticipants||'?')+' participants'+(c.minVolume?' | Min vol: $'+c.minVolume.toLocaleString():'')+' </span>';estRow.style.display='flex';}
+  else if(t==='ranked_fixed'){var cnt2=Math.max((c.rankEnd||1)-(c.rankStart||1)+1,1);estEl.innerHTML=fmtToken(c.poolAmt/cnt2)+' '+escHtml(c.name)+' each<span class="sub">Rank '+(c.rankStart||1)+' to '+(c.rankEnd||1)+' </span>';estRow.style.display='flex';}
+  else if(t==='points_lb'){estEl.innerHTML='Points-based<span class="sub">Total pts: '+((c.totalPoints||0).toLocaleString())+'</span>';estRow.style.display='flex';}
+  else if(t==='points_nl'){estEl.innerHTML='Points (no LB)<span class="sub">Min pts: '+(c.minPoints||'?')+'</span>';estRow.style.display='flex';}
+  else estRow.style.display='none';
+  var owrap=document.getElementById('det-official-wrap');
+  owrap.innerHTML=c.campLink?'<a href="'+escHtml(c.campLink)+'" target="_blank" rel="noopener" class="det-official-link"><svg viewBox="0 0 20 20" style="width:14px;height:14px;fill:currentColor;flex-shrink:0"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>View Official Campaign Page</a>':'';
+  // Share
+  var shareUrl='https://ibial0.github.io/#campaign='+c.id;
+  document.getElementById('det-share-wrap').innerHTML='<div class="share-bar"><button class="share-btn share-btn-copy" onclick="copyLink(\''+escHtml(shareUrl)+'\')">📋 Copy Campaign Link</button><button class="share-btn share-btn-share" onclick="shareLink(\''+escHtml(shareUrl)+'\',\''+escHtml(c.name)+' Campaign on Spot CTR\')">🔗 Share</button></div>';
+  updateJoinBtn(c.id);
+  openModal('details-modal');
+  updateDetTimer(c);
+}
+window.showDetails=showDetails;
+
+function updateDetTimer(c){
+  var info=getTimerInfo(c),el=document.getElementById('det-timer');
+  el.innerText=info.text;
+  el.className='det-timer state-'+(info.state==='alert'?'active':info.state);
+  document.getElementById('det-timer-label').innerText=info.label;
+}
+
+// === SHARE ===
+function shareWebsite(){shareLink('https://ibial0.github.io','Spot CTR — Binance Campaign Tracker');}
+window.shareWebsite=shareWebsite;
+function shareLink(url,title){
+  if(navigator.share){navigator.share({title:title||'Spot CTR',url:url}).catch(function(){});}
+  else copyLink(url);
+}
+window.shareLink=shareLink;
+function copyLink(url){
+  navigator.clipboard.writeText(url).then(function(){alert('Link copied to clipboard!');}).catch(function(){prompt('Copy this link:',url);});
+}
+window.copyLink=copyLink;
+
+// Deep link handler
+function checkDeepLink(){
+  var hash=window.location.hash;
+  if(!hash||hash.indexOf('#campaign=')!==0)return;
+  var id=hash.replace('#campaign=','');
+  var attempt=0;
+  var interval=setInterval(function(){
+    attempt++;
+    var c=null;for(var i=0;i<campaigns.length;i++){if(campaigns[i].id===id){c=campaigns[i];break;}}
+    if(c||attempt>20){
+      clearInterval(interval);
+      if(c)showDetails(encodeURIComponent(JSON.stringify(c)));
     }
-    saveUD();
-    var allBtn=document.getElementById('btn-all-expand');
-    if(allBtn){allBtn.innerHTML=allExpanded?'&#9650; Collapse All':'&#9660; Expand All';}
-  }
-  window.toggleAllExpand=toggleAllExpand;
+  },300);
+}
+setTimeout(checkDeepLink,500);
 
-  function toggleAllEnded(){
-    endedExpanded=!endedExpanded;
-    var list=document.getElementById('ended-expanded-list');
-    var row=document.getElementById('ended-collapsed-row');
-    var btn=document.getElementById('btn-ended-expand');
-    if(list){list.style.display=endedExpanded?'block':'none';}
-    if(row){row.style.display=endedExpanded?'none':'flex';}
-    if(btn){btn.innerHTML=endedExpanded?'&#9650; Collapse All':'&#9660; Expand All';}
-  }
-  window.toggleAllEnded=toggleAllEnded;
+// === ADMIN ===
+function promptAdmin(){
+  var pass=prompt('Enter Admin Password:');
+  if(pass==='@Sakib2020'){
+    isAdmin=true;
+    document.getElementById('campaign-form').reset();
+    document.getElementById('camp-id').value='';
+    document.getElementById('modal-title').innerText='Add New Campaign';
+    document.getElementById('submit-btn').innerText='Publish Campaign';
+    setAdminMode('campaign');
+    onTypeChange();onMinVolChange();
+    openModal('admin-modal');
+  }else if(pass!==null)alert('Incorrect Password!');
+}
+window.promptAdmin=promptAdmin;
 
-  function goSlide(prefix,idx){
-    var trk=document.getElementById(prefix+'-trk');
-    if(trk){trk.style.transform='translateX(-'+(idx*100)+'%)';}
-    for(var i=0;i<10;i++){var d=document.getElementById(prefix+'-d'+i);if(!d){break;}d.classList.remove('on-r');}
-    var active=document.getElementById(prefix+'-d'+idx);
-    if(active){active.classList.add('on-r');}
-    if(prefix==='urg'){urgIdx=idx;}
+function setAdminMode(mode){
+  document.getElementById('admin-campaign-form').style.display=mode==='campaign'?'':'none';
+  document.getElementById('admin-notice-form').style.display=mode==='notice'?'':'none';
+  document.getElementById('mode-tab-campaign').classList.toggle('active',mode==='campaign');
+  document.getElementById('mode-tab-notice').classList.toggle('active',mode==='notice');
+  if(mode==='notice'){
+    var sel=document.getElementById('notice-camp-select');
+    sel.innerHTML='<option value="">— None —</option>';
+    var active=campaigns.filter(function(c){return isCampActive(c);});
+    active.forEach(function(c){sel.innerHTML+='<option value="'+c.id+'">'+escHtml(c.name)+'</option>';});
   }
-  window.goSlide=goSlide;
+}
+window.setAdminMode=setAdminMode;
 
-  function refreshReward(campId){
-    var camp=null;
-    for(var i=0;i<campaigns.length;i++){if(campaigns[i].id===campId){camp=campaigns[i];break;}}
-    if(!camp){return;}
-    var el=document.getElementById('dreward-'+campId);
-    if(!el){return;}
-    var r=calcReward(camp),p=priceOf(camp.coinId);
-    if(r&&r.canCalc&&r.tokens!==null){
-      el.innerHTML='<span class="dr-label">Est. Reward</span>'
-        +'<span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+camp.name:'Enter value above')+'</span>'
-        +(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')
-        +(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'');
-    }
-    var sumEl=document.getElementById('dsummary-'+campId);
-    if(sumEl){
-      if(r&&r.canCalc&&r.tokens!==null&&r.tokens>0){
-        sumEl.innerText=fmtToken(r.tokens)+' '+camp.name+(p?' (approx '+fmtUSD(r.usd)+')':'');
-        sumEl.className='dash-camp-summary';
-      }else{sumEl.innerText='Not set';sumEl.className='dash-camp-summary no-data';}
-    }
-  }
+function authAction(cb){
+  if(isAdmin){cb();return;}
+  var pass=prompt('Enter Admin Password:');
+  if(pass==='@Sakib2020'){isAdmin=true;cb();}
+  else if(pass!==null)alert('Incorrect Password!');
+}
 
-  function updateGBB(){
-    var bal=getBalance(),cnt=0;
-    for(var i=0;i<campaigns.length;i++){if(isJoined(campaigns[i].id)&&isCampActive(campaigns[i])){cnt++;}}
-    var el=document.getElementById('gbb-val');
-    el.style.color=bal.net<0?'var(--red)':'var(--green)';
-    el.innerText=(bal.net<0?'-':'+')+fmtUSD(Math.abs(bal.net));
-    document.getElementById('gbb-sub').innerText=cnt+' active campaign'+(cnt!==1?'s':'')+' joined';
-  }
+function onTypeChange(){
+  var t=document.getElementById('camp-type')?document.getElementById('camp-type').value:'volume';
+  ['volume','equal','ranked','points-lb','points-nl'].forEach(function(id){document.getElementById('fg-'+id).style.display='none';});
+  var show={'volume':'fg-volume','equal':'fg-equal','ranked_fixed':'fg-ranked','points_lb':'fg-points-lb','points_nl':'fg-points-nl'};
+  if(show[t])document.getElementById(show[t]).style.display='';
+}
+window.onTypeChange=onTypeChange;
+function onMinVolChange(){
+  var v=document.getElementById('has-min-vol')?document.getElementById('has-min-vol').value:'no';
+  var fg=document.getElementById('fg-minvol');if(fg)fg.style.display=v==='yes'?'':'none';
+}
+window.onMinVolChange=onMinVolChange;
+function gv(id){var el=document.getElementById(id);return el?el.value:'';}
+function gn(id){return parseFloat(gv(id))||0;}
 
-  function toggleMenu(){
-    var m=document.getElementById('mobile-menu');
-    m.style.display=m.style.display==='flex'?'none':'flex';
-  }
-  window.toggleMenu=toggleMenu;
+function saveCampaign(e){
+  e.preventDefault();
+  var id=gv('camp-id')||Date.now().toString();
+  var t=gv('camp-type'),hasMinVol=gv('has-min-vol')==='yes';
+  var rdTBD=document.getElementById('reward-tbd')?document.getElementById('reward-tbd').checked:false;
+  var rdPostponed=document.getElementById('reward-postponed')?document.getElementById('reward-postponed').checked:false;
+  db.ref('campaigns/'+id).set({
+    id:id,title:gv('camp-title'),name:gv('token-name'),
+    coinId:gv('coin-id').toLowerCase(),logo:gv('logo-url'),campLink:gv('camp-link')||null,
+    poolAmt:gn('reward-pool-amt'),type:t,difficulty:gv('camp-difficulty')||null,
+    estReward:t==='volume'?gv('est-reward'):'0',
+    maxParticipants:t==='equal'?gn('max-participants'):null,
+    rankStart:t==='ranked_fixed'?gn('rank-start'):null,rankEnd:t==='ranked_fixed'?gn('rank-end'):null,
+    rankEligVol:t==='ranked_fixed'?gn('rank-elig-vol'):null,rankMinVol:t==='ranked_fixed'?gn('rank-min-vol'):null,
+    totalPoints:t==='points_lb'?gn('total-points'):null,costPerPoint:t==='points_lb'?gn('cost-per-point'):null,
+    minPoints:t==='points_nl'?gn('min-points'):null,costPerPointNl:t==='points_nl'?gn('cost-per-point-nl'):null,
+    minVolume:hasMinVol?gn('min-volume'):0,
+    start:gv('start-date'),end:gv('end-date'),
+    rewardDate:(!rdTBD&&gv('reward-date'))||null,
+    rewardDateTBD:rdTBD||null,rewardPostponed:rdPostponed||null
+  });
+  closeModal('admin-modal');
+}
+window.saveCampaign=saveCampaign;
 
-  function nav(id){
-    document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
-    document.querySelectorAll('.desktop-nav button,.mobile-menu button').forEach(function(b){b.classList.remove('active');});
-    var sec=document.getElementById(id);
-    if(sec){sec.classList.add('active');}
-    var nb=document.getElementById('nav-'+id);
-    if(nb){nb.classList.add('active');}
-    var fab=document.getElementById('fab-chat');
-    if(fab){fab.style.display=id==='community'?'none':'flex';}
-    if(id==='dash'){renderDashboard();}
-    else if(id==='community'){initChat();}
-    else{renderViews();}
-  }
-  window.nav=nav;
+function saveNotice(e){
+  e.preventDefault();
+  var id=gv('notice-id')||Date.now().toString();
+  db.ref('notices/'+id).set({
+    id:id,title:gv('notice-title'),description:gv('notice-desc'),
+    linkedCampId:gv('notice-camp-select')||null,
+    createdAt:Date.now(),active:true
+  });
+  closeModal('admin-modal');
+}
+window.saveNotice=saveNotice;
 
-  function promptAdmin(){
-    var pass=prompt('Enter Admin Password:');
-    if(pass==='@Sakib2020'){
-      isAdmin=true;
-      document.getElementById('campaign-form').reset();
-      document.getElementById('camp-id').value='';
-      document.getElementById('modal-title').innerText='Add New Campaign';
-      document.getElementById('submit-btn').innerText='Publish Campaign';
-      onTypeChange();onMinVolChange();openModal('admin-modal');
-    }else if(pass!==null){alert('Incorrect Password!');}
-  }
-  window.promptAdmin=promptAdmin;
+function deleteCamp(id,ev){ev.stopPropagation();authAction(function(){if(confirm('Delete?'))db.ref('campaigns/'+id).remove();});}
+window.deleteCamp=deleteCamp;
 
-  function authAction(cb){
-    if(isAdmin){cb();return;}
-    var pass=prompt('Enter Admin Password:');
-    if(pass==='@Sakib2020'){isAdmin=true;cb();}
-    else if(pass!==null){alert('Incorrect Password!');}
-  }
+function editCamp(id,ev){
+  ev.stopPropagation();
+  authAction(function(){
+    var c=null;for(var i=0;i<campaigns.length;i++){if(campaigns[i].id===id){c=campaigns[i];break;}}
+    if(!c)return;
+    document.getElementById('camp-id').value=c.id;
+    document.getElementById('camp-title').value=c.title||'';
+    document.getElementById('token-name').value=c.name;
+    document.getElementById('coin-id').value=c.coinId;
+    document.getElementById('logo-url').value=c.logo;
+    document.getElementById('camp-link').value=c.campLink||'';
+    document.getElementById('reward-pool-amt').value=c.poolAmt;
+    document.getElementById('camp-type').value=c.type||'volume';
+    document.getElementById('camp-difficulty').value=c.difficulty||'';
+    document.getElementById('est-reward').value=c.estReward||'';
+    document.getElementById('max-participants').value=c.maxParticipants||'';
+    document.getElementById('rank-start').value=c.rankStart||'';
+    document.getElementById('rank-end').value=c.rankEnd||'';
+    document.getElementById('rank-elig-vol').value=c.rankEligVol||'';
+    document.getElementById('rank-min-vol').value=c.rankMinVol||'';
+    document.getElementById('total-points').value=c.totalPoints||'';
+    document.getElementById('cost-per-point').value=c.costPerPoint||'';
+    document.getElementById('min-points').value=c.minPoints||'';
+    document.getElementById('cost-per-point-nl').value=c.costPerPointNl||'';
+    document.getElementById('has-min-vol').value=c.minVolume>0?'yes':'no';
+    onMinVolChange();
+    document.getElementById('min-volume').value=c.minVolume>0?c.minVolume:'';
+    document.getElementById('start-date').value=c.start;
+    document.getElementById('end-date').value=c.end;
+    document.getElementById('reward-date').value=c.rewardDate||'';
+    document.getElementById('reward-tbd').checked=!!c.rewardDateTBD;
+    document.getElementById('reward-postponed').checked=!!c.rewardPostponed;
+    document.getElementById('modal-title').innerText='Edit Campaign';
+    document.getElementById('submit-btn').innerText='Save Changes';
+    setAdminMode('campaign');onTypeChange();openModal('admin-modal');
+  });
+}
+window.editCamp=editCamp;
 
-  function openModal(id){document.getElementById(id).style.display='flex';}
-  function closeModal(id){document.getElementById(id).style.display='none';}
-  window.openModal=openModal;
-  window.closeModal=closeModal;
+function openModal(id){document.getElementById(id).style.display='flex';}
+function closeModal(id){document.getElementById(id).style.display='none';}
+window.openModal=openModal;window.closeModal=closeModal;
 
-  function onTypeChange(){
-    var t=document.getElementById('camp-type')?document.getElementById('camp-type').value:'volume';
-    document.getElementById('fg-volume').style.display=t==='volume'?'':'none';
-    document.getElementById('fg-equal').style.display=t==='equal'?'':'none';
-    document.getElementById('fg-ranked').style.display=t==='ranked_fixed'?'':'none';
-    document.getElementById('fg-points-lb').style.display=t==='points_lb'?'':'none';
-    document.getElementById('fg-points-nl').style.display=t==='points_nl'?'':'none';
-  }
-  window.onTypeChange=onTypeChange;
+function toggleMenu(){var m=document.getElementById('mobile-menu');m.style.display=m.style.display==='flex'?'none':'flex';}
+window.toggleMenu=toggleMenu;
 
-  function onMinVolChange(){
-    var v=document.getElementById('has-min-vol')?document.getElementById('has-min-vol').value:'no';
-    var fg=document.getElementById('fg-minvol');
-    if(fg){fg.style.display=v==='yes'?'':'none';}
-    var inp=document.getElementById('min-volume');
-    if(inp&&v==='no'){inp.value='';}
-  }
-  window.onMinVolChange=onMinVolChange;
+function nav(id){
+  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.desktop-nav button,.mobile-menu button').forEach(function(b){b.classList.remove('active');});
+  var sec=document.getElementById(id);if(sec)sec.classList.add('active');
+  var nb=document.getElementById('nav-'+id);if(nb)nb.classList.add('active');
+  var fab=document.getElementById('fab-chat');
+  if(fab)fab.style.display=id==='community'?'none':'flex';
+  if(id==='dash')renderDashboard();
+  else if(id==='community')initChat();
+  else renderViews();
+}
+window.nav=nav;
 
-  function gv(id){var el=document.getElementById(id);return el?el.value:'';}
-  function gn(id){return parseFloat(gv(id))||0;}
+function showRules(){openModal('rules-modal');}
+window.showRules=showRules;
 
-  async function fetchPrices(){
-    if(!campaigns.length){return;}
-    var ids=[];
-    for(var i=0;i<campaigns.length;i++){if(ids.indexOf(campaigns[i].coinId)<0){ids.push(campaigns[i].coinId);}}
-    try{
-      var res=await fetch('https://api.coingecko.com/api/v3/simple/price?ids='+ids.join(',')+'&vs_currencies=usd');
-      var data=await res.json();
-      livePrices=data;
-      localStorage.setItem('spotctr_prices',JSON.stringify(livePrices));
-      renderViews();updateGBB();
-      if(document.getElementById('dash').classList.contains('active')){renderDashboard();}
-    }catch(e){}
-  }
+// === CHAT ===
+async function translateText(text){
+  try{
+    var r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(text)+'&langpair=auto|en');
+    var d=await r.json();
+    if(d.responseStatus===200&&d.responseData&&d.responseData.translatedText)return d.responseData.translatedText;
+    return text;
+  }catch(e){return text;}
+}
 
-  function saveCampaign(e){
-    e.preventDefault();
-    var id=gv('camp-id')||Date.now().toString();
-    var t=gv('camp-type'),hasMinVol=gv('has-min-vol')==='yes';
-    db.ref('campaigns/'+id).set({
-      id:id,title:gv('camp-title'),name:gv('token-name'),
-      coinId:gv('coin-id').toLowerCase(),logo:gv('logo-url'),
-      campLink:gv('camp-link')||null,
-      poolAmt:gn('reward-pool-amt'),type:t,
-      difficulty:gv('camp-difficulty')||null,
-      estReward:t==='volume'?gv('est-reward'):'0',
-      maxParticipants:t==='equal'?gn('max-participants'):null,
-      rankStart:t==='ranked_fixed'?gn('rank-start'):null,
-      rankEnd:t==='ranked_fixed'?gn('rank-end'):null,
-      rankEligVol:t==='ranked_fixed'?gn('rank-elig-vol'):null,
-      rankMinVol:t==='ranked_fixed'?gn('rank-min-vol'):null,
-      totalPoints:t==='points_lb'?gn('total-points'):null,
-      costPerPoint:t==='points_lb'?gn('cost-per-point'):null,
-      minPoints:t==='points_nl'?gn('min-points'):null,
-      costPerPointNl:t==='points_nl'?gn('cost-per-point-nl'):null,
-      minVolume:hasMinVol?gn('min-volume'):0,
-      start:gv('start-date'),end:gv('end-date'),
-      rewardDate:gv('reward-date')||null
-    });
-    closeModal('admin-modal');
-  }
-  window.saveCampaign=saveCampaign;
+function toggleTranslate(){
+  translateOn=!translateOn;
+  var btn=document.getElementById('translate-btn');
+  if(btn){btn.classList.toggle('active',translateOn);btn.title=translateOn?'Translate ON — messages auto-translate to English':'Auto-translate OFF';}
+}
+window.toggleTranslate=toggleTranslate;
 
-  function deleteCamp(id,ev){
-    ev.stopPropagation();
-    authAction(function(){if(confirm('Delete this campaign?')){db.ref('campaigns/'+id).remove();}});
-  }
-  window.deleteCamp=deleteCamp;
-
-  function editCamp(id,ev){
-    ev.stopPropagation();
-    authAction(function(){
-      var c=null;
-      for(var i=0;i<campaigns.length;i++){if(campaigns[i].id===id){c=campaigns[i];break;}}
-      if(!c){return;}
-      document.getElementById('camp-id').value=c.id;
-      document.getElementById('camp-title').value=c.title||'';
-      document.getElementById('token-name').value=c.name;
-      document.getElementById('coin-id').value=c.coinId;
-      document.getElementById('logo-url').value=c.logo;
-      document.getElementById('camp-link').value=c.campLink||'';
-      document.getElementById('reward-pool-amt').value=c.poolAmt;
-      document.getElementById('camp-type').value=c.type||'volume';
-      document.getElementById('camp-difficulty').value=c.difficulty||'';
-      document.getElementById('est-reward').value=c.estReward||'';
-      document.getElementById('max-participants').value=c.maxParticipants||'';
-      document.getElementById('rank-start').value=c.rankStart||'';
-      document.getElementById('rank-end').value=c.rankEnd||'';
-      document.getElementById('rank-elig-vol').value=c.rankEligVol||'';
-      document.getElementById('rank-min-vol').value=c.rankMinVol||'';
-      document.getElementById('total-points').value=c.totalPoints||'';
-      document.getElementById('cost-per-point').value=c.costPerPoint||'';
-      document.getElementById('min-points').value=c.minPoints||'';
-      document.getElementById('cost-per-point-nl').value=c.costPerPointNl||'';
-      document.getElementById('has-min-vol').value=c.minVolume>0?'yes':'no';
-      onMinVolChange();
-      document.getElementById('min-volume').value=c.minVolume>0?c.minVolume:'';
-      document.getElementById('start-date').value=c.start;
-      document.getElementById('end-date').value=c.end;
-      document.getElementById('reward-date').value=c.rewardDate||'';
-      document.getElementById('modal-title').innerText='Edit Campaign';
-      document.getElementById('submit-btn').innerText='Save Changes';
-      onTypeChange();openModal('admin-modal');
-    });
-  }
-  window.editCamp=editCamp;
-
-  function pad(n){return n.toString().padStart(2,'0');}
-  function fmtDiff(d){return pad(Math.floor(d/86400000))+'d '+pad(Math.floor((d%86400000)/3600000))+'h '+pad(Math.floor((d%3600000)/60000))+'m '+pad(Math.floor((d%60000)/1000))+'s';}
-  function getTimerInfo(camp){
-    var now=Date.now();
-    var start=new Date(camp.start).getTime();
-    var end=new Date(camp.end).getTime();
-    var re=camp.rewardDate?new Date(camp.rewardDate).getTime():null;
-    if(now<start){return{text:fmtDiff(start-now),state:'upcoming',label:'Starts In'};}
-    if(now<end){var diff=end-now;return{text:fmtDiff(diff),state:diff<86400000?'alert':'active',label:'Campaign Ends In'};}
-    if(re&&now<re){return{text:fmtDiff(re-now),state:'reward',label:'Reward Distribution In'};}
-    return{text:'ENDED',state:'ended',label:'Campaign Ended'};
-  }
-
-  function priceOf(coinId){return(livePrices[coinId]&&livePrices[coinId].usd)?livePrices[coinId].usd:0;}
-  function fmtUSD(n){
-    if(!n||isNaN(n)){return'$0.00';}
-    if(n>=1000000){return'$'+(n/1000000).toFixed(2)+'M';}
-    if(n>=1000){return'$'+(n/1000).toFixed(1)+'K';}
-    return'$'+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
-  }
-  function fmtToken(n){
-    if(!n||isNaN(n)){return'0';}
-    if(n>=1000){return n.toLocaleString(undefined,{maximumFractionDigits:2});}
-    if(n>=1){return n.toFixed(4);}
-    if(n>=0.0001){return n.toFixed(6);}
-    return n.toFixed(8);
-  }
-  function fmtPrice(p){
-    if(!p){return'...';}
-    if(p<0.01){return'$'+p.toFixed(6);}
-    if(p<1){return'$'+p.toFixed(4);}
-    return'$'+p.toFixed(2);
-  }
-
-  var typeLabels={
-    volume:{label:'Vol. Based',cls:'type-volume'},
-    equal:{label:'Equal Share',cls:'type-equal'},
-    ranked_fixed:{label:'Ranked',cls:'type-ranked'},
-    points_lb:{label:'Points+LB',cls:'type-points'},
-    points_nl:{label:'Points',cls:'type-points'},
-    unestimable:{label:'Unestimable',cls:'type-unestimable'},
-    points_nd:{label:'Unestimable',cls:'type-unestimable'}
+function compressImage(file,cb){
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var img=new Image();
+    img.onload=function(){
+      var canvas=document.createElement('canvas'),maxDim=500,w=img.width,h=img.height;
+      if(w>h&&w>maxDim){h=Math.round(h*maxDim/w);w=maxDim;}
+      else if(h>maxDim){w=Math.round(w*maxDim/h);h=maxDim;}
+      canvas.width=w;canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      cb(canvas.toDataURL('image/jpeg',0.45));
+    };
+    img.src=e.target.result;
   };
-  function typeBadge(t){var i=typeLabels[t]||typeLabels.volume;return'<span class="type-badge '+i.cls+'">'+i.label+'</span>';}
-  function diffBadge(d){
-    if(!d){return'';}
-    var cls=d==='Easy'?'diff-easy':d==='Medium'?'diff-medium':d==='Very Hard'?'diff-vhard':'diff-hard';
-    return'<span class="diff-badge '+cls+'">'+d+'</span>';
-  }
+  reader.readAsDataURL(file);
+}
 
-  function calcReward(camp){
-    var j=userData.joined[camp.id];
-    if(!j){return null;}
-    var p=priceOf(camp.coinId),t=camp.type||'volume';
-    if(t==='volume'){var en=parseFloat(camp.estReward)||0,tok=(j.volume/1000)*en;return{tokens:tok,usd:tok*p,canCalc:true,pointsCost:0};}
-    if(t==='equal'){var mp=parseFloat(camp.maxParticipants)||1,tok2=camp.poolAmt/mp;var minV=camp.minVolume||0,rate=j.bnb?0.00075:0.001;return{tokens:tok2,usd:tok2*p,canCalc:true,minVol:minV,feeCost:minV*rate,pointsCost:0};}
-    if(t==='ranked_fixed'){
-      var rs=parseFloat(camp.rankStart)||1,re=parseFloat(camp.rankEnd)||1;
-      var count=Math.max(re-rs+1,1),tok3=camp.poolAmt/count;
-      var eligVol=camp.rankEligVol||0,rankVol=camp.rankMinVol||0;
-      var rrate=j.bnb?0.00075:0.001;var userVol=j.volume||0;
-      var inRank=userVol>=rankVol&&rankVol>0,eligible=userVol>=eligVol;
-      return{tokens:tok3,usd:tok3*p,canCalc:true,rankStart:rs,rankEnd:re,eligVol:eligVol,rankMinVol:rankVol,inRank:inRank,eligible:eligible,feeCost:rankVol>0?rankVol*rrate:eligVol*rrate,pointsCost:0};
-    }
-    if(t==='points_lb'){var tp=parseFloat(camp.totalPoints)||1,userPts=j.points||0;var tok4=userPts>0?(userPts/tp)*camp.poolAmt:0;var cpp=parseFloat(camp.costPerPoint)||0;return{tokens:tok4,usd:tok4*p,canCalc:true,pointsCost:userPts*cpp};}
-    if(t==='points_nl'){var minPts=parseFloat(camp.minPoints)||0,cpp2=parseFloat(camp.costPerPointNl)||0;return{tokens:null,usd:null,canCalc:false,isPointsNl:true,minPoints:minPts,costPerPt:cpp2,minCost:minPts*cpp2,pointsCost:0};}
-    return{tokens:null,usd:null,canCalc:false,pointsCost:0};
-  }
-
-  function getBalance(){
-    var totalReward=0,totalFee=0,cnt=0;
-    for(var i=0;i<campaigns.length;i++){
-      var c=campaigns[i];
-      if(!isJoined(c.id)||!isCampActive(c)){continue;}
-      var j=userData.joined[c.id],r=calcReward(c),t=c.type||'volume';
-      if(r&&r.usd!==null){
-        if(t==='ranked_fixed'){if(r.inRank){totalReward+=r.usd;cnt++;}}
-        else{totalReward+=r.usd;cnt++;}
-      }
-      if(t==='volume'){totalFee+=(j.volume||0)*(j.bnb?0.00075:0.001);}
-      else if((t==='equal'||t==='ranked_fixed')&&r&&r.feeCost){totalFee+=r.feeCost;}
-      else if(t==='points_lb'&&r&&r.pointsCost){totalFee+=r.pointsCost;}
-    }
-    return{net:totalReward-totalFee,totalReward:totalReward,totalFee:totalFee,cnt:cnt};
-  }
-
-  function showDetails(enc){
-    var camp=JSON.parse(decodeURIComponent(enc));
-    detailCampId=camp.id;
-    document.getElementById('det-logo').src=camp.logo;
-    document.getElementById('det-name').innerText=camp.name;
-    var titleEl=document.getElementById('det-title');
-    if(camp.title){titleEl.innerText=camp.title;titleEl.style.display='block';}else{titleEl.style.display='none';}
-    document.getElementById('det-type-badge').innerHTML=typeBadge(camp.type||'volume')+(camp.difficulty?' '+diffBadge(camp.difficulty):'');
-    var p=priceOf(camp.coinId);
-    document.getElementById('det-price').innerText=p?fmtPrice(p):'Loading...';
-    var fmt={dateStyle:'medium',timeStyle:'short',timeZone:userTZ};
-    document.getElementById('det-start').innerText=new Date(camp.start).toLocaleString('en-US',fmt);
-    document.getElementById('det-end').innerText=new Date(camp.end).toLocaleString('en-US',fmt);
-    var rdr=document.getElementById('det-reward-row');
-    if(camp.rewardDate){rdr.style.display='flex';document.getElementById('det-reward-date').innerText=new Date(camp.rewardDate).toLocaleString('en-US',fmt);}
-    else{rdr.style.display='none';}
-    var pu=p?camp.poolAmt*p:0;
-    document.getElementById('det-pool').innerHTML=camp.poolAmt.toLocaleString()+' '+camp.name+(pu?'<span class="sub">approx '+fmtUSD(pu)+'</span>':'');
-    var t=camp.type||'volume',estEl=document.getElementById('det-est'),estRow=document.getElementById('det-est-row');
-    if(t==='volume'){var en=parseFloat(camp.estReward),eu=p&&!isNaN(en)?fmtUSD(en*p):null;estEl.innerHTML=en+' '+camp.name+(eu?'<span class="sub">approx '+eu+' per $1K Vol</span>':'');estRow.style.display='flex';}
-    else if(t==='equal'){estEl.innerHTML=fmtToken(camp.poolAmt/(camp.maxParticipants||1))+' '+camp.name+' each<span class="sub">'+(camp.maxParticipants||'?')+' participants'+(camp.minVolume?' | Min vol: $'+camp.minVolume.toLocaleString():'')+' </span>';estRow.style.display='flex';}
-    else if(t==='ranked_fixed'){var cnt2=Math.max((camp.rankEnd||1)-(camp.rankStart||1)+1,1);estEl.innerHTML=fmtToken(camp.poolAmt/cnt2)+' '+camp.name+' each<span class="sub">Rank '+(camp.rankStart||1)+' to '+(camp.rankEnd||1)+(camp.rankEligVol?' | Elig. vol: $'+camp.rankEligVol.toLocaleString():'')+(camp.rankMinVol?' | Est. rank vol: $'+camp.rankMinVol.toLocaleString():'')+' </span>';estRow.style.display='flex';}
-    else if(t==='points_lb'){estEl.innerHTML='Points-based<span class="sub">Total LB pts: '+((camp.totalPoints||0).toLocaleString())+'</span>';estRow.style.display='flex';}
-    else if(t==='points_nl'){estEl.innerHTML='Points (no leaderboard)<span class="sub">Min pts: '+(camp.minPoints||'?')+(camp.costPerPointNl?' | Cost/pt: $'+camp.costPerPointNl:'')+'</span>';estRow.style.display='flex';}
-    else{estRow.style.display='none';}
-    // Official link
-    var owrap=document.getElementById('det-official-wrap');
-    if(camp.campLink){
-      owrap.innerHTML='<a href="'+camp.campLink+'" target="_blank" rel="noopener" class="det-official-link">'
-        +'<svg viewBox="0 0 20 20" style="width:14px;height:14px;fill:currentColor;flex-shrink:0"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>'
-        +' View Official Campaign Page</a>';
-    }else{owrap.innerHTML='';}
-    updateJoinBtn(camp.id);
-    openModal('details-modal');
-    updateDetTimer(camp);
-  }
-  window.showDetails=showDetails;
-
-  function updateDetTimer(camp){
-    var info=getTimerInfo(camp),el=document.getElementById('det-timer');
-    el.innerText=info.text;
-    el.className='det-timer state-'+(info.state==='alert'?'active':info.state);
-    document.getElementById('det-timer-label').innerText=info.label;
-  }
-
-  function joinBtn(id){
-    var j=isJoined(id);
-    return'<button class="btn-join btn-join-sm'+(j?' joined':'')+'" onclick="toggleJoin(\''+id+'\',event)">'+(j?'✓ Joined':'+ Join')+'</button>';
-  }
-  function adminBtns(id){
-    if(!isAdmin){return'';}
-    return'<div class="admin-controls"><button class="btn-edit" onclick="editCamp(\''+id+'\',event)">Edit</button><button class="btn-del" onclick="deleteCamp(\''+id+'\',event)">Del</button></div>';
-  }
-
-  function buildHeroCard(camp,isUrgent){
-    var p=priceOf(camp.coinId),info=getTimerInfo(camp),key=isUrgent?'hu':'hf';
-    var enc=encodeURIComponent(JSON.stringify(camp));
-    return'<div class="'+(isUrgent?'hero-card urgent':'hero-card')+'" onclick="showDetails(\''+enc+'\')">'
-      +(isUrgent?'<div class="urgent-badge">Ending Soon</div>':'')
-      +'<div class="hero-top"><img src="'+camp.logo+'" class="hero-logo" onerror="this.style.background=\'#2b3139\'">'
-      +'<div><div class="hero-name">'+camp.name+'</div>'+typeBadge(camp.type||'volume')+'</div></div>'
-      +'<div class="hero-price">'+fmtPrice(p)+'</div>'
-      +'<div class="hero-pool">Total Pool: <strong>'+camp.poolAmt.toLocaleString()+' '+camp.name+'</strong><br>'
-      +'<span class="pool-usd">'+(p?'approx '+fmtUSD(camp.poolAmt*p):'')+'</span></div>'
-      +'<div class="hero-timer-wrap"><div class="hero-timer-label" id="lbl-'+camp.id+'-'+key+'">'+info.label+'</div>'
-      +'<div class="hero-timer state-'+(info.state==='alert'?'active':info.state)+'" id="tmr-'+camp.id+'-'+key+'">'+info.text+'</div></div>'
-      +joinBtn(camp.id)+'</div>';
-  }
-
-  function buildCarousel(camps,isUrgent,prefix){
-    if(!camps.length){return'';}
-    if(camps.length===1){return'<div class="home-grid">'+buildHeroCard(camps[0],isUrgent)+'</div>';}
-    var html='<div class="carousel-wrap"><div class="carousel-track" id="'+prefix+'-trk">';
-    for(var i=0;i<camps.length;i++){html+='<div class="carousel-slide"><div class="home-grid">'+buildHeroCard(camps[i],isUrgent)+'</div></div>';}
-    html+='</div><div class="carousel-dots">';
-    for(var j=0;j<camps.length;j++){html+='<button class="c-dot'+(j===0?' on-r':'')+'" id="'+prefix+'-d'+j+'" onclick="goSlide(\''+prefix+'\','+j+')"></button>';}
-    html+='</div></div>';
-    return html;
-  }
-
-  function buildListCard(camp,rankIdx,grayed){
-    grayed=grayed||false;
-    var p=priceOf(camp.coinId),info=getTimerInfo(camp);
-    var gs=grayed?'filter:grayscale(1);opacity:0.45;':'',gt=grayed?'color:#555!important':'';
-    var enc=encodeURIComponent(JSON.stringify(camp));
-    var sc=grayed?'state-ended':(info.state==='alert'?'state-alert':'state-'+info.state);
-    // difficulty badge only in the middle column (hidden on mobile via CSS)
-    var diffCol=(!grayed&&camp.difficulty)?diffBadge(camp.difficulty):'';
-    return'<div class="list-card" style="'+gs+'" onclick="showDetails(\''+enc+'\')">'
-      +'<div class="camp-info"><img src="'+camp.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'">'
-      +'<div><div class="camp-name" style="'+gt+'">'+camp.name+'</div>'+typeBadge(camp.type||'volume')+'</div></div>'
-      +'<div class="camp-price" style="'+gt+'">'+fmtPrice(p)+'</div>'
-      +'<div class="reward-mid">'+diffCol+'</div>'
-      +'<div class="reward-pool"><div class="pool-amt" style="'+gt+'">'+camp.poolAmt.toLocaleString()+' '+camp.name+'</div>'
-      +'<div class="pool-usd">'+(p?'approx '+fmtUSD(camp.poolAmt*p):'...')+'</div></div>'
-      +'<div><span class="timer-state-label">'+info.label+'</span>'
-      +'<span class="camp-timer '+sc+'" id="tmr-'+camp.id+'-r">'+info.text+'</span></div>'
-      +joinBtn(camp.id)+adminBtns(camp.id)+'</div>';
-  }
-
-  function dividerHtml(label,color){
-    return'<div class="section-divider"><span style="color:'+color+'">'+label+'</span></div>';
-  }
-
-  function renderViews(){
-    var empty='<div class="empty-state"><h3>No Campaigns Yet</h3><p>Click "+ Add Campaign" to get started.</p></div>';
-    if(!campaigns.length){
-      document.getElementById('home-featured').innerHTML=empty;
-      document.getElementById('home-urgent').innerHTML='';
-      document.getElementById('reward-content').innerHTML=empty;
-      return;
-    }
-    var nowMs=Date.now(),i,c;
-    var running=[],rewPending=[],fullyEnded=[];
-    for(i=0;i<campaigns.length;i++){
-      c=campaigns[i];
-      var endT=new Date(c.end).getTime(),reT=c.rewardDate?new Date(c.rewardDate).getTime():null;
-      if(endT>nowMs){running.push(c);}
-      else if(reT&&reT>nowMs){rewPending.push(c);}
-      else{fullyEnded.push(c);}
-    }
-    rewPending.sort(function(a,b){return new Date(a.rewardDate)-new Date(b.rewardDate);});
-    function byVal(arr){return arr.slice().sort(function(a,b){return(b.poolAmt*(priceOf(b.coinId)||0))-(a.poolAmt*(priceOf(a.coinId)||0));});}
-
-    // Reward Board (merged)
-    var runByVal=byVal(running);
-    var rHtml=runByVal.length?runByVal.map(function(c2,i2){return buildListCard(c2,i2,false);}).join(''):'<div class="empty-state"><h3>No Active Campaigns</h3></div>';
-    if(rewPending.length){
-      rHtml+=dividerHtml('⏳ Awaiting Reward Distribution','var(--green)');
-      rHtml+=rewPending.map(function(c2,i2){return buildListCard(c2,i2+runByVal.length,false);}).join('');
-    }
-    if(fullyEnded.length){
-      rHtml+=dividerHtml('✓ Ended Campaigns','var(--gray)');
-      rHtml+=byVal(fullyEnded).map(function(c2,i2){return buildListCard(c2,i2,true);}).join('');
-    }
-    document.getElementById('reward-content').innerHTML=rHtml||empty;
-
-    // Home
-    if(!running.length){
-      document.getElementById('home-featured').innerHTML='<div class="empty-state"><h3>No Active Campaigns</h3></div>';
-      document.getElementById('home-urgent').innerHTML='';
-      return;
-    }
-    var topTwo=byVal(running).slice(0,2);
-    document.getElementById('home-featured').innerHTML='<div class="home-grid">'+topTwo.map(function(c2){return buildHeroCard(c2,false);}).join('')+'</div>';
-    urgCamps=running.slice().sort(function(a,b){return new Date(a.end)-new Date(b.end);}).slice(0,3);
-    urgIdx=0;
-    document.getElementById('home-urgent').innerHTML=buildCarousel(urgCamps,true,'urg');
-  }
-
-  // ===================== DASHBOARD =====================
-  function buildDashCard(camp){
-    var j=userData.joined[camp.id];
-    if(!j){return'';}
-    var p=priceOf(camp.coinId),info=getTimerInfo(camp),r=calcReward(camp),t=camp.type||'volume';
-    var sc=info.state==='alert'?'state-alert':'state-'+info.state;
-    var bnbOn=j.bnb||false,isExp=j.expanded!==false;
-    var sumTxt='Not set',sumCls='dash-camp-summary no-data';
-    if(r&&r.canCalc&&r.tokens!==null&&r.tokens>0){
-      if(t==='ranked_fixed'){sumTxt=r.inRank?fmtToken(r.tokens)+' '+camp.name+(p?' (approx '+fmtUSD(r.usd)+')':''):'Not in rank';sumCls=r.inRank?'dash-camp-summary':'dash-camp-summary no-data';}
-      else{sumTxt=fmtToken(r.tokens)+' '+camp.name+(p?' (approx '+fmtUSD(r.usd)+')':'');sumCls='dash-camp-summary';}
-    }
-    var bodyHtml='';
-    if(t==='volume'&&r&&r.canCalc){
-      bodyHtml='<div class="dash-vol-row">'
-        +'<div class="dash-field"><label>Your Trade Volume (USD)</label>'
-        +'<input type="number" class="vol-input" placeholder="e.g. 5000" value="'+(j.volume||'')+'" oninput="updateVol(\''+camp.id+'\',this.value)" min="0"></div>'
-        +'<div class="dash-field" style="max-width:155px"><label>BNB Fee</label>'
-        +'<div class="bnb-wrap" style="padding-top:8px"><label class="toggle-switch">'
-        +'<input type="checkbox" '+(bnbOn?'checked':'')+' onchange="updateBnb(\''+camp.id+'\',this.checked)">'
-        +'<div class="toggle-track"></div><div class="toggle-thumb"></div></label>'
-        +'<span class="bnb-txt">'+(bnbOn?'BNB On':'BNB Off')+'</span></div></div></div>'
-        +'<div class="dash-reward" id="dreward-'+camp.id+'">'
-        +'<span class="dr-label">Est. Reward</span>'
-        +'<span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+camp.name:'Enter volume above')+'</span>'
-        +(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';
-    }else if(t==='ranked_fixed'&&r&&r.canCalc){
-      var rrate2=bnbOn?0.00075:0.001,userVol2=j.volume||0,estFee=userVol2*rrate2;
-      bodyHtml='<div class="dash-info-row">Rank <strong>'+r.rankStart+'</strong> to <strong>'+r.rankEnd+'</strong>'
-        +(r.eligVol?' | Min eligible vol: <strong>$'+r.eligVol.toLocaleString()+'</strong>':'')
-        +(r.rankMinVol?' | Est. rank entry vol: <strong>$'+r.rankMinVol.toLocaleString()+'</strong>':'')+'</div>'
-        +'<div class="dash-vol-row">'
-        +'<div class="dash-field"><label>Your Trade Volume (USD)</label>'
-        +'<input type="number" class="vol-input" placeholder="e.g. 10000" value="'+(j.volume||'')+'" oninput="updateVol(\''+camp.id+'\',this.value)" min="0"></div>'
-        +'<div class="dash-field" style="max-width:155px"><label>BNB Fee</label>'
-        +'<div class="bnb-wrap" style="padding-top:8px"><label class="toggle-switch">'
-        +'<input type="checkbox" '+(bnbOn?'checked':'')+' onchange="updateBnb(\''+camp.id+'\',this.checked)">'
-        +'<div class="toggle-track"></div><div class="toggle-thumb"></div></label>'
-        +'<span class="bnb-txt">'+(bnbOn?'BNB On':'BNB Off')+'</span></div></div></div>'
-        +(userVol2>0?'<div class="dash-reward"><span class="dr-label">Trading Fee</span><span class="dr-val" style="color:var(--red)">-'+fmtUSD(estFee)+'</span></div>':'')
-        +(userVol2>0&&r.inRank?'<div class="dash-reward" style="margin-top:6px"><span class="dr-label">Est. Reward (in rank)</span><span class="dr-val">'+fmtToken(r.tokens)+' '+camp.name+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>'
-          :(userVol2>0&&!r.inRank&&r.rankMinVol>0?'<div class="dash-warn">Your volume is below estimated rank entry (~$'+r.rankMinVol.toLocaleString()+'). Reward not included in balance.</div>':''));
-    }else if(t==='equal'&&r&&r.canCalc){
-      var fc2=(camp.minVolume||0)*(bnbOn?0.00075:0.001);
-      bodyHtml='<div class="dash-info-row">Participants: <strong>'+(camp.maxParticipants||1).toLocaleString()+'</strong>'
-        +(camp.minVolume?' | Min vol: <strong>$'+camp.minVolume.toLocaleString()+'</strong> <span style="color:var(--red)">(fee approx '+fmtUSD(fc2)+')</span>':'')+'</div>'
-        +'<div class="dash-vol-row"><div class="dash-field" style="max-width:155px"><label>BNB Fee</label>'
-        +'<div class="bnb-wrap" style="padding-top:8px"><label class="toggle-switch">'
-        +'<input type="checkbox" '+(bnbOn?'checked':'')+' onchange="updateBnb(\''+camp.id+'\',this.checked)">'
-        +'<div class="toggle-track"></div><div class="toggle-thumb"></div></label>'
-        +'<span class="bnb-txt">'+(bnbOn?'BNB On':'BNB Off')+'</span></div></div></div>'
-        +'<div class="dash-reward"><span class="dr-label">Fixed Reward</span>'
-        +'<span class="dr-val">'+fmtToken(r.tokens)+' '+camp.name+'</span>'
-        +(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';
-    }else if(t==='points_lb'&&r){
-      bodyHtml='<div class="dash-info-row">Total LB Points: <strong>'+(camp.totalPoints||1).toLocaleString()+'</strong>'
-        +(camp.costPerPoint?' | Cost/pt: <strong style="color:var(--red)">$'+camp.costPerPoint+'</strong>':'')+'</div>'
-        +'<div class="dash-vol-row"><div class="dash-field"><label>Your Points</label>'
-        +'<input type="number" class="vol-input" placeholder="e.g. 1500" value="'+(j.points||'')+'" oninput="updatePts(\''+camp.id+'\',this.value)" min="0"></div></div>'
-        +'<div class="dash-reward" id="dreward-'+camp.id+'">'
-        +'<span class="dr-label">Est. Reward</span>'
-        +'<span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+camp.name:'Enter points above')+'</span>'
-        +(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')
-        +(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'')+'</div>';
-    }else if(r&&r.isPointsNl){
-      bodyHtml='<div class="dash-info-row">Min Points: <strong>'+r.minPoints.toLocaleString()+'</strong>'
-        +(r.costPerPt?' | Cost/pt: <strong style="color:var(--red)">$'+r.costPerPt+'</strong>':'')
-        +(r.minCost?' | Min cost approx <strong style="color:var(--red)">'+fmtUSD(r.minCost)+'</strong>':'')+'</div>'
-        +'<div class="dash-note">Points-based but leaderboard unavailable.</div>';
-    }else{
-      bodyHtml='<div class="dash-note">Reward cannot be estimated — distribution is random or unannounced.</div>';
-    }
-    return'<div class="dash-camp" id="dcard-'+camp.id+'">'
-      +'<div class="dash-camp-header" onclick="toggleExpand(\''+camp.id+'\')">'
-      +'<div class="dash-camp-left"><img src="'+camp.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'">'
-      +'<div><div class="camp-name">'+camp.name+'</div>'+typeBadge(t)+'</div></div>'
-      +'<div class="dash-camp-right">'
-      +'<span id="dsummary-'+camp.id+'" class="'+sumCls+'">'+sumTxt+'</span>'
-      +'<span class="camp-timer '+sc+'" style="font-size:11px">'+info.text+'</span>'
-      +'<button class="btn-remove" onclick="toggleJoin(\''+camp.id+'\',event)">Remove</button>'
-      +'<button class="btn-expand '+(isExp?'open':'')+'" id="dexpand-'+camp.id+'" onclick="event.stopPropagation();toggleExpand(\''+camp.id+'\')">&#9660;</button>'
-      +'</div></div>'
-      +'<div class="dash-camp-body '+(isExp?'':'collapsed')+'" id="dbody-'+camp.id+'">'+bodyHtml+'</div>'
-      +'</div>';
-  }
-
-  function renderDashboard(){
-    var i,c;
-    var activeJ=[],endedJ=[];
-    for(i=0;i<campaigns.length;i++){
-      c=campaigns[i];
-      if(!isJoined(c.id)){continue;}
-      if(isCampActive(c)){activeJ.push(c);}else{endedJ.push(c);}
-    }
-    var bal=getBalance(),isLoss=bal.net<0;
-    var nc=isLoss?'var(--red)':'var(--green)';
-    document.getElementById('dash-balance').innerHTML=
-      '<div class="balance-card" style="background:linear-gradient(135deg,'+(isLoss?'#1f0f0f,#200d0d':'#0f1f15,#132018')+');border-color:'+(isLoss?'rgba(246,70,93,0.4)':'rgba(14,203,129,0.4)')+'\">'
-      +'<div class="balance-label">Est. Net Profit (Reward minus Fees)</div>'
-      +'<div class="balance-net" style="color:'+nc+';text-shadow:0 0 22px '+(isLoss?'rgba(246,70,93,0.4)':'var(--gglow)')+'\">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div>'
-      +'<div class="balance-sub">'+activeJ.length+' active | '+bal.cnt+' calculable</div>'
-      +'<div class="balance-rows">'
-      +'<div class="bal-row"><div class="bal-row-label">Total Reward</div><div class="bal-row-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</div></div>'
-      +'<div class="bal-row"><div class="bal-row-label">Total Fees</div><div class="bal-row-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</div></div>'
-      +'<div class="bal-row"><div class="bal-row-label">Net</div><div class="bal-row-val" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div></div>'
-      +'</div></div>';
-    var html='';
-    if(activeJ.length===0&&endedJ.length===0){
-      html='<div class="empty-state" style="margin-bottom:22px"><h3>No Campaigns Joined</h3><p>Click "+ Join" on any campaign to track your rewards here.</p></div>';
-    }else{
-      if(activeJ.length>0){
-        html+='<div class="dash-header-row"><h2 style="margin-bottom:0">Joined Campaigns ('+activeJ.length+')</h2>'
-          +'<button class="dash-all-toggle" id="btn-all-expand" onclick="toggleAllExpand()">&#9650; Collapse All</button></div>';
-        for(i=0;i<activeJ.length;i++){html+=buildDashCard(activeJ[i]);}
-      }else{html+='<div class="empty-state" style="margin-bottom:22px"><h3>No Active Joined Campaigns</h3></div>';}
-      if(endedJ.length>0){
-        html+=dividerHtml('Completed Campaigns','var(--gray)');
-        html+='<div style="display:flex;justify-content:flex-end;margin-bottom:10px"><button class="dash-all-toggle" id="btn-ended-expand" onclick="toggleAllEnded()">&#9660; Expand All</button></div>';
-        html+='<div id="ended-collapsed-row" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;align-items:center">';
-        for(i=0;i<endedJ.length;i++){html+='<img src="'+endedJ[i].logo+'" title="'+endedJ[i].name+'" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1px solid #333;filter:grayscale(1);opacity:0.5">';}
-        html+='<span style="color:var(--gray);font-size:12px;margin-left:4px">'+endedJ.length+' completed</span></div>';
-        html+='<div id="ended-expanded-list" style="display:none">';
-        for(i=0;i<endedJ.length;i++){
-          var ec=endedJ[i],er=calcReward(ec),ep=priceOf(ec.coinId);
-          var earnedUsd=(er&&er.canCalc&&er.tokens&&er.tokens>0&&ep)?er.usd:0;
-          html+='<div class="dash-camp" style="filter:grayscale(1);opacity:0.5">'
-            +'<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 17px;gap:10px;flex-wrap:wrap">'
-            +'<div style="display:flex;align-items:center;gap:10px"><img src="'+ec.logo+'" class="camp-logo">'
-            +'<div><div class="camp-name">'+ec.name+'</div>'+typeBadge(ec.type||'volume')+'</div></div>'
-            +'<span style="color:var(--gray);font-size:12px;font-family:monospace">COMPLETED</span></div>'
-            +(earnedUsd>0?'<div style="text-align:center;padding:10px 17px 14px;border-top:1px solid #2b3139"><div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:4px">Earned</div><div style="font-family:Courier New,monospace;font-size:22px;font-weight:800;color:#888">'+fmtUSD(earnedUsd)+'</div></div>':'')
-            +'</div>';
-        }
-        html+='</div>';
-      }
-    }
-    document.getElementById('dash-joined').innerHTML=html;
-    renderCalc();
-  }
-
-  function renderCalc(){
-    var calcEl=document.getElementById('dash-calc');
-    if(!calcEl){return;}
-    var bal=getBalance(),totalVol=0,bnbVol=0;
-    for(var i=0;i<campaigns.length;i++){var j=userData.joined[campaigns[i].id];if(!j){continue;}totalVol+=j.volume||0;if(j.bnb){bnbVol+=j.volume||0;}}
-    var bnbPct=totalVol>0?Math.round((bnbVol/totalVol)*100):0;
-    var potSave=(totalVol-bnbVol)*0.001*0.25;
-    calcEl.innerHTML='<div class="calc-section"><h2 style="margin-bottom:14px">Cost Calculator</h2>'
-      +'<div class="calc-tabs"><button class="calc-tab active" onclick="switchTab(\'auto\',this)">Auto Summary</button>'
-      +'<button class="calc-tab" onclick="switchTab(\'manual\',this)">Manual What-If</button></div>'
-      +'<div id="calc-auto" class="calc-panel active"><div class="calc-card">'
-      +'<div class="calc-row"><span class="calc-key">Total Trade Volume</span><span class="calc-val">'+fmtUSD(totalVol)+'</span></div>'
-      +'<div class="calc-row"><span class="calc-key">BNB Fee Used</span><span class="calc-val" style="color:var(--yellow)">'+fmtUSD(bnbVol)+' ('+bnbPct+'%)</span></div>'
-      +'<div class="calc-row"><span class="calc-key">Total Trading Fee</span><span class="calc-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</span></div>'
-      +'<div class="calc-row"><span class="calc-key">Total Est. Reward</span><span class="calc-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</span></div>'
-      +'<div class="calc-row"><span class="calc-key" style="font-weight:700">Net Profit / Loss</span><span class="calc-val" style="color:'+(bal.net>=0?'var(--green)':'var(--red)')+';font-size:16px">'+(bal.net>=0?'+':'-')+fmtUSD(Math.abs(bal.net))+'</span></div>'
-      +'</div>'
-      +(bnbPct<100&&potSave>0.001?'<div class="savings-hint" style="background:var(--ydim);border-color:rgba(252,213,53,0.3);color:var(--yellow)">Tip: BNB on all trades saves you <strong>'+fmtUSD(potSave)+'</strong> more.</div>':'')
-      +(bnbPct===100&&totalVol>0?'<div class="savings-hint" style="background:var(--gdim);border-color:rgba(14,203,129,0.3);color:var(--green)">Using BNB on 100% of trades!</div>':'')
-      +'</div><div id="calc-manual" class="calc-panel"><div class="calc-card">'
-      +'<div class="form-group" style="margin-bottom:12px"><label style="display:block;margin-bottom:4px;color:var(--gray);font-size:12px;font-weight:600">Trade Volume (USD)</label>'
-      +'<input type="number" class="vol-input" id="m-vol" placeholder="e.g. 10000" value="'+(totalVol||'')+'" oninput="calcManual()"></div>'
-      +'<div class="bnb-wrap" style="padding:10px 0;margin-bottom:12px;border-bottom:1px solid var(--border)">'
-      +'<label class="toggle-switch"><input type="checkbox" id="m-bnb" onchange="calcManual()"><div class="toggle-track"></div><div class="toggle-thumb"></div></label>'
-      +'<span class="bnb-txt">BNB Fee Discount (25% off)</span></div>'
-      +'<div class="calc-row" style="padding:7px 0"><span class="calc-key">Fee Rate</span><span class="calc-val" id="m-rate">0.100%</span></div>'
-      +'<div class="calc-row" style="padding:7px 0"><span class="calc-key">Trading Fee</span><span class="calc-val" style="color:var(--red)" id="m-fee">-</span></div>'
-      +'<div class="calc-row" style="padding:7px 0;border-bottom:none"><span class="calc-key">If BNB, you save</span><span class="calc-val" style="color:var(--yellow)" id="m-save">-</span></div>'
-      +'</div></div></div>';
-  }
-
-  function switchTab(tab,btn){
-    document.querySelectorAll('.calc-tab').forEach(function(b){b.classList.remove('active');});
-    btn.classList.add('active');
-    var a=document.getElementById('calc-auto'),m=document.getElementById('calc-manual');
-    if(a){a.classList.toggle('active',tab==='auto');}
-    if(m){m.classList.toggle('active',tab==='manual');}
-  }
-  window.switchTab=switchTab;
-
-  function calcManual(){
-    var vEl=document.getElementById('m-vol'),bEl=document.getElementById('m-bnb');
-    var vol=vEl?(parseFloat(vEl.value)||0):0,bnb=bEl?bEl.checked:false;
-    var fee=vol*(bnb?0.00075:0.001),save=vol*0.001*0.25;
-    var r=document.getElementById('m-rate'),f=document.getElementById('m-fee'),s=document.getElementById('m-save');
-    if(r){r.innerText=bnb?'0.075% (BNB)':'0.100%';}
-    if(f){f.innerText=vol>0?'-'+fmtUSD(fee):'-';}
-    if(s){s.innerText=vol>0&&!bnb?fmtUSD(save):(bnb?'Already using BNB':'-');}
-  }
-  window.calcManual=calcManual;
-
-  // ===================== CHAT =====================
-  function escHtml(s){
-    if(!s){return'';}
-    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function initChat(){
-    if(chatInitialized){return;}
-    chatInitialized=true;
-    // Delete messages older than 30 days
-    var cutoff=Date.now()-(30*24*60*60*1000);
-    db.ref('chat/messages').orderByChild('timestamp').endAt(cutoff).once('value',function(snap){
-      snap.forEach(function(child){child.ref.remove();});
-    });
-    // Listen
-    db.ref('chat/messages').orderByChild('timestamp').limitToLast(200).on('value',function(snap){
-      chatMsgMap={};
-      var msgs=[];
-      snap.forEach(function(child){var v=child.val();chatMsgMap[v.id]=v;msgs.push(v);});
-      renderChat(msgs);
-    });
-  }
-
-  function renderChat(msgs){
-    var container=document.getElementById('chat-messages');
-    if(!container){return;}
-    var prevScrollTop=container.scrollTop;
-    var prevScrollHeight=container.scrollHeight;
-    var wasAtBottom=prevScrollTop+container.clientHeight>=prevScrollHeight-60;
-    if(!msgs||!msgs.length){
-      container.innerHTML='<div style="text-align:center;color:var(--gray);padding:40px 20px"><div style="font-size:32px;margin-bottom:10px">👋</div><div>No messages yet.</div><div style="font-size:12px;margin-top:6px">Be the first to say hello!</div></div>';
-      return;
-    }
-    var html='';
-    var today=new Date().toDateString();
-    var lastDate='';
-    for(var i=0;i<msgs.length;i++){
-      var msg=msgs[i];
-      var d=new Date(msg.timestamp);
-      var dStr=d.toDateString();
-      if(dStr!==lastDate){
-        lastDate=dStr;
-        var dateLabel=dStr===today?'Today':d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:d.getFullYear()!==new Date().getFullYear()?'numeric':undefined});
-        html+='<div class="chat-notice">'+dateLabel+'</div>';
-      }
-      html+=buildMsgHtml(msg);
-    }
-    container.innerHTML=html;
-    if(wasAtBottom){container.scrollTop=container.scrollHeight;}
-  }
-
-  function buildMsgHtml(msg){
-    var isMe=msg.uid===myId;
-    var timeStr=new Date(msg.timestamp).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
-    var safeId=msg.id.replace(/[^a-zA-Z0-9]/g,'');
-    var html='<div class="chat-msg '+(isMe?'chat-msg-me':'chat-msg-other')+'" id="cm-'+safeId+'">';
-    if(!isMe){html+='<div class="chat-avatar">'+escHtml(msg.emoji)+'</div>';}
-    html+='<div class="chat-bubble">';
-    if(msg.replyTo){html+='<div class="chat-reply-quote">'+escHtml(msg.replyTo.emoji)+' '+escHtml((msg.replyTo.text||'').slice(0,60))+'</div>';}
-    html+='<div class="chat-text">'+escHtml(msg.text)+'</div>';
-    html+='<div class="chat-meta">'+timeStr
-      +' <button class="chat-reply-btn" data-msgid="'+safeId+'" onclick="replyToMsg(\''+safeId+'\')">↩ Reply</button>'
-      +'</div>';
-    html+='</div>';
-    if(isMe){html+='<div class="chat-avatar">'+escHtml(msg.emoji)+'</div>';}
-    html+='</div>';
-    return html;
-  }
-
-  function replyToMsg(safeId){
-    // Find original msg id from DOM
-    var el=document.getElementById('cm-'+safeId);
-    if(!el){return;}
-    // Find msg in map
-    var found=null;
-    var keys=Object.keys(chatMsgMap);
-    for(var k=0;k<keys.length;k++){
-      var id=keys[k];
-      var safeCheck=id.replace(/[^a-zA-Z0-9]/g,'');
-      if(safeCheck===safeId){found=chatMsgMap[id];break;}
-    }
-    if(!found){return;}
-    replyingTo={id:found.id,text:found.text,emoji:found.emoji};
-    var ind=document.getElementById('reply-indicator');
-    var rit=document.getElementById('reply-indicator-text');
-    if(ind){ind.style.display='flex';}
-    if(rit){rit.innerText=found.emoji+' '+found.text.slice(0,80);}
-    var inp=document.getElementById('chat-input');
-    if(inp){inp.focus();}
-  }
-  window.replyToMsg=replyToMsg;
-
-  function cancelReply(){
-    replyingTo=null;
-    var ind=document.getElementById('reply-indicator');
-    if(ind){ind.style.display='none';}
-  }
-  window.cancelReply=cancelReply;
-
-  function sendMsg(){
-    var input=document.getElementById('chat-input');
-    if(!input){return;}
-    var text=input.value.trim();
-    if(!text){return;}
+function handleImgUpload(e){
+  var file=e.target.files[0];if(!file)return;
+  if(file.size>10*1024*1024){alert('Image too large. Please use an image under 10MB.');return;}
+  compressImage(file,function(dataUrl){
     var id=Date.now().toString(36)+Math.random().toString(36).substr(2,5);
-    var msg={id:id,text:text,emoji:myEmoji,uid:myId,timestamp:Date.now()};
-    if(replyingTo){msg.replyTo={id:replyingTo.id,text:replyingTo.text,emoji:replyingTo.emoji};}
+    var msg={id:id,emoji:myEmoji,uid:myId,timestamp:Date.now(),imageData:dataUrl};
     db.ref('chat/messages/'+id).set(msg);
-    input.value='';
-    cancelReply();
-    // Close emoji picker
-    var picker=document.getElementById('emoji-picker');
-    if(picker){picker.style.display='none';}
-  }
-  window.sendMsg=sendMsg;
+    scrollChatBottom();
+  });
+  e.target.value='';
+}
+window.handleImgUpload=handleImgUpload;
 
-  function chatKeydown(e){
-    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}
-  }
-  window.chatKeydown=chatKeydown;
+function initChat(){
+  if(chatInit)return;
+  chatInit=true;
+  // Delete old messages (30 days)
+  var cutoff=Date.now()-(30*24*60*60*1000);
+  db.ref('chat/messages').orderByChild('timestamp').endAt(cutoff).once('value',function(snap){
+    snap.forEach(function(child){child.ref.remove();});
+  });
+  // Initial load
+  var loadedAt=Date.now();
+  db.ref('chat/messages').orderByChild('timestamp').limitToLast(200).once('value',function(snap){
+    var msgs=[];
+    snap.forEach(function(child){var v=child.val();chatMsgMap[v.id]=v;msgs.push(v);});
+    renderInitialChat(msgs);
+    checkNewReplies(msgs);
+    // New message listener
+    db.ref('chat/messages').orderByChild('timestamp').startAt(loadedAt).on('child_added',function(snap){
+      var msg=snap.val();
+      if(chatMsgMap[msg.id])return;
+      chatMsgMap[msg.id]=msg;
+      appendChatMsg(msg);
+      scrollChatBottom();
+    });
+    // Update listener (edits, reactions)
+    db.ref('chat/messages').on('child_changed',function(snap){
+      var msg=snap.val();chatMsgMap[msg.id]=msg;
+      updateMsgEl(msg);
+    });
+    // Delete listener
+    db.ref('chat/messages').on('child_removed',function(snap){
+      var msg=snap.val();delete chatMsgMap[msg.id];
+      var el=document.getElementById('cm-'+safeId(msg.id));
+      if(el)el.remove();
+    });
+  });
+}
 
-  function toggleEmojiPicker(){
-    var picker=document.getElementById('emoji-picker');
-    if(!picker){return;}
-    picker.style.display=picker.style.display==='flex'?'none':'flex';
-  }
-  window.toggleEmojiPicker=toggleEmojiPicker;
+function safeId(id){return id.replace(/[^a-zA-Z0-9]/g,'');}
 
-  function insertEmoji(e){
-    var input=document.getElementById('chat-input');
-    if(input){input.value+=e;input.focus();}
-    var picker=document.getElementById('emoji-picker');
-    if(picker){picker.style.display='none';}
-  }
-  window.insertEmoji=insertEmoji;
-
-  // ===================== TICK =====================
-  setInterval(function(){
-    var i,c,info,sc;
-    for(i=0;i<campaigns.length;i++){
-      c=campaigns[i];info=getTimerInfo(c);
-      sc=info.state==='alert'?'state-alert':'state-'+info.state;
-      var sufs=['hf','hu','r'];
-      for(var s=0;s<sufs.length;s++){
-        var el=document.getElementById('tmr-'+c.id+'-'+sufs[s]);
-        if(el){el.innerText=info.text;el.className=(sufs[s].charAt(0)==='h'?'hero-timer ':'camp-timer ')+sc;}
-        var lb=document.getElementById('lbl-'+c.id+'-'+sufs[s]);
-        if(lb){lb.innerText=info.label;}
-      }
+function checkNewReplies(msgs){
+  unreadReplies=[];newReplyCount=0;
+  msgs.forEach(function(msg){
+    if(msg.replyTo&&msg.replyTo.uid===myId&&msg.timestamp>lastVisit){
+      unreadReplies.push(msg.id);newReplyCount++;
     }
-    if(document.getElementById('details-modal').style.display==='flex'&&detailCampId){
-      var dc=null;
-      for(i=0;i<campaigns.length;i++){if(campaigns[i].id===detailCampId){dc=campaigns[i];break;}}
-      if(dc){updateDetTimer(dc);}
-    }
-    tickCount++;
-    if(tickCount%5===0){if(urgCamps.length>1){urgIdx=(urgIdx+1)%urgCamps.length;goSlide('urg',urgIdx);}}
-  },1000);
+  });
+  updateNotifBadge();
+  if(newReplyCount>0){
+    var bar=document.getElementById('chat-notif-bar');
+    var txt=document.getElementById('notif-bar-txt');
+    if(bar&&txt){txt.innerText='📩 '+newReplyCount+' new repl'+(newReplyCount===1?'y':'ies')+' to your messages';bar.style.display='flex';}
+  }
+  // Update lastVisit
+  localStorage.setItem('spotctr_lastVisit',Date.now().toString());
+  lastVisit=Date.now();
+}
 
-  setInterval(fetchPrices,60000);
+function updateNotifBadge(){
+  var nc=document.getElementById('nav-notif-count');
+  var fab=document.getElementById('fab-notif');
+  if(newReplyCount>0){
+    if(nc){nc.innerText=newReplyCount;nc.style.display='inline-flex';}
+    if(fab){fab.innerText=newReplyCount;fab.style.display='flex';}
+  }else{
+    if(nc)nc.style.display='none';
+    if(fab)fab.style.display='none';
+  }
+}
+
+function navigateToReply(){
+  if(!unreadReplies.length)return;
+  var id=unreadReplies[0];
+  var el=document.getElementById('cm-'+safeId(id));
+  if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='2px solid var(--yellow)';setTimeout(function(){el.style.outline='none';},2000);}
+  unreadReplies.shift();newReplyCount=Math.max(0,newReplyCount-1);
+  updateNotifBadge();
+  if(newReplyCount===0){var bar=document.getElementById('chat-notif-bar');if(bar)bar.style.display='none';}
+  else{var txt=document.getElementById('notif-bar-txt');if(txt)txt.innerText='📩 '+newReplyCount+' more repl'+(newReplyCount===1?'y':'ies');}
+}
+window.navigateToReply=navigateToReply;
+
+function renderInitialChat(msgs){
+  var container=document.getElementById('chat-messages');if(!container)return;
+  if(!msgs.length){container.innerHTML='<div style="text-align:center;color:var(--gray);padding:40px 20px"><div style="font-size:32px;margin-bottom:10px">👋</div><div>No messages yet. Say hello!</div></div>';return;}
+  var html='',lastDate='',today=new Date().toDateString();
+  msgs.forEach(function(msg){
+    var dStr=new Date(msg.timestamp).toDateString();
+    if(dStr!==lastDate){lastDate=dStr;var dl=dStr===today?'Today':new Date(msg.timestamp).toLocaleDateString('en-US',{month:'short',day:'numeric'});html+='<div class="chat-notice">'+dl+'</div>';}
+    html+=buildMsgHtml(msg);
+  });
+  container.innerHTML=html;
+  scrollChatBottom();
+}
+
+function appendChatMsg(msg){
+  var container=document.getElementById('chat-messages');if(!container)return;
+  var dStr=new Date(msg.timestamp).toDateString();
+  var lastNotice=container.querySelector('.chat-notice:last-of-type');
+  var today=new Date().toDateString();
+  if(!lastNotice||(lastNotice.innerText!=='Today'&&dStr===today)){
+    var dn=document.createElement('div');dn.className='chat-notice';dn.innerText='Today';
+    container.appendChild(dn);
+  }
+  var div=document.createElement('div');div.innerHTML=buildMsgHtml(msg);
+  var child=div.firstElementChild;
+  if(child)container.appendChild(child);
+}
+
+function updateMsgEl(msg){
+  var el=document.getElementById('cm-'+safeId(msg.id));
+  if(!el)return;
+  var newHtml=document.createElement('div');newHtml.innerHTML=buildMsgHtml(msg);
+  var newEl=newHtml.firstElementChild;
+  if(newEl)el.replaceWith(newEl);
+}
+
+function buildMsgHtml(msg){
+  var isMe=msg.uid===myId;
+  var sid=safeId(msg.id);
+  var timeStr=new Date(msg.timestamp).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  var html='<div class="chat-msg '+(isMe?'chat-msg-me':'chat-msg-other')+'" id="cm-'+sid+'">';
+  if(!isMe)html+='<div class="chat-avatar">'+escHtml(msg.emoji||'👤')+'</div>';
+  html+='<div class="chat-bubble-wrap"><div class="chat-bubble">';
+  if(msg.replyTo)html+='<div class="chat-reply-quote">'+escHtml((msg.replyTo.emoji||''))+' '+escHtml((msg.replyTo.text||'[image]').slice(0,60))+'</div>';
+  if(msg.imageData)html+='<img src="'+escHtml(msg.imageData)+'" class="chat-img-msg" onclick="viewImg(\''+sid+'\')" loading="lazy">';
+  else html+='<div class="chat-text">'+escHtml(msg.text||'')+'</div>';
+  if(msg.edited)html+='<div class="chat-edited">edited</div>';
+  html+='</div>';
+  // Reactions
+  if(msg.reactions){
+    var rxnHtml='<div class="reaction-bar">';
+    REACT_EMOJIS.forEach(function(r){
+      var users=msg.reactions[r.k];
+      if(!users)return;
+      var count=Object.keys(users).length;
+      if(count===0)return;
+      var mine=!!users[myId];
+      rxnHtml+='<button class="rxn-pill'+(mine?' mine':'')+'" onclick="reactTo(\''+msg.id+'\',\''+r.k+'\')">'+r.e+' <span class="rxn-count">'+count+'</span></button>';
+    });
+    rxnHtml+='</div>';
+    if(rxnHtml!=='<div class="reaction-bar"></div>')html+=rxnHtml;
+  }
+  // Action bar
+  html+='<div class="chat-meta"><span class="chat-time">'+timeStr+'</span><div class="msg-action-bar">';
+  html+='<button class="mac-btn" onclick="showRxnPicker(\''+msg.id+'\',event)">😊</button>';
+  html+='<button class="mac-btn" onclick="replyToMsg(\''+msg.id+'\')">↩</button>';
+  if(isMe)html+='<button class="mac-btn" onclick="startEdit(\''+msg.id+'\')">✏️</button>';
+  html+='<button class="mac-btn" onclick="deleteMsg(\''+msg.id+'\')">🗑️</button>';
+  html+='</div></div>';
+  html+='</div></div>';
+  return html;
+}
+
+function showRxnPicker(msgId,ev){
+  ev.stopPropagation();
+  var popup=document.getElementById('rxn-popup');
+  popup.innerHTML='';
+  popup.style.display='flex';
+  REACT_EMOJIS.forEach(function(r){
+    var btn=document.createElement('button');
+    btn.innerText=r.e;
+    btn.onclick=function(e){e.stopPropagation();reactTo(msgId,r.k);};
+    popup.appendChild(btn);
+  });
+  var rect=ev.currentTarget.getBoundingClientRect();
+  popup.style.top=Math.max(4,rect.top-54+window.scrollY)+'px';
+  popup.style.left=Math.min(rect.left,window.innerWidth-240)+'px';
+}
+window.showRxnPicker=showRxnPicker;
+document.addEventListener('click',function(){var p=document.getElementById('rxn-popup');if(p)p.style.display='none';});
+
+function reactTo(msgId,emojiKey){
+  document.getElementById('rxn-popup').style.display='none';
+  var ref=db.ref('chat/messages/'+msgId+'/reactions/'+emojiKey+'/'+myId);
+  ref.once('value',function(snap){snap.exists()?ref.remove():ref.set(true);});
+}
+window.reactTo=reactTo;
+
+function replyToMsg(msgId){
+  var msg=chatMsgMap[msgId];if(!msg)return;
+  replyingTo={id:msg.id,text:msg.imageData?'[image]':msg.text,emoji:msg.emoji,uid:msg.uid};
+  editingId=null;
+  var ind=document.getElementById('reply-indicator');
+  var rit=document.getElementById('reply-indicator-text');
+  var rml=document.getElementById('reply-mode-label');
+  if(ind)ind.style.display='flex';
+  if(rml)rml.innerText='Replying to';
+  if(rit)rit.innerText=(msg.emoji||'')+' '+(msg.imageData?'[image]':msg.text||'').slice(0,80);
+  var inp=document.getElementById('chat-input');if(inp)inp.focus();
+}
+window.replyToMsg=replyToMsg;
+
+function startEdit(msgId){
+  var msg=chatMsgMap[msgId];if(!msg||msg.uid!==myId)return;
+  editingId=msgId;replyingTo=null;
+  var ind=document.getElementById('reply-indicator');
+  var rit=document.getElementById('reply-indicator-text');
+  var rml=document.getElementById('reply-mode-label');
+  if(ind)ind.style.display='flex';
+  if(rml)rml.innerText='✏️ Editing';
+  if(rit)rit.innerText=(msg.text||'').slice(0,80);
+  var inp=document.getElementById('chat-input');
+  if(inp){inp.value=msg.text||'';inp.focus();}
+}
+window.startEdit=startEdit;
+
+function cancelReplyOrEdit(){
+  replyingTo=null;editingId=null;
+  var ind=document.getElementById('reply-indicator');if(ind)ind.style.display='none';
+  var inp=document.getElementById('chat-input');if(inp){inp.value='';inp.placeholder='Type a message…';}
+}
+window.cancelReplyOrEdit=cancelReplyOrEdit;
+
+function deleteMsg(msgId){
+  var pass=prompt('Enter admin password to delete:');
+  if(pass==='@Sakib2020')db.ref('chat/messages/'+msgId).remove();
+  else if(pass!==null)alert('Incorrect password!');
+}
+window.deleteMsg=deleteMsg;
+
+async function sendMsg(){
+  var input=document.getElementById('chat-input');if(!input)return;
+  var text=input.value.trim();if(!text)return;
+  if(hasBadWord(text)){alert('⚠️ Your message contains inappropriate content and was not sent. Please follow community rules.');return;}
+  if(translateOn&&text){text=await translateText(text);}
+  if(editingId){
+    db.ref('chat/messages/'+editingId).update({text:text,edited:true});
+    editingId=null;cancelReplyOrEdit();return;
+  }
+  var id=Date.now().toString(36)+Math.random().toString(36).substr(2,5);
+  var msg={id:id,text:text,emoji:myEmoji,uid:myId,timestamp:Date.now()};
+  if(replyingTo)msg.replyTo={id:replyingTo.id,text:replyingTo.text,emoji:replyingTo.emoji,uid:replyingTo.uid};
+  db.ref('chat/messages/'+id).set(msg);
+  input.value='';cancelReplyOrEdit();scrollChatBottom();
+}
+window.sendMsg=sendMsg;
+
+function chatKeydown(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}}
+window.chatKeydown=chatKeydown;
+
+function scrollChatBottom(){
+  var c=document.getElementById('chat-messages');
+  if(c)setTimeout(function(){c.scrollTop=c.scrollHeight;},50);
+}
+
+function viewImg(sid){
+  var msg=null;
+  var keys=Object.keys(chatMsgMap);
+  for(var k=0;k<keys.length;k++){if(safeId(keys[k])===sid){msg=chatMsgMap[keys[k]];break;}}
+  if(!msg||!msg.imageData)return;
+  document.getElementById('img-viewer-img').src=msg.imageData;
+  document.getElementById('img-viewer').style.display='flex';
+}
+window.viewImg=viewImg;
+
+// === DASHBOARD ===
+function updateVol(id,val){if(!userData.joined[id])return;userData.joined[id].volume=parseFloat(val)||0;saveUD();refreshReward(id);updateGBB();renderCalc();}
+window.updateVol=updateVol;
+function updatePts(id,val){if(!userData.joined[id])return;userData.joined[id].points=parseFloat(val)||0;saveUD();refreshReward(id);updateGBB();renderCalc();}
+window.updatePts=updatePts;
+function updateBnb(id,checked){if(!userData.joined[id])return;userData.joined[id].bnb=checked;saveUD();refreshReward(id);updateGBB();renderCalc();}
+window.updateBnb=updateBnb;
+function toggleExpand(id){
+  if(!userData.joined[id])return;
+  userData.joined[id].expanded=!userData.joined[id].expanded;saveUD();
+  var body=document.getElementById('dbody-'+id),btn=document.getElementById('dexpand-'+id);
+  if(body)body.classList.toggle('collapsed',!userData.joined[id].expanded);
+  if(btn)btn.classList.toggle('open',userData.joined[id].expanded);
+}
+window.toggleExpand=toggleExpand;
+function toggleAllExpand(){
+  allExpanded=!allExpanded;
+  campaigns.forEach(function(c){
+    if(isJoined(c.id)&&isCampActive(c)&&userData.joined[c.id]){
+      userData.joined[c.id].expanded=allExpanded;
+      var body=document.getElementById('dbody-'+c.id),btn=document.getElementById('dexpand-'+c.id);
+      if(body)body.classList.toggle('collapsed',!allExpanded);
+      if(btn)btn.classList.toggle('open',allExpanded);
+    }
+  });saveUD();
+  var b=document.getElementById('btn-all-expand');if(b)b.innerHTML=allExpanded?'&#9650; Collapse All':'&#9660; Expand All';
+}
+window.toggleAllExpand=toggleAllExpand;
+function toggleAllEnded(){
+  endedExpanded=!endedExpanded;
+  var list=document.getElementById('ended-expanded-list'),row=document.getElementById('ended-collapsed-row'),btn=document.getElementById('btn-ended-expand');
+  if(list)list.style.display=endedExpanded?'block':'none';
+  if(row)row.style.display=endedExpanded?'none':'flex';
+  if(btn)btn.innerHTML=endedExpanded?'&#9650; Collapse All':'&#9660; Expand All';
+}
+window.toggleAllEnded=toggleAllEnded;
+
+function calcReward(c){
+  var j=userData.joined[c.id];if(!j)return null;
+  var p=priceOf(c.coinId),t=c.type||'volume';
+  if(t==='volume'){var en=parseFloat(c.estReward)||0,tok=(j.volume/1000)*en;return{tokens:tok,usd:tok*p,canCalc:true,pointsCost:0};}
+  if(t==='equal'){var mp=parseFloat(c.maxParticipants)||1,tok2=c.poolAmt/mp,rate=j.bnb?0.00075:0.001;return{tokens:tok2,usd:tok2*p,canCalc:true,feeCost:(c.minVolume||0)*rate,pointsCost:0};}
+  if(t==='ranked_fixed'){
+    var rs=parseFloat(c.rankStart)||1,re=parseFloat(c.rankEnd)||1,count=Math.max(re-rs+1,1),tok3=c.poolAmt/count;
+    var eligVol=c.rankEligVol||0,rankVol=c.rankMinVol||0,rrate=j.bnb?0.00075:0.001,uv=j.volume||0;
+    return{tokens:tok3,usd:tok3*p,canCalc:true,rankStart:rs,rankEnd:re,eligVol:eligVol,rankMinVol:rankVol,inRank:uv>=rankVol&&rankVol>0,eligible:uv>=eligVol,feeCost:rankVol>0?rankVol*rrate:eligVol*rrate,pointsCost:0};
+  }
+  if(t==='points_lb'){var tp=parseFloat(c.totalPoints)||1,up=j.points||0,tok4=up>0?(up/tp)*c.poolAmt:0,cpp=parseFloat(c.costPerPoint)||0;return{tokens:tok4,usd:tok4*p,canCalc:true,pointsCost:up*cpp};}
+  if(t==='points_nl'){var minPts=parseFloat(c.minPoints)||0,cpp2=parseFloat(c.costPerPointNl)||0;return{tokens:null,usd:null,canCalc:false,isPointsNl:true,minPoints:minPts,costPerPt:cpp2,minCost:minPts*cpp2,pointsCost:0};}
+  return{tokens:null,usd:null,canCalc:false,pointsCost:0};
+}
+function getBalance(){
+  var tot=0,fee=0,cnt=0;
+  campaigns.forEach(function(c){
+    if(!isJoined(c.id)||!isCampActive(c))return;
+    var j=userData.joined[c.id],r=calcReward(c),t=c.type||'volume';
+    if(r&&r.usd!==null){if(t==='ranked_fixed'){if(r.inRank){tot+=r.usd;cnt++;}}else{tot+=r.usd;cnt++;}}
+    if(t==='volume')fee+=(j.volume||0)*(j.bnb?0.00075:0.001);
+    else if((t==='equal'||t==='ranked_fixed')&&r&&r.feeCost)fee+=r.feeCost;
+    else if(t==='points_lb'&&r&&r.pointsCost)fee+=r.pointsCost;
+  });
+  return{net:tot-fee,totalReward:tot,totalFee:fee,cnt:cnt};
+}
+function refreshReward(campId){
+  var c=null;for(var i=0;i<campaigns.length;i++){if(campaigns[i].id===campId){c=campaigns[i];break;}}
+  if(!c)return;
+  var el=document.getElementById('dreward-'+campId);if(!el)return;
+  var r=calcReward(c),p=priceOf(c.coinId);
+  if(r&&r.canCalc&&r.tokens!==null){
+    el.innerHTML='<span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter value above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'');
+  }
+  var sumEl=document.getElementById('dsummary-'+campId);
+  if(sumEl){
+    if(r&&r.canCalc&&r.tokens&&r.tokens>0){sumEl.innerText=fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':'');sumEl.className='dash-camp-summary';}
+    else{sumEl.innerText='Not set';sumEl.className='dash-camp-summary no-data';}
+  }
+}
+
+function buildDashCard(c){
+  var j=userData.joined[c.id];if(!j)return'';
+  var p=priceOf(c.coinId),info=getTimerInfo(c),r=calcReward(c),t=c.type||'volume';
+  var sc=info.state==='alert'?'state-alert':'state-'+info.state;
+  var bnbOn=j.bnb||false,isExp=j.expanded!==false;
+  var sumTxt='Not set',sumCls='dash-camp-summary no-data';
+  if(r&&r.canCalc&&r.tokens&&r.tokens>0){
+    if(t==='ranked_fixed'){sumTxt=r.inRank?fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':''):'Not in rank';sumCls=r.inRank?'dash-camp-summary':'dash-camp-summary no-data';}
+    else{sumTxt=fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':'');sumCls='dash-camp-summary';}
+  }
+  var bodyHtml='';
+  if(t==='volume'&&r&&r.canCalc){
+    bodyHtml='<div class="dash-vol-row"><div class="dash-field"><label>Your Trade Volume (USD)</label><input type="number" class="vol-input" placeholder="e.g. 5000" value="'+(j.volume||'')+'" oninput="updateVol(\''+c.id+'\',this.value)" min="0"></div>'
+      +'<div class="dash-field" style="max-width:155px"><label>BNB Fee</label><div class="bnb-wrap" style="padding-top:8px"><label class="toggle-switch"><input type="checkbox" '+(bnbOn?'checked':'')+' onchange="updateBnb(\''+c.id+'\',this.checked)"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">'+(bnbOn?'BNB On':'BNB Off')+'</span></div></div></div>'
+      +'<div class="dash-reward" id="dreward-'+c.id+'"><span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter volume above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';
+  }else if(t==='equal'&&r&&r.canCalc){
+    var fc2=(c.minVolume||0)*(bnbOn?0.00075:0.001);
+    bodyHtml='<div class="dash-info-row">Participants: <strong>'+(c.maxParticipants||1).toLocaleString()+'</strong>'+(c.minVolume?' | Min vol: <strong>$'+c.minVolume.toLocaleString()+'</strong> <span style="color:var(--red)">(fee approx '+fmtUSD(fc2)+')</span>':'')+'</div>'
+      +'<div class="dash-vol-row"><div class="dash-field" style="max-width:155px"><label>BNB Fee</label><div class="bnb-wrap" style="padding-top:8px"><label class="toggle-switch"><input type="checkbox" '+(bnbOn?'checked':'')+' onchange="updateBnb(\''+c.id+'\',this.checked)"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">'+(bnbOn?'BNB On':'BNB Off')+'</span></div></div></div>'
+      +'<div class="dash-reward"><span class="dr-label">Fixed Reward</span><span class="dr-val">'+fmtToken(r.tokens)+' '+escHtml(c.name)+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';
+  }else if(t==='ranked_fixed'&&r&&r.canCalc){
+    var rrate2=bnbOn?0.00075:0.001,uv2=j.volume||0,estFee=uv2*rrate2;
+    bodyHtml='<div class="dash-info-row">Rank <strong>'+r.rankStart+'</strong> to <strong>'+r.rankEnd+'</strong>'+(r.eligVol?' | Min elig. vol: <strong>$'+r.eligVol.toLocaleString()+'</strong>':'')+(r.rankMinVol?' | Est. rank vol: <strong>$'+r.rankMinVol.toLocaleString()+'</strong>':'')+'</div>'
+      +'<div class="dash-vol-row"><div class="dash-field"><label>Your Trade Volume (USD)</label><input type="number" class="vol-input" placeholder="e.g. 10000" value="'+(j.volume||'')+'" oninput="updateVol(\''+c.id+'\',this.value)" min="0"></div>'
+      +'<div class="dash-field" style="max-width:155px"><label>BNB Fee</label><div class="bnb-wrap" style="padding-top:8px"><label class="toggle-switch"><input type="checkbox" '+(bnbOn?'checked':'')+' onchange="updateBnb(\''+c.id+'\',this.checked)"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">'+(bnbOn?'BNB On':'BNB Off')+'</span></div></div></div>'
+      +(uv2>0?'<div class="dash-reward"><span class="dr-label">Trading Fee</span><span class="dr-val" style="color:var(--red)">-'+fmtUSD(estFee)+'</span></div>':'')
+      +(uv2>0&&r.inRank?'<div class="dash-reward" style="margin-top:6px"><span class="dr-label">Est. Reward</span><span class="dr-val">'+fmtToken(r.tokens)+' '+escHtml(c.name)+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>':uv2>0&&!r.inRank&&r.rankMinVol>0?'<div class="dash-warn">Volume below estimated rank entry (~$'+r.rankMinVol.toLocaleString()+').</div>':'');
+  }else if(t==='points_lb'&&r){
+    bodyHtml='<div class="dash-info-row">Total LB Points: <strong>'+(c.totalPoints||1).toLocaleString()+'</strong>'+(c.costPerPoint?' | Cost/pt: <strong style="color:var(--red)">$'+c.costPerPoint+'</strong>':'')+'</div>'
+      +'<div class="dash-vol-row"><div class="dash-field"><label>Your Points</label><input type="number" class="vol-input" placeholder="e.g. 1500" value="'+(j.points||'')+'" oninput="updatePts(\''+c.id+'\',this.value)" min="0"></div></div>'
+      +'<div class="dash-reward" id="dreward-'+c.id+'"><span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter points above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'')+'</div>';
+  }else if(r&&r.isPointsNl){
+    bodyHtml='<div class="dash-info-row">Min Points: <strong>'+r.minPoints.toLocaleString()+'</strong>'+(r.costPerPt?' | Cost/pt: <strong style="color:var(--red)">$'+r.costPerPt+'</strong>':'')+(r.minCost?' | Min cost approx <strong style="color:var(--red)">'+fmtUSD(r.minCost)+'</strong>':'')+'</div><div class="dash-note">Points-based — leaderboard unavailable.</div>';
+  }else{bodyHtml='<div class="dash-note">Reward cannot be estimated.</div>';}
+  return'<div class="dash-camp" id="dcard-'+c.id+'">'
+    +'<div class="dash-camp-header" onclick="toggleExpand(\''+c.id+'\')">'
+    +'<div class="dash-camp-left"><img src="'+c.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'">'
+    +'<div><div class="camp-name">'+escHtml(c.name)+'</div>'+typeBadge(t)+'</div></div>'
+    +'<div class="dash-camp-right"><span id="dsummary-'+c.id+'" class="'+sumCls+'">'+sumTxt+'</span>'
+    +'<span class="camp-timer '+sc+'" style="font-size:11px">'+info.text+'</span>'
+    +'<button class="btn-remove" onclick="toggleJoin(\''+c.id+'\',event)">Remove</button>'
+    +'<button class="btn-expand '+(isExp?'open':'')+'" id="dexpand-'+c.id+'" onclick="event.stopPropagation();toggleExpand(\''+c.id+'\')">&#9660;</button>'
+    +'</div></div>'
+    +'<div class="dash-camp-body '+(isExp?'':'collapsed')+'" id="dbody-'+c.id+'">'+bodyHtml+'</div></div>';
+}
+
+function renderDashboard(){
+  var activeJ=[],endedJ=[];
+  campaigns.forEach(function(c){if(!isJoined(c.id))return;if(isCampActive(c))activeJ.push(c);else endedJ.push(c);});
+  var bal=getBalance(),isLoss=bal.net<0,nc=isLoss?'var(--red)':'var(--green)';
+  document.getElementById('dash-balance').innerHTML='<div class="balance-card" style="background:linear-gradient(135deg,'+(isLoss?'#1f0f0f,#200d0d':'#0f1f15,#132018')+');border-color:'+(isLoss?'rgba(246,70,93,0.4)':'rgba(14,203,129,0.4)')+'\">'
+    +'<div class="balance-label">Est. Net Profit</div>'
+    +'<div class="balance-net" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div>'
+    +'<div class="balance-sub">'+activeJ.length+' active | '+bal.cnt+' calculable</div>'
+    +'<div class="balance-rows"><div class="bal-row"><div class="bal-row-label">Reward</div><div class="bal-row-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</div></div>'
+    +'<div class="bal-row"><div class="bal-row-label">Fees</div><div class="bal-row-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</div></div>'
+    +'<div class="bal-row"><div class="bal-row-label">Net</div><div class="bal-row-val" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div></div></div></div>';
+  var html='';
+  if(activeJ.length===0&&endedJ.length===0){html='<div class="empty-state" style="margin-bottom:22px"><h3>No Campaigns Joined</h3><p>Click "+ Join" on any campaign.</p></div>';}
+  else{
+    if(activeJ.length>0){
+      html+='<div class="dash-header-row"><h2 style="margin-bottom:0">Joined ('+activeJ.length+')</h2><button class="dash-all-toggle" id="btn-all-expand" onclick="toggleAllExpand()">&#9650; Collapse All</button></div>';
+      activeJ.forEach(function(c){html+=buildDashCard(c);});
+    }else html+='<div class="empty-state" style="margin-bottom:22px"><h3>No Active Campaigns</h3></div>';
+    if(endedJ.length>0){
+      html+=dividerHtml('Completed','var(--gray)');
+      html+='<div style="display:flex;justify-content:flex-end;margin-bottom:10px"><button class="dash-all-toggle" id="btn-ended-expand" onclick="toggleAllEnded()">&#9660; Expand All</button></div>';
+      html+='<div id="ended-collapsed-row" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;align-items:center">';
+      endedJ.forEach(function(c){html+='<img src="'+c.logo+'" title="'+escHtml(c.name)+'" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1px solid #333;filter:grayscale(1);opacity:0.5">';});
+      html+='<span style="color:var(--gray);font-size:12px;margin-left:4px">'+endedJ.length+' completed</span></div>';
+      html+='<div id="ended-expanded-list" style="display:none">';
+      endedJ.forEach(function(c){html+='<div class="dash-camp" style="filter:grayscale(1);opacity:0.5"><div style="display:flex;align-items:center;justify-content:space-between;padding:12px 17px;gap:10px"><div style="display:flex;align-items:center;gap:10px"><img src="'+c.logo+'" class="camp-logo"><div class="camp-name">'+escHtml(c.name)+'</div></div><span style="color:var(--gray);font-size:12px;font-family:monospace">COMPLETED</span></div></div>';});
+      html+='</div>';
+    }
+  }
+  document.getElementById('dash-joined').innerHTML=html;
+  renderCalc();
+}
+
+function renderCalc(){
+  var calcEl=document.getElementById('dash-calc');if(!calcEl)return;
+  var bal=getBalance(),totalVol=0,bnbVol=0;
+  campaigns.forEach(function(c){var j=userData.joined[c.id];if(!j)return;totalVol+=j.volume||0;if(j.bnb)bnbVol+=j.volume||0;});
+  var bnbPct=totalVol>0?Math.round((bnbVol/totalVol)*100):0,potSave=(totalVol-bnbVol)*0.001*0.25;
+  calcEl.innerHTML='<div class="calc-section"><h2 style="margin-bottom:14px">Cost Calculator</h2>'
+    +'<div class="calc-tabs"><button class="calc-tab active" onclick="switchTab(\'auto\',this)">Auto Summary</button><button class="calc-tab" onclick="switchTab(\'manual\',this)">Manual</button></div>'
+    +'<div id="calc-auto" class="calc-panel active"><div class="calc-card">'
+    +'<div class="calc-row"><span class="calc-key">Total Volume</span><span class="calc-val">'+fmtUSD(totalVol)+'</span></div>'
+    +'<div class="calc-row"><span class="calc-key">BNB Fee Used</span><span class="calc-val" style="color:var(--yellow)">'+fmtUSD(bnbVol)+' ('+bnbPct+'%)</span></div>'
+    +'<div class="calc-row"><span class="calc-key">Total Fee</span><span class="calc-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</span></div>'
+    +'<div class="calc-row"><span class="calc-key">Total Est. Reward</span><span class="calc-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</span></div>'
+    +'<div class="calc-row"><span class="calc-key" style="font-weight:700">Net</span><span class="calc-val" style="color:'+(bal.net>=0?'var(--green)':'var(--red)')+';font-size:16px">'+(bal.net>=0?'+':'-')+fmtUSD(Math.abs(bal.net))+'</span></div></div>'
+    +(bnbPct<100&&potSave>0.001?'<div class="savings-hint" style="background:var(--ydim);border-color:rgba(252,213,53,0.3);color:var(--yellow)">Tip: BNB on all trades saves <strong>'+fmtUSD(potSave)+'</strong> more.</div>':'')
+    +(bnbPct===100&&totalVol>0?'<div class="savings-hint" style="background:var(--gdim);border-color:rgba(14,203,129,0.3);color:var(--green)">✓ Using BNB on 100% of trades!</div>':'')
+    +'</div><div id="calc-manual" class="calc-panel"><div class="calc-card">'
+    +'<div class="form-group" style="margin-bottom:12px"><label style="display:block;margin-bottom:4px;color:var(--gray);font-size:12px;font-weight:600">Trade Volume (USD)</label><input type="number" class="vol-input" id="m-vol" placeholder="e.g. 10000" value="'+(totalVol||'')+'" oninput="calcManual()"></div>'
+    +'<div class="bnb-wrap" style="padding:10px 0;margin-bottom:12px;border-bottom:1px solid var(--border)"><label class="toggle-switch"><input type="checkbox" id="m-bnb" onchange="calcManual()"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">BNB Fee Discount (25% off)</span></div>'
+    +'<div class="calc-row" style="padding:7px 0"><span class="calc-key">Fee Rate</span><span class="calc-val" id="m-rate">0.100%</span></div>'
+    +'<div class="calc-row" style="padding:7px 0"><span class="calc-key">Trading Fee</span><span class="calc-val" style="color:var(--red)" id="m-fee">-</span></div>'
+    +'<div class="calc-row" style="padding:7px 0;border-bottom:none"><span class="calc-key">BNB saves you</span><span class="calc-val" style="color:var(--yellow)" id="m-save">-</span></div>'
+    +'</div></div></div>';
+}
+function switchTab(tab,btn){
+  document.querySelectorAll('.calc-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');
+  var a=document.getElementById('calc-auto'),m=document.getElementById('calc-manual');
+  if(a)a.classList.toggle('active',tab==='auto');if(m)m.classList.toggle('active',tab==='manual');
+}
+window.switchTab=switchTab;
+function calcManual(){
+  var vol=parseFloat((document.getElementById('m-vol')||{}).value)||0;
+  var bnb=(document.getElementById('m-bnb')||{}).checked||false;
+  var fee=vol*(bnb?0.00075:0.001),save=vol*0.001*0.25;
+  var r=document.getElementById('m-rate'),f=document.getElementById('m-fee'),s=document.getElementById('m-save');
+  if(r)r.innerText=bnb?'0.075% (BNB)':'0.100%';
+  if(f)f.innerText=vol>0?'-'+fmtUSD(fee):'-';
+  if(s)s.innerText=vol>0&&!bnb?fmtUSD(save):(bnb?'Already using BNB':'-');
+}
+window.calcManual=calcManual;
+
+// === TICK ===
+setInterval(function(){
+  campaigns.forEach(function(c){
+    var info=getTimerInfo(c);
+    var sc=info.state==='alert'?'state-alert':'state-'+info.state;
+    ['hf','hu','r'].forEach(function(suf){
+      var el=document.getElementById('tmr-'+c.id+'-'+suf);
+      if(el){el.innerText=info.text;el.className=(suf.charAt(0)==='h'?'hero-timer ':'camp-timer ')+sc;}
+      var lb=document.getElementById('lbl-'+c.id+'-'+suf);
+      if(lb)lb.innerText=info.label;
+    });
+  });
+  if(document.getElementById('details-modal').style.display==='flex'&&detailCampId){
+    var dc=null;for(var i=0;i<campaigns.length;i++){if(campaigns[i].id===detailCampId){dc=campaigns[i];break;}}
+    if(dc)updateDetTimer(dc);
+  }
+  tickCount++;
+  if(tickCount%5===0&&urgCamps.length>1){urgIdx=(urgIdx+1)%urgCamps.length;goSlide('urg',urgIdx);}
+},1000);
+setInterval(fetchPrices,60000);
+
 })();
 </script>
 </body>
