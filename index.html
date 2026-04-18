@@ -61,7 +61,7 @@ header{background:rgba(30,35,41,0.97);backdrop-filter:blur(10px);padding:11px 24
 .nav-notif{display:inline-flex;align-items:center;justify-content:center;background:var(--red);color:#fff;font-size:9px;font-weight:800;min-width:15px;height:15px;border-radius:8px;padding:0 3px;margin-left:3px;vertical-align:middle}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;background:none;border:none;flex-shrink:0}
 .hamburger span{display:block;width:20px;height:2px;background:var(--white);border-radius:2px}
-.mobile-menu{display:none;flex-direction:column;gap:2px;background:var(--surface);border-top:1px solid var(--border);padding:8px 12px}
+.mobile-menu{display:none;flex-direction:column;gap:2px;background:var(--surface);border-top:1px solid var(--border);padding:8px 12px;position:fixed;top:55px;left:0;right:0;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.3);max-height:calc(100vh - 55px);overflow-y:auto}
 .mobile-menu button{background:none;border:none;color:var(--gray);font-size:14px;font-weight:600;cursor:pointer;padding:10px 12px;border-radius:6px;text-align:left;transition:all 0.2s}
 .mobile-menu button:hover,.mobile-menu button.active{color:var(--yellow);background:var(--ydim)}
 .mobile-menu .btn-admin{background:linear-gradient(135deg,var(--yellow),#f0a500)!important;color:#000!important;-webkit-text-fill-color:#000!important;margin-top:4px;text-align:center!important}
@@ -906,7 +906,7 @@ setTimeout(checkDeepLink,500);
   function hideFabTooltip(){var tt=getTooltip();if(tt)tt.style.display='none';}
   window.dismissFab=function(e){if(e)e.stopPropagation();fabDismissed=true;var fab=getFab();if(fab){fab.style.transform='scale(0)';setTimeout(function(){fab.style.display='none';},300);}hideFabTooltip();};
   // Show tooltip periodically
-  setTimeout(showFabTooltip,8000);
+  setTimeout(showFabTooltip,800);
   setInterval(showFabTooltip,SHOW_INTERVAL);
   // Hide tooltip when entering community
   var origNav=window.nav;
