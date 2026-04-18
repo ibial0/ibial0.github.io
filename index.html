@@ -14,14 +14,37 @@
 <style>
 :root{--bg:#0b0e11;--surface:#1e2329;--surface2:#242a31;--yellow:#fcd535;--ydim:rgba(252,213,53,0.12);--yglow:rgba(252,213,53,0.4);--green:#0ecb81;--gdim:rgba(14,203,129,0.12);--gglow:rgba(14,203,129,0.35);--red:#f6465d;--rdim:rgba(246,70,93,0.12);--purple:#8b5cf6;--pdim:rgba(139,92,246,0.12);--orange:#f59e0b;--odim:rgba(245,158,11,0.12);--cyan:#06b6d4;--cdim:rgba(6,182,212,0.12);--gray:#848e9c;--border:#2b3139;--white:#fff;--font:'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
 /* LIGHT MODE */
-body.light{--bg:#f4f6fb;--surface:#ffffff;--surface2:#edf1f7;--border:#d8dde6;--white:#0d1117;--gray:#5a6480;--ydim:rgba(252,213,53,0.15);--gdim:rgba(14,203,129,0.12);--rdim:rgba(246,70,93,0.1);--pdim:rgba(139,92,246,0.1);--odim:rgba(245,158,11,0.1);--cdim:rgba(6,182,212,0.1)}
-body.light header{background:rgba(255,255,255,0.97);box-shadow:0 1px 8px rgba(0,0,0,0.08)}
-body.light #gbb{background:rgba(14,203,129,0.06);border-color:rgba(14,203,129,0.15)}
-body.light .chat-bubble{background:#edf1f7;border-color:#d4d9e2}
-body.light .chat-msg-me .chat-bubble{background:rgba(252,213,53,0.12);border-color:rgba(252,213,53,0.25)}
-body.light .rxn-pill{background:#edf1f7;border-color:#d4d9e2}
-body.light .rxn-pill.mine{background:var(--ydim);border-color:rgba(252,213,53,0.4)}
-body.light .logo{background:linear-gradient(90deg,#d4a800,#f0a500);-webkit-background-clip:text;background-clip:text}
+body.light{--bg:#f0f2f5;--surface:#ffffff;--surface2:#e8ecf2;--border:#c8d0dc;--white:#0d1117;--gray:#4a5568;--yellow:#b8860b;--ydim:rgba(184,134,11,0.12);--yglow:rgba(184,134,11,0.3);--green:#0a9e63;--gdim:rgba(10,158,99,0.1);--gglow:rgba(10,158,99,0.3);--red:#c0392b;--rdim:rgba(192,57,43,0.1);--purple:#6d28d9;--pdim:rgba(109,40,217,0.1);--orange:#c05621;--odim:rgba(192,86,33,0.1);--cyan:#0e7490;--cdim:rgba(14,116,144,0.1)}
+body.light header{background:rgba(255,255,255,0.97);box-shadow:0 1px 8px rgba(0,0,0,0.1)}
+body.light #gbb{background:rgba(10,158,99,0.07);border-color:rgba(10,158,99,0.2)}
+body.light .chat-bubble{background:#e8ecf2;border-color:#c8d0dc}
+body.light .chat-msg-me .chat-bubble{background:rgba(184,134,11,0.1);border-color:rgba(184,134,11,0.25)}
+body.light .rxn-pill{background:#e8ecf2;border-color:#c8d0dc}
+body.light .rxn-pill.mine{background:var(--ydim);border-color:rgba(184,134,11,0.4)}
+body.light .logo{background:linear-gradient(90deg,#92690a,#b8860b);-webkit-background-clip:text;background-clip:text}
+body.light .hero-timer.state-active{color:var(--yellow);text-shadow:none}
+body.light .hero-timer.state-reward{color:var(--green);text-shadow:none}
+body.light .det-timer.state-active{color:var(--yellow);text-shadow:none}
+body.light .det-timer.state-reward{color:var(--green);text-shadow:none}
+body.light .camp-timer.state-active{color:#92690a}
+body.light .gbb-amount{color:inherit}
+body.light .about-warn{background:rgba(192,57,43,0.08);color:#922b21}
+body.light .notice-card{background:linear-gradient(135deg,#fef9ec,#fef3c7)}
+body.light .notice-title{color:#7c2d12}
+body.light .btn-admin{background:linear-gradient(135deg,#b8860b,#92690a)!important;-webkit-text-fill-color:#fff!important;color:#fff!important}
+body.light h2{color:#0d1117}
+body.light .empty-state h3{color:#0d1117}
+body.light .camp-name{color:#0d1117}
+body.light .det-name{color:#0d1117}
+body.light .vol-input{background:#f0f2f5;color:#0d1117}
+body.light .chat-input{background:#f0f2f5;color:#0d1117}
+body.light .lang-select{background:#f0f2f5;color:#0d1117}
+body.light .form-group input,.form-group select,.form-group textarea{background:#f0f2f5;color:#0d1117}
+body.light .calc-val{color:#0d1117}
+body.light .pool-amt{color:#0d1117}
+body.light .balance-net{color:inherit}
+body.light .bal-row-val{color:inherit}
+body.light #rxn-popup{background:#fff;border-color:#c8d0dc}
 *{margin:0;padding:0;box-sizing:border-box;font-family:var(--font)}
 body{background:var(--bg);color:var(--white);line-height:1.6;min-height:100vh;transition:background 0.25s,color 0.25s}
 header{background:rgba(30,35,41,0.97);backdrop-filter:blur(10px);padding:11px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;gap:8px}
@@ -343,7 +366,7 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 </head>
 <body>
 <header>
-  <div class="logo" onclick="nav('home')">Spot CTR</div>
+  <div class="logo" onclick="window.location.href='https://spotctr.online'">Spot CTR</div>
   <nav class="desktop-nav">
     <button onclick="nav('home')" id="nav-home" class="active">Home</button>
     <button onclick="nav('reward')" id="nav-reward">Reward Board</button>
@@ -421,7 +444,7 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
       </div>
       <div class="chat-input-area">
         <button class="chat-img-btn" onclick="document.getElementById('img-file-input').click()" title="Send image">📷</button>
-        <input class="chat-input" id="chat-input" type="text" placeholder="Type a message… (Enter to send)" maxlength="500" onkeydown="chatKeydown(event)">
+        <input class="chat-input" id="chat-input" type="text" placeholder="Type a message… (Enter to send)" maxlength="2000" onkeydown="chatKeydown(event)">
         <button class="chat-send-btn" onclick="sendMsg()">Send</button>
       </div>
     </div>
@@ -467,7 +490,7 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
       <p>If Spot CTR has saved you time, helped you discover a campaign, or made your trading life even slightly easier — please share it with your fellow traders! Every share helps keep this project alive, growing, and improving. Your support means a lot. 😁</p>
       <div class="share-bar" style="margin-top:13px">
         <button class="share-btn share-btn-share" onclick="shareWebsite()">🔗 Share Spot CTR</button>
-        <button class="share-btn share-btn-copy" onclick="copyLink('https://ibial0.github.io')">📋 Copy Link</button>
+        <button class="share-btn share-btn-copy" onclick="copyLink('https://spotctr.online')">📋 Copy Link</button>
       </div>
     </div>
 
@@ -478,7 +501,11 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
   </section>
 </main>
 
-<button class="fab-chat" id="fab-chat" onclick="nav('community')" title="Community Chat">💬<span class="fab-notif" id="fab-notif" style="display:none"></span></button>
+<button class="fab-chat" id="fab-chat" onclick="nav('community')" title="Community Chat" style="transition:transform 0.3s,box-shadow 0.2s">💬<span class="fab-notif" id="fab-notif" style="display:none"></span></button>
+<div id="fab-tooltip" style="display:none;position:fixed;bottom:76px;right:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 13px;box-shadow:0 6px 20px rgba(0,0,0,0.4);z-index:97;max-width:210px;font-size:12px;color:var(--gray);line-height:1.5;align-items:flex-start;gap:8px">
+  <span>💬 Join the community! Discuss campaigns &amp; get help from fellow traders.</span>
+  <button onclick="dismissFab(event)" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:16px;padding:0;line-height:1;flex-shrink:0">×</button>
+</div>
 <div id="rxn-popup"></div>
 <div id="img-viewer" onclick="document.getElementById('img-viewer').style.display='none'"><img id="img-viewer-img" src=""></div>
 <input type="file" id="img-file-input" accept="image/*" style="display:none" onchange="handleImgUpload(event)">
@@ -630,6 +657,9 @@ var isAdmin=false,detailCampId=null;
 var userData=JSON.parse(localStorage.getItem('spotctr_user')||'{"joined":{}}');
 var userTZ=Intl.DateTimeFormat().resolvedOptions().timeZone;
 var allExpanded=true,endedExpanded=false,tickCount=0,urgCamps=[],urgIdx=0,noticeIdx=0;
+
+// ── Constants ──
+var SITE_URL='https://spotctr.online';
 
 // ── Theme ──
 var isDark=localStorage.getItem('spotctr_theme')!=='light';
@@ -847,7 +877,7 @@ function editCamp(id,ev){ev.stopPropagation();authAction(function(){var c=null;f
 window.editCamp=editCamp;
 
 // ── Share ──
-function shareWebsite(){shareLink('https://ibial0.github.io','Spot CTR — Binance Campaign Tracker');}
+function shareWebsite(){shareLink(SITE_URL,'Spot CTR — Binance Campaign Tracker');}
 window.shareWebsite=shareWebsite;
 function shareLink(url,title){if(navigator.share)navigator.share({title:title||'Spot CTR',url:url}).catch(function(){});else copyLink(url);}
 window.shareLink=shareLink;
@@ -855,6 +885,38 @@ function copyLink(url){navigator.clipboard.writeText(url).then(function(){alert(
 window.copyLink=copyLink;
 function checkDeepLink(){var hash=window.location.hash;if(!hash||hash.indexOf('#campaign=')<0)return;var id=hash.replace('#campaign=','');var attempt=0;var iv=setInterval(function(){attempt++;var c=null;for(var i=0;i<campaigns.length;i++){if(campaigns[i].id===id){c=campaigns[i];break;}}if(c||attempt>20){clearInterval(iv);if(c)showDetails(encodeURIComponent(JSON.stringify(c)));}},300);}
 setTimeout(checkDeepLink,500);
+
+// ── FAB Smart Show ──
+(function(){
+  var fabEl,fabTooltip,fabVisible=false,fabDismissed=false;
+  var SHOW_INTERVAL=45000; // show every 45s if not on community page
+  var HIDE_AFTER=7000;     // hide tooltip after 7s
+  function getFab(){return document.getElementById('fab-chat');}
+  function getTooltip(){return document.getElementById('fab-tooltip');}
+  function showFabTooltip(){
+    var fab=getFab();if(!fab||fabDismissed)return;
+    var tt=getTooltip();if(!tt)return;
+    // Only show if not on community page
+    var commActive=document.getElementById('community')&&document.getElementById('community').classList.contains('active');
+    if(commActive)return;
+    tt.style.display='flex';
+    clearTimeout(window._fabHideTimer);
+    window._fabHideTimer=setTimeout(hideFabTooltip,HIDE_AFTER);
+  }
+  function hideFabTooltip(){var tt=getTooltip();if(tt)tt.style.display='none';}
+  window.dismissFab=function(e){if(e)e.stopPropagation();fabDismissed=true;var fab=getFab();if(fab){fab.style.transform='scale(0)';setTimeout(function(){fab.style.display='none';},300);}hideFabTooltip();};
+  // Show tooltip periodically
+  setTimeout(showFabTooltip,8000);
+  setInterval(showFabTooltip,SHOW_INTERVAL);
+  // Hide tooltip when entering community
+  var origNav=window.nav;
+  window.nav=function(id){
+    origNav(id);
+    hideFabTooltip();
+    if(id==='community'){var fab=getFab();if(fab)fab.style.display='none';}
+    else{var fab2=getFab();if(fab2&&!fabDismissed){fab2.style.display='flex';fab2.style.transform='scale(1)';}}
+  };
+})();
 
 // ── Render ──
 function renderViews(){
@@ -909,7 +971,7 @@ function goSlide(prefix,idx){var trk=document.getElementById(prefix+'-trk');if(t
 window.goSlide=goSlide;
 
 // ── Details Modal ──
-function showDetails(enc){var c=JSON.parse(decodeURIComponent(enc));detailCampId=c.id;document.getElementById('det-logo').src=c.logo;document.getElementById('det-name').innerText=c.name;var titleEl=document.getElementById('det-title');if(c.title){titleEl.innerText=c.title;titleEl.style.display='block';}else titleEl.style.display='none';var badges=typeBadge(c.type||'volume');if(c.difficulty)badges+=' '+diffBadge(c.difficulty);if(c.rewardDateTBD)badges+=' <span class="tbd-badge">⏳ TBD</span>';if(c.rewardPostponed)badges+=' <span class="postponed-badge">⚠️ Delayed</span>';document.getElementById('det-type-badge').innerHTML=badges;var p=priceOf(c.coinId);document.getElementById('det-price').innerText=p?fmtPrice(p):'Loading...';var fmt={dateStyle:'medium',timeStyle:'short',timeZone:userTZ};document.getElementById('det-start').innerText=new Date(c.start).toLocaleString('en-US',fmt);document.getElementById('det-end').innerText=new Date(c.end).toLocaleString('en-US',fmt);var rdr=document.getElementById('det-reward-row');if(c.rewardDateTBD){rdr.style.display='flex';document.getElementById('det-reward-date').innerHTML='<span class="tbd-badge">⏳ Not Announced Yet</span>';}else if(c.rewardDate){rdr.style.display='flex';document.getElementById('det-reward-date').innerText=new Date(c.rewardDate).toLocaleString('en-US',fmt);}else rdr.style.display='none';var pu=p?c.poolAmt*p:0;document.getElementById('det-pool').innerHTML=c.poolAmt.toLocaleString()+' '+escHtml(c.name)+(pu?'<span class="sub">approx '+fmtUSD(pu)+'</span>':'');var t=c.type||'volume',estEl=document.getElementById('det-est'),estRow=document.getElementById('det-est-row');if(t==='volume'){var en=parseFloat(c.estReward),eu=p&&!isNaN(en)?fmtUSD(en*p):null;estEl.innerHTML=en+' '+escHtml(c.name)+(eu?'<span class="sub">approx '+eu+' per $1K Vol</span>':'');estRow.style.display='flex';}else if(t==='equal'){estEl.innerHTML=fmtToken(c.poolAmt/(c.maxParticipants||1))+' '+escHtml(c.name)+' each<span class="sub">'+(c.maxParticipants||'?')+' participants'+(c.minVolume?' | Min vol: $'+c.minVolume.toLocaleString():'')+' </span>';estRow.style.display='flex';}else if(t==='ranked_fixed'){var cnt2=Math.max((c.rankEnd||1)-(c.rankStart||1)+1,1);estEl.innerHTML=fmtToken(c.poolAmt/cnt2)+' '+escHtml(c.name)+' each<span class="sub">Rank '+(c.rankStart||1)+' to '+(c.rankEnd||1)+' </span>';estRow.style.display='flex';}else if(t==='points_lb'){estEl.innerHTML='Points-based<span class="sub">Total pts: '+((c.totalPoints||0).toLocaleString())+'</span>';estRow.style.display='flex';}else if(t==='points_nl'){estEl.innerHTML='Points (no LB)<span class="sub">Min pts: '+(c.minPoints||'?')+'</span>';estRow.style.display='flex';}else estRow.style.display='none';document.getElementById('det-official-wrap').innerHTML=c.campLink?'<a href="'+escHtml(c.campLink)+'" target="_blank" rel="noopener" class="det-official-link"><svg viewBox="0 0 20 20" style="width:13px;height:13px;fill:currentColor;flex-shrink:0"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>View Official Campaign Page</a>':'';var shareUrl='https://ibial0.github.io/#campaign='+c.id;document.getElementById('det-share-wrap').innerHTML='<div class="share-bar"><button class="share-btn share-btn-copy" onclick="copyLink(\''+escHtml(shareUrl)+'\')">📋 Copy Campaign Link</button><button class="share-btn share-btn-share" onclick="shareLink(\''+escHtml(shareUrl)+'\',\''+escHtml(c.name)+' Campaign on Spot CTR\')">🔗 Share</button></div>';updateJoinBtn(c.id);openModal('details-modal');updateDetTimer(c);}
+function showDetails(enc){var c=JSON.parse(decodeURIComponent(enc));detailCampId=c.id;document.getElementById('det-logo').src=c.logo;document.getElementById('det-name').innerText=c.name;var titleEl=document.getElementById('det-title');if(c.title){titleEl.innerText=c.title;titleEl.style.display='block';}else titleEl.style.display='none';var badges=typeBadge(c.type||'volume');if(c.difficulty)badges+=' '+diffBadge(c.difficulty);if(c.rewardDateTBD)badges+=' <span class="tbd-badge">⏳ TBD</span>';if(c.rewardPostponed)badges+=' <span class="postponed-badge">⚠️ Delayed</span>';document.getElementById('det-type-badge').innerHTML=badges;var p=priceOf(c.coinId);document.getElementById('det-price').innerText=p?fmtPrice(p):'Loading...';var fmt={dateStyle:'medium',timeStyle:'short',timeZone:userTZ};document.getElementById('det-start').innerText=new Date(c.start).toLocaleString('en-US',fmt);document.getElementById('det-end').innerText=new Date(c.end).toLocaleString('en-US',fmt);var rdr=document.getElementById('det-reward-row');if(c.rewardDateTBD){rdr.style.display='flex';document.getElementById('det-reward-date').innerHTML='<span class="tbd-badge">⏳ Not Announced Yet</span>';}else if(c.rewardDate){rdr.style.display='flex';document.getElementById('det-reward-date').innerText=new Date(c.rewardDate).toLocaleString('en-US',fmt);}else rdr.style.display='none';var pu=p?c.poolAmt*p:0;document.getElementById('det-pool').innerHTML=c.poolAmt.toLocaleString()+' '+escHtml(c.name)+(pu?'<span class="sub">approx '+fmtUSD(pu)+'</span>':'');var t=c.type||'volume',estEl=document.getElementById('det-est'),estRow=document.getElementById('det-est-row');if(t==='volume'){var en=parseFloat(c.estReward),eu=p&&!isNaN(en)?fmtUSD(en*p):null;estEl.innerHTML=en+' '+escHtml(c.name)+(eu?'<span class="sub">approx '+eu+' per $1K Vol</span>':'');estRow.style.display='flex';}else if(t==='equal'){estEl.innerHTML=fmtToken(c.poolAmt/(c.maxParticipants||1))+' '+escHtml(c.name)+' each<span class="sub">'+(c.maxParticipants||'?')+' participants'+(c.minVolume?' | Min vol: $'+c.minVolume.toLocaleString():'')+' </span>';estRow.style.display='flex';}else if(t==='ranked_fixed'){var cnt2=Math.max((c.rankEnd||1)-(c.rankStart||1)+1,1);estEl.innerHTML=fmtToken(c.poolAmt/cnt2)+' '+escHtml(c.name)+' each<span class="sub">Rank '+(c.rankStart||1)+' to '+(c.rankEnd||1)+' </span>';estRow.style.display='flex';}else if(t==='points_lb'){estEl.innerHTML='Points-based<span class="sub">Total pts: '+((c.totalPoints||0).toLocaleString())+'</span>';estRow.style.display='flex';}else if(t==='points_nl'){estEl.innerHTML='Points (no LB)<span class="sub">Min pts: '+(c.minPoints||'?')+'</span>';estRow.style.display='flex';}else estRow.style.display='none';document.getElementById('det-official-wrap').innerHTML=c.campLink?'<a href="'+escHtml(c.campLink)+'" target="_blank" rel="noopener" class="det-official-link"><svg viewBox="0 0 20 20" style="width:13px;height:13px;fill:currentColor;flex-shrink:0"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>View Official Campaign Page</a>':'';var shareUrl=SITE_URL+'/#campaign='+c.id;document.getElementById('det-share-wrap').innerHTML='<div class="share-bar"><button class="share-btn share-btn-copy" onclick="copyLink(\''+escHtml(shareUrl)+'\')">📋 Copy Campaign Link</button><button class="share-btn share-btn-share" onclick="shareLink(\''+escHtml(shareUrl)+'\',\''+escHtml(c.name)+' Campaign on Spot CTR\')">🔗 Share</button></div>';updateJoinBtn(c.id);openModal('details-modal');updateDetTimer(c);}
 window.showDetails=showDetails;
 function updateDetTimer(c){var info=getTimerInfo(c),el=document.getElementById('det-timer');el.innerText=info.text;el.className='det-timer state-'+(info.state==='alert'?'active':info.state);document.getElementById('det-timer-label').innerText=info.label;}
 
