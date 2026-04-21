@@ -7,6 +7,12 @@
 <meta property="og:description" content="Track Binance Spot Trading campaigns in one place."/>
 <meta property="og:image" content="https://spotctr.online/preview.png"/>
 <meta property="og:url" content="https://spotctr.online"/>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TELEGRAM MINI APP SDK  ← Add this FIRST in <head>
+     ═══════════════════════════════════════════════════════════ -->
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M21ZTEQY07"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M21ZTEQY07');</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.min.js"></script>
@@ -453,7 +459,7 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 </div>
 
 <div id="rxn-popup"></div>
-<div id="img-viewer" onclick="document.getElementById('img-viewer').style.display='none'"><img id="img-viewer-img" src=""></div>
+<div id="img-viewer" onclick="document.getElementById('img-viewer').style.display='none';tgUpdateBackBtn()"><img id="img-viewer-img" src=""></div>
 <input type="file" id="img-file-input" accept="image/*" style="display:none" onchange="handleImgUpload(event)">
 
 <!-- ADMIN MODAL -->
@@ -593,6 +599,86 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 <script>
 (function(){
 'use strict';
+
+/* ══════════════════════════════════════════════════════════════════
+   TELEGRAM MINI APP — INITIALIZATION
+   This block runs first, before any other app logic.
+   ══════════════════════════════════════════════════════════════════ */
+var tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+
+// Expose helper so other parts of the code can call it
+window.tgUpdateBackBtn = function() {
+  if (!tg) return;
+  var MODAL_IDS = ['admin-modal','details-modal','rules-modal','notice-modal'];
+  var anyModalOpen = MODAL_IDS.some(function(id) {
+    var el = document.getElementById(id);
+    return el && el.style.display === 'flex';
+  });
+  var imgOpen = (function() {
+    var iv = document.getElementById('img-viewer');
+    return iv && iv.style.display === 'flex';
+  })();
+  var menuOpen = (function() {
+    var mm = document.getElementById('mobile-menu');
+    return mm && mm.style.display === 'flex';
+  })();
+
+  if (anyModalOpen || imgOpen || menuOpen) {
+    tg.BackButton.show();
+  } else {
+    tg.BackButton.hide();
+  }
+};
+
+if (tg) {
+  // 1. Signal the app is ready and expand to full viewport height
+  tg.ready();
+  tg.expand();
+
+  // 2. Detect Telegram theme (dark / light) on load
+  //    We read tg.colorScheme here and override localStorage preference.
+  //    The isDark variable below will be set again during theme init,
+  //    so we persist the telegram value first.
+  var tgScheme = tg.colorScheme; // 'dark' | 'light'
+  localStorage.setItem('spotctr_theme', tgScheme === 'light' ? 'light' : 'dark');
+
+  // 3. BackButton: dismiss open modals / image viewer / mobile menu
+  tg.BackButton.onClick(function() {
+    // Priority: image viewer → modals → mobile menu
+    var iv = document.getElementById('img-viewer');
+    if (iv && iv.style.display === 'flex') {
+      iv.style.display = 'none';
+      window.tgUpdateBackBtn();
+      return;
+    }
+    var MODAL_IDS = ['notice-modal','rules-modal','details-modal','admin-modal'];
+    for (var i = 0; i < MODAL_IDS.length; i++) {
+      var el = document.getElementById(MODAL_IDS[i]);
+      if (el && el.style.display === 'flex') {
+        el.style.display = 'none';
+        window.tgUpdateBackBtn();
+        return;
+      }
+    }
+    var mm = document.getElementById('mobile-menu');
+    if (mm && mm.style.display === 'flex') {
+      mm.style.display = 'none';
+      window.tgUpdateBackBtn();
+    }
+  });
+
+  // 4. Keep theme in sync if user changes Telegram theme while app is open
+  tg.onEvent('themeChanged', function() {
+    var newScheme = tg.colorScheme;
+    localStorage.setItem('spotctr_theme', newScheme === 'light' ? 'light' : 'dark');
+    isDark = newScheme !== 'light';
+    applyTheme();
+  });
+}
+/* ══════════════════════════════════════════════════════════════════
+   END TELEGRAM INIT
+   ══════════════════════════════════════════════════════════════════ */
+
 var SITE_URL='https://spotctr.online';
 firebase.initializeApp({databaseURL:'https://spotctr-default-rtdb.firebaseio.com'});
 var db=firebase.database();
@@ -728,7 +814,11 @@ async function fetchPrices(){
 }
 
 /* ── Nav ── */
-function toggleMenu(){var m=document.getElementById('mobile-menu');m.style.display=m.style.display==='flex'?'none':'flex';}
+function toggleMenu(){
+  var m=document.getElementById('mobile-menu');
+  m.style.display=m.style.display==='flex'?'none':'flex';
+  window.tgUpdateBackBtn();
+}
 window.toggleMenu=toggleMenu;
 
 function nav(id){
@@ -740,6 +830,8 @@ function nav(id){
   if(id==='dash')renderDashboard();
   else if(id==='community')initChat();
   else renderViews();
+  // Hide Telegram MainButton when switching sections (no section-specific action)
+  if(tg){tg.MainButton.hide();}
 }
 window.nav=nav;
 
@@ -755,11 +847,20 @@ function setAdminMode(mode){
   if(mode==='notice'){var sel=document.getElementById('notice-camp-select');sel.innerHTML='<option value="">— None —</option>';campaigns.filter(isCampActive).forEach(function(c){sel.innerHTML+='<option value="'+c.id+'">'+escHtml(c.name)+'</option>';});}
 }
 window.setAdminMode=setAdminMode;
-function openModal(id){document.getElementById(id).style.display='flex';}
-function closeModal(id){document.getElementById(id).style.display='none';}
+
+/* ── Modal open/close — with BackButton sync ── */
+function openModal(id){
+  document.getElementById(id).style.display='flex';
+  window.tgUpdateBackBtn();
+}
+function closeModal(id){
+  document.getElementById(id).style.display='none';
+  window.tgUpdateBackBtn();
+}
 window.openModal=openModal;window.closeModal=closeModal;
 function showRules(){openModal('rules-modal');}
 window.showRules=showRules;
+
 function onTypeChange(){var t=document.getElementById('camp-type')?document.getElementById('camp-type').value:'volume';['fg-volume','fg-equal','fg-ranked','fg-points-lb','fg-points-nl'].forEach(function(x){var el=document.getElementById(x);if(el)el.style.display='none';});var m={volume:'fg-volume',equal:'fg-equal',ranked_fixed:'fg-ranked',points_lb:'fg-points-lb',points_nl:'fg-points-nl'};if(m[t]){var s=document.getElementById(m[t]);if(s)s.style.display='';}}
 window.onTypeChange=onTypeChange;
 function onMinVolChange(){var v=document.getElementById('has-min-vol')?document.getElementById('has-min-vol').value:'no';var fg=document.getElementById('fg-minvol');if(fg)fg.style.display=v==='yes'?'':'none';}
@@ -798,10 +899,19 @@ function editCamp(id,ev){
 }
 window.editCamp=editCamp;
 
-/* ── Share ── */
+/* ── Share — Telegram-aware ── */
 function shareWebsite(){shareLink(SITE_URL,'Spot CTR — Binance Campaign Tracker');}
 window.shareWebsite=shareWebsite;
-function shareLink(url,title){if(navigator.share)navigator.share({title:title||'Spot CTR',url:url}).catch(function(){});else copyLink(url);}
+function shareLink(url,title){
+  // Inside Telegram, use the native share sheet via t.me URL
+  if(tg){
+    var tgShareUrl='https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(title||'Spot CTR');
+    tg.openTelegramLink(tgShareUrl);
+    return;
+  }
+  if(navigator.share)navigator.share({title:title||'Spot CTR',url:url}).catch(function(){});
+  else copyLink(url);
+}
 window.shareLink=shareLink;
 function copyLink(url){navigator.clipboard.writeText(url).then(function(){alert('Link copied!');}).catch(function(){prompt('Copy this link:',url);});}
 window.copyLink=copyLink;
@@ -972,7 +1082,7 @@ window.sendMsg=sendMsg;
 function chatKeydown(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}}
 window.chatKeydown=chatKeydown;
 function scrollChatBottom(){var c=document.getElementById('chat-messages');if(c)setTimeout(function(){c.scrollTop=c.scrollHeight;},60);}
-function viewImg(sid){var keys=Object.keys(chatMsgMap);for(var k=0;k<keys.length;k++){if(safeId(keys[k])===sid&&chatMsgMap[keys[k]].imageData){document.getElementById('img-viewer-img').src=chatMsgMap[keys[k]].imageData;document.getElementById('img-viewer').style.display='flex';return;}}}
+function viewImg(sid){var keys=Object.keys(chatMsgMap);for(var k=0;k<keys.length;k++){if(safeId(keys[k])===sid&&chatMsgMap[keys[k]].imageData){document.getElementById('img-viewer-img').src=chatMsgMap[keys[k]].imageData;document.getElementById('img-viewer').style.display='flex';window.tgUpdateBackBtn();return;}}}
 window.viewImg=viewImg;
 
 /* ── Dashboard ── */
