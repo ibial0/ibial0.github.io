@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spot CTR | Binance Campaign Tracker</title>
-<meta name="theme-color" content="#0b0e11">
 <link rel="icon" type="image/png" href="https://spotctr.online/Logo.png">
 <link rel="apple-touch-icon" href="https://spotctr.online/Logo.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Spot CTR">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta property="og:title" content="Spot CTR | Binance Campaign Tracker"/>
 <meta property="og:description" content="Track Binance Spot Trading campaigns in one place."/>
-<meta property="og:image" content="https://spotctr.online/preview.png"/>
+<meta property="og:image" content="https://spotctr.online/Logo.png"/>
 <meta property="og:url" content="https://spotctr.online"/>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M21ZTEQY07"></script>
@@ -28,7 +31,7 @@ body.light .rxn-pill.mine{background:var(--ydim);border-color:rgba(146,105,10,0.
 body.light .notice-card{background:linear-gradient(135deg,#fef9ec,#fef3c7)}
 body.light .notice-title{color:#7c2d12}
 body.light #rxn-popup{background:#fff}
-body.light .vol-input{background:#f0f2f5;color:#0d1117}
+body.light .vol-input,.body.light .chat-input{background:#f0f2f5;color:#0d1117}
 body.light .camp-cb-list{background:#f0f2f5}
 body.light .camp-cb-item:hover{background:#e8ecf2}
 *{margin:0;padding:0;box-sizing:border-box;font-family:var(--font)}
@@ -45,7 +48,7 @@ body.light .logo-text{background:linear-gradient(90deg,#92690a,#b8860b);-webkit-
 .header-right{display:flex;align-items:center;gap:6px;flex-shrink:0}
 .theme-btn{background:var(--surface2);border:1px solid var(--border);color:var(--white);width:33px;height:33px;border-radius:50%;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-text-fill-color:initial;transition:all .2s}
 .theme-btn:hover{border-color:var(--yellow)}
-.tg-btn{background:rgba(0,136,204,0.15);border:1px solid rgba(0,136,204,0.3);color:#29b6f6;width:33px;height:33px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;text-decoration:none}
+.tg-btn{background:rgba(0,136,204,0.15);border:1px solid rgba(0,136,204,0.3);color:#29b6f6;width:33px;height:33px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;text-decoration:none}
 .tg-btn:hover{background:rgba(0,136,204,0.25);border-color:#29b6f6}
 .nav-live{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:4px;vertical-align:middle;animation:livepulse 2s infinite}
 @keyframes livepulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
@@ -61,7 +64,8 @@ body.light .logo-text{background:linear-gradient(90deg,#92690a,#b8860b);-webkit-
 .gbb-amount{font-family:'Courier New',monospace;font-size:15px;font-weight:800}
 .gbb-sub{font-size:11px;color:var(--gray)}
 main{padding:22px 26px;max-width:1200px;margin:0 auto;min-height:80vh}
-.section{display:none}.section.active{display:block;animation:fadeIn .3s ease}
+.section{display:none}
+.section.active{display:block;animation:fadeIn .3s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 h2{margin-bottom:18px;color:var(--white);display:flex;align-items:center;gap:10px;font-size:17px}
 h2::before{content:'';display:inline-block;width:4px;height:18px;background:linear-gradient(180deg,var(--yellow),#f0a500);border-radius:2px;flex-shrink:0}
@@ -84,6 +88,8 @@ h2::before{content:'';display:inline-block;width:4px;height:18px;background:line
 .hero-timer.state-active{color:var(--yellow);text-shadow:0 0 14px var(--yglow)}
 .hero-timer.state-reward{color:var(--green);text-shadow:0 0 14px var(--gglow)}
 .hero-timer.state-upcoming{color:var(--cyan)}
+/* Notice card */
+.notice-section{margin-bottom:6px}
 .notice-card{background:linear-gradient(135deg,#1a1608,#1c1a0a);border:1px solid rgba(245,158,11,.35);padding:20px;border-radius:14px;cursor:pointer;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column;user-select:none;min-height:200px}
 .notice-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(245,158,11,.12)}
 .notice-header-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);color:var(--orange);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-bottom:11px;width:fit-content}
@@ -101,6 +107,8 @@ h2::before{content:'';display:inline-block;width:4px;height:18px;background:line
 .notice-dots{display:flex;justify-content:center;gap:7px;margin-top:9px}
 .n-dot{width:6px;height:6px;border-radius:50%;background:rgba(245,158,11,.25);border:none;cursor:pointer;padding:0;transition:all .25s}
 .n-dot.active{background:var(--orange);transform:scale(1.35)}
+/* Multi-campaign checkbox list */
+.camp-cb-wrap{position:relative}
 .camp-cb-list{background:var(--bg);border:1px solid var(--border);border-radius:7px;max-height:200px;overflow-y:auto;margin-top:4px}
 .camp-cb-item{display:flex;align-items:center;gap:8px;padding:8px 10px;cursor:pointer;transition:background .15s;border-bottom:1px solid var(--border)}
 .camp-cb-item:last-child{border-bottom:none}
@@ -110,20 +118,23 @@ h2::before{content:'';display:inline-block;width:4px;height:18px;background:line
 .camp-cb-name{font-size:13px;color:var(--white);font-weight:600}
 .camp-cb-selected{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;min-height:20px}
 .camp-cb-tag{display:inline-flex;align-items:center;gap:4px;background:var(--ydim);border:1px solid rgba(252,213,53,.3);border-radius:20px;padding:2px 8px;font-size:11px;color:var(--yellow)}
+/* Carousel */
 .carousel-wrap{position:relative;overflow:hidden;margin-bottom:4px}
 .carousel-track{display:flex;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
 .carousel-slide{flex-shrink:0;width:100%}
 .carousel-dots{display:flex;justify-content:center;gap:7px;margin-top:9px}
 .c-dot{width:7px;height:7px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:all .25s;background:var(--border)}
 .c-dot.on-r{background:var(--red);transform:scale(1.3)}
+/* Telegram CTA */
 .tg-cta-card{background:linear-gradient(135deg,rgba(0,136,204,0.12),rgba(0,136,204,0.05));border:1px solid rgba(0,136,204,0.25);border-radius:14px;padding:18px 20px;display:flex;align-items:center;gap:14px;margin-bottom:18px;transition:border-color .2s}
 .tg-cta-card:hover{border-color:rgba(0,136,204,0.5)}
-.tg-cta-icon{font-size:28px;flex-shrink:0;color:#29b6f6;display:flex;align-items:center}
+.tg-cta-icon{font-size:30px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .tg-cta-info{flex:1;min-width:0}
 .tg-cta-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px}
 .tg-cta-sub{font-size:12px;color:var(--gray)}
 .tg-cta-btn{background:rgba(0,136,204,0.2);border:1px solid rgba(0,136,204,0.4);color:#29b6f6;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:all .2s;flex-shrink:0}
 .tg-cta-btn:hover{background:rgba(0,136,204,0.35)}
+/* Buttons */
 .btn-join{border:1.5px solid var(--border);background:transparent;color:var(--gray);padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:5px;width:100%;justify-content:center}
 .btn-join:hover{border-color:var(--green);color:var(--green);background:var(--gdim)}
 .btn-join.joined{border-color:var(--green);background:var(--gdim);color:var(--green)}
@@ -140,7 +151,8 @@ h2::before{content:'';display:inline-block;width:4px;height:18px;background:line
 .camp-logo{width:32px;height:32px;border-radius:50%;object-fit:cover;border:1px solid var(--border);flex-shrink:0}
 .camp-name{font-weight:700;font-size:14px;color:var(--white)}
 .camp-price{font-weight:700;color:var(--yellow);font-size:13px}
-.reward-mid{text-align:center}.reward-pool{text-align:right}
+.reward-mid{text-align:center}
+.reward-pool{text-align:right}
 .pool-amt{font-weight:700;color:var(--white);font-size:13px}
 .pool-usd{font-size:11px;color:var(--gray);margin-top:1px}
 .camp-timer{font-family:'Courier New',monospace;font-size:12px;font-weight:700;text-align:right;white-space:nowrap}
@@ -204,13 +216,15 @@ h2::before{content:'';display:inline-block;width:4px;height:18px;background:line
 .calc-tabs{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
 .calc-tab{background:var(--surface);border:1px solid var(--border);color:var(--gray);padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
 .calc-tab.active{background:var(--ydim);border-color:var(--yellow);color:var(--yellow)}
-.calc-panel{display:none}.calc-panel.active{display:block}
+.calc-panel{display:none}
+.calc-panel.active{display:block}
 .calc-card{background:var(--surface);border-radius:13px;padding:20px;border:1px solid var(--border)}
 .calc-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
 .calc-row:last-child{border-bottom:none}
 .calc-key{color:var(--gray);font-size:13px}
 .calc-val{font-weight:700;font-size:13px;color:var(--white)}
 .savings-hint{border-radius:7px;padding:9px 13px;margin-top:9px;font-size:12px;line-height:1.6;border:1px solid}
+/* Chat */
 .chat-wrap{background:var(--surface);border-radius:14px;border:1px solid var(--border);display:flex;flex-direction:column;height:68vh;min-height:440px;overflow:hidden}
 .chat-header{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:7px;background:var(--surface2);flex-shrink:0;flex-wrap:wrap}
 .chat-header-info{flex:1;min-width:0}
@@ -267,6 +281,7 @@ h2::before{content:'';display:inline-block;width:4px;height:18px;background:line
 .chat-send-btn{background:linear-gradient(135deg,var(--yellow),#f0a500);color:#000;border:none;padding:8px 14px;border-radius:20px;font-weight:700;font-size:13px;cursor:pointer;flex-shrink:0;transition:transform .2s}
 .chat-send-btn:hover{transform:translateY(-1px)}
 .chat-notice{background:var(--bg);border-radius:7px;padding:5px 11px;text-align:center;font-size:11px;color:var(--gray);margin:2px 0}
+/* About */
 .about-card{background:var(--surface);border-radius:12px;padding:18px 22px;border:1px solid var(--border);margin-bottom:13px}
 .about-card-title{color:var(--yellow);font-size:14px;font-weight:700;margin-bottom:9px}
 .about-card p{color:var(--gray);font-size:13px;line-height:1.9}
@@ -278,11 +293,13 @@ body.light .about-warn{color:#7f1d1d}
 .platform-btn-web:hover{background:rgba(252,213,53,.2)}
 .platform-btn-tg{background:rgba(0,136,204,0.12);border-color:rgba(0,136,204,0.3);color:#29b6f6}
 .platform-btn-tg:hover{background:rgba(0,136,204,0.25)}
+/* Share */
 .share-bar{display:flex;gap:7px;flex-wrap:wrap}
 .share-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:transform .15s}
 .share-btn:hover{transform:translateY(-1px)}
 .share-btn-copy{background:var(--surface2);border:1px solid var(--border);color:var(--white)}
 .share-btn-share{background:var(--ydim);border:1px solid rgba(252,213,53,.3);color:var(--yellow)}
+/* Modal */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);justify-content:center;align-items:center;z-index:1000;padding:12px;cursor:pointer}
 .modal-content{background:var(--surface);padding:24px;border-radius:16px;width:500px;max-width:100%;position:relative;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,.7);max-height:92vh;overflow-y:auto;cursor:default}
 .close-modal{position:absolute;top:12px;right:14px;color:var(--gray);cursor:pointer;font-size:19px;font-weight:700;line-height:1}
@@ -334,6 +351,7 @@ body.light .about-warn{color:#7f1d1d}
 .community-cta{background:linear-gradient(135deg,#181c22,#1a1f27);padding:26px 30px;border-radius:16px;text-align:center;margin-top:32px;border:1px solid rgba(14,203,129,.22)}
 body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 .btn-cta{background:linear-gradient(135deg,var(--green),#0aa870);color:#000;border:none;padding:9px 24px;border-radius:18px;font-weight:700;font-size:13px;cursor:pointer}
+/* FAB */
 .fab-chat{position:fixed;bottom:20px;right:20px;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),#f0a500);border:none;font-size:21px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(252,213,53,.4);z-index:97;transition:transform .3s,box-shadow .2s}
 .fab-chat:hover{transform:scale(1.1)}
 .fab-notif{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;font-size:9px;font-weight:800;min-width:15px;height:15px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 3px}
@@ -389,7 +407,7 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
   </nav>
   <div class="header-right">
     <a href="https://t.me/spotctrbot" target="_blank" class="tg-btn" title="Open in Telegram">
-      <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:17px;height:17px"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
     </a>
     <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
     <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
@@ -412,11 +430,16 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 <main>
   <div id="tz-notice" style="text-align:right;color:var(--gray);font-size:11px;margin-bottom:14px"></div>
   <section id="home" class="section active">
+    <!-- Notices rendered here separately, always visible -->
+    <div id="home-notices"></div>
     <h2>Featured Campaigns</h2>
     <div id="home-featured"><div class="loading"><div class="spinner"></div>Loading...</div></div>
-    <h2>Ending Soon</h2>
-    <div id="home-urgent"></div>
-    <div class="tg-cta-card" id="tg-cta-dynamic" style="margin-top:8px"></div>
+    <div id="ending-soon-section" style="display:none">
+      <h2>Ending Soon</h2>
+      <div id="home-urgent"></div>
+    </div>
+    <!-- Dynamic TG/Web CTA card -->
+    <div id="tg-cta-home" style="margin-top:8px"></div>
     <div class="community-cta">
       <div style="font-size:32px;margin-bottom:7px">💬</div>
       <div style="font-size:15px;font-weight:700;margin-bottom:5px">Join the Community Chat</div>
@@ -434,7 +457,7 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
     <div class="chat-wrap">
       <div class="chat-header">
         <span style="font-size:19px">💬</span>
-        <div class="chat-header-info"><div class="chat-header-title">Spot CTR Community</div><div class="chat-header-sub">Open chat · No account needed</div></div>
+        <div class="chat-header-info"><div class="chat-header-title">Spot CTR Community</div><div class="chat-header-sub">Open chat, no account needed</div></div>
         <button class="chat-hdr-btn" onclick="showRules()">📋 Rules</button>
       </div>
       <div class="chat-lang-bar">
@@ -456,52 +479,52 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
       </div>
       <div class="chat-input-area">
         <button class="chat-img-btn" onclick="document.getElementById('img-file-input').click()" title="Send image">📷</button>
-        <input class="chat-input" id="chat-input" type="text" placeholder="Type a message… (Enter to send)" maxlength="2000" onkeydown="chatKeydown(event)">
+        <input class="chat-input" id="chat-input" type="text" placeholder="Type a message (Enter to send)" maxlength="2000" onkeydown="chatKeydown(event)">
         <button class="chat-send-btn" onclick="sendMsg()">Send</button>
       </div>
     </div>
   </section>
   <section id="about" class="section">
     <h2>About Spot CTR</h2>
-    <div class="about-warn">⚠️ <strong>Important Disclaimer:</strong> Spot CTR is an independent, personal tracking tool — <strong>not affiliated with or endorsed by Binance</strong> in any way. All reward estimates are based on personal analysis only. Always verify campaign details directly on Binance's official platform before making any decisions.</div>
+    <div class="about-warn">⚠️ <strong>Important Disclaimer:</strong> Spot CTR is an independent, personal tracking tool — <strong>not affiliated with or endorsed by Binance</strong> in any way. All reward estimates are based on personal analysis only. This is not a business website. Always verify campaign details directly on Binance's official platform before making any decisions.</div>
     <div class="about-card">
       <div class="about-card-title">📱 Available On</div>
       <p>Spot CTR is available as both a web app and a Telegram Mini App. Use whichever is most convenient for you. Both platforms offer identical features.</p>
       <div class="platform-links">
-        <a href="https://spotctr.online" target="_blank" class="platform-btn platform-btn-web">🌐 Web App — spotctr.online</a>
+        <a href="https://spotctr.online" target="_blank" class="platform-btn platform-btn-web">🌐 Web App at spotctr.online</a>
         <a href="https://t.me/spotctrbot" target="_blank" class="platform-btn platform-btn-tg">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-          Telegram Mini App — @spotctrbot
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;flex-shrink:0"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Telegram Mini App @spotctrbot
         </a>
       </div>
     </div>
-    <div class="about-card"><div class="about-card-title">🧭 What is Spot CTR?</div><p>Spot CTR is a personal tracking platform built to help Binance spot traders keep up with active trading campaigns, all in one clean and organized interface. Instead of hunting through multiple Binance pages, you can check estimated rewards, countdowns, difficulty levels, and campaign details right here.<br><br>This platform focuses exclusively on <strong>Binance spot trading campaigns</strong>. It was created out of a genuine need to simplify how traders track their participation and save valuable time in the process.</p></div>
-    <div class="about-card"><div class="about-card-title">📊 How Are Estimates Calculated?</div><p>All reward estimates are based on personal analysis and independent research. Figures are calculated using available campaign parameters such as total pool size, number of participants, minimum trading volume requirements, and any publicly visible leaderboard data.<br><br>For volume-based campaigns, the estimate shows approximately how many tokens you might earn per $1,000 of trading volume. For equal-share campaigns, it shows the estimated share per participant based on the current participant count.<br><br><strong>These estimates are not guaranteed to be accurate.</strong> Actual rewards depend on real-time market conditions, total participation at campaign end, and Binance's final distribution. Always treat these numbers as rough guidance, not a guarantee.</p></div>
-    <div class="about-card"><div class="about-card-title">🎯 Which Campaigns Are Listed Here?</div><p>Only campaigns that offer a genuine, realistic earning opportunity to <strong>regular, everyday traders</strong> are added here. The top-rank special prizes are <strong>excluded from calculations</strong>. Those positions are almost always dominated by market makers and institutional traders. For example:<br><br><span style="background:var(--bg);border-radius:7px;padding:10px 13px;display:block;margin-top:10px;border-left:3px solid var(--yellow)">A campaign awards <strong>$100,000</strong> to the Top 1,000 ranked traders, and <strong>$800,000</strong> shared equally among all traders ranked 1,001 and above. On Spot CTR, only the <strong>$800,000 general pool</strong> is calculated and displayed.</span></p></div>
-    <div class="about-card"><div class="about-card-title">⏳ A Note on Timeliness and Updates</div><p>Spot CTR is maintained by a <strong>single person</strong>. When Binance launches a new campaign or tournament, it may take some time before it appears here. Your patience is sincerely appreciated. If you don't see a campaign here yet, it will likely be added soon.</p></div>
-    <div class="about-card"><div class="about-card-title">⚠️ Reward Delays and Postponements</div><p>Occasionally, Binance postpones a reward distribution deadline. When this happens, the affected campaign will be marked with a <span class="postponed-badge" style="vertical-align:middle">⚠️ Delayed</span> badge, or a <span class="tbd-badge" style="vertical-align:middle">⏳ TBD</span> badge if no new date has been announced.</p></div>
-    <div class="about-card"><div class="about-card-title">🔍 Do Your Own Research</div><p>This platform exists to save you time and give you a useful starting point, <strong>not to make trading decisions for you</strong>. Always verify campaign details directly on <strong>Binance's official platform</strong> before committing any funds. No information here should be taken as financial advice.</p></div>
-    <div class="about-card"><div class="about-card-title">📣 Share Spot CTR</div><p>If Spot CTR has saved you time or helped you discover a campaign, please share it with your fellow traders!</p>
-      <div class="share-bar" style="margin-top:13px">
-        <button class="share-btn share-btn-share" onclick="shareWebsite()">🔗 Share Spot CTR</button>
-        <button class="share-btn share-btn-copy" onclick="copyBestLink()">📋 Copy Link</button>
-      </div>
+    <div class="about-card"><div class="about-card-title">🧭 What is Spot CTR?</div><p>Spot CTR is a personal tracking platform built to help Binance spot traders keep up with active trading campaigns, all in one clean and organized interface. Instead of hunting through multiple Binance pages, you can check estimated rewards, countdowns, difficulty levels, and campaign details right here in one place.<br><br>This platform focuses exclusively on <strong>Binance spot trading campaigns</strong>. It was created out of a genuine need to simplify how traders track their participation in these campaigns and save valuable time in the process.</p></div>
+    <div class="about-card"><div class="about-card-title">📊 How Are Estimates Calculated?</div><p>All reward estimates shown on this platform are based on personal analysis and independent research. Figures are calculated using available campaign parameters such as total pool size, number of participants, minimum trading volume requirements, and any publicly visible leaderboard data.<br><br>For volume-based campaigns, the estimate shows approximately how many tokens you might earn per $1,000 of trading volume. For equal-share campaigns, it shows the estimated share per participant based on the current participant count.<br><br><strong>These estimates are not guaranteed to be accurate.</strong> Actual rewards depend on real-time market conditions, total participation at campaign end, and Binance's final distribution. Always treat these numbers as rough guidance and not a guarantee.<br><br>As an additional safety measure, displayed estimates may be slightly adjusted above or below the raw calculated value to reduce large discrepancies between shown estimates and actual distributions.</p></div>
+    <div class="about-card"><div class="about-card-title">🎯 Which Campaigns Are Listed Here?</div><p>Only campaigns that offer a genuine, realistic earning opportunity to <strong>regular, everyday traders</strong> are added here. Many Binance campaigns include two separate reward pools: one for top-ranked traders (e.g. top 200 or top 1,000 with large fixed prizes), and a <strong>general pool</strong> shared among all other participants.<br><br>The top-rank special prizes are <strong>excluded from calculations here</strong>. Those positions are almost always dominated by market makers and institutional traders, not regular traders. For example:<br><br><span style="background:var(--bg);border-radius:7px;padding:10px 13px;display:block;margin-top:10px;border-left:3px solid var(--yellow)">A campaign awards <strong>$100,000</strong> to the Top 1,000 ranked traders, and <strong>$800,000</strong> shared equally among all traders ranked 1,001 and above. On Spot CTR, only the <strong>$800,000 general pool</strong> is calculated and displayed.</span></p></div>
+    <div class="about-card"><div class="about-card-title">⏳ A Note on Timeliness and Updates</div><p>Spot CTR is maintained by a <strong>single person</strong>. When Binance launches a new campaign or tournament, it may take some time before it appears here. Campaign parameters may also take a few days to update after a campaign goes live.<br><br>Your patience is sincerely appreciated. If you don't see a campaign here yet, it will likely be added soon. Please check back later.</p></div>
+    <div class="about-card"><div class="about-card-title">⚠️ Reward Delays and Postponements</div><p>Occasionally, Binance postpones a reward distribution deadline, sometimes indefinitely. When this happens, the affected campaign on Spot CTR will be marked with a <span class="postponed-badge" style="vertical-align:middle">⚠️ Delayed</span> badge, or a <span class="tbd-badge" style="vertical-align:middle">⏳ TBD</span> badge if no new date has been announced. Important notices about delays are shown directly on the homepage as a highlighted notice card.</p></div>
+    <div class="about-card"><div class="about-card-title">🔍 Do Your Own Research</div><p>This platform exists to save you time and give you a useful starting point — <strong>not to make trading decisions for you</strong>. Always verify campaign details directly on <strong>Binance's official platform</strong> before committing any funds. No information here should be taken as financial advice. Trade responsibly.</p></div>
+    <div class="about-card"><div class="about-card-title">📣 Share Spot CTR</div><p>If Spot CTR has saved you time or helped you discover a campaign, please share it with your fellow traders! Every share helps keep this project alive and growing.</p>
+      <div class="share-bar" style="margin-top:13px"><button class="share-btn share-btn-share" onclick="shareWebsite()">🔗 Share Spot CTR</button><button class="share-btn share-btn-copy" onclick="copyLink('https://spotctr.online')">📋 Copy Link</button></div>
     </div>
     <div style="margin-top:16px;display:flex;align-items:center;gap:13px">
       <span style="color:var(--gray);font-size:13px">Follow on X:</span>
       <a href="https://x.com/_IBIAL" target="_blank" style="color:var(--gray)"><svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-      <a href="https://t.me/spotctrbot" target="_blank" style="color:#29b6f6;font-size:13px;display:flex;align-items:center;gap:6px;text-decoration:none;font-weight:700">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+      <a href="https://t.me/spotctrbot" target="_blank" style="color:#29b6f6;font-size:13px;display:flex;align-items:center;gap:5px;text-decoration:none;font-weight:700">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         Telegram Mini App
       </a>
     </div>
   </section>
 </main>
+
+<!-- FAB -->
 <button class="fab-chat" id="fab-chat" onclick="nav('community')" title="Community Chat">💬<span class="fab-notif" id="fab-notif" style="display:none"></span></button>
 <div class="fab-tooltip" id="fab-tooltip">
   <span>💬 Join the community! Discuss campaigns and get tips from fellow traders.</span>
   <button onclick="dismissFab(event)" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:16px;padding:0;line-height:1;flex-shrink:0">×</button>
 </div>
+
 <div id="rxn-popup"></div>
 <div id="img-viewer" onclick="document.getElementById('img-viewer').style.display='none';tgUpdateBackBtn()"><img id="img-viewer-img" src=""></div>
 <input type="file" id="img-file-input" accept="image/*" style="display:none" onchange="handleImgUpload(event)">
@@ -523,7 +546,7 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
         <div class="form-group"><label>Token Name (e.g. $BNB)</label><input type="text" id="token-name" required></div>
         <div class="form-group"><label>CoinGecko Coin ID</label><input type="text" id="coin-id" required><div class="hint">e.g. binancecoin</div></div>
         <div class="form-group"><label>Logo Image URL</label><input type="url" id="logo-url" required></div>
-        <div class="form-group"><label>Official Campaign Link (optional)</label><input type="url" id="camp-link"></div>
+        <div class="form-group"><label>Official Campaign Link (optional)</label><input type="url" id="camp-link"><div class="hint">Direct link to Binance campaign page</div></div>
         <div class="form-group"><label>Total Reward Pool (Token Amount)</label><input type="number" id="reward-pool-amt" required></div>
         <div class="form-group"><label>Campaign Type</label>
           <select id="camp-type" onchange="onTypeChange()">
@@ -549,15 +572,15 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
         </div>
         <hr class="form-divider">
         <span class="form-section-label">Min Volume Requirement</span>
-        <div class="form-group"><select id="has-min-vol" onchange="onMinVolChange()"><option value="no">No minimum</option><option value="yes">Yes – set minimum</option></select></div>
+        <div class="form-group"><select id="has-min-vol" onchange="onMinVolChange()"><option value="no">No minimum</option><option value="yes">Yes, set minimum</option></select></div>
         <div id="fg-minvol" style="display:none"><div class="form-group"><label>Min Volume (USD)</label><input type="number" id="min-volume" min="0"></div></div>
         <hr class="form-divider">
         <span class="form-section-label">Difficulty</span>
         <div class="form-group"><select id="camp-difficulty"><option value="">Not Set</option><option value="Easy">Easy</option><option value="Medium">Medium</option><option value="Hard">Hard</option><option value="Very Hard">Very Hard</option></select></div>
         <hr class="form-divider">
         <span class="form-section-label">Campaign Period</span>
-        <div class="form-group"><label>Start Date &amp; Time</label><input type="datetime-local" id="start-date" required></div>
-        <div class="form-group"><label>End Date &amp; Time</label><input type="datetime-local" id="end-date" required></div>
+        <div class="form-group"><label>Start Date and Time</label><input type="datetime-local" id="start-date" required></div>
+        <div class="form-group"><label>End Date and Time</label><input type="datetime-local" id="end-date" required></div>
         <hr class="form-divider">
         <span class="form-section-label">Reward Distribution</span>
         <div class="form-group"><label>Reward Deadline</label><input type="datetime-local" id="reward-date"><div class="hint">Leave blank if not announced</div></div>
@@ -568,6 +591,7 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
         <button type="submit" class="btn-submit" id="submit-btn">Publish Campaign</button>
       </form>
     </div>
+    <!-- NOTICE FORM -->
     <div id="admin-notice-form" style="display:none">
       <h2 id="notice-modal-title" style="border:none;padding:0;display:block;margin-bottom:14px">📢 Add Notice</h2>
       <form id="notice-form" onsubmit="saveNotice(event)">
@@ -575,8 +599,10 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
         <div class="form-group"><label>Notice Title</label><input type="text" id="notice-title" required placeholder="e.g. Reward Distribution Delayed"></div>
         <div class="form-group"><label>Description</label><textarea id="notice-desc" required placeholder="Provide details..."></textarea></div>
         <div class="form-group">
-          <label>Link Campaigns (optional)</label>
-          <div class="camp-cb-list" id="notice-camp-cb-list"><div style="padding:10px;color:var(--gray);font-size:12px;text-align:center">Loading campaigns...</div></div>
+          <label>Link Campaigns (optional, select multiple)</label>
+          <div class="camp-cb-list" id="notice-camp-cb-list">
+            <div style="padding:10px;color:var(--gray);font-size:12px;text-align:center">Loading campaigns...</div>
+          </div>
           <div class="camp-cb-selected" id="notice-camp-selected"></div>
         </div>
         <button type="submit" class="btn-submit" id="notice-submit-btn">Publish Notice</button>
@@ -630,8 +656,8 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
     <div class="rule-item"><strong>😊 Reactions</strong>Click the 😊 button to add emoji reactions.</div>
     <div class="rule-item"><strong>✏️ Edit</strong>Click "Edit" on your own message to modify it.</div>
     <div class="rule-item"><strong>🗑️ Delete</strong>Messages can be deleted using the admin password only.</div>
-    <div class="rule-item"><strong>🌐 Send as English</strong>Auto-translate your message to English before sending.</div>
-    <div class="rule-item"><strong>🔄 Auto-translate</strong>Select your language and toggle Auto to translate all messages.</div>
+    <div class="rule-item"><strong>🌐 Send as English (↑ EN)</strong>Auto-translate your message to English before sending.</div>
+    <div class="rule-item"><strong>🔄 Auto-translate</strong>Select your language and toggle "🔄 Auto" to translate all messages.</div>
     <div class="rule-item"><strong>📩 Reply notifications</strong>A banner appears if someone replied to your messages while you were away.</div>
   </div>
 </div>
@@ -650,15 +676,14 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 
 /* ══ TELEGRAM INIT ══ */
 var tg=window.Telegram&&window.Telegram.WebApp?window.Telegram.WebApp:null;
-var isTG=!!tg;
-
+var isTgApp=!!tg;
 window.tgUpdateBackBtn=function(){
   if(!tg)return;
-  var ids=['admin-modal','details-modal','rules-modal','notice-modal'];
-  var anyOpen=ids.some(function(id){var e=document.getElementById(id);return e&&e.style.display==='flex';});
-  var ivOpen=(function(){var e=document.getElementById('img-viewer');return e&&e.style.display==='flex';})();
-  var mmOpen=(function(){var e=document.getElementById('mobile-menu');return e&&e.style.display==='flex';})();
-  if(anyOpen||ivOpen||mmOpen)tg.BackButton.show();else tg.BackButton.hide();
+  var MODAL_IDS=['admin-modal','details-modal','rules-modal','notice-modal'];
+  var anyOpen=MODAL_IDS.some(function(id){var el=document.getElementById(id);return el&&el.style.display==='flex';});
+  var imgOpen=(function(){var iv=document.getElementById('img-viewer');return iv&&iv.style.display==='flex';})();
+  var menuOpen=(function(){var mm=document.getElementById('mobile-menu');return mm&&mm.style.display==='flex';})();
+  if(anyOpen||imgOpen||menuOpen)tg.BackButton.show();else tg.BackButton.hide();
 };
 if(tg){
   tg.ready();tg.expand();
@@ -668,8 +693,8 @@ if(tg){
   tg.BackButton.onClick(function(){
     var iv=document.getElementById('img-viewer');
     if(iv&&iv.style.display==='flex'){iv.style.display='none';window.tgUpdateBackBtn();return;}
-    var ids=['notice-modal','rules-modal','details-modal','admin-modal'];
-    for(var i=0;i<ids.length;i++){var e=document.getElementById(ids[i]);if(e&&e.style.display==='flex'){e.style.display='none';window.tgUpdateBackBtn();return;}}
+    var MODAL_IDS=['notice-modal','rules-modal','details-modal','admin-modal'];
+    for(var i=0;i<MODAL_IDS.length;i++){var el=document.getElementById(MODAL_IDS[i]);if(el&&el.style.display==='flex'){el.style.display='none';window.tgUpdateBackBtn();return;}}
     var mm=document.getElementById('mobile-menu');
     if(mm&&mm.style.display==='flex'){mm.style.display='none';window.tgUpdateBackBtn();}
   });
@@ -682,8 +707,6 @@ if(tg){
 /* ══ CONFIG ══ */
 var SITE_URL='https://spotctr.online';
 var TG_BOT_URL='https://t.me/spotctrbot';
-var TG_SVG='<svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>';
-
 firebase.initializeApp({databaseURL:'https://spotctr-default-rtdb.firebaseio.com'});
 var db=firebase.database();
 
@@ -701,24 +724,42 @@ function applyTheme(){
   var b=document.getElementById('theme-btn');if(b)b.innerText=isDark?'🌙':'☀️';
   var mb=document.getElementById('mobile-theme-btn');if(mb)mb.innerText=(isDark?'🌙':'☀️')+' Toggle Theme';
 }
-window.toggleTheme=function(){isDark=!isDark;localStorage.setItem('spotctr_theme',isDark?'dark':'light');localStorage.setItem('spotctr_theme_manual','1');applyTheme();};
+function toggleTheme(){
+  isDark=!isDark;
+  localStorage.setItem('spotctr_theme',isDark?'dark':'light');
+  localStorage.setItem('spotctr_theme_manual','1');
+  applyTheme();
+}
+window.toggleTheme=toggleTheme;
 applyTheme();
 
-/* ══ CTA CARD ══ */
-(function(){
-  var c=document.getElementById('tg-cta-dynamic');if(!c)return;
-  if(isTG){
-    c.innerHTML='<div class="tg-cta-icon">🌐</div>'
-      +'<div class="tg-cta-info"><div class="tg-cta-title">Also available as a Website</div>'
-      +'<div class="tg-cta-sub">Visit spotctr.online on your browser for the full desktop experience.</div></div>'
-      +'<a href="'+SITE_URL+'" class="tg-cta-btn" onclick="if(window.Telegram&&window.Telegram.WebApp)window.Telegram.WebApp.openLink(\''+SITE_URL+'\');return false;">Open Website</a>';
+/* ══ TG CTA CARD ══ */
+var TG_ICON_SVG='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:26px;height:26px"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>';
+function renderTgCtaCard(){
+  var el=document.getElementById('tg-cta-home');if(!el)return;
+  if(isTgApp){
+    el.innerHTML='<div class="tg-cta-card"><div class="tg-cta-icon">🌐</div><div class="tg-cta-info"><div class="tg-cta-title">Also available as a Web App</div><div class="tg-cta-sub">Visit spotctr.online for the full web experience on any browser.</div></div><a href="https://spotctr.online" target="_blank" class="tg-cta-btn">Open Website</a></div>';
   }else{
-    c.innerHTML='<div class="tg-cta-icon">'+TG_SVG+'</div>'
-      +'<div class="tg-cta-info"><div class="tg-cta-title">Also available as a Telegram Mini App</div>'
-      +'<div class="tg-cta-sub">Track campaigns directly inside Telegram. Same features, zero switching.</div></div>'
-      +'<a href="'+TG_BOT_URL+'" target="_blank" class="tg-cta-btn">Open in Telegram</a>';
+    el.innerHTML='<div class="tg-cta-card"><div class="tg-cta-icon" style="color:#29b6f6">'+TG_ICON_SVG+'</div><div class="tg-cta-info"><div class="tg-cta-title">Also available as a Telegram Mini App</div><div class="tg-cta-sub">Track campaigns directly inside Telegram. Same features, no switching needed.</div></div><a href="https://t.me/spotctrbot" target="_blank" class="tg-cta-btn">Open in Telegram</a></div>';
   }
-})();
+}
+renderTgCtaCard();
+
+/* ══ SMART SHARE ══ */
+function getCampaignShareUrl(campId){
+  if(isTgApp){
+    return 'https://t.me/spotctrbot?startapp=camp_'+campId;
+  }
+  return SITE_URL+'/#campaign='+campId;
+}
+function shareWebsite(){
+  if(isTgApp){
+    shareLink(TG_BOT_URL,'Check out Spot CTR on Telegram');
+  }else{
+    shareLink(SITE_URL,'Spot CTR: Binance Campaign Tracker');
+  }
+}
+window.shareWebsite=shareWebsite;
 
 /* ══ CHAT STATE ══ */
 var AVATARS=['🦊','🐺','🦁','🐯','🐻','🦅','🦋','🐬','🦄','🐙','🦈','🐲','🦉','🐸','🦜','🐧','🐨','🦩','🦒','🦓','🐼','🦔','🐞','🦀','🦑','🐝','🦆'];
@@ -740,10 +781,13 @@ function buildLangSelect(){var sel=document.getElementById('lang-select');if(!se
 async function translateText(text,toLang,fromLang){if(!text||!text.trim()||toLang==='en')return text;fromLang=fromLang||'auto';try{var r=await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl='+fromLang+'&tl='+toLang+'&dt=t&q='+encodeURIComponent(text));var d=await r.json();if(d&&d[0]){var out=d[0].filter(function(x){return x&&x[0];}).map(function(x){return x[0];}).join('');if(out)return out;}}catch(e){}try{var r2=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(text.slice(0,500))+'&langpair='+fromLang+'|'+toLang);var d2=await r2.json();if(d2&&d2.responseStatus===200&&d2.responseData)return d2.responseData.translatedText||text;}catch(e2){}return text;}
 async function translateMsgInPlace(msgId){var msg=chatMsgMap[msgId];if(!msg||!msg.text)return;var cKey=msgId+'_'+userReadLang;var el=document.getElementById('cm-'+safeId(msgId));if(!el)return;var textEl=el.querySelector('.chat-text');if(!textEl)return;if(txCache[cKey]){textEl.innerText=txCache[cKey];markTranslated(el);return;}textEl.style.opacity='0.6';var result=await translateText(msg.text,userReadLang,'auto');txCache[cKey]=result;var freshEl=document.getElementById('cm-'+safeId(msgId));if(freshEl){var ft=freshEl.querySelector('.chat-text');if(ft){ft.innerText=result;ft.style.opacity='1';markTranslated(freshEl);}}}
 window.translateMsgInPlace=translateMsgInPlace;
-function markTranslated(el){if(!el||el.querySelector('.translated-note'))return;var meta=el.querySelector('.chat-meta');if(meta){var note=document.createElement('span');note.className='translated-note';note.innerText='🌐 translated';meta.parentNode.insertBefore(note,meta);}}
-window.setReadLang=function(code){userReadLang=code;localStorage.setItem('spotctr_readLang',code);if(autoTranslateAll)translateAllVisible();};
-window.toggleAutoTranslate=function(){autoTranslateAll=!autoTranslateAll;localStorage.setItem('spotctr_autoTx',autoTranslateAll?'1':'0');var btn=document.getElementById('btn-auto-tx');if(btn)btn.classList.toggle('active',autoTranslateAll);if(autoTranslateAll&&userReadLang!=='en')translateAllVisible();};
-window.toggleSendAsEnglish=function(){sendAsEnglish=!sendAsEnglish;localStorage.setItem('spotctr_sendEn',sendAsEnglish?'1':'0');var btn=document.getElementById('btn-send-en');if(btn)btn.classList.toggle('active',sendAsEnglish);};
+function markTranslated(el){if(!el)return;if(el.querySelector('.translated-note'))return;var meta=el.querySelector('.chat-meta');if(meta){var note=document.createElement('span');note.className='translated-note';note.innerText='🌐 translated';meta.parentNode.insertBefore(note,meta);}}
+function setReadLang(code){userReadLang=code;localStorage.setItem('spotctr_readLang',code);if(autoTranslateAll)translateAllVisible();}
+window.setReadLang=setReadLang;
+function toggleAutoTranslate(){autoTranslateAll=!autoTranslateAll;localStorage.setItem('spotctr_autoTx',autoTranslateAll?'1':'0');var btn=document.getElementById('btn-auto-tx');if(btn)btn.classList.toggle('active',autoTranslateAll);if(autoTranslateAll&&userReadLang!=='en')translateAllVisible();}
+window.toggleAutoTranslate=toggleAutoTranslate;
+function toggleSendAsEnglish(){sendAsEnglish=!sendAsEnglish;localStorage.setItem('spotctr_sendEn',sendAsEnglish?'1':'0');var btn=document.getElementById('btn-send-en');if(btn)btn.classList.toggle('active',sendAsEnglish);}
+window.toggleSendAsEnglish=toggleSendAsEnglish;
 async function translateAllVisible(){if(userReadLang==='en')return;var keys=Object.keys(chatMsgMap);for(var i=0;i<Math.min(keys.length,40);i++){await translateMsgInPlace(keys[i]);await new Promise(function(r){setTimeout(r,60);});}}
 
 /* ══ HELPERS ══ */
@@ -766,46 +810,44 @@ function divH(label,color){return'<div class="section-divider"><span style="colo
 function safeId(id){return id.replace(/[^a-zA-Z0-9]/g,'');}
 function getCampById(id){for(var i=0;i<campaigns.length;i++){if(campaigns[i].id===id)return campaigns[i];}return null;}
 
-/* ══ SHARE ══ */
-function bestSiteUrl(){return isTG?TG_BOT_URL:SITE_URL;}
-function bestCampUrl(campId){return isTG?TG_BOT_URL+'?startapp=camp_'+campId:SITE_URL+'/#campaign='+campId;}
-window.shareWebsite=function(){shareLink(bestSiteUrl(),'Spot CTR — Binance Campaign Tracker');};
-window.copyBestLink=function(){copyLink(bestSiteUrl());};
-function shareLink(url,title){
-  if(tg){tg.openTelegramLink('https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(title||'Spot CTR'));return;}
-  if(navigator.share)navigator.share({title:title||'Spot CTR',url:url}).catch(function(){});else copyLink(url);
+/* ══ MODAL BACKDROP CLOSE ══ */
+function handleModalBgClick(e,modalId){
+  if(e.target===document.getElementById(modalId))closeModal(modalId);
 }
-window.copyLink=function(url){navigator.clipboard.writeText(url).then(function(){alert('Link copied!');}).catch(function(){prompt('Copy this link:',url);});};
-
-/* ══ MODAL ══ */
-window.handleModalBgClick=function(e,id){if(e.target===document.getElementById(id))closeModal(id);};
-function openModal(id){document.getElementById(id).style.display='flex';window.tgUpdateBackBtn();}
-function closeModal(id){document.getElementById(id).style.display='none';window.tgUpdateBackBtn();}
-window.openModal=openModal;window.closeModal=closeModal;
-window.showRules=function(){openModal('rules-modal');};
+window.handleModalBgClick=handleModalBgClick;
 
 /* ══ FAB ══ */
 var fabDismissed=false;
 function fabSetVisible(show){var f=document.getElementById('fab-chat');if(f)f.style.display=show&&!fabDismissed?'flex':'none';if(!show){var tt=document.getElementById('fab-tooltip');if(tt)tt.style.display='none';}}
 function showFabTooltip(){if(fabDismissed)return;var home=document.getElementById('home');if(!home||!home.classList.contains('active'))return;var tt=document.getElementById('fab-tooltip');if(!tt)return;tt.style.display='flex';clearTimeout(window._fabHide);window._fabHide=setTimeout(function(){if(tt)tt.style.display='none';},7000);}
 window.dismissFab=function(e){if(e)e.stopPropagation();fabDismissed=true;var f=document.getElementById('fab-chat');if(f){f.style.transform='scale(0)';setTimeout(function(){f.style.display='none';},300);}var tt=document.getElementById('fab-tooltip');if(tt)tt.style.display='none';};
-setTimeout(showFabTooltip,800);setInterval(showFabTooltip,45000);
+setTimeout(showFabTooltip,800);
+setInterval(showFabTooltip,45000);
 
-/* ══ FIREBASE ══ */
+/* ══ FIREBASE LISTENERS ══ */
 db.ref('campaigns').on('value',function(snap){
   campaigns=snap.val()?Object.values(snap.val()):[];
   fetchPrices();renderViews();updateGBB();
   if(document.getElementById('dash').classList.contains('active'))renderDashboard();
 });
 db.ref('notices').on('value',function(snap){
-  notices=snap.val()?Object.values(snap.val()).filter(function(n){return n&&n.active;}).sort(function(a,b){return b.createdAt-a.createdAt;}):[];
-  noticeIdx=0;renderViews();
+  var raw=snap.val();
+  if(raw){
+    notices=Object.values(raw).filter(function(n){return n&&n.active;}).sort(function(a,b){return b.createdAt-a.createdAt;});
+  }else{
+    notices=[];
+  }
+  noticeIdx=0;
+  renderNotices();
+  renderViews();
 });
+
 async function fetchPrices(){if(!campaigns.length)return;var ids=[];campaigns.forEach(function(c){if(ids.indexOf(c.coinId)<0)ids.push(c.coinId);});try{var r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids='+ids.join(',')+'&vs_currencies=usd');livePrices=await r.json();localStorage.setItem('spotctr_prices',JSON.stringify(livePrices));renderViews();updateGBB();if(document.getElementById('dash').classList.contains('active'))renderDashboard();}catch(e){}}
 
 /* ══ NAV ══ */
-window.toggleMenu=function(){var m=document.getElementById('mobile-menu');m.style.display=m.style.display==='flex'?'none':'flex';window.tgUpdateBackBtn();};
-window.nav=function(id){
+function toggleMenu(){var m=document.getElementById('mobile-menu');m.style.display=m.style.display==='flex'?'none':'flex';window.tgUpdateBackBtn();}
+window.toggleMenu=toggleMenu;
+function nav(id){
   document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
   document.querySelectorAll('.desktop-nav button,.mobile-menu button').forEach(function(b){b.classList.remove('active');});
   var sec=document.getElementById(id);if(sec)sec.classList.add('active');
@@ -815,10 +857,11 @@ window.nav=function(id){
   else if(id==='community')initChat();
   else renderViews();
   if(tg)tg.MainButton.hide();
-};
+}
+window.nav=nav;
 
 /* ══ ADMIN ══ */
-window.promptAdmin=function(){
+function promptAdmin(){
   var p=prompt('Enter Admin Password:');
   if(p==='@Sakib2020'){
     isAdmin=true;
@@ -828,30 +871,45 @@ window.promptAdmin=function(){
     document.getElementById('submit-btn').innerText='Publish Campaign';
     setAdminMode('campaign');onTypeChange();onMinVolChange();openModal('admin-modal');
   }else if(p!==null)alert('Incorrect Password!');
-};
+}
+window.promptAdmin=promptAdmin;
 function authAction(cb){if(isAdmin){cb();return;}var p=prompt('Enter Admin Password:');if(p==='@Sakib2020'){isAdmin=true;cb();}else if(p!==null)alert('Incorrect Password!');}
 
-/* ══ NOTICE CHECKBOX LIST ══ */
+/* ══ NOTICE MULTI-CAMPAIGN CHECKBOX LIST ══ */
 function buildNoticeCampList(selectedIds){
-  var el=document.getElementById('notice-camp-cb-list');if(!el)return;
+  var el=document.getElementById('notice-camp-cb-list');
+  if(!el)return;
   var active=campaigns.filter(isCampActive);
   if(!active.length){el.innerHTML='<div style="padding:10px;color:var(--gray);font-size:12px;text-align:center">No active campaigns</div>';return;}
   var html='';
   active.forEach(function(c){
     var checked=selectedIds&&selectedIds.indexOf(c.id)>=0;
-    html+='<label class="camp-cb-item"><input type="checkbox" value="'+escHtml(c.id)+'"'+(checked?' checked':'')+' onchange="updateNoticeSelectedTags()">'+(c.logo?'<img src="'+escHtml(c.logo)+'" class="camp-cb-logo" onerror="this.style.display=\'none\'">':'')+'<span class="camp-cb-name">'+escHtml(c.name)+'</span></label>';
+    html+='<label class="camp-cb-item">'
+      +'<input type="checkbox" value="'+escHtml(c.id)+'"'+(checked?' checked':'')+' onchange="updateNoticeSelectedTags()">'
+      +(c.logo?'<img src="'+escHtml(c.logo)+'" class="camp-cb-logo" onerror="this.style.display=\'none\'">':'')
+      +'<span class="camp-cb-name">'+escHtml(c.name)+'</span>'
+      +'</label>';
   });
-  el.innerHTML=html;updateNoticeSelectedTags();
+  el.innerHTML=html;
+  updateNoticeSelectedTags();
 }
-window.updateNoticeSelectedTags=function(){
+function updateNoticeSelectedTags(){
   var el=document.getElementById('notice-camp-selected');if(!el)return;
   var checks=document.querySelectorAll('#notice-camp-cb-list input[type=checkbox]:checked');
-  var html='';checks.forEach(function(cb){var c=getCampById(cb.value);if(!c)return;html+='<span class="camp-cb-tag">'+(c.logo?'<img src="'+escHtml(c.logo)+'" style="width:14px;height:14px;border-radius:50%;object-fit:cover">':'')+escHtml(c.name)+'</span>';});
+  var html='';
+  checks.forEach(function(cb){
+    var c=getCampById(cb.value);if(!c)return;
+    html+='<span class="camp-cb-tag">'+(c.logo?'<img src="'+escHtml(c.logo)+'" style="width:14px;height:14px;border-radius:50%;object-fit:cover">':'')+escHtml(c.name)+'</span>';
+  });
   el.innerHTML=html;
-};
-function getSelectedCampIds(){var checks=document.querySelectorAll('#notice-camp-cb-list input[type=checkbox]:checked');var ids=[];checks.forEach(function(cb){ids.push(cb.value);});return ids;}
+}
+window.updateNoticeSelectedTags=updateNoticeSelectedTags;
+function getSelectedCampIds(){
+  var checks=document.querySelectorAll('#notice-camp-cb-list input[type=checkbox]:checked');
+  var ids=[];checks.forEach(function(cb){ids.push(cb.value);});return ids;
+}
 
-window.setAdminMode=function(mode){
+function setAdminMode(mode){
   document.getElementById('admin-campaign-form').style.display=mode==='campaign'?'':'none';
   document.getElementById('admin-notice-form').style.display=mode==='notice'?'':'none';
   document.getElementById('mode-tab-campaign').classList.toggle('active',mode==='campaign');
@@ -860,100 +918,161 @@ window.setAdminMode=function(mode){
     var nid=document.getElementById('notice-id');if(nid)nid.value='';
     var nt=document.getElementById('notice-title');if(nt)nt.value='';
     var nd=document.getElementById('notice-desc');if(nd)nd.value='';
-    var ntl=document.getElementById('notice-modal-title');if(ntl)ntl.innerText='📢 Add Notice';
-    var nsb=document.getElementById('notice-submit-btn');if(nsb)nsb.innerText='Publish Notice';
+    var ntitle=document.getElementById('notice-modal-title');if(ntitle)ntitle.innerText='📢 Add Notice';
+    var nsub=document.getElementById('notice-submit-btn');if(nsub)nsub.innerText='Publish Notice';
     buildNoticeCampList([]);
   }
-};
+}
+window.setAdminMode=setAdminMode;
 
-window.onTypeChange=function(){
-  var t=document.getElementById('camp-type')?document.getElementById('camp-type').value:'volume';
-  ['fg-volume','fg-equal','fg-ranked','fg-points-lb','fg-points-nl'].forEach(function(x){var el=document.getElementById(x);if(el)el.style.display='none';});
-  var m={volume:'fg-volume',equal:'fg-equal',ranked_fixed:'fg-ranked',points_lb:'fg-points-lb',points_nl:'fg-points-nl'};
-  if(m[t]){var s=document.getElementById(m[t]);if(s)s.style.display='';}
-};
-window.onMinVolChange=function(){var v=document.getElementById('has-min-vol')?document.getElementById('has-min-vol').value:'no';var fg=document.getElementById('fg-minvol');if(fg)fg.style.display=v==='yes'?'':'none';};
+/* ══ MODAL OPEN/CLOSE ══ */
+function openModal(id){document.getElementById(id).style.display='flex';window.tgUpdateBackBtn();}
+function closeModal(id){document.getElementById(id).style.display='none';window.tgUpdateBackBtn();}
+window.openModal=openModal;window.closeModal=closeModal;
+function showRules(){openModal('rules-modal');}
+window.showRules=showRules;
+
+function onTypeChange(){var t=document.getElementById('camp-type')?document.getElementById('camp-type').value:'volume';['fg-volume','fg-equal','fg-ranked','fg-points-lb','fg-points-nl'].forEach(function(x){var el=document.getElementById(x);if(el)el.style.display='none';});var m={volume:'fg-volume',equal:'fg-equal',ranked_fixed:'fg-ranked',points_lb:'fg-points-lb',points_nl:'fg-points-nl'};if(m[t]){var s=document.getElementById(m[t]);if(s)s.style.display='';}}
+window.onTypeChange=onTypeChange;
+function onMinVolChange(){var v=document.getElementById('has-min-vol')?document.getElementById('has-min-vol').value:'no';var fg=document.getElementById('fg-minvol');if(fg)fg.style.display=v==='yes'?'':'none';}
+window.onMinVolChange=onMinVolChange;
 function gv(id){var el=document.getElementById(id);return el?el.value:'';}
 function gn(id){return parseFloat(gv(id))||0;}
 
-window.saveCampaign=function(e){
+function saveCampaign(e){
   e.preventDefault();
   var id=gv('camp-id')||Date.now().toString(),t=gv('camp-type'),hasMin=gv('has-min-vol')==='yes';
   var rdTBD=document.getElementById('reward-tbd')?document.getElementById('reward-tbd').checked:false;
   var rdPost=document.getElementById('reward-postponed')?document.getElementById('reward-postponed').checked:false;
   db.ref('campaigns/'+id).set({id:id,title:gv('camp-title'),name:gv('token-name'),coinId:gv('coin-id').toLowerCase(),logo:gv('logo-url'),campLink:gv('camp-link')||null,poolAmt:gn('reward-pool-amt'),type:t,difficulty:gv('camp-difficulty')||null,estReward:t==='volume'?gv('est-reward'):'0',maxParticipants:t==='equal'?gn('max-participants'):null,rankStart:t==='ranked_fixed'?gn('rank-start'):null,rankEnd:t==='ranked_fixed'?gn('rank-end'):null,rankEligVol:t==='ranked_fixed'?gn('rank-elig-vol'):null,rankMinVol:t==='ranked_fixed'?gn('rank-min-vol'):null,totalPoints:t==='points_lb'?gn('total-points'):null,costPerPoint:t==='points_lb'?gn('cost-per-point'):null,minPoints:t==='points_nl'?gn('min-points'):null,costPerPointNl:t==='points_nl'?gn('cost-per-point-nl'):null,minVolume:hasMin?gn('min-volume'):0,start:gv('start-date'),end:gv('end-date'),rewardDate:(!rdTBD&&gv('reward-date'))||null,rewardDateTBD:rdTBD||null,rewardPostponed:rdPost||null});
   closeModal('admin-modal');
-};
+}
+window.saveCampaign=saveCampaign;
 
-window.saveNotice=function(e){
+/* ══ SAVE NOTICE ══ */
+function saveNotice(e){
   e.preventDefault();
-  var btn=document.getElementById('notice-submit-btn');
-  if(btn){btn.disabled=true;btn.innerText='Saving...';}
   var id=gv('notice-id')||Date.now().toString();
-  db.ref('notices/'+id).set({id:id,title:gv('notice-title'),description:gv('notice-desc'),linkedCampIds:getSelectedCampIds().length?getSelectedCampIds():null,createdAt:Date.now(),active:true})
-    .then(function(){closeModal('admin-modal');if(btn){btn.disabled=false;btn.innerText='Publish Notice';}})
-    .catch(function(err){alert('Error saving notice: '+(err.message||'Check Firebase rules.'));if(btn){btn.disabled=false;btn.innerText='Publish Notice';}});
-};
+  var linkedIds=getSelectedCampIds();
+  var noticeData={
+    id:id,
+    title:gv('notice-title'),
+    description:gv('notice-desc'),
+    linkedCampIds:linkedIds.length?linkedIds:null,
+    createdAt:Date.now(),
+    active:true
+  };
+  db.ref('notices/'+id).set(noticeData,function(err){
+    if(!err){
+      closeModal('admin-modal');
+    }else{
+      alert('Error saving notice. Please try again.');
+    }
+  });
+}
+window.saveNotice=saveNotice;
 
-window.editNotice=function(id,ev){
+/* ══ EDIT NOTICE ══ */
+function editNotice(id,ev){
   if(ev)ev.stopPropagation();
   authAction(function(){
     var n=null;for(var i=0;i<notices.length;i++){if(notices[i].id===id){n=notices[i];break;}}
     if(!n)return;
-    window.setAdminMode('notice');
+    setAdminMode('notice');
     var nid=document.getElementById('notice-id');if(nid)nid.value=n.id;
     var nt=document.getElementById('notice-title');if(nt)nt.value=n.title||'';
     var nd=document.getElementById('notice-desc');if(nd)nd.value=n.description||'';
-    var ntl=document.getElementById('notice-modal-title');if(ntl)ntl.innerText='Edit Notice';
-    var nsb=document.getElementById('notice-submit-btn');if(nsb)nsb.innerText='Save Changes';
+    var ntitle=document.getElementById('notice-modal-title');if(ntitle)ntitle.innerText='✏️ Edit Notice';
+    var nsub=document.getElementById('notice-submit-btn');if(nsub)nsub.innerText='Save Changes';
     var selIds=[];
     if(n.linkedCampIds&&Array.isArray(n.linkedCampIds))selIds=n.linkedCampIds;
     else if(n.linkedCampId)selIds=[n.linkedCampId];
-    buildNoticeCampList(selIds);openModal('admin-modal');
+    buildNoticeCampList(selIds);
+    openModal('admin-modal');
   });
-};
-window.deleteNotice=function(id){if(!confirm('Delete this notice?'))return;db.ref('notices/'+id).remove();closeModal('notice-modal');closeModal('admin-modal');};
-window.deleteCamp=function(id,ev){ev.stopPropagation();authAction(function(){if(confirm('Delete?'))db.ref('campaigns/'+id).remove();});};
-window.editCamp=function(id,ev){
+}
+window.editNotice=editNotice;
+
+function deleteCamp(id,ev){ev.stopPropagation();authAction(function(){if(confirm('Delete?'))db.ref('campaigns/'+id).remove();});}
+window.deleteCamp=deleteCamp;
+function editCamp(id,ev){
   ev.stopPropagation();
   authAction(function(){
     var c=getCampById(id);if(!c)return;
     var fs={id:'camp-id',title:'camp-title',name:'token-name',coinId:'coin-id',logo:'logo-url',campLink:'camp-link',poolAmt:'reward-pool-amt',type:'camp-type',difficulty:'camp-difficulty',estReward:'est-reward',maxParticipants:'max-participants',rankStart:'rank-start',rankEnd:'rank-end',rankEligVol:'rank-elig-vol',rankMinVol:'rank-min-vol',totalPoints:'total-points',costPerPoint:'cost-per-point',minPoints:'min-points',costPerPointNl:'cost-per-point-nl',start:'start-date',end:'end-date',rewardDate:'reward-date'};
     Object.keys(fs).forEach(function(k){var el=document.getElementById(fs[k]);if(el)el.value=c[k]||'';});
-    document.getElementById('has-min-vol').value=c.minVolume>0?'yes':'no';window.onMinVolChange();
+    document.getElementById('has-min-vol').value=c.minVolume>0?'yes':'no';onMinVolChange();
     document.getElementById('min-volume').value=c.minVolume>0?c.minVolume:'';
     document.getElementById('reward-tbd').checked=!!c.rewardDateTBD;
     document.getElementById('reward-postponed').checked=!!c.rewardPostponed;
     document.getElementById('modal-title').innerText='Edit Campaign';
     document.getElementById('submit-btn').innerText='Save Changes';
-    window.setAdminMode('campaign');window.onTypeChange();openModal('admin-modal');
+    setAdminMode('campaign');onTypeChange();openModal('admin-modal');
   });
-};
+}
+window.editCamp=editCamp;
 
-/* ══ DEEP LINK ══ */
+/* ══ SHARE ══ */
+function shareLink(url,title){
+  if(tg){tg.openTelegramLink('https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(title||'Spot CTR'));return;}
+  if(navigator.share)navigator.share({title:title||'Spot CTR',url:url}).catch(function(){});else copyLink(url);
+}
+window.shareLink=shareLink;
+function copyLink(url){navigator.clipboard.writeText(url).then(function(){alert('Link copied!');}).catch(function(){prompt('Copy this link:',url);});}
+window.copyLink=copyLink;
+
+/* ══ DEEP LINK HANDLING ══ */
 setTimeout(function(){
+  var campId='';
+  // Check URL hash (browser)
   var hash=window.location.hash;
-  if(!hash||hash.indexOf('#campaign=')<0)return;
-  var id=hash.replace('#campaign=','');
-  var att=0,iv=setInterval(function(){att++;var c=getCampById(id);if(c||att>20){clearInterval(iv);if(c)showDetails(encodeURIComponent(JSON.stringify(c)));}},300);
+  if(hash&&hash.indexOf('#campaign=')>=0){
+    campId=hash.replace('#campaign=','');
+  }
+  // Check Telegram startapp param
+  if(!campId&&tg&&tg.initDataUnsafe&&tg.initDataUnsafe.start_param){
+    var sp=tg.initDataUnsafe.start_param;
+    if(sp.indexOf('camp_')===0)campId=sp.replace('camp_','');
+    else campId=sp;
+  }
+  if(!campId)return;
+  var att=0;
+  var iv=setInterval(function(){
+    att++;
+    var c=getCampById(campId);
+    if(c||att>20){clearInterval(iv);if(c)showDetails(encodeURIComponent(JSON.stringify(c)));}
+  },300);
 },500);
 
 /* ══ JOIN ══ */
-window.toggleJoin=function(id,ev){if(ev)ev.stopPropagation();if(userData.joined[id])delete userData.joined[id];else userData.joined[id]={volume:0,bnb:false,points:0,expanded:true};saveUD();renderViews();updateGBB();if(document.getElementById('dash').classList.contains('active'))renderDashboard();};
-window.toggleJoinFromModal=function(){if(!detailCampId)return;window.toggleJoin(detailCampId,null);updateJoinBtn(detailCampId);};
-function updateJoinBtn(id){var btn=document.getElementById('det-join-btn');if(!btn)return;var j=isJoined(id);btn.innerText=j?'Joined — Click to Leave':'+ Join Campaign';btn.style.borderColor=j?'var(--green)':'var(--border)';btn.style.background=j?'var(--gdim)':'transparent';btn.style.color=j?'var(--green)':'var(--gray)';}
-function joinBtn(id){var j=isJoined(id);return'<button class="btn-join btn-join-sm'+(j?' joined':'')+'" onclick="toggleJoin(\''+id+'\',event)">'+(j?'Joined':'+ Join')+'</button>';}
+function toggleJoin(id,ev){if(ev)ev.stopPropagation();if(userData.joined[id])delete userData.joined[id];else userData.joined[id]={volume:0,bnb:false,points:0,expanded:true};saveUD();renderViews();updateGBB();if(document.getElementById('dash').classList.contains('active'))renderDashboard();}
+window.toggleJoin=toggleJoin;
+function toggleJoinFromModal(){if(!detailCampId)return;toggleJoin(detailCampId,null);updateJoinBtn(detailCampId);}
+window.toggleJoinFromModal=toggleJoinFromModal;
+function updateJoinBtn(id){var btn=document.getElementById('det-join-btn');if(!btn)return;var j=isJoined(id);btn.innerText=j?'✓ Joined — Click to Leave':'+ Join Campaign';btn.style.borderColor=j?'var(--green)':'var(--border)';btn.style.background=j?'var(--gdim)':'transparent';btn.style.color=j?'var(--green)':'var(--gray)';}
+function joinBtn(id){var j=isJoined(id);return'<button class="btn-join btn-join-sm'+(j?' joined':'')+'" onclick="toggleJoin(\''+id+'\',event)">'+(j?'✓ Joined':'+ Join')+'</button>';}
 function adminBtns(id){if(!isAdmin)return'';return'<div class="admin-controls"><button class="btn-edit" onclick="editCamp(\''+id+'\',event)">Edit</button><button class="btn-del" onclick="deleteCamp(\''+id+'\',event)">Del</button></div>';}
 
 /* ══ GBB ══ */
 function updateGBB(){var bal=getBalance(),cnt=0;campaigns.forEach(function(c){if(isJoined(c.id)&&isCampActive(c))cnt++;});var el=document.getElementById('gbb-val');el.style.color=bal.net<0?'var(--red)':'var(--green)';el.innerText=(bal.net<0?'-':'+')+fmtUSD(Math.abs(bal.net));document.getElementById('gbb-sub').innerText=cnt+' active campaign'+(cnt!==1?'s':'')+' joined';}
 
+/* ══ RENDER NOTICES (separate, always visible) ══ */
+function renderNotices(){
+  var el=document.getElementById('home-notices');
+  if(!el)return;
+  if(!notices.length){el.innerHTML='';return;}
+  var html='<div class="notice-section">'+buildNoticeSlot()+'</div>';
+  el.innerHTML=html;
+  attachNoticeSwipe();
+}
+
 /* ══ RENDER VIEWS ══ */
 function renderViews(){
   var empty='<div class="empty-state"><h3>No Campaigns Yet</h3><p>Click "+ Add" to get started.</p></div>';
-  if(!campaigns.length&&!notices.length){
+  if(!campaigns.length){
     document.getElementById('home-featured').innerHTML=empty;
     document.getElementById('home-urgent').innerHTML='';
+    document.getElementById('ending-soon-section').style.display='none';
     document.getElementById('reward-content').innerHTML=empty;
     return;
   }
@@ -970,31 +1089,40 @@ function renderViews(){
   /* Reward Board */
   if(campaigns.length){
     var rHtml=sorted.length?sorted.map(function(c){return buildListCard(c,false);}).join(''):'<div class="empty-state"><h3>No Active Campaigns</h3></div>';
-    if(rewPending.length){rewPending.sort(function(a,b){return new Date(a.rewardDate)-new Date(b.rewardDate);});rHtml+=divH('Awaiting Reward Distribution','var(--green)');rHtml+=rewPending.map(function(c){return buildListCard(c,false);}).join('');}
-    if(fullyEnded.length){rHtml+=divH('Ended Campaigns','var(--gray)');rHtml+=byVal(fullyEnded).map(function(c){return buildListCard(c,true);}).join('');}
+    if(rewPending.length){rewPending.sort(function(a,b){return new Date(a.rewardDate)-new Date(b.rewardDate);});rHtml+=divH('⏳ Awaiting Reward Distribution','var(--green)');rHtml+=rewPending.map(function(c){return buildListCard(c,false);}).join('');}
+    if(fullyEnded.length){rHtml+=divH('✓ Ended Campaigns','var(--gray)');rHtml+=byVal(fullyEnded).map(function(c){return buildListCard(c,true);}).join('');}
     document.getElementById('reward-content').innerHTML=rHtml;
-  }else{document.getElementById('reward-content').innerHTML=empty;}
+  }else{
+    document.getElementById('reward-content').innerHTML=empty;
+  }
 
-  /* Home Featured */
+  /* Home Featured — campaigns only (notices are in separate section) */
   var featuredHtml='';
-  if(notices.length>0){
-    featuredHtml='<div class="home-grid">'+buildNoticeSlot()+(sorted[0]?buildHeroCard(sorted[0],false):'')+'</div>';
-  }else if(sorted.length===0&&rewPending.length===0){
+  if(sorted.length===0&&rewPending.length===0){
     featuredHtml='<div class="empty-state"><h3>No Active Campaigns</h3></div>';
   }else{
     var s0=sorted[0]||rewPending[0],s1=sorted[1]||(sorted[0]?rewPending[0]:rewPending[1]);
-    featuredHtml='<div class="home-grid">'+(s0?buildHeroCard(s0,false):'')+(s1&&s1!==s0?buildHeroCard(s1,false):'')+'</div>';
+    var left2=s0?buildHeroCard(s0,false):'';
+    var right2=s1&&s1!==s0?buildHeroCard(s1,false):'';
+    featuredHtml='<div class="home-grid">'+left2+right2+'</div>';
   }
   document.getElementById('home-featured').innerHTML=featuredHtml;
-  if(notices.length>0)attachNoticeSwipe();
 
-  /* Ending Soon — only campaigns with <=3 days remaining */
+  /* Ending Soon — only campaigns with ≤3 days remaining */
   var THREE_DAYS=3*24*60*60*1000;
-  urgCamps=running.filter(function(c){return new Date(c.end).getTime()-nowMs<=THREE_DAYS;})
-    .sort(function(a,b){return new Date(a.end)-new Date(b.end);});
-  if(!urgCamps.length){document.getElementById('home-urgent').innerHTML='';return;}
-  urgIdx=0;
-  document.getElementById('home-urgent').innerHTML=buildCarousel(urgCamps,'urg');
+  urgCamps=running.filter(function(c){
+    return new Date(c.end).getTime()-nowMs<=THREE_DAYS;
+  }).sort(function(a,b){return new Date(a.end)-new Date(b.end);});
+
+  var endingSec=document.getElementById('ending-soon-section');
+  if(urgCamps.length){
+    urgIdx=0;
+    document.getElementById('home-urgent').innerHTML=buildCarousel(urgCamps,'urg');
+    endingSec.style.display='';
+  }else{
+    document.getElementById('home-urgent').innerHTML='';
+    endingSec.style.display='none';
+  }
 }
 
 /* ══ NOTICE SLOT ══ */
@@ -1006,53 +1134,105 @@ function buildNoticeSlot(){
   if(n.linkedCampIds&&Array.isArray(n.linkedCampIds))linkedIds=n.linkedCampIds;
   else if(n.linkedCampId)linkedIds=[n.linkedCampId];
   var linkedCamps=linkedIds.map(function(id){return getCampById(id);}).filter(Boolean);
+
   var html='<div class="notice-card" id="notice-card-main" onclick="showNotice(\''+escHtml(n.id)+'\')">';
   html+='<div class="notice-header-badge">📢 NOTICE</div>';
   html+='<div class="notice-title">'+escHtml(n.title)+'</div>';
-  if(linkedCamps.length){html+='<div class="notice-camps-row">';linkedCamps.forEach(function(c){html+='<span class="notice-camp-chip">'+(c.logo?'<img src="'+escHtml(c.logo)+'" class="notice-camp-logo" onerror="this.style.display=\'none\'">':'')+'<span class="notice-camp-name">'+escHtml(c.name)+'</span></span>';});html+='</div>';}
+  if(linkedCamps.length){
+    html+='<div class="notice-camps-row">';
+    linkedCamps.forEach(function(c){
+      html+='<span class="notice-camp-chip">'
+        +(c.logo?'<img src="'+escHtml(c.logo)+'" class="notice-camp-logo" onerror="this.style.display=\'none\'">':'')
+        +'<span class="notice-camp-name">'+escHtml(c.name)+'</span></span>';
+    });
+    html+='</div>';
+  }
   html+='<div class="notice-desc">'+escHtml(n.description)+'</div>';
   html+='<div class="notice-footer"><span class="notice-view-btn">Tap for details</span>';
-  var navHtml='<div class="notice-nav">';
-  if(notices.length>1)navHtml+='<button class="notice-nav-btn" onclick="event.stopPropagation();moveNotice(-1)">&#8249;</button><span style="font-size:10px;color:var(--gray);align-self:center">'+(noticeIdx+1)+'/'+notices.length+'</span><button class="notice-nav-btn" onclick="event.stopPropagation();moveNotice(1)">&#8250;</button>';
-  if(isAdmin)navHtml+='<button class="notice-nav-btn" onclick="event.stopPropagation();editNotice(\''+n.id+'\')" style="background:var(--ydim);border-color:rgba(252,213,53,.3);color:var(--yellow)">✏</button><button class="notice-nav-btn" onclick="event.stopPropagation();deleteNotice(\''+n.id+'\')" style="background:var(--rdim);border-color:var(--rdim);color:var(--red)">×</button>';
-  navHtml+='</div>';
-  if(notices.length>1||isAdmin)html+=navHtml;
+  if(notices.length>1){
+    html+='<div class="notice-nav">'
+      +'<button class="notice-nav-btn" onclick="event.stopPropagation();moveNotice(-1)">‹</button>'
+      +'<span style="font-size:10px;color:var(--gray);align-self:center">'+(noticeIdx+1)+'/'+notices.length+'</span>'
+      +'<button class="notice-nav-btn" onclick="event.stopPropagation();moveNotice(1)">›</button>'
+      +(isAdmin?'<button class="notice-nav-btn" onclick="event.stopPropagation();editNotice(\''+n.id+'\')" style="background:var(--ydim);border-color:rgba(252,213,53,.3);color:var(--yellow)">✏</button><button class="notice-nav-btn" onclick="event.stopPropagation();deleteNotice(\''+n.id+'\')" style="background:var(--rdim);border-color:var(--rdim);color:var(--red)">×</button>':'')
+      +'</div>';
+  }else if(isAdmin){
+    html+='<div class="notice-nav">'
+      +'<button class="notice-nav-btn" onclick="event.stopPropagation();editNotice(\''+n.id+'\')" style="background:var(--ydim);border-color:rgba(252,213,53,.3);color:var(--yellow)">✏</button>'
+      +'<button class="notice-nav-btn" onclick="event.stopPropagation();deleteNotice(\''+n.id+'\')" style="background:var(--rdim);border-color:var(--rdim);color:var(--red)">×</button>'
+      +'</div>';
+  }
   html+='</div>';
-  if(notices.length>1){html+='<div class="notice-dots">';for(var d=0;d<notices.length;d++){html+='<button class="n-dot'+(d===noticeIdx?' active':'')+'" onclick="event.stopPropagation();goNoticeDot('+d+')"></button>';}html+='</div>';}
+  if(notices.length>1){
+    html+='<div class="notice-dots">';
+    for(var d=0;d<notices.length;d++){html+='<button class="n-dot'+(d===noticeIdx?' active':'')+'" onclick="event.stopPropagation();goNoticeDot('+d+')"></button>';}
+    html+='</div>';
+  }
   html+='</div>';
   return html;
 }
-window.goNoticeDot=function(idx){noticeIdx=idx;refreshNoticeCard();};
-function refreshNoticeCard(){
-  var card=document.getElementById('notice-card-main');
-  if(card&&card.parentElement){var tmp=document.createElement('div');tmp.innerHTML=buildNoticeSlot();var nc=tmp.firstElementChild;if(nc){card.parentElement.replaceChild(nc,card);attachNoticeSwipe();}}
+window.goNoticeDot=function(idx){noticeIdx=idx;refreshNoticeSlot();};
+function refreshNoticeSlot(){
+  var wrap=document.getElementById('home-notices');
+  if(!wrap)return;
+  if(!notices.length){wrap.innerHTML='';return;}
+  wrap.innerHTML='<div class="notice-section">'+buildNoticeSlot()+'</div>';
+  attachNoticeSwipe();
 }
 function attachNoticeSwipe(){
-  var card=document.getElementById('notice-card-main');if(!card||notices.length<=1)return;
+  var card=document.getElementById('notice-card-main');
+  if(!card||notices.length<=1)return;
   var sx=0,mDown=false,mX=0;
   card.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
   card.addEventListener('touchend',function(e){if(Math.abs(e.changedTouches[0].clientX-sx)>50)moveNotice(e.changedTouches[0].clientX>sx?-1:1);},{passive:true});
   card.addEventListener('mousedown',function(e){mDown=true;mX=e.clientX;},{passive:true});
   card.addEventListener('mouseup',function(e){if(mDown&&Math.abs(e.clientX-mX)>50){mDown=false;moveNotice(e.clientX>mX?-1:1);}mDown=false;});
 }
-window.moveNotice=function(dir){if(!notices.length)return;noticeIdx=(noticeIdx+dir+notices.length)%notices.length;refreshNoticeCard();};
+function moveNotice(dir){
+  if(!notices.length)return;
+  noticeIdx=(noticeIdx+dir+notices.length)%notices.length;
+  refreshNoticeSlot();
+}
+window.moveNotice=moveNotice;
 
-window.showNotice=function(id){
+function showNotice(id){
   var n=null;for(var i=0;i<notices.length;i++){if(notices[i].id===id){n=notices[i];break;}}
   if(!n)return;
   var linkedIds=[];
   if(n.linkedCampIds&&Array.isArray(n.linkedCampIds))linkedIds=n.linkedCampIds;
   else if(n.linkedCampId)linkedIds=[n.linkedCampId];
   var linkedCamps=linkedIds.map(function(id){return getCampById(id);}).filter(Boolean);
-  var html='<div style="text-align:center;padding:13px 0 16px;border-bottom:1px solid var(--border);margin-bottom:14px"><div style="font-size:34px;margin-bottom:7px">📢</div><div style="font-size:18px;font-weight:800;margin-bottom:5px">'+escHtml(n.title)+'</div>';
-  if(linkedCamps.length){html+='<div style="margin-top:10px;display:flex;flex-wrap:wrap;justify-content:center;gap:5px">';linkedCamps.forEach(function(c){html+='<div class="notice-linked-camp" onclick="closeModal(\'notice-modal\');showDetails(\''+encodeURIComponent(JSON.stringify(c))+'\')">'+(c.logo?'<img src="'+escHtml(c.logo)+'" style="width:22px;height:22px;border-radius:50%;object-fit:cover">':'')+'<span style="font-size:12px;font-weight:700;color:var(--orange)">'+escHtml(c.name)+'</span><span style="font-size:11px;color:var(--gray)">→</span></div>';});html+='</div>';}
-  html+='</div><p style="color:var(--gray);font-size:13px;line-height:1.8">'+escHtml(n.description)+'</p>';
-  if(isAdmin)html+='<div style="display:flex;gap:7px;margin-top:14px"><button class="btn-edit" style="flex:1;padding:8px;font-size:12px" onclick="closeModal(\'notice-modal\');editNotice(\''+n.id+'\')">Edit</button><button class="btn-del" style="flex:1;padding:8px" onclick="deleteNotice(\''+n.id+'\')">Delete</button></div>';
+
+  var html='<div style="text-align:center;padding:13px 0 16px;border-bottom:1px solid var(--border);margin-bottom:14px">'
+    +'<div style="font-size:34px;margin-bottom:7px">📢</div>'
+    +'<div style="font-size:18px;font-weight:800;margin-bottom:5px">'+escHtml(n.title)+'</div>';
+  if(linkedCamps.length){
+    html+='<div style="margin-top:10px;display:flex;flex-wrap:wrap;justify-content:center;gap:5px">';
+    linkedCamps.forEach(function(c){
+      html+='<div class="notice-linked-camp" onclick="closeModal(\'notice-modal\');showDetails(\''+encodeURIComponent(JSON.stringify(c))+'\')">'
+        +(c.logo?'<img src="'+escHtml(c.logo)+'" style="width:22px;height:22px;border-radius:50%;object-fit:cover">':'')
+        +'<span style="font-size:12px;font-weight:700;color:var(--orange)">'+escHtml(c.name)+'</span>'
+        +'<span style="font-size:11px;color:var(--gray)">→</span>'
+        +'</div>';
+    });
+    html+='</div>';
+  }
+  html+='</div>';
+  html+='<p style="color:var(--gray);font-size:13px;line-height:1.8">'+escHtml(n.description)+'</p>';
+  if(isAdmin){
+    html+='<div style="display:flex;gap:7px;margin-top:14px">'
+      +'<button class="btn-edit" style="flex:1;padding:8px;font-size:12px" onclick="closeModal(\'notice-modal\');editNotice(\''+n.id+'\')">✏️ Edit</button>'
+      +'<button class="btn-del" style="flex:1;padding:8px" onclick="deleteNotice(\''+n.id+'\')">🗑️ Delete</button>'
+      +'</div>';
+  }
   document.getElementById('notice-modal-body').innerHTML=html;
   openModal('notice-modal');
-};
+}
+window.showNotice=showNotice;
+function deleteNotice(id){if(!confirm('Delete this notice?'))return;db.ref('notices/'+id).remove();closeModal('notice-modal');closeModal('admin-modal');}
+window.deleteNotice=deleteNotice;
 
-/* ══ HERO CARD & CAROUSEL ══ */
+/* ══ HERO CARD and CAROUSEL ══ */
 function buildHeroCard(c,isUrgent){
   var p=priceOf(c.coinId),info=getTimerInfo(c),key=isUrgent?'hu':'hf';
   var enc=encodeURIComponent(JSON.stringify(c));
@@ -1097,15 +1277,17 @@ function buildListCard(c,grayed){
     +'<div><span class="timer-state-label">'+info.label+'</span><span class="camp-timer '+sc+'" id="tmr-'+c.id+'-r">'+info.text+'</span></div>'
     +joinBtn(c.id)+adminBtns(c.id)+'</div>';
 }
-window.goSlide=function(prefix,idx){
-  var trk=document.getElementById(prefix+'-trk');if(trk)trk.style.transform='translateX(-'+(idx*100)+'%)';
+function goSlide(prefix,idx){
+  var trk=document.getElementById(prefix+'-trk');
+  if(trk)trk.style.transform='translateX(-'+(idx*100)+'%)';
   for(var i=0;i<10;i++){var d=document.getElementById(prefix+'-d'+i);if(!d)break;d.classList.remove('on-r');}
   var active=document.getElementById(prefix+'-d'+idx);if(active)active.classList.add('on-r');
   if(prefix==='urg')urgIdx=idx;
-};
+}
+window.goSlide=goSlide;
 
 /* ══ DETAILS MODAL ══ */
-window.showDetails=function(enc){
+function showDetails(enc){
   var c=JSON.parse(decodeURIComponent(enc));detailCampId=c.id;
   document.getElementById('det-logo').src=c.logo;
   document.getElementById('det-name').innerText=c.name;
@@ -1129,15 +1311,18 @@ window.showDetails=function(enc){
   else if(t==='points_nl'){estEl.innerHTML='Points (no LB)<span class="sub">Min pts: '+(c.minPoints||'?')+'</span>';estRow.style.display='flex';}
   else estRow.style.display='none';
   document.getElementById('det-official-wrap').innerHTML=c.campLink?'<a href="'+escHtml(c.campLink)+'" target="_blank" rel="noopener" class="det-official-link"><svg viewBox="0 0 20 20" style="width:13px;height:13px;fill:currentColor;flex-shrink:0"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>View Official Campaign Page</a>':'';
-  var shareUrl=bestCampUrl(c.id);
+  /* Smart share URL: TG Mini App or Browser */
+  var shareUrl=getCampaignShareUrl(c.id);
   document.getElementById('det-share-wrap').innerHTML='<div class="share-bar"><button class="share-btn share-btn-copy" onclick="copyLink(\''+escHtml(shareUrl)+'\')">📋 Copy Campaign Link</button><button class="share-btn share-btn-share" onclick="shareLink(\''+escHtml(shareUrl)+'\',\''+escHtml(c.name)+' on Spot CTR\')">🔗 Share</button></div>';
   updateJoinBtn(c.id);openModal('details-modal');updateDetTimer(c);
-};
+}
+window.showDetails=showDetails;
 function updateDetTimer(c){var info=getTimerInfo(c),el=document.getElementById('det-timer');el.innerText=info.text;el.className='det-timer state-'+(info.state==='alert'?'active':info.state);document.getElementById('det-timer-label').innerText=info.label;}
 
 /* ══ CHAT ══ */
 function compressImage(file,cb){var reader=new FileReader();reader.onload=function(e){var img=new Image();img.onload=function(){var canvas=document.createElement('canvas'),maxDim=480,w=img.width,h=img.height;if(w>h&&w>maxDim){h=Math.round(h*maxDim/w);w=maxDim;}else if(h>maxDim){w=Math.round(w*maxDim/h);h=maxDim;}canvas.width=w;canvas.height=h;canvas.getContext('2d').drawImage(img,0,0,w,h);cb(canvas.toDataURL('image/jpeg',0.42));};img.src=e.target.result;};reader.readAsDataURL(file);}
-window.handleImgUpload=function(e){var file=e.target.files[0];if(!file)return;if(file.size>10*1024*1024){alert('Image too large. Max 10MB.');return;}compressImage(file,function(dataUrl){var id=Date.now().toString(36)+Math.random().toString(36).substr(2,5);db.ref('chat/messages/'+id).set({id:id,emoji:myEmoji,uid:myId,timestamp:Date.now(),imageData:dataUrl});scrollChatBottom();});e.target.value='';};
+function handleImgUpload(e){var file=e.target.files[0];if(!file)return;if(file.size>10*1024*1024){alert('Image too large. Max 10MB.');return;}compressImage(file,function(dataUrl){var id=Date.now().toString(36)+Math.random().toString(36).substr(2,5);db.ref('chat/messages/'+id).set({id:id,emoji:myEmoji,uid:myId,timestamp:Date.now(),imageData:dataUrl});scrollChatBottom();});e.target.value='';}
+window.handleImgUpload=handleImgUpload;
 function initChat(){
   if(chatInit)return;chatInit=true;
   buildLangSelect();
@@ -1156,30 +1341,40 @@ function initChat(){
 }
 function checkNewReplies(msgs){unreadReplies=[];newReplyCount=0;msgs.forEach(function(msg){if(msg.replyTo&&msg.replyTo.uid===myId&&msg.timestamp>lastVisit){unreadReplies.push(msg.id);newReplyCount++;}});updateNotifBadge();if(newReplyCount>0){var bar=document.getElementById('chat-notif-bar'),txt=document.getElementById('notif-bar-txt');if(bar&&txt){txt.innerText='📩 '+newReplyCount+' new repl'+(newReplyCount===1?'y':'ies')+' to your messages';bar.style.display='flex';}}localStorage.setItem('spotctr_lastVisit',Date.now().toString());lastVisit=Date.now();}
 function updateNotifBadge(){var nc=document.getElementById('nav-notif-count'),fab=document.getElementById('fab-notif');if(newReplyCount>0){if(nc){nc.innerText=newReplyCount;nc.style.display='inline-flex';}if(fab){fab.innerText=newReplyCount;fab.style.display='flex';}}else{if(nc)nc.style.display='none';if(fab)fab.style.display='none';}}
-window.navigateToReply=function(){if(!unreadReplies.length)return;var id=unreadReplies[0];var el=document.getElementById('cm-'+safeId(id));if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='2px solid var(--yellow)';setTimeout(function(){el.style.outline='none';},2000);}unreadReplies.shift();newReplyCount=Math.max(0,newReplyCount-1);updateNotifBadge();if(newReplyCount===0){var bar=document.getElementById('chat-notif-bar');if(bar)bar.style.display='none';}else{var txt=document.getElementById('notif-bar-txt');if(txt)txt.innerText='📩 '+newReplyCount+' more repl'+(newReplyCount===1?'y':'ies');}};
+function navigateToReply(){if(!unreadReplies.length)return;var id=unreadReplies[0];var el=document.getElementById('cm-'+safeId(id));if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='2px solid var(--yellow)';setTimeout(function(){el.style.outline='none';},2000);}unreadReplies.shift();newReplyCount=Math.max(0,newReplyCount-1);updateNotifBadge();if(newReplyCount===0){var bar=document.getElementById('chat-notif-bar');if(bar)bar.style.display='none';}else{var txt=document.getElementById('notif-bar-txt');if(txt)txt.innerText='📩 '+newReplyCount+' more repl'+(newReplyCount===1?'y':'ies');}}
+window.navigateToReply=navigateToReply;
 function renderInitialChat(msgs){var c=document.getElementById('chat-messages');if(!c)return;if(!msgs.length){c.innerHTML='<div style="text-align:center;color:var(--gray);padding:40px 20px"><div style="font-size:32px;margin-bottom:9px">👋</div><div>No messages yet. Say hello!</div></div>';return;}var html='',lastDate='',today=new Date().toDateString();msgs.forEach(function(msg){var dStr=new Date(msg.timestamp).toDateString();if(dStr!==lastDate){lastDate=dStr;var dl=dStr===today?'Today':new Date(msg.timestamp).toLocaleDateString('en-US',{month:'short',day:'numeric'});html+='<div class="chat-notice">'+dl+'</div>';}html+=buildMsgHtml(msg);});c.innerHTML=html;scrollChatBottom();}
 function appendChatMsg(msg){var c=document.getElementById('chat-messages');if(!c)return;var div=document.createElement('div');div.innerHTML=buildMsgHtml(msg);var child=div.firstElementChild;if(child)c.appendChild(child);}
 function updateMsgEl(msg){var el=document.getElementById('cm-'+safeId(msg.id));if(!el)return;var nd=document.createElement('div');nd.innerHTML=buildMsgHtml(msg);var ne=nd.firstElementChild;if(ne)el.replaceWith(ne);}
 function buildMsgHtml(msg){var isMe=msg.uid===myId,sid=safeId(msg.id);var timeStr=new Date(msg.timestamp).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});var html='<div class="chat-msg '+(isMe?'chat-msg-me':'chat-msg-other')+'" id="cm-'+sid+'">';if(!isMe)html+='<div class="chat-avatar">'+escHtml(msg.emoji||'👤')+'</div>';html+='<div class="chat-bubble-wrap"><div class="chat-bubble">';if(msg.replyTo)html+='<div class="chat-reply-quote">'+escHtml((msg.replyTo.emoji||''))+' '+escHtml((msg.replyTo.text||'[image]').slice(0,60))+'</div>';if(msg.imageData)html+='<img src="'+escHtml(msg.imageData)+'" class="chat-img-msg" onclick="viewImg(\''+sid+'\')" loading="lazy">';else html+='<div class="chat-text">'+escHtml(msg.text||'')+'</div>';if(msg.edited)html+='<div class="chat-edited">edited</div>';html+='</div>';if(msg.reactions){var rxH='<div class="reaction-bar">';REACT_EMOJIS.forEach(function(r){var users=msg.reactions[r.k];if(!users)return;var count=Object.keys(users).length;if(!count)return;rxH+='<button class="rxn-pill'+(users[myId]?' mine':'')+'" onclick="reactTo(\''+msg.id+'\',\''+r.k+'\')">'+r.e+' <span class="rxn-count">'+count+'</span></button>';});rxH+='</div>';if(rxH!=='<div class="reaction-bar"></div>')html+=rxH;}html+='<div class="chat-meta"><span class="chat-time">'+timeStr+'</span><div class="msg-action-bar"><button class="mac-btn" onclick="showRxnPicker(\''+msg.id+'\',event)">😊</button><button class="mac-btn" onclick="replyToMsg(\''+msg.id+'\')">↩</button>'+((!msg.imageData)?'<button class="mac-btn" onclick="translateMsgInPlace(\''+msg.id+'\')">🌐</button>':'')+((isMe&&!msg.imageData)?'<button class="mac-btn" onclick="startEdit(\''+msg.id+'\')">✏️</button>':'')+'<button class="mac-btn" onclick="deleteMsg(\''+msg.id+'\')">🗑️</button></div></div></div></div>';return html;}
-window.showRxnPicker=function(msgId,ev){ev.stopPropagation();var popup=document.getElementById('rxn-popup');popup.innerHTML='';popup.style.display='flex';REACT_EMOJIS.forEach(function(r){var btn=document.createElement('button');btn.innerText=r.e;btn.onclick=function(e){e.stopPropagation();reactTo(msgId,r.k);};popup.appendChild(btn);});var rect=ev.currentTarget.getBoundingClientRect();popup.style.top=Math.max(4,rect.top-52+window.scrollY)+'px';popup.style.left=Math.min(rect.left,window.innerWidth-230)+'px';};
+function showRxnPicker(msgId,ev){ev.stopPropagation();var popup=document.getElementById('rxn-popup');popup.innerHTML='';popup.style.display='flex';REACT_EMOJIS.forEach(function(r){var btn=document.createElement('button');btn.innerText=r.e;btn.onclick=function(e){e.stopPropagation();reactTo(msgId,r.k);};popup.appendChild(btn);});var rect=ev.currentTarget.getBoundingClientRect();popup.style.top=Math.max(4,rect.top-52+window.scrollY)+'px';popup.style.left=Math.min(rect.left,window.innerWidth-230)+'px';}
+window.showRxnPicker=showRxnPicker;
 document.addEventListener('click',function(){var p=document.getElementById('rxn-popup');if(p)p.style.display='none';});
-window.reactTo=function(msgId,emojiKey){document.getElementById('rxn-popup').style.display='none';var ref=db.ref('chat/messages/'+msgId+'/reactions/'+emojiKey+'/'+myId);ref.once('value',function(snap){snap.exists()?ref.remove():ref.set(true);});};
-window.replyToMsg=function(msgId){var msg=chatMsgMap[msgId];if(!msg)return;replyingTo={id:msg.id,text:msg.imageData?'[image]':msg.text,emoji:msg.emoji,uid:msg.uid};editingId=null;var ind=document.getElementById('reply-indicator'),rit=document.getElementById('reply-indicator-text'),rml=document.getElementById('reply-mode-label');if(ind)ind.style.display='flex';if(rml)rml.innerText='Replying to';if(rit)rit.innerText=(msg.emoji||'')+' '+(msg.imageData?'[image]':msg.text||'').slice(0,80);var inp=document.getElementById('chat-input');if(inp)inp.focus();};
-window.startEdit=function(msgId){var msg=chatMsgMap[msgId];if(!msg||msg.uid!==myId)return;editingId=msgId;replyingTo=null;var ind=document.getElementById('reply-indicator'),rit=document.getElementById('reply-indicator-text'),rml=document.getElementById('reply-mode-label');if(ind)ind.style.display='flex';if(rml)rml.innerText='✏️ Editing';if(rit)rit.innerText=(msg.text||'').slice(0,80);var inp=document.getElementById('chat-input');if(inp){inp.value=msg.text||'';inp.focus();}};
-window.cancelReplyOrEdit=function(){replyingTo=null;editingId=null;var ind=document.getElementById('reply-indicator');if(ind)ind.style.display='none';var inp=document.getElementById('chat-input');if(inp)inp.value='';};
-window.deleteMsg=function(msgId){var pass=prompt('Enter admin password to delete:');if(pass==='@Sakib2020')db.ref('chat/messages/'+msgId).remove();else if(pass!==null)alert('Incorrect password!');};
-window.sendMsg=async function(){var input=document.getElementById('chat-input');if(!input)return;var text=input.value.trim();if(!text)return;if(hasBadWord(text)){alert('Your message contains inappropriate content and was not sent.');return;}if(editingId){db.ref('chat/messages/'+editingId).update({text:text,edited:true});editingId=null;window.cancelReplyOrEdit();return;}if(sendAsEnglish){try{var translated=await translateText(text,'en','auto');if(translated&&translated.trim())text=translated;}catch(e){}}var id=Date.now().toString(36)+Math.random().toString(36).substr(2,5);var msg={id:id,text:text,emoji:myEmoji,uid:myId,timestamp:Date.now()};if(replyingTo)msg.replyTo={id:replyingTo.id,text:replyingTo.text,emoji:replyingTo.emoji,uid:replyingTo.uid};db.ref('chat/messages/'+id).set(msg);input.value='';window.cancelReplyOrEdit();scrollChatBottom();};
-window.chatKeydown=function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();window.sendMsg();}};
+function reactTo(msgId,emojiKey){document.getElementById('rxn-popup').style.display='none';var ref=db.ref('chat/messages/'+msgId+'/reactions/'+emojiKey+'/'+myId);ref.once('value',function(snap){snap.exists()?ref.remove():ref.set(true);});}
+window.reactTo=reactTo;
+function replyToMsg(msgId){var msg=chatMsgMap[msgId];if(!msg)return;replyingTo={id:msg.id,text:msg.imageData?'[image]':msg.text,emoji:msg.emoji,uid:msg.uid};editingId=null;var ind=document.getElementById('reply-indicator'),rit=document.getElementById('reply-indicator-text'),rml=document.getElementById('reply-mode-label');if(ind)ind.style.display='flex';if(rml)rml.innerText='Replying to';if(rit)rit.innerText=(msg.emoji||'')+' '+(msg.imageData?'[image]':msg.text||'').slice(0,80);var inp=document.getElementById('chat-input');if(inp)inp.focus();}
+window.replyToMsg=replyToMsg;
+function startEdit(msgId){var msg=chatMsgMap[msgId];if(!msg||msg.uid!==myId)return;editingId=msgId;replyingTo=null;var ind=document.getElementById('reply-indicator'),rit=document.getElementById('reply-indicator-text'),rml=document.getElementById('reply-mode-label');if(ind)ind.style.display='flex';if(rml)rml.innerText='✏️ Editing';if(rit)rit.innerText=(msg.text||'').slice(0,80);var inp=document.getElementById('chat-input');if(inp){inp.value=msg.text||'';inp.focus();}}
+window.startEdit=startEdit;
+function cancelReplyOrEdit(){replyingTo=null;editingId=null;var ind=document.getElementById('reply-indicator');if(ind)ind.style.display='none';var inp=document.getElementById('chat-input');if(inp)inp.value='';}
+window.cancelReplyOrEdit=cancelReplyOrEdit;
+function deleteMsg(msgId){var pass=prompt('Enter admin password to delete:');if(pass==='@Sakib2020')db.ref('chat/messages/'+msgId).remove();else if(pass!==null)alert('Incorrect password!');}
+window.deleteMsg=deleteMsg;
+async function sendMsg(){var input=document.getElementById('chat-input');if(!input)return;var text=input.value.trim();if(!text)return;if(hasBadWord(text)){alert('Your message contains inappropriate content and was not sent.');return;}if(editingId){db.ref('chat/messages/'+editingId).update({text:text,edited:true});editingId=null;cancelReplyOrEdit();return;}if(sendAsEnglish){try{var translated=await translateText(text,'en','auto');if(translated&&translated.trim())text=translated;}catch(e){}}var id=Date.now().toString(36)+Math.random().toString(36).substr(2,5);var msg={id:id,text:text,emoji:myEmoji,uid:myId,timestamp:Date.now()};if(replyingTo)msg.replyTo={id:replyingTo.id,text:replyingTo.text,emoji:replyingTo.emoji,uid:replyingTo.uid};db.ref('chat/messages/'+id).set(msg);input.value='';cancelReplyOrEdit();scrollChatBottom();}
+window.sendMsg=sendMsg;
+function chatKeydown(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}}
+window.chatKeydown=chatKeydown;
 function scrollChatBottom(){var c=document.getElementById('chat-messages');if(c)setTimeout(function(){c.scrollTop=c.scrollHeight;},60);}
-window.viewImg=function(sid){var keys=Object.keys(chatMsgMap);for(var k=0;k<keys.length;k++){if(safeId(keys[k])===sid&&chatMsgMap[keys[k]].imageData){document.getElementById('img-viewer-img').src=chatMsgMap[keys[k]].imageData;document.getElementById('img-viewer').style.display='flex';window.tgUpdateBackBtn();return;}}};
+function viewImg(sid){var keys=Object.keys(chatMsgMap);for(var k=0;k<keys.length;k++){if(safeId(keys[k])===sid&&chatMsgMap[keys[k]].imageData){document.getElementById('img-viewer-img').src=chatMsgMap[keys[k]].imageData;document.getElementById('img-viewer').style.display='flex';window.tgUpdateBackBtn();return;}}}
+window.viewImg=viewImg;
 
 /* ══ DASHBOARD ══ */
-window.updateVol=function(id,val){if(!userData.joined[id])return;userData.joined[id].volume=parseFloat(val)||0;saveUD();refreshReward(id);updateGBB();renderCalc();};
-window.updatePts=function(id,val){if(!userData.joined[id])return;userData.joined[id].points=parseFloat(val)||0;saveUD();refreshReward(id);updateGBB();renderCalc();};
-window.updateBnb=function(id,checked){if(!userData.joined[id])return;userData.joined[id].bnb=checked;saveUD();refreshReward(id);updateGBB();renderCalc();};
-window.toggleExpand=function(id){if(!userData.joined[id])return;userData.joined[id].expanded=!userData.joined[id].expanded;saveUD();var body=document.getElementById('dbody-'+id),btn=document.getElementById('dexpand-'+id);if(body)body.classList.toggle('collapsed',!userData.joined[id].expanded);if(btn)btn.classList.toggle('open',userData.joined[id].expanded);};
-window.toggleAllExpand=function(){allExpanded=!allExpanded;campaigns.forEach(function(c){if(isJoined(c.id)&&isCampActive(c)&&userData.joined[c.id]){userData.joined[c.id].expanded=allExpanded;var body=document.getElementById('dbody-'+c.id),btn=document.getElementById('dexpand-'+c.id);if(body)body.classList.toggle('collapsed',!allExpanded);if(btn)btn.classList.toggle('open',allExpanded);}});saveUD();var b=document.getElementById('btn-all-expand');if(b)b.innerHTML=allExpanded?'&#9650; Collapse All':'&#9660; Expand All';};
-window.toggleAllEnded=function(){endedExpanded=!endedExpanded;var list=document.getElementById('ended-expanded-list'),row=document.getElementById('ended-collapsed-row'),btn=document.getElementById('btn-ended-expand');if(list)list.style.display=endedExpanded?'block':'none';if(row)row.style.display=endedExpanded?'none':'flex';if(btn)btn.innerHTML=endedExpanded?'&#9650; Collapse All':'&#9660; Expand All';};
+function updateVol(id,val){if(!userData.joined[id])return;userData.joined[id].volume=parseFloat(val)||0;saveUD();refreshReward(id);updateGBB();renderCalc();}window.updateVol=updateVol;
+function updatePts(id,val){if(!userData.joined[id])return;userData.joined[id].points=parseFloat(val)||0;saveUD();refreshReward(id);updateGBB();renderCalc();}window.updatePts=updatePts;
+function updateBnb(id,checked){if(!userData.joined[id])return;userData.joined[id].bnb=checked;saveUD();refreshReward(id);updateGBB();renderCalc();}window.updateBnb=updateBnb;
+function toggleExpand(id){if(!userData.joined[id])return;userData.joined[id].expanded=!userData.joined[id].expanded;saveUD();var body=document.getElementById('dbody-'+id),btn=document.getElementById('dexpand-'+id);if(body)body.classList.toggle('collapsed',!userData.joined[id].expanded);if(btn)btn.classList.toggle('open',userData.joined[id].expanded);}window.toggleExpand=toggleExpand;
+function toggleAllExpand(){allExpanded=!allExpanded;campaigns.forEach(function(c){if(isJoined(c.id)&&isCampActive(c)&&userData.joined[c.id]){userData.joined[c.id].expanded=allExpanded;var body=document.getElementById('dbody-'+c.id),btn=document.getElementById('dexpand-'+c.id);if(body)body.classList.toggle('collapsed',!allExpanded);if(btn)btn.classList.toggle('open',allExpanded);}});saveUD();var b=document.getElementById('btn-all-expand');if(b)b.innerHTML=allExpanded?'&#9650; Collapse All':'&#9660; Expand All';}window.toggleAllExpand=toggleAllExpand;
+function toggleAllEnded(){endedExpanded=!endedExpanded;var list=document.getElementById('ended-expanded-list'),row=document.getElementById('ended-collapsed-row'),btn=document.getElementById('btn-ended-expand');if(list)list.style.display=endedExpanded?'block':'none';if(row)row.style.display=endedExpanded?'none':'flex';if(btn)btn.innerHTML=endedExpanded?'&#9650; Collapse All':'&#9660; Expand All';}window.toggleAllEnded=toggleAllEnded;
 function calcReward(c){var j=userData.joined[c.id];if(!j)return null;var p=priceOf(c.coinId),t=c.type||'volume';if(t==='volume'){var en=parseFloat(c.estReward)||0,tok=(j.volume/1000)*en;return{tokens:tok,usd:tok*p,canCalc:true,pointsCost:0};}if(t==='equal'){var mp=parseFloat(c.maxParticipants)||1,tok2=c.poolAmt/mp,rate=j.bnb?0.00075:0.001;return{tokens:tok2,usd:tok2*p,canCalc:true,feeCost:(c.minVolume||0)*rate,pointsCost:0};}if(t==='ranked_fixed'){var rs=parseFloat(c.rankStart)||1,re=parseFloat(c.rankEnd)||1,count=Math.max(re-rs+1,1),tok3=c.poolAmt/count,eligVol=c.rankEligVol||0,rankVol=c.rankMinVol||0,rrate=j.bnb?0.00075:0.001,uv=j.volume||0;return{tokens:tok3,usd:tok3*p,canCalc:true,rankStart:rs,rankEnd:re,eligVol:eligVol,rankMinVol:rankVol,inRank:uv>=rankVol&&rankVol>0,eligible:uv>=eligVol,feeCost:rankVol>0?rankVol*rrate:eligVol*rrate,pointsCost:0};}if(t==='points_lb'){var tp=parseFloat(c.totalPoints)||1,up=j.points||0,tok4=up>0?(up/tp)*c.poolAmt:0,cpp=parseFloat(c.costPerPoint)||0;return{tokens:tok4,usd:tok4*p,canCalc:true,pointsCost:up*cpp};}if(t==='points_nl'){var minPts=parseFloat(c.minPoints)||0,cpp2=parseFloat(c.costPerPointNl)||0;return{tokens:null,usd:null,canCalc:false,isPointsNl:true,minPoints:minPts,costPerPt:cpp2,minCost:minPts*cpp2,pointsCost:0};}return{tokens:null,usd:null,canCalc:false,pointsCost:0};}
 function getBalance(){var tot=0,fee=0,cnt=0;campaigns.forEach(function(c){if(!isJoined(c.id)||!isCampActive(c))return;var j=userData.joined[c.id],r=calcReward(c),t=c.type||'volume';if(r&&r.usd!==null){if(t==='ranked_fixed'){if(r.inRank){tot+=r.usd;cnt++;}}else{tot+=r.usd;cnt++;}}if(t==='volume')fee+=(j.volume||0)*(j.bnb?0.00075:0.001);else if((t==='equal'||t==='ranked_fixed')&&r&&r.feeCost)fee+=r.feeCost;else if(t==='points_lb'&&r&&r.pointsCost)fee+=r.pointsCost;});return{net:tot-fee,totalReward:tot,totalFee:fee,cnt:cnt};}
 function refreshReward(campId){var c=getCampById(campId);if(!c)return;var el=document.getElementById('dreward-'+campId);if(!el)return;var r=calcReward(c),p=priceOf(c.coinId);if(r&&r.canCalc&&r.tokens!==null)el.innerHTML='<span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter value above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'');var sumEl=document.getElementById('dsummary-'+campId);if(sumEl){if(r&&r.canCalc&&r.tokens&&r.tokens>0){sumEl.innerText=fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':'');sumEl.className='dash-camp-summary';}else{sumEl.innerText='Not set';sumEl.className='dash-camp-summary no-data';}}}
@@ -1193,54 +1388,12 @@ else if(t==='points_lb'&&r){bodyHtml='<div class="dash-info-row">Total LB Points
 else if(r&&r.isPointsNl){bodyHtml='<div class="dash-info-row">Min Points: <strong>'+r.minPoints.toLocaleString()+'</strong>'+(r.costPerPt?' | Cost/pt: <strong style="color:var(--red)">$'+r.costPerPt+'</strong>':'')+(r.minCost?' | Min cost: <strong style="color:var(--red)">'+fmtUSD(r.minCost)+'</strong>':'')+'</div><div class="dash-note">Points-based — leaderboard unavailable.</div>';}
 else{bodyHtml='<div class="dash-note">Reward cannot be estimated.</div>';}
 return'<div class="dash-camp" id="dcard-'+c.id+'"><div class="dash-camp-header" onclick="toggleExpand(\''+c.id+'\')"><div class="dash-camp-left"><img src="'+c.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="camp-name">'+escHtml(c.name)+'</div>'+typeBadge(t)+'</div></div><div class="dash-camp-right"><span id="dsummary-'+c.id+'" class="'+sumCls+'">'+sumTxt+'</span><span class="camp-timer '+sc+'" style="font-size:11px">'+info.text+'</span><button class="btn-remove" onclick="toggleJoin(\''+c.id+'\',event)">Remove</button><button class="btn-expand '+(isExp?'open':'')+'" id="dexpand-'+c.id+'" onclick="event.stopPropagation();toggleExpand(\''+c.id+'\')">&#9660;</button></div></div><div class="dash-camp-body '+(isExp?'':'collapsed')+'" id="dbody-'+c.id+'">'+bodyHtml+'</div></div>';}
-function renderDashboard(){
-  var activeJ=[],endedJ=[];
-  campaigns.forEach(function(c){if(!isJoined(c.id))return;if(isCampActive(c))activeJ.push(c);else endedJ.push(c);});
-  var bal=getBalance(),isLoss=bal.net<0,nc=isLoss?'var(--red)':'var(--green)';
-  document.getElementById('dash-balance').innerHTML='<div class="balance-card" style="background:linear-gradient(135deg,'+(isLoss?'#1f0f0f,#200d0d':'#0f1f15,#132018')+');border-color:'+(isLoss?'rgba(246,70,93,.4)':'rgba(14,203,129,.4)')+'"><div class="balance-label">Est. Net Profit</div><div class="balance-net" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div><div class="balance-sub">'+activeJ.length+' active | '+bal.cnt+' calculable</div><div class="balance-rows"><div class="bal-row"><div class="bal-row-label">Reward</div><div class="bal-row-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</div></div><div class="bal-row"><div class="bal-row-label">Fees</div><div class="bal-row-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</div></div><div class="bal-row"><div class="bal-row-label">Net</div><div class="bal-row-val" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div></div></div></div>';
-  var html='';
-  if(activeJ.length===0&&endedJ.length===0){html='<div class="empty-state" style="margin-bottom:20px"><h3>No Campaigns Joined</h3><p>Click "+ Join" on any campaign.</p></div>';}
-  else{
-    if(activeJ.length>0){html+='<div class="dash-header-row"><h2 style="margin-bottom:0">Joined ('+activeJ.length+')</h2><button class="dash-all-toggle" id="btn-all-expand" onclick="toggleAllExpand()">&#9650; Collapse All</button></div>';activeJ.forEach(function(c){html+=buildDashCard(c);});}
-    else{html+='<div class="empty-state" style="margin-bottom:20px"><h3>No Active Campaigns</h3></div>';}
-    if(endedJ.length>0){
-      html+=divH('Completed','var(--gray)');
-      html+='<div style="display:flex;justify-content:flex-end;margin-bottom:9px"><button class="dash-all-toggle" id="btn-ended-expand" onclick="toggleAllEnded()">&#9660; Expand All</button></div>';
-      html+='<div id="ended-collapsed-row" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;align-items:center">';
-      endedJ.forEach(function(c){html+='<img src="'+c.logo+'" title="'+escHtml(c.name)+'" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid #333;filter:grayscale(1);opacity:0.5">';});
-      html+='<span style="color:var(--gray);font-size:12px;margin-left:3px">'+endedJ.length+' completed</span></div>';
-      html+='<div id="ended-expanded-list" style="display:none">';
-      endedJ.forEach(function(c){html+='<div class="dash-camp" style="filter:grayscale(1);opacity:0.5"><div style="display:flex;align-items:center;justify-content:space-between;padding:11px 15px;gap:9px"><div style="display:flex;align-items:center;gap:9px"><img src="'+c.logo+'" class="camp-logo"><div class="camp-name">'+escHtml(c.name)+'</div></div><span style="color:var(--gray);font-size:12px;font-family:monospace">COMPLETED</span></div></div>';});
-      html+='</div>';
-    }
-  }
-  document.getElementById('dash-joined').innerHTML=html;
-  renderCalc();
-}
-function renderCalc(){
-  var calcEl=document.getElementById('dash-calc');if(!calcEl)return;
-  var bal=getBalance(),totalVol=0,bnbVol=0;
-  campaigns.forEach(function(c){var j=userData.joined[c.id];if(!j)return;totalVol+=j.volume||0;if(j.bnb)bnbVol+=j.volume||0;});
-  var bnbPct=totalVol>0?Math.round((bnbVol/totalVol)*100):0,potSave=(totalVol-bnbVol)*0.001*0.25;
-  calcEl.innerHTML='<div class="calc-section"><h2 style="margin-bottom:13px">Cost Calculator</h2>'
-    +'<div class="calc-tabs"><button class="calc-tab active" onclick="switchTab(\'auto\',this)">Auto Summary</button><button class="calc-tab" onclick="switchTab(\'manual\',this)">Manual</button></div>'
-    +'<div id="calc-auto" class="calc-panel active"><div class="calc-card">'
-    +'<div class="calc-row"><span class="calc-key">Total Volume</span><span class="calc-val">'+fmtUSD(totalVol)+'</span></div>'
-    +'<div class="calc-row"><span class="calc-key">BNB Fee Used</span><span class="calc-val" style="color:var(--yellow)">'+fmtUSD(bnbVol)+' ('+bnbPct+'%)</span></div>'
-    +'<div class="calc-row"><span class="calc-key">Total Fee</span><span class="calc-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</span></div>'
-    +'<div class="calc-row"><span class="calc-key">Total Est. Reward</span><span class="calc-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</span></div>'
-    +'<div class="calc-row"><span class="calc-key" style="font-weight:700">Net</span><span class="calc-val" style="color:'+(bal.net>=0?'var(--green)':'var(--red)')+';font-size:15px">'+(bal.net>=0?'+':'-')+fmtUSD(Math.abs(bal.net))+'</span></div>'
-    +'</div>'+(bnbPct<100&&potSave>0.001?'<div class="savings-hint" style="background:var(--ydim);border-color:rgba(252,213,53,.3);color:var(--yellow)">Tip: BNB on all trades saves <strong>'+fmtUSD(potSave)+'</strong> more.</div>':'')+(bnbPct===100&&totalVol>0?'<div class="savings-hint" style="background:var(--gdim);border-color:rgba(14,203,129,.3);color:var(--green)">Using BNB on 100% of trades!</div>':'')+'</div>'
-    +'<div id="calc-manual" class="calc-panel"><div class="calc-card">'
-    +'<div class="form-group" style="margin-bottom:11px"><label style="display:block;margin-bottom:3px;color:var(--gray);font-size:12px;font-weight:600">Trade Volume (USD)</label><input type="number" class="vol-input" id="m-vol" placeholder="e.g. 10000" value="'+(totalVol||'')+'" oninput="calcManual()"></div>'
-    +'<div class="bnb-wrap" style="padding:9px 0;margin-bottom:11px;border-bottom:1px solid var(--border)"><label class="toggle-switch"><input type="checkbox" id="m-bnb" onchange="calcManual()"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">BNB Fee Discount (25% off)</span></div>'
-    +'<div class="calc-row" style="padding:7px 0"><span class="calc-key">Fee Rate</span><span class="calc-val" id="m-rate">0.100%</span></div>'
-    +'<div class="calc-row" style="padding:7px 0"><span class="calc-key">Trading Fee</span><span class="calc-val" style="color:var(--red)" id="m-fee">-</span></div>'
-    +'<div class="calc-row" style="padding:7px 0;border-bottom:none"><span class="calc-key">BNB saves you</span><span class="calc-val" style="color:var(--yellow)" id="m-save">-</span></div>'
-    +'</div></div></div>';
-}
-window.switchTab=function(tab,btn){document.querySelectorAll('.calc-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');var a=document.getElementById('calc-auto'),m=document.getElementById('calc-manual');if(a)a.classList.toggle('active',tab==='auto');if(m)m.classList.toggle('active',tab==='manual');};
-window.calcManual=function(){var vol=parseFloat((document.getElementById('m-vol')||{}).value)||0;var bnb=(document.getElementById('m-bnb')||{}).checked||false;var fee=vol*(bnb?0.00075:0.001),save=vol*0.001*0.25;var r=document.getElementById('m-rate'),f=document.getElementById('m-fee'),s=document.getElementById('m-save');if(r)r.innerText=bnb?'0.075% (BNB)':'0.100%';if(f)f.innerText=vol>0?'-'+fmtUSD(fee):'-';if(s)s.innerText=vol>0&&!bnb?fmtUSD(save):(bnb?'Already using BNB':'-');};
+function renderDashboard(){var activeJ=[],endedJ=[];campaigns.forEach(function(c){if(!isJoined(c.id))return;if(isCampActive(c))activeJ.push(c);else endedJ.push(c);});var bal=getBalance(),isLoss=bal.net<0,nc=isLoss?'var(--red)':'var(--green)';document.getElementById('dash-balance').innerHTML='<div class="balance-card" style="background:linear-gradient(135deg,'+(isLoss?'#1f0f0f,#200d0d':'#0f1f15,#132018')+');border-color:'+(isLoss?'rgba(246,70,93,.4)':'rgba(14,203,129,.4)')+'"><div class="balance-label">Est. Net Profit</div><div class="balance-net" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div><div class="balance-sub">'+activeJ.length+' active | '+bal.cnt+' calculable</div><div class="balance-rows"><div class="bal-row"><div class="bal-row-label">Reward</div><div class="bal-row-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</div></div><div class="bal-row"><div class="bal-row-label">Fees</div><div class="bal-row-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</div></div><div class="bal-row"><div class="bal-row-label">Net</div><div class="bal-row-val" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div></div></div></div>';
+var html='';if(activeJ.length===0&&endedJ.length===0)html='<div class="empty-state" style="margin-bottom:20px"><h3>No Campaigns Joined</h3><p>Click "+ Join" on any campaign.</p></div>';else{if(activeJ.length>0){html+='<div class="dash-header-row"><h2 style="margin-bottom:0">Joined ('+activeJ.length+')</h2><button class="dash-all-toggle" id="btn-all-expand" onclick="toggleAllExpand()">&#9650; Collapse All</button></div>';activeJ.forEach(function(c){html+=buildDashCard(c);});}else html+='<div class="empty-state" style="margin-bottom:20px"><h3>No Active Campaigns</h3></div>';if(endedJ.length>0){html+=divH('Completed','var(--gray)');html+='<div style="display:flex;justify-content:flex-end;margin-bottom:9px"><button class="dash-all-toggle" id="btn-ended-expand" onclick="toggleAllEnded()">&#9660; Expand All</button></div>';html+='<div id="ended-collapsed-row" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;align-items:center">';endedJ.forEach(function(c){html+='<img src="'+c.logo+'" title="'+escHtml(c.name)+'" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid #333;filter:grayscale(1);opacity:0.5">';});html+='<span style="color:var(--gray);font-size:12px;margin-left:3px">'+endedJ.length+' completed</span></div><div id="ended-expanded-list" style="display:none">';endedJ.forEach(function(c){html+='<div class="dash-camp" style="filter:grayscale(1);opacity:0.5"><div style="display:flex;align-items:center;justify-content:space-between;padding:11px 15px;gap:9px"><div style="display:flex;align-items:center;gap:9px"><img src="'+c.logo+'" class="camp-logo"><div class="camp-name">'+escHtml(c.name)+'</div></div><span style="color:var(--gray);font-size:12px;font-family:monospace">COMPLETED</span></div></div>';});html+='</div>';}}
+document.getElementById('dash-joined').innerHTML=html;renderCalc();}
+function renderCalc(){var calcEl=document.getElementById('dash-calc');if(!calcEl)return;var bal=getBalance(),totalVol=0,bnbVol=0;campaigns.forEach(function(c){var j=userData.joined[c.id];if(!j)return;totalVol+=j.volume||0;if(j.bnb)bnbVol+=j.volume||0;});var bnbPct=totalVol>0?Math.round((bnbVol/totalVol)*100):0,potSave=(totalVol-bnbVol)*0.001*0.25;calcEl.innerHTML='<div class="calc-section"><h2 style="margin-bottom:13px">Cost Calculator</h2><div class="calc-tabs"><button class="calc-tab active" onclick="switchTab(\'auto\',this)">Auto Summary</button><button class="calc-tab" onclick="switchTab(\'manual\',this)">Manual</button></div><div id="calc-auto" class="calc-panel active"><div class="calc-card"><div class="calc-row"><span class="calc-key">Total Volume</span><span class="calc-val">'+fmtUSD(totalVol)+'</span></div><div class="calc-row"><span class="calc-key">BNB Fee Used</span><span class="calc-val" style="color:var(--yellow)">'+fmtUSD(bnbVol)+' ('+bnbPct+'%)</span></div><div class="calc-row"><span class="calc-key">Total Fee</span><span class="calc-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</span></div><div class="calc-row"><span class="calc-key">Total Est. Reward</span><span class="calc-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</span></div><div class="calc-row"><span class="calc-key" style="font-weight:700">Net</span><span class="calc-val" style="color:'+(bal.net>=0?'var(--green)':'var(--red)')+';font-size:15px">'+(bal.net>=0?'+':'-')+fmtUSD(Math.abs(bal.net))+'</span></div></div>'+(bnbPct<100&&potSave>0.001?'<div class="savings-hint" style="background:var(--ydim);border-color:rgba(252,213,53,.3);color:var(--yellow)">Tip: BNB on all trades saves <strong>'+fmtUSD(potSave)+'</strong> more.</div>':'')+(bnbPct===100&&totalVol>0?'<div class="savings-hint" style="background:var(--gdim);border-color:rgba(14,203,129,.3);color:var(--green)">Using BNB on 100% of trades!</div>':'')+'</div><div id="calc-manual" class="calc-panel"><div class="calc-card"><div class="form-group" style="margin-bottom:11px"><label style="display:block;margin-bottom:3px;color:var(--gray);font-size:12px;font-weight:600">Trade Volume (USD)</label><input type="number" class="vol-input" id="m-vol" placeholder="e.g. 10000" value="'+(totalVol||'')+'" oninput="calcManual()"></div><div class="bnb-wrap" style="padding:9px 0;margin-bottom:11px;border-bottom:1px solid var(--border)"><label class="toggle-switch"><input type="checkbox" id="m-bnb" onchange="calcManual()"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">BNB Fee Discount (25% off)</span></div><div class="calc-row" style="padding:7px 0"><span class="calc-key">Fee Rate</span><span class="calc-val" id="m-rate">0.100%</span></div><div class="calc-row" style="padding:7px 0"><span class="calc-key">Trading Fee</span><span class="calc-val" style="color:var(--red)" id="m-fee">-</span></div><div class="calc-row" style="padding:7px 0;border-bottom:none"><span class="calc-key">BNB saves you</span><span class="calc-val" style="color:var(--yellow)" id="m-save">-</span></div></div></div></div>';}
+function switchTab(tab,btn){document.querySelectorAll('.calc-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');var a=document.getElementById('calc-auto'),m=document.getElementById('calc-manual');if(a)a.classList.toggle('active',tab==='auto');if(m)m.classList.toggle('active',tab==='manual');}window.switchTab=switchTab;
+function calcManual(){var vol=parseFloat((document.getElementById('m-vol')||{}).value)||0;var bnb=(document.getElementById('m-bnb')||{}).checked||false;var fee=vol*(bnb?0.00075:0.001),save=vol*0.001*0.25;var r=document.getElementById('m-rate'),f=document.getElementById('m-fee'),s=document.getElementById('m-save');if(r)r.innerText=bnb?'0.075% (BNB)':'0.100%';if(f)f.innerText=vol>0?'-'+fmtUSD(fee):'-';if(s)s.innerText=vol>0&&!bnb?fmtUSD(save):(bnb?'Already using BNB':'-');}window.calcManual=calcManual;
 
 /* ══ TICK ══ */
 document.getElementById('tz-notice').innerText='Times shown in your local timezone ('+userTZ+')';
@@ -1248,17 +1401,21 @@ setInterval(function(){
   campaigns.forEach(function(c){
     var info=getTimerInfo(c),sc=info.state==='alert'?'state-alert':'state-'+info.state;
     ['hf','hu','r'].forEach(function(suf){
-      var el=document.getElementById('tmr-'+c.id+'-'+suf);if(el){el.innerText=info.text;el.className=(suf.charAt(0)==='h'?'hero-timer ':'camp-timer ')+sc;}
-      var lb=document.getElementById('lbl-'+c.id+'-'+suf);if(lb)lb.innerText=info.label;
+      var el=document.getElementById('tmr-'+c.id+'-'+suf);
+      if(el){el.innerText=info.text;el.className=(suf.charAt(0)==='h'?'hero-timer ':'camp-timer ')+sc;}
+      var lb=document.getElementById('lbl-'+c.id+'-'+suf);
+      if(lb)lb.innerText=info.label;
     });
   });
   if(document.getElementById('details-modal').style.display==='flex'&&detailCampId){var dc=getCampById(detailCampId);if(dc)updateDetTimer(dc);}
   tickCount++;
-  if(tickCount%5===0&&urgCamps.length>1){urgIdx=(urgIdx+1)%urgCamps.length;window.goSlide('urg',urgIdx);}
-  if(tickCount%8===0&&notices.length>1){noticeIdx=(noticeIdx+1)%notices.length;refreshNoticeCard();}
+  if(tickCount%5===0&&urgCamps.length>1){urgIdx=(urgIdx+1)%urgCamps.length;goSlide('urg',urgIdx);}
+  if(tickCount%8===0&&notices.length>1){
+    noticeIdx=(noticeIdx+1)%notices.length;
+    refreshNoticeSlot();
+  }
 },1000);
 setInterval(fetchPrices,60000);
-
 })();
 </script>
 </body>
