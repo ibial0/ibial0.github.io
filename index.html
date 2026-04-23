@@ -430,7 +430,6 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 <main>
   <div id="tz-notice" style="text-align:right;color:var(--gray);font-size:11px;margin-bottom:14px"></div>
   <section id="home" class="section active">
-    <!-- Notices rendered here separately, always visible -->
     <div id="home-notices"></div>
     <h2>Featured Campaigns</h2>
     <div id="home-featured"><div class="loading"><div class="spinner"></div>Loading...</div></div>
@@ -438,7 +437,6 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
       <h2>Ending Soon</h2>
       <div id="home-urgent"></div>
     </div>
-    <!-- Dynamic TG/Web CTA card -->
     <div id="tg-cta-home" style="margin-top:8px"></div>
     <div class="community-cta">
       <div style="font-size:32px;margin-bottom:7px">💬</div>
@@ -511,7 +509,7 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
       <span style="color:var(--gray);font-size:13px">Follow on X:</span>
       <a href="https://x.com/_IBIAL" target="_blank" style="color:var(--gray)"><svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
       <a href="https://t.me/spotctrbot" target="_blank" style="color:#29b6f6;font-size:13px;display:flex;align-items:center;gap:5px;text-decoration:none;font-weight:700">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         Telegram Mini App
       </a>
     </div>
@@ -591,7 +589,6 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
         <button type="submit" class="btn-submit" id="submit-btn">Publish Campaign</button>
       </form>
     </div>
-    <!-- NOTICE FORM -->
     <div id="admin-notice-form" style="display:none">
       <h2 id="notice-modal-title" style="border:none;padding:0;display:block;margin-bottom:14px">📢 Add Notice</h2>
       <form id="notice-form" onsubmit="saveNotice(event)">
@@ -676,7 +673,10 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 
 /* ══ TELEGRAM INIT ══ */
 var tg=window.Telegram&&window.Telegram.WebApp?window.Telegram.WebApp:null;
-var isTgApp=!!tg;
+/* FIX: Properly detect if running inside Telegram by checking initData.
+   When accessed via regular browser, tg.initData is an empty string.
+   When running inside Telegram Mini App, tg.initData contains user/session data. */
+var isTgApp=!!(tg && tg.initData && tg.initData.length > 0);
 window.tgUpdateBackBtn=function(){
   if(!tg)return;
   var MODAL_IDS=['admin-modal','details-modal','rules-modal','notice-modal'];
@@ -685,7 +685,7 @@ window.tgUpdateBackBtn=function(){
   var menuOpen=(function(){var mm=document.getElementById('mobile-menu');return mm&&mm.style.display==='flex';})();
   if(anyOpen||imgOpen||menuOpen)tg.BackButton.show();else tg.BackButton.hide();
 };
-if(tg){
+if(isTgApp){
   tg.ready();tg.expand();
   if(!localStorage.getItem('spotctr_theme_manual')){
     localStorage.setItem('spotctr_theme',tg.colorScheme==='light'?'light':'dark');
@@ -733,19 +733,21 @@ function toggleTheme(){
 window.toggleTheme=toggleTheme;
 applyTheme();
 
-/* ══ TG CTA CARD ══ */
+/* ══ TG CTA CARD ══
+   FIX: Always show the Telegram Mini App link regardless of platform.
+   Previously this showed "Also available as Web App" when inside Telegram,
+   which caused confusion. Now it always promotes the Telegram Mini App. */
 var TG_ICON_SVG='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:26px;height:26px"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>';
 function renderTgCtaCard(){
   var el=document.getElementById('tg-cta-home');if(!el)return;
-  if(isTgApp){
-    el.innerHTML='<div class="tg-cta-card"><div class="tg-cta-icon">🌐</div><div class="tg-cta-info"><div class="tg-cta-title">Also available as a Web App</div><div class="tg-cta-sub">Visit spotctr.online for the full web experience on any browser.</div></div><a href="https://spotctr.online" target="_blank" class="tg-cta-btn">Open Website</a></div>';
-  }else{
-    el.innerHTML='<div class="tg-cta-card"><div class="tg-cta-icon" style="color:#29b6f6">'+TG_ICON_SVG+'</div><div class="tg-cta-info"><div class="tg-cta-title">Also available as a Telegram Mini App</div><div class="tg-cta-sub">Track campaigns directly inside Telegram. Same features, no switching needed.</div></div><a href="https://t.me/spotctrbot" target="_blank" class="tg-cta-btn">Open in Telegram</a></div>';
-  }
+  el.innerHTML='<div class="tg-cta-card"><div class="tg-cta-icon" style="color:#29b6f6">'+TG_ICON_SVG+'</div><div class="tg-cta-info"><div class="tg-cta-title">Also available as a Telegram Mini App</div><div class="tg-cta-sub">Track campaigns directly inside Telegram. Same features, no switching needed.</div></div><a href="https://t.me/spotctrbot" target="_blank" class="tg-cta-btn">Open in Telegram</a></div>';
 }
 renderTgCtaCard();
 
-/* ══ SMART SHARE ══ */
+/* ══ SMART SHARE ══
+   FIX: getCampaignShareUrl now correctly returns website URLs when browsing
+   via regular browser, and Telegram deep links only when inside Telegram.
+   This was broken before because isTgApp was always true. */
 function getCampaignShareUrl(campId){
   if(isTgApp){
     return 'https://t.me/spotctrbot?startapp=camp_'+campId;
@@ -1014,7 +1016,7 @@ window.editCamp=editCamp;
 
 /* ══ SHARE ══ */
 function shareLink(url,title){
-  if(tg){tg.openTelegramLink('https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(title||'Spot CTR'));return;}
+  if(tg&&isTgApp){tg.openTelegramLink('https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(title||'Spot CTR'));return;}
   if(navigator.share)navigator.share({title:title||'Spot CTR',url:url}).catch(function(){});else copyLink(url);
 }
 window.shareLink=shareLink;
@@ -1024,13 +1026,11 @@ window.copyLink=copyLink;
 /* ══ DEEP LINK HANDLING ══ */
 setTimeout(function(){
   var campId='';
-  // Check URL hash (browser)
   var hash=window.location.hash;
   if(hash&&hash.indexOf('#campaign=')>=0){
     campId=hash.replace('#campaign=','');
   }
-  // Check Telegram startapp param
-  if(!campId&&tg&&tg.initDataUnsafe&&tg.initDataUnsafe.start_param){
+  if(!campId&&isTgApp&&tg&&tg.initDataUnsafe&&tg.initDataUnsafe.start_param){
     var sp=tg.initDataUnsafe.start_param;
     if(sp.indexOf('camp_')===0)campId=sp.replace('camp_','');
     else campId=sp;
@@ -1056,7 +1056,7 @@ function adminBtns(id){if(!isAdmin)return'';return'<div class="admin-controls"><
 /* ══ GBB ══ */
 function updateGBB(){var bal=getBalance(),cnt=0;campaigns.forEach(function(c){if(isJoined(c.id)&&isCampActive(c))cnt++;});var el=document.getElementById('gbb-val');el.style.color=bal.net<0?'var(--red)':'var(--green)';el.innerText=(bal.net<0?'-':'+')+fmtUSD(Math.abs(bal.net));document.getElementById('gbb-sub').innerText=cnt+' active campaign'+(cnt!==1?'s':'')+' joined';}
 
-/* ══ RENDER NOTICES (separate, always visible) ══ */
+/* ══ RENDER NOTICES ══ */
 function renderNotices(){
   var el=document.getElementById('home-notices');
   if(!el)return;
@@ -1096,7 +1096,7 @@ function renderViews(){
     document.getElementById('reward-content').innerHTML=empty;
   }
 
-  /* Home Featured — campaigns only (notices are in separate section) */
+  /* Home Featured */
   var featuredHtml='';
   if(sorted.length===0&&rewPending.length===0){
     featuredHtml='<div class="empty-state"><h3>No Active Campaigns</h3></div>';
@@ -1108,7 +1108,7 @@ function renderViews(){
   }
   document.getElementById('home-featured').innerHTML=featuredHtml;
 
-  /* Ending Soon — only campaigns with ≤3 days remaining */
+  /* Ending Soon */
   var THREE_DAYS=3*24*60*60*1000;
   urgCamps=running.filter(function(c){
     return new Date(c.end).getTime()-nowMs<=THREE_DAYS;
@@ -1311,7 +1311,6 @@ function showDetails(enc){
   else if(t==='points_nl'){estEl.innerHTML='Points (no LB)<span class="sub">Min pts: '+(c.minPoints||'?')+'</span>';estRow.style.display='flex';}
   else estRow.style.display='none';
   document.getElementById('det-official-wrap').innerHTML=c.campLink?'<a href="'+escHtml(c.campLink)+'" target="_blank" rel="noopener" class="det-official-link"><svg viewBox="0 0 20 20" style="width:13px;height:13px;fill:currentColor;flex-shrink:0"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>View Official Campaign Page</a>':'';
-  /* Smart share URL: TG Mini App or Browser */
   var shareUrl=getCampaignShareUrl(c.id);
   document.getElementById('det-share-wrap').innerHTML='<div class="share-bar"><button class="share-btn share-btn-copy" onclick="copyLink(\''+escHtml(shareUrl)+'\')">📋 Copy Campaign Link</button><button class="share-btn share-btn-share" onclick="shareLink(\''+escHtml(shareUrl)+'\',\''+escHtml(c.name)+' on Spot CTR\')">🔗 Share</button></div>';
   updateJoinBtn(c.id);openModal('details-modal');updateDetTimer(c);
