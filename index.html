@@ -381,16 +381,24 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 .ebb-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--bg);flex-shrink:0;position:relative;z-index:2;transition:all .3s}
 .ebb-dot.active-dot{width:14px;height:14px;border:2px solid var(--bg);box-shadow:0 0 8px rgba(14,203,129,0.6)}
 .ebb-day-label{font-size:10px;color:var(--gray);margin-top:5px;font-weight:600;white-space:nowrap}
-.ebb-countdown-wrap{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 13px;display:flex;align-items:center;gap:10px}
-.ebb-countdown-ring-wrap{position:relative;flex-shrink:0}
-.ebb-countdown-ring{transform:rotate(-90deg)}
+
+/* ══ UPDATED EBB COUNTDOWN - Stopwatch style ══ */
+.ebb-countdown-wrap{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:14px}
+.ebb-countdown-ring-wrap{position:relative;flex-shrink:0;width:72px;height:72px}
+.ebb-countdown-ring{transform:rotate(-90deg);width:72px;height:72px}
 .ebb-ring-bg{fill:none;stroke:var(--border);stroke-width:3}
-.ebb-ring-prog{fill:none;stroke-width:3;stroke-linecap:round;transition:stroke-dashoffset .5s linear,stroke .3s}
-.ebb-countdown-time{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Courier New',monospace;font-size:10px;font-weight:800;color:var(--white);white-space:nowrap;line-height:1}
+/* Clock hand element inside ring */
+.ebb-clock-hand{position:absolute;top:50%;left:50%;width:2px;height:26px;transform-origin:50% 100%;transform:translateX(-50%) rotate(0deg);border-radius:2px;transition:transform 0s linear}
+.ebb-clock-center-dot{position:absolute;top:50%;left:50%;width:6px;height:6px;border-radius:50%;transform:translate(-50%,-50%)}
+.ebb-ring-prog{fill:none;stroke-width:3;stroke-linecap:round;transition:stroke-dashoffset 1s linear,stroke .3s}
+/* Time display on right side (removed from center of ring) */
 .ebb-countdown-info{flex:1;min-width:0}
 .ebb-countdown-label{font-size:10px;color:var(--gray);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
 .ebb-countdown-mult{font-size:15px;font-weight:800}
 .ebb-countdown-desc{font-size:11px;color:var(--gray);margin-top:2px}
+/* New: time display shown on right */
+.ebb-time-display{font-family:'Courier New',monospace;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;letter-spacing:1px}
+
 .ebb-slot-row{display:flex;align-items:center;gap:6px;margin-bottom:7px;flex-wrap:wrap}
 .ebb-slot-row input,.ebb-slot-row select{flex:1;min-width:80px;padding:6px 8px;background:var(--bg);border:1px solid var(--border);color:var(--white);border-radius:6px;font-size:12px}
 .ebb-slot-row input:focus,.ebb-slot-row select:focus{outline:none;border-color:var(--yellow)}
@@ -398,6 +406,17 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 .ebb-add-btn{background:var(--ydim);color:var(--yellow);border:1px solid rgba(252,213,53,.3);padding:6px 13px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700;width:100%;margin-top:4px;transition:background .2s}
 .ebb-add-btn:hover{background:rgba(252,213,53,.18)}
 .ebb-slots-wrap{max-height:260px;overflow-y:auto;padding-right:2px}
+
+/* ══ EBB Multiplier Selector in Dashboard ══ */
+.ebb-mult-selector{background:linear-gradient(135deg,rgba(14,203,129,0.06),rgba(14,203,129,0.03));border:1px solid rgba(14,203,129,0.2);border-radius:9px;padding:11px 13px;margin-top:9px}
+.ebb-mult-selector-label{font-size:10px;color:var(--green);letter-spacing:1.2px;text-transform:uppercase;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:5px}
+.ebb-mult-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.ebb-mult-pill{background:var(--bg);border:1.5px solid var(--border);color:var(--gray);padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s}
+.ebb-mult-pill:hover{border-color:var(--green);color:var(--green)}
+.ebb-mult-pill.selected{background:rgba(14,203,129,0.15);border-color:var(--green);color:var(--green)}
+.ebb-mult-pill.none-pill{border-style:dashed}
+.ebb-mult-hint{font-size:11px;color:var(--gray);margin-top:7px;line-height:1.5}
+.ebb-mult-hint strong{color:var(--white)}
 
 @media(max-width:768px){
   header{padding:10px 12px}
@@ -534,7 +553,7 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
       <div class="platform-links">
         <a href="https://spotctr.online" target="_blank" class="platform-btn platform-btn-web">🌐 Web App at spotctr.online</a>
         <a href="https://t.me/spotctrbot" target="_blank" class="platform-btn platform-btn-tg">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;flex-shrink:0"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;flex-shrink:0"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
           Telegram Mini App @spotctrbot
         </a>
       </div>
@@ -630,7 +649,6 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
           <div class="check-row"><input type="checkbox" id="reward-postponed"><label for="reward-postponed">⚠️ Mark reward as postponed/delayed</label></div>
         </div>
         <hr class="form-divider">
-        <!-- ══ EARLY BIRD BOOST SECTION IN ADMIN FORM ══ -->
         <span class="form-section-label">🚀 Early Bird Boost Multiplier</span>
         <div class="form-group">
           <div class="check-row">
@@ -647,7 +665,6 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
             <button type="button" class="ebb-add-btn" onclick="addEbbSlot()">+ Add Time Slot</button>
           </div>
         </div>
-        <!-- ══ END EARLY BIRD BOOST SECTION ══ -->
         <button type="submit" class="btn-submit" id="submit-btn">Publish Campaign</button>
       </form>
     </div>
@@ -693,7 +710,6 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
       <div class="det-timer-label" id="det-timer-label">Time Remaining</div>
       <div class="det-timer state-active" id="det-timer"></div>
     </div>
-    <!-- Early Bird Boost display inside details modal -->
     <div id="det-ebb-wrap"></div>
     <button id="det-join-btn" onclick="toggleJoinFromModal()" style="width:100%;padding:9px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--gray);transition:all .2s;margin-bottom:9px">+ Join Campaign</button>
     <div id="det-share-wrap"></div>
@@ -900,15 +916,18 @@ db.ref('notices').on('value',function(snap){
 
 async function fetchPrices(){if(!campaigns.length)return;var ids=[];campaigns.forEach(function(c){if(ids.indexOf(c.coinId)<0)ids.push(c.coinId);});try{var r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids='+ids.join(',')+'&vs_currencies=usd');livePrices=await r.json();localStorage.setItem('spotctr_prices',JSON.stringify(livePrices));renderViews();updateGBB();if(document.getElementById('dash').classList.contains('active'))renderDashboard();}catch(e){}}
 
-/* ══ NAV ══ */
+/* ══ NAV — with persistence (FIX #2) ══ */
 function toggleMenu(){var m=document.getElementById('mobile-menu');m.style.display=m.style.display==='flex'?'none':'flex';window.tgUpdateBackBtn();}
 window.toggleMenu=toggleMenu;
+
 function nav(id){
   document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
   document.querySelectorAll('.desktop-nav button,.mobile-menu button').forEach(function(b){b.classList.remove('active');});
   var sec=document.getElementById(id);if(sec)sec.classList.add('active');
   var nb=document.getElementById('nav-'+id);if(nb)nb.classList.add('active');
   fabSetVisible(id==='home');
+  /* ── Save current nav section so reload returns here ── */
+  try{sessionStorage.setItem('spotctr_nav',id);}catch(e){}
   if(id==='dash')renderDashboard();
   else if(id==='community')initChat();
   else renderViews();
@@ -1123,7 +1142,6 @@ function editCamp(id,ev){
     document.getElementById('min-volume').value=c.minVolume>0?c.minVolume:'';
     document.getElementById('reward-tbd').checked=!!c.rewardDateTBD;
     document.getElementById('reward-postponed').checked=!!c.rewardPostponed;
-    /* Load Early Bird data */
     var ebbCb=document.getElementById('has-ebb');
     var fgEbb=document.getElementById('fg-ebb');
     var ebbContainer=document.getElementById('ebb-slots-container');
@@ -1172,7 +1190,7 @@ setTimeout(function(){
 },500);
 
 /* ══ JOIN ══ */
-function toggleJoin(id,ev){if(ev)ev.stopPropagation();if(userData.joined[id])delete userData.joined[id];else userData.joined[id]={volume:0,bnb:false,points:0,expanded:true};saveUD();renderViews();updateGBB();if(document.getElementById('dash').classList.contains('active'))renderDashboard();}
+function toggleJoin(id,ev){if(ev)ev.stopPropagation();if(userData.joined[id])delete userData.joined[id];else userData.joined[id]={volume:0,bnb:false,points:0,expanded:true,ebbMult:null};saveUD();renderViews();updateGBB();if(document.getElementById('dash').classList.contains('active'))renderDashboard();}
 window.toggleJoin=toggleJoin;
 function toggleJoinFromModal(){if(!detailCampId)return;toggleJoin(detailCampId,null);updateJoinBtn(detailCampId);}
 window.toggleJoinFromModal=toggleJoinFromModal;
@@ -1393,7 +1411,6 @@ function buildListCard(c,grayed){
   var enc=encodeURIComponent(JSON.stringify(c));
   var sc=grayed?'state-ended':(info.state==='alert'?'state-alert':'state-'+info.state);
   var extra=(c.rewardDateTBD?'<span class="tbd-badge">⏳ TBD</span>':'')+(c.rewardPostponed?'<span class="postponed-badge">⚠️ Delayed</span>':'');
-  /* Add Early Bird badge if applicable */
   if(!grayed&&c.hasEarlyBird){
     var activeSlot=getActiveEbbSlot(c);
     if(activeSlot)extra+='<span style="background:rgba(14,203,129,0.15);color:var(--green);border:1px solid rgba(14,203,129,0.3);border-radius:4px;padding:1px 5px;font-size:10px;font-weight:700;margin-left:2px">🚀 '+escHtml(activeSlot.multiplier)+'</span>';
@@ -1417,7 +1434,6 @@ window.goSlide=goSlide;
 
 /* ══ EARLY BIRD BOOST HELPERS ══ */
 function parseEbbDate(str){
-  /* Accept "YYYY-MM-DD HH:MM" as UTC */
   if(!str)return null;
   var s=str.trim().replace('T',' ');
   var m=s.match(/^(\d{4})-(\d{2})-(\d{2})\s+(\d{2}):(\d{2})/);
@@ -1437,11 +1453,9 @@ function getActiveEbbSlot(c){
   return null;
 }
 
-/* Get color for a slot index based on green→red gradient */
 function ebbSlotColor(idx,total){
   if(total<=1)return{main:'#0ecb81',dim:'rgba(14,203,129,0.2)'};
   var ratio=total>1?idx/(total-1):0;
-  /* Green #0ecb81 → Red #f6465d */
   var r=Math.round(14+(246-14)*ratio);
   var g=Math.round(203+(70-203)*ratio);
   var b=Math.round(129+(93-129)*ratio);
@@ -1449,14 +1463,13 @@ function ebbSlotColor(idx,total){
   return{main:hex,dim:'rgba('+r+','+g+','+b+',0.2)'};
 }
 
-/* Build Early Bird Boost display HTML for details modal */
+/* ══ BUILD EBB DISPLAY — Updated: stopwatch ring + time on right ══ */
 function buildEbbDisplay(c){
   if(!c||!c.hasEarlyBird||!c.earlyBirdSlots||!c.earlyBirdSlots.length)return'';
   var slots=c.earlyBirdSlots;
   var total=slots.length;
   var now=Date.now();
 
-  /* Find current active slot index */
   var activeIdx=-1,nextIdx=-1;
   for(var i=0;i<slots.length;i++){
     var s=parseEbbDate(slots[i].startUtc);
@@ -1466,19 +1479,16 @@ function buildEbbDisplay(c){
     if(now<s&&(nextIdx<0||s<parseEbbDate(slots[nextIdx].startUtc))){nextIdx=i;}
   }
 
-  /* Total days of the earliest start to latest end */
   var allStarts=slots.map(function(sl){return parseEbbDate(sl.startUtc);}).filter(function(x){return x!==null;});
   var allEnds=slots.map(function(sl){return parseEbbDate(sl.endUtc);}).filter(function(x){return x!==null;});
   var overallStart=allStarts.length?Math.min.apply(null,allStarts):now;
   var overallEnd=allEnds.length?Math.max.apply(null,allEnds):now;
   var totalDuration=Math.max(overallEnd-overallStart,1);
 
-  /* Day counter: which day of total period we are in */
   var dayNum=now>overallStart?Math.ceil((now-overallStart)/(86400000)):1;
   var totalDays=Math.ceil(totalDuration/86400000);
   dayNum=Math.max(1,Math.min(dayNum,totalDays));
 
-  /* Today's multiplier label */
   var todayMult=activeIdx>=0?slots[activeIdx].multiplier:(nextIdx>=0?null:'Ended');
 
   var html='<div class="ebb-section">';
@@ -1491,7 +1501,7 @@ function buildEbbDisplay(c){
   html+='<span class="ebb-day-counter">Day '+dayNum+' of '+totalDays+'</span>';
   html+='</div>';
 
-  /* Track / timeline */
+  /* Timeline track */
   html+='<div class="ebb-track-wrap"><div class="ebb-track" id="ebb-track-'+safeId(c.id)+'">';
   slots.forEach(function(slot,idx){
     var slotStart=parseEbbDate(slot.startUtc);
@@ -1500,13 +1510,11 @@ function buildEbbDisplay(c){
     var isActive=idx===activeIdx;
     var col=ebbSlotColor(idx,total);
     var multColor=isActive?col.main:(isPast?'var(--gray)':'var(--gray)');
-    var dotColor=isActive?col.main:(isPast?'#444':'var(--border)');
 
     var slotDays=slotStart!==null&&slotEnd!==null?Math.ceil((slotEnd-slotStart)/86400000):1;
     var label='D'+(idx+1);
     if(slotDays>1)label='D'+(idx+1)+'-'+(idx+slotDays);
 
-    /* Line segment: left half, dot, right half */
     var isFirst=idx===0,isLast=idx===slots.length-1;
     var leftColor=isPast||isActive?col.main:'var(--border)';
     var rightColor=isPast?col.main:(isActive?col.dim:'var(--border)');
@@ -1525,7 +1533,7 @@ function buildEbbDisplay(c){
   });
   html+='</div></div>';
 
-  /* Countdown ring */
+  /* ══ UPDATED COUNTDOWN — Stopwatch ring (NO time in center) + time on right ══ */
   var showSlotIdx=activeIdx>=0?activeIdx:(nextIdx>=0?nextIdx:-1);
   if(showSlotIdx>=0){
     var cSlot=slots[showSlotIdx];
@@ -1536,8 +1544,14 @@ function buildEbbDisplay(c){
     if(cRemaining<0)cRemaining=0;
     var cPct=cTotal>0?Math.max(0,Math.min(1,cRemaining/cTotal)):0;
     var col2=ebbSlotColor(showSlotIdx,total);
-    var r=28,circ=2*Math.PI*r;
+    var r=30,circ=2*Math.PI*r;
     var offset=circ*(1-cPct);
+
+    /* Stopwatch hand angle: full circle = 0 remaining → hand at top=0deg, goes clockwise */
+    /* cPct=1 means full time left (hand at 12 o'clock = 0deg rotation) */
+    /* as time runs out cPct goes to 0, hand does one full revolution */
+    var handAngleDeg=(1-cPct)*360;
+
     var hrs=Math.floor(cRemaining/3600000);
     var mins=Math.floor((cRemaining%3600000)/60000);
     var secs=Math.floor((cRemaining%60000)/1000);
@@ -1545,19 +1559,37 @@ function buildEbbDisplay(c){
     var isCountingActive=activeIdx>=0;
 
     html+='<div class="ebb-countdown-wrap" id="ebb-countdown-'+safeId(c.id)+'">';
+
+    /* Ring with stopwatch hand — NO text inside */
     html+='<div class="ebb-countdown-ring-wrap">';
-    html+='<svg class="ebb-countdown-ring" width="66" height="66" viewBox="0 0 66 66">';
-    html+='<circle class="ebb-ring-bg" cx="33" cy="33" r="'+r+'"/>';
-    html+='<circle class="ebb-ring-prog" id="ebb-ring-prog-'+safeId(c.id)+'" cx="33" cy="33" r="'+r+'" stroke="'+col2.main+'" stroke-dasharray="'+circ.toFixed(2)+'" stroke-dashoffset="'+offset.toFixed(2)+'"/>';
+    html+='<svg class="ebb-countdown-ring" width="72" height="72" viewBox="0 0 72 72">';
+    /* tick marks for clock face */
+    for(var t=0;t<12;t++){
+      var tickAngle=t*30;var tr=tickAngle*Math.PI/180;
+      var x1=36+26*Math.sin(tr),y1=36-26*Math.cos(tr);
+      var x2=36+29*Math.sin(tr),y2=36-29*Math.cos(tr);
+      html+='<line x1="'+x1.toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+x2.toFixed(1)+'" y2="'+y2.toFixed(1)+'" stroke="rgba(132,142,156,0.3)" stroke-width="1.5" stroke-linecap="round"/>';
+    }
+    html+='<circle class="ebb-ring-bg" cx="36" cy="36" r="'+r+'"/>';
+    html+='<circle class="ebb-ring-prog" id="ebb-ring-prog-'+safeId(c.id)+'" cx="36" cy="36" r="'+r+'" stroke="'+col2.main+'" stroke-dasharray="'+circ.toFixed(2)+'" stroke-dashoffset="'+offset.toFixed(2)+'"/>';
     html+='</svg>';
-    html+='<div class="ebb-countdown-time" id="ebb-time-'+safeId(c.id)+'">'+timeStr+'</div>';
+    /* Clock hand overlay */
+    html+='<div style="position:absolute;top:0;left:0;width:72px;height:72px;pointer-events:none">';
+    /* Center dot */
+    html+='<div style="position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:'+col2.main+';transform:translate(-50%,-50%);z-index:3;box-shadow:0 0 6px '+col2.main+'"></div>';
+    /* Hand */
+    html+='<div id="ebb-clock-hand-'+safeId(c.id)+'" style="position:absolute;top:50%;left:50%;width:3px;height:22px;background:'+col2.main+';border-radius:3px 3px 1px 1px;transform-origin:50% 100%;transform:translateX(-50%) translateY(-100%) rotate('+handAngleDeg.toFixed(1)+'deg);z-index:2;box-shadow:0 0 4px '+col2.dim+';transition:transform 1s linear"></div>';
     html+='</div>';
+    html+='</div>';
+
+    /* Info on the right — time displayed here, NOT in ring center */
     html+='<div class="ebb-countdown-info">';
-    html+='<div class="ebb-countdown-label">'+(isCountingActive?'Countdown to next tier':'Starts in')+'</div>';
-    html+='<div class="ebb-countdown-mult" style="color:'+col2.main+'">'+escHtml(cSlot.multiplier)+' Boost '+(isCountingActive?'ends':'begins')+'</div>';
+    html+='<div class="ebb-countdown-label">'+(isCountingActive?'Current boost ends in':'Next boost starts in')+'</div>';
+    html+='<div class="ebb-time-display" id="ebb-time-'+safeId(c.id)+'">'+timeStr+'</div>';
+    html+='<div class="ebb-countdown-mult" style="color:'+col2.main+'">'+escHtml(cSlot.multiplier)+' Boost '+(isCountingActive?'active':'upcoming')+'</div>';
     if(isCountingActive){
       var nxt=slots[showSlotIdx+1];
-      html+='<div class="ebb-countdown-desc">'+(nxt?'Next: '+escHtml(nxt.multiplier):'Last boost tier')+'</div>';
+      html+='<div class="ebb-countdown-desc">'+(nxt?'Next: '+escHtml(nxt.multiplier):'Last boost tier — ends soon')+'</div>';
     }else{
       html+='<div class="ebb-countdown-desc">Early Bird period starts soon</div>';
     }
@@ -1569,7 +1601,7 @@ function buildEbbDisplay(c){
   return html;
 }
 
-/* Update the live countdown in details modal */
+/* Update live countdown — ring progress + hand angle + time on right */
 function updateEbbCountdown(c){
   if(!c||!c.hasEarlyBird||!c.earlyBirdSlots)return;
   var slots=c.earlyBirdSlots;
@@ -1594,8 +1626,9 @@ function updateEbbCountdown(c){
   if(cRemaining<0)cRemaining=0;
   var cPct=cTotal>0?Math.max(0,Math.min(1,cRemaining/cTotal)):0;
   var col2=ebbSlotColor(showSlotIdx,total);
-  var r=28,circ=2*Math.PI*r;
+  var r=30,circ=2*Math.PI*r;
   var offset=circ*(1-cPct);
+  var handAngleDeg=(1-cPct)*360;
   var hrs=Math.floor(cRemaining/3600000);
   var mins=Math.floor((cRemaining%3600000)/60000);
   var secs=Math.floor((cRemaining%60000)/1000);
@@ -1604,8 +1637,10 @@ function updateEbbCountdown(c){
   var sid=safeId(c.id);
   var timeEl=document.getElementById('ebb-time-'+sid);
   var ringEl=document.getElementById('ebb-ring-prog-'+sid);
+  var handEl=document.getElementById('ebb-clock-hand-'+sid);
   if(timeEl)timeEl.innerText=timeStr;
   if(ringEl){ringEl.style.strokeDashoffset=offset.toFixed(2);ringEl.style.stroke=col2.main;}
+  if(handEl){handEl.style.transform='translateX(-50%) translateY(-100%) rotate('+handAngleDeg.toFixed(2)+'deg)';}
 }
 
 /* ══ DETAILS MODAL ══ */
@@ -1637,15 +1672,11 @@ function showDetails(enc){
   document.getElementById('det-share-wrap').innerHTML='<div class="share-bar"><button class="share-btn share-btn-copy" onclick="copyLink(\''+escHtml(shareUrl)+'\')">📋 Copy Campaign Link</button><button class="share-btn share-btn-share" onclick="shareLink(\''+escHtml(shareUrl)+'\',\''+escHtml(c.name)+' on Spot CTR\')">🔗 Share</button></div>';
   updateJoinBtn(c.id);
 
-  /* Render Early Bird Boost section */
   var ebbWrap=document.getElementById('det-ebb-wrap');
-  if(ebbWrap){
-    ebbWrap.innerHTML=buildEbbDisplay(c);
-  }
+  if(ebbWrap){ebbWrap.innerHTML=buildEbbDisplay(c);}
 
   openModal('details-modal');updateDetTimer(c);
 
-  /* Start live EBB countdown interval */
   if(detEbbIntervalId)clearInterval(detEbbIntervalId);
   if(c.hasEarlyBird&&c.earlyBirdSlots&&c.earlyBirdSlots.length){
     detEbbIntervalId=setInterval(function(){updateEbbCountdown(c);},1000);
@@ -1707,26 +1738,231 @@ window.viewImg=viewImg;
 function updateVol(id,val){if(!userData.joined[id])return;userData.joined[id].volume=parseFloat(val)||0;saveUD();refreshReward(id);updateGBB();renderCalc();}window.updateVol=updateVol;
 function updatePts(id,val){if(!userData.joined[id])return;userData.joined[id].points=parseFloat(val)||0;saveUD();refreshReward(id);updateGBB();renderCalc();}window.updatePts=updatePts;
 function updateBnb(id,checked){if(!userData.joined[id])return;userData.joined[id].bnb=checked;saveUD();refreshReward(id);updateGBB();renderCalc();}window.updateBnb=updateBnb;
+
+/* ══ EBB MULTIPLIER SELECTOR (FIX #4) ══ */
+function updateEbbMultiplier(campId,multStr){
+  if(!userData.joined[campId])return;
+  userData.joined[campId].ebbMult=multStr||null;
+  saveUD();
+  refreshReward(campId);
+  updateGBB();
+  renderCalc();
+  /* Update pill UI */
+  var pills=document.querySelectorAll('[data-ebb-camp="'+campId+'"]');
+  pills.forEach(function(p){
+    p.classList.toggle('selected',p.getAttribute('data-ebb-val')===(multStr||'none'));
+  });
+}
+window.updateEbbMultiplier=updateEbbMultiplier;
+
+/* Build EBB multiplier selector for dashboard */
+function buildEbbMultSelector(c){
+  if(!c||!c.hasEarlyBird||!c.earlyBirdSlots||!c.earlyBirdSlots.length)return'';
+  var j=userData.joined[c.id];
+  var currentMult=j?j.ebbMult:null;
+  /* Collect unique multipliers from all slots */
+  var mults=[];
+  c.earlyBirdSlots.forEach(function(slot){
+    if(slot.multiplier&&mults.indexOf(slot.multiplier)<0)mults.push(slot.multiplier);
+  });
+  if(!mults.length)return'';
+
+  var activeSlot=getActiveEbbSlot(c);
+  var html='<div class="ebb-mult-selector">';
+  html+='<div class="ebb-mult-selector-label">🚀 Early Bird Multiplier Used';
+  if(activeSlot)html+=' <span style="color:var(--green);font-size:10px;font-weight:600">(Active: '+escHtml(activeSlot.multiplier)+')</span>';
+  html+='</div>';
+  html+='<div class="ebb-mult-pills">';
+  /* None option */
+  html+='<button class="ebb-mult-pill none-pill'+((!currentMult||currentMult==='none')?' selected':'')+'" data-ebb-camp="'+c.id+'" data-ebb-val="none" onclick="updateEbbMultiplier(\''+c.id+'\',null)">No Boost</button>';
+  mults.forEach(function(m){
+    html+='<button class="ebb-mult-pill'+(currentMult===m?' selected':'')+'" data-ebb-camp="'+c.id+'" data-ebb-val="'+escHtml(m)+'" onclick="updateEbbMultiplier(\''+c.id+'\',\''+escHtml(m)+'\')">'+escHtml(m)+'</button>';
+  });
+  html+='</div>';
+  /* Hint: how multiplier affects volume */
+  if(currentMult&&currentMult!=='none'){
+    var multVal=parseFloat(currentMult);
+    if(!isNaN(multVal)&&multVal>0&&c.minVolume>0){
+      var effectiveVol=c.minVolume/multVal;
+      html+='<div class="ebb-mult-hint">With <strong>'+escHtml(currentMult)+'</strong> boost, your <strong>$'+fmtUSD(effectiveVol).replace('$','')+' volume</strong> counts as $'+c.minVolume.toLocaleString()+' minimum requirement.</div>';
+    }
+  }
+  html+='</div>';
+  return html;
+}
+
 function toggleExpand(id){if(!userData.joined[id])return;userData.joined[id].expanded=!userData.joined[id].expanded;saveUD();var body=document.getElementById('dbody-'+id),btn=document.getElementById('dexpand-'+id);if(body)body.classList.toggle('collapsed',!userData.joined[id].expanded);if(btn)btn.classList.toggle('open',userData.joined[id].expanded);}window.toggleExpand=toggleExpand;
 function toggleAllExpand(){allExpanded=!allExpanded;campaigns.forEach(function(c){if(isJoined(c.id)&&isCampActive(c)&&userData.joined[c.id]){userData.joined[c.id].expanded=allExpanded;var body=document.getElementById('dbody-'+c.id),btn=document.getElementById('dexpand-'+c.id);if(body)body.classList.toggle('collapsed',!allExpanded);if(btn)btn.classList.toggle('open',allExpanded);}});saveUD();var b=document.getElementById('btn-all-expand');if(b)b.innerHTML=allExpanded?'&#9650; Collapse All':'&#9660; Expand All';}window.toggleAllExpand=toggleAllExpand;
 function toggleAllEnded(){endedExpanded=!endedExpanded;var list=document.getElementById('ended-expanded-list'),row=document.getElementById('ended-collapsed-row'),btn=document.getElementById('btn-ended-expand');if(list)list.style.display=endedExpanded?'block':'none';if(row)row.style.display=endedExpanded?'none':'flex';if(btn)btn.innerHTML=endedExpanded?'&#9650; Collapse All':'&#9660; Expand All';}window.toggleAllEnded=toggleAllEnded;
-function calcReward(c){var j=userData.joined[c.id];if(!j)return null;var p=priceOf(c.coinId),t=c.type||'volume';if(t==='volume'){var en=parseFloat(c.estReward)||0,tok=(j.volume/1000)*en;return{tokens:tok,usd:tok*p,canCalc:true,pointsCost:0};}if(t==='equal'){var mp=parseFloat(c.maxParticipants)||1,tok2=c.poolAmt/mp,rate=j.bnb?0.00075:0.001;return{tokens:tok2,usd:tok2*p,canCalc:true,feeCost:(c.minVolume||0)*rate,pointsCost:0};}if(t==='ranked_fixed'){var rs=parseFloat(c.rankStart)||1,re=parseFloat(c.rankEnd)||1,count=Math.max(re-rs+1,1),tok3=c.poolAmt/count,eligVol=c.rankEligVol||0,rankVol=c.rankMinVol||0,rrate=j.bnb?0.00075:0.001,uv=j.volume||0;return{tokens:tok3,usd:tok3*p,canCalc:true,rankStart:rs,rankEnd:re,eligVol:eligVol,rankMinVol:rankVol,inRank:uv>=rankVol&&rankVol>0,eligible:uv>=eligVol,feeCost:rankVol>0?rankVol*rrate:eligVol*rrate,pointsCost:0};}if(t==='points_lb'){var tp=parseFloat(c.totalPoints)||1,up=j.points||0,tok4=up>0?(up/tp)*c.poolAmt:0,cpp=parseFloat(c.costPerPoint)||0;return{tokens:tok4,usd:tok4*p,canCalc:true,pointsCost:up*cpp};}if(t==='points_nl'){var minPts=parseFloat(c.minPoints)||0,cpp2=parseFloat(c.costPerPointNl)||0;return{tokens:null,usd:null,canCalc:false,isPointsNl:true,minPoints:minPts,costPerPt:cpp2,minCost:minPts*cpp2,pointsCost:0};}return{tokens:null,usd:null,canCalc:false,pointsCost:0};}
-function getBalance(){var tot=0,fee=0,cnt=0;campaigns.forEach(function(c){if(!isJoined(c.id)||!isCampActive(c))return;var j=userData.joined[c.id],r=calcReward(c),t=c.type||'volume';if(r&&r.usd!==null){if(t==='ranked_fixed'){if(r.inRank){tot+=r.usd;cnt++;}}else{tot+=r.usd;cnt++;}}if(t==='volume')fee+=(j.volume||0)*(j.bnb?0.00075:0.001);else if((t==='equal'||t==='ranked_fixed')&&r&&r.feeCost)fee+=r.feeCost;else if(t==='points_lb'&&r&&r.pointsCost)fee+=r.pointsCost;});return{net:tot-fee,totalReward:tot,totalFee:fee,cnt:cnt};}
-function refreshReward(campId){var c=getCampById(campId);if(!c)return;var el=document.getElementById('dreward-'+campId);if(!el)return;var r=calcReward(c),p=priceOf(c.coinId);if(r&&r.canCalc&&r.tokens!==null)el.innerHTML='<span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter value above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'');var sumEl=document.getElementById('dsummary-'+campId);if(sumEl){if(r&&r.canCalc&&r.tokens&&r.tokens>0){sumEl.innerText=fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':'');sumEl.className='dash-camp-summary';}else{sumEl.innerText='Not set';sumEl.className='dash-camp-summary no-data';}}}
-function buildDashCard(c){var j=userData.joined[c.id];if(!j)return'';var p=priceOf(c.coinId),info=getTimerInfo(c),r=calcReward(c),t=c.type||'volume';var sc=info.state==='alert'?'state-alert':'state-'+info.state;var bnbOn=j.bnb||false,isExp=j.expanded!==false;var sumTxt='Not set',sumCls='dash-camp-summary no-data';if(r&&r.canCalc&&r.tokens&&r.tokens>0){if(t==='ranked_fixed'){sumTxt=r.inRank?fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':''):'Not in rank';sumCls=r.inRank?'dash-camp-summary':'dash-camp-summary no-data';}else{sumTxt=fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':'');sumCls='dash-camp-summary';}}
-var bFld='<div class="dash-field" style="max-width:150px"><label>BNB Fee</label><div class="bnb-wrap" style="padding-top:7px"><label class="toggle-switch"><input type="checkbox" '+(bnbOn?'checked':'')+' onchange="updateBnb(\''+c.id+'\',this.checked)"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">'+(bnbOn?'BNB On':'BNB Off')+'</span></div></div>';
-var bodyHtml='';
-if(t==='volume'&&r&&r.canCalc){bodyHtml='<div class="dash-vol-row"><div class="dash-field"><label>Your Trade Volume (USD)</label><input type="number" class="vol-input" placeholder="e.g. 5000" value="'+(j.volume||'')+'" oninput="updateVol(\''+c.id+'\',this.value)" min="0"></div>'+bFld+'</div><div class="dash-reward" id="dreward-'+c.id+'"><span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter volume above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';}
-else if(t==='equal'&&r&&r.canCalc){var fc2=(c.minVolume||0)*(bnbOn?0.00075:0.001);bodyHtml='<div class="dash-info-row">Participants: <strong>'+(c.maxParticipants||1).toLocaleString()+'</strong>'+(c.minVolume?' | Min vol: <strong>$'+c.minVolume.toLocaleString()+'</strong> <span style="color:var(--red)">(fee approx '+fmtUSD(fc2)+')</span>':'')+'</div><div class="dash-vol-row">'+bFld+'</div><div class="dash-reward"><span class="dr-label">Fixed Reward</span><span class="dr-val">'+fmtToken(r.tokens)+' '+escHtml(c.name)+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';}
-else if(t==='ranked_fixed'&&r&&r.canCalc){var rrate2=bnbOn?0.00075:0.001,uv2=j.volume||0,estFee=uv2*rrate2;bodyHtml='<div class="dash-info-row">Rank <strong>'+r.rankStart+'</strong> to <strong>'+r.rankEnd+'</strong>'+(r.eligVol?' | Min elig: <strong>$'+r.eligVol.toLocaleString()+'</strong>':'')+(r.rankMinVol?' | Est. rank vol: <strong>$'+r.rankMinVol.toLocaleString()+'</strong>':'')+'</div><div class="dash-vol-row"><div class="dash-field"><label>Your Trade Volume (USD)</label><input type="number" class="vol-input" placeholder="e.g. 10000" value="'+(j.volume||'')+'" oninput="updateVol(\''+c.id+'\',this.value)" min="0"></div>'+bFld+'</div>'+(uv2>0?'<div class="dash-reward"><span class="dr-label">Trading Fee</span><span class="dr-val" style="color:var(--red)">-'+fmtUSD(estFee)+'</span></div>':'')+(uv2>0&&r.inRank?'<div class="dash-reward" style="margin-top:6px"><span class="dr-label">Est. Reward</span><span class="dr-val">'+fmtToken(r.tokens)+' '+escHtml(c.name)+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>':uv2>0&&!r.inRank&&r.rankMinVol>0?'<div class="dash-warn">Volume below estimated rank entry (~$'+r.rankMinVol.toLocaleString()+').</div>':'');}
-else if(t==='points_lb'&&r){bodyHtml='<div class="dash-info-row">Total LB Points: <strong>'+(c.totalPoints||1).toLocaleString()+'</strong>'+(c.costPerPoint?' | Cost/pt: <strong style="color:var(--red)">$'+c.costPerPoint+'</strong>':'')+'</div><div class="dash-vol-row"><div class="dash-field"><label>Your Points</label><input type="number" class="vol-input" placeholder="e.g. 1500" value="'+(j.points||'')+'" oninput="updatePts(\''+c.id+'\',this.value)" min="0"></div></div><div class="dash-reward" id="dreward-'+c.id+'"><span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter points above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'')+'</div>';}
-else if(r&&r.isPointsNl){bodyHtml='<div class="dash-info-row">Min Points: <strong>'+r.minPoints.toLocaleString()+'</strong>'+(r.costPerPt?' | Cost/pt: <strong style="color:var(--red)">$'+r.costPerPt+'</strong>':'')+(r.minCost?' | Min cost: <strong style="color:var(--red)">'+fmtUSD(r.minCost)+'</strong>':'')+'</div><div class="dash-note">Points-based — leaderboard unavailable.</div>';}
-else{bodyHtml='<div class="dash-note">Reward cannot be estimated.</div>';}
-return'<div class="dash-camp" id="dcard-'+c.id+'"><div class="dash-camp-header" onclick="toggleExpand(\''+c.id+'\')"><div class="dash-camp-left"><img src="'+c.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="camp-name">'+escHtml(c.name)+'</div>'+typeBadge(t)+'</div></div><div class="dash-camp-right"><span id="dsummary-'+c.id+'" class="'+sumCls+'">'+sumTxt+'</span><span class="camp-timer '+sc+'" style="font-size:11px">'+info.text+'</span><button class="btn-remove" onclick="toggleJoin(\''+c.id+'\',event)">Remove</button><button class="btn-expand '+(isExp?'open':'')+'" id="dexpand-'+c.id+'" onclick="event.stopPropagation();toggleExpand(\''+c.id+'\')">&#9660;</button></div></div><div class="dash-camp-body '+(isExp?'':'collapsed')+'" id="dbody-'+c.id+'">'+bodyHtml+'</div></div>';}
-function renderDashboard(){var activeJ=[],endedJ=[];campaigns.forEach(function(c){if(!isJoined(c.id))return;if(isCampActive(c))activeJ.push(c);else endedJ.push(c);});var bal=getBalance(),isLoss=bal.net<0,nc=isLoss?'var(--red)':'var(--green)';document.getElementById('dash-balance').innerHTML='<div class="balance-card" style="background:linear-gradient(135deg,'+(isLoss?'#1f0f0f,#200d0d':'#0f1f15,#132018')+');border-color:'+(isLoss?'rgba(246,70,93,.4)':'rgba(14,203,129,.4)')+'"><div class="balance-label">Est. Net Profit</div><div class="balance-net" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div><div class="balance-sub">'+activeJ.length+' active | '+bal.cnt+' calculable</div><div class="balance-rows"><div class="bal-row"><div class="bal-row-label">Reward</div><div class="bal-row-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</div></div><div class="bal-row"><div class="bal-row-label">Fees</div><div class="bal-row-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</div></div><div class="bal-row"><div class="bal-row-label">Net</div><div class="bal-row-val" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div></div></div></div>';
-var html='';if(activeJ.length===0&&endedJ.length===0)html='<div class="empty-state" style="margin-bottom:20px"><h3>No Campaigns Joined</h3><p>Click "+ Join" on any campaign.</p></div>';else{if(activeJ.length>0){html+='<div class="dash-header-row"><h2 style="margin-bottom:0">Joined ('+activeJ.length+')</h2><button class="dash-all-toggle" id="btn-all-expand" onclick="toggleAllExpand()">&#9650; Collapse All</button></div>';activeJ.forEach(function(c){html+=buildDashCard(c);});}else html+='<div class="empty-state" style="margin-bottom:20px"><h3>No Active Campaigns</h3></div>';if(endedJ.length>0){html+=divH('Completed','var(--gray)');html+='<div style="display:flex;justify-content:flex-end;margin-bottom:9px"><button class="dash-all-toggle" id="btn-ended-expand" onclick="toggleAllEnded()">&#9660; Expand All</button></div>';html+='<div id="ended-collapsed-row" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;align-items:center">';endedJ.forEach(function(c){html+='<img src="'+c.logo+'" title="'+escHtml(c.name)+'" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid #333;filter:grayscale(1);opacity:0.5">';});html+='<span style="color:var(--gray);font-size:12px;margin-left:3px">'+endedJ.length+' completed</span></div><div id="ended-expanded-list" style="display:none">';endedJ.forEach(function(c){html+='<div class="dash-camp" style="filter:grayscale(1);opacity:0.5"><div style="display:flex;align-items:center;justify-content:space-between;padding:11px 15px;gap:9px"><div style="display:flex;align-items:center;gap:9px"><img src="'+c.logo+'" class="camp-logo"><div class="camp-name">'+escHtml(c.name)+'</div></div><span style="color:var(--gray);font-size:12px;font-family:monospace">COMPLETED</span></div></div>';});html+='</div>';}}
-document.getElementById('dash-joined').innerHTML=html;renderCalc();}
-function renderCalc(){var calcEl=document.getElementById('dash-calc');if(!calcEl)return;var bal=getBalance(),totalVol=0,bnbVol=0;campaigns.forEach(function(c){var j=userData.joined[c.id];if(!j)return;totalVol+=j.volume||0;if(j.bnb)bnbVol+=j.volume||0;});var bnbPct=totalVol>0?Math.round((bnbVol/totalVol)*100):0,potSave=(totalVol-bnbVol)*0.001*0.25;calcEl.innerHTML='<div class="calc-section"><h2 style="margin-bottom:13px">Cost Calculator</h2><div class="calc-tabs"><button class="calc-tab active" onclick="switchTab(\'auto\',this)">Auto Summary</button><button class="calc-tab" onclick="switchTab(\'manual\',this)">Manual</button></div><div id="calc-auto" class="calc-panel active"><div class="calc-card"><div class="calc-row"><span class="calc-key">Total Volume</span><span class="calc-val">'+fmtUSD(totalVol)+'</span></div><div class="calc-row"><span class="calc-key">BNB Fee Used</span><span class="calc-val" style="color:var(--yellow)">'+fmtUSD(bnbVol)+' ('+bnbPct+'%)</span></div><div class="calc-row"><span class="calc-key">Total Fee</span><span class="calc-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</span></div><div class="calc-row"><span class="calc-key">Total Est. Reward</span><span class="calc-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</span></div><div class="calc-row"><span class="calc-key" style="font-weight:700">Net</span><span class="calc-val" style="color:'+(bal.net>=0?'var(--green)':'var(--red)')+';font-size:15px">'+(bal.net>=0?'+':'-')+fmtUSD(Math.abs(bal.net))+'</span></div></div>'+(bnbPct<100&&potSave>0.001?'<div class="savings-hint" style="background:var(--ydim);border-color:rgba(252,213,53,.3);color:var(--yellow)">Tip: BNB on all trades saves <strong>'+fmtUSD(potSave)+'</strong> more.</div>':'')+(bnbPct===100&&totalVol>0?'<div class="savings-hint" style="background:var(--gdim);border-color:rgba(14,203,129,.3);color:var(--green)">Using BNB on 100% of trades!</div>':'')+'</div><div id="calc-manual" class="calc-panel"><div class="calc-card"><div class="form-group" style="margin-bottom:11px"><label style="display:block;margin-bottom:3px;color:var(--gray);font-size:12px;font-weight:600">Trade Volume (USD)</label><input type="number" class="vol-input" id="m-vol" placeholder="e.g. 10000" value="'+(totalVol||'')+'" oninput="calcManual()"></div><div class="bnb-wrap" style="padding:9px 0;margin-bottom:11px;border-bottom:1px solid var(--border)"><label class="toggle-switch"><input type="checkbox" id="m-bnb" onchange="calcManual()"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">BNB Fee Discount (25% off)</span></div><div class="calc-row" style="padding:7px 0"><span class="calc-key">Fee Rate</span><span class="calc-val" id="m-rate">0.100%</span></div><div class="calc-row" style="padding:7px 0"><span class="calc-key">Trading Fee</span><span class="calc-val" style="color:var(--red)" id="m-fee">-</span></div><div class="calc-row" style="padding:7px 0;border-bottom:none"><span class="calc-key">BNB saves you</span><span class="calc-val" style="color:var(--yellow)" id="m-save">-</span></div></div></div></div>';}
+
+/* ══ CALC REWARD — with EBB multiplier applied (FIX #4) ══ */
+function calcReward(c){
+  var j=userData.joined[c.id];
+  if(!j)return null;
+  var p=priceOf(c.coinId),t=c.type||'volume';
+  /* Determine effective volume adjustment from EBB multiplier */
+  var ebbMultVal=1;
+  if(j.ebbMult&&j.ebbMult!=='none'){
+    var mv=parseFloat(j.ebbMult);
+    if(!isNaN(mv)&&mv>0)ebbMultVal=mv;
+  }
+
+  if(t==='volume'){
+    var en=parseFloat(c.estReward)||0,tok=(j.volume/1000)*en;
+    return{tokens:tok,usd:tok*p,canCalc:true,pointsCost:0};
+  }
+  if(t==='equal'){
+    var mp=parseFloat(c.maxParticipants)||1,tok2=c.poolAmt/mp,rate=j.bnb?0.00075:0.001;
+    /* With EBB, effective volume required = minVolume / ebbMultVal */
+    var effectiveMinVol=(c.minVolume||0)/ebbMultVal;
+    return{tokens:tok2,usd:tok2*p,canCalc:true,feeCost:effectiveMinVol*rate,pointsCost:0,ebbMultVal:ebbMultVal,effectiveMinVol:effectiveMinVol};
+  }
+  if(t==='ranked_fixed'){
+    var rs=parseFloat(c.rankStart)||1,re=parseFloat(c.rankEnd)||1,count=Math.max(re-rs+1,1),tok3=c.poolAmt/count,eligVol=c.rankEligVol||0,rankVol=c.rankMinVol||0,rrate=j.bnb?0.00075:0.001,uv=j.volume||0;
+    var effectiveRankVol=rankVol/ebbMultVal;
+    return{tokens:tok3,usd:tok3*p,canCalc:true,rankStart:rs,rankEnd:re,eligVol:eligVol,rankMinVol:rankVol,effectiveRankVol:effectiveRankVol,inRank:uv>=effectiveRankVol&&effectiveRankVol>0,eligible:uv>=eligVol,feeCost:effectiveRankVol>0?effectiveRankVol*rrate:eligVol*rrate,pointsCost:0,ebbMultVal:ebbMultVal};
+  }
+  if(t==='points_lb'){
+    var tp=parseFloat(c.totalPoints)||1,up=j.points||0,tok4=up>0?(up/tp)*c.poolAmt:0,cpp=parseFloat(c.costPerPoint)||0;
+    return{tokens:tok4,usd:tok4*p,canCalc:true,pointsCost:up*cpp};
+  }
+  if(t==='points_nl'){
+    var minPts=parseFloat(c.minPoints)||0,cpp2=parseFloat(c.costPerPointNl)||0;
+    return{tokens:null,usd:null,canCalc:false,isPointsNl:true,minPoints:minPts,costPerPt:cpp2,minCost:minPts*cpp2,pointsCost:0};
+  }
+  return{tokens:null,usd:null,canCalc:false,pointsCost:0};
+}
+
+/* ══ GET BALANCE — FIX #3: only count campaigns where user has actual volume/data ══ */
+function getBalance(){
+  var tot=0,fee=0,cnt=0;
+  campaigns.forEach(function(c){
+    if(!isJoined(c.id)||!isCampActive(c))return;
+    var j=userData.joined[c.id],r=calcReward(c),t=c.type||'volume';
+    if(!j)return;
+    var hasData=false;
+    if(t==='volume'&&(j.volume||0)>0)hasData=true;
+    else if(t==='equal')hasData=true; /* equal share always calculable */
+    else if(t==='ranked_fixed'&&(j.volume||0)>0)hasData=true;
+    else if(t==='points_lb'&&(j.points||0)>0)hasData=true;
+
+    if(r&&r.usd!==null&&hasData){
+      if(t==='ranked_fixed'){
+        if(r.inRank){tot+=r.usd;cnt++;}
+      }else{
+        tot+=r.usd;cnt++;
+      }
+    }
+    /* Fees: only add if there's actual volume */
+    if(t==='volume'&&(j.volume||0)>0)fee+=(j.volume||0)*(j.bnb?0.00075:0.001);
+    else if(t==='equal'&&r&&r.feeCost)fee+=r.feeCost;
+    else if(t==='ranked_fixed'&&r&&r.feeCost&&(j.volume||0)>0)fee+=r.feeCost;
+    else if(t==='points_lb'&&r&&r.pointsCost&&(j.points||0)>0)fee+=r.pointsCost;
+  });
+  return{net:tot-fee,totalReward:tot,totalFee:fee,cnt:cnt};
+}
+
+function refreshReward(campId){
+  var c=getCampById(campId);if(!c)return;
+  var el=document.getElementById('dreward-'+campId);if(!el)return;
+  var r=calcReward(c),p=priceOf(c.coinId);
+  if(r&&r.canCalc&&r.tokens!==null)el.innerHTML='<span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter value above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'');
+  var sumEl=document.getElementById('dsummary-'+campId);
+  if(sumEl){
+    if(r&&r.canCalc&&r.tokens&&r.tokens>0){sumEl.innerText=fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':'');sumEl.className='dash-camp-summary';}
+    else{sumEl.innerText='Not set';sumEl.className='dash-camp-summary no-data';}
+  }
+}
+
+function buildDashCard(c){
+  var j=userData.joined[c.id];if(!j)return'';
+  var p=priceOf(c.coinId),info=getTimerInfo(c),r=calcReward(c),t=c.type||'volume';
+  var sc=info.state==='alert'?'state-alert':'state-'+info.state;
+  var bnbOn=j.bnb||false,isExp=j.expanded!==false;
+  var sumTxt='Not set',sumCls='dash-camp-summary no-data';
+  if(r&&r.canCalc&&r.tokens&&r.tokens>0){
+    if(t==='ranked_fixed'){sumTxt=r.inRank?fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':''):'Not in rank';sumCls=r.inRank?'dash-camp-summary':'dash-camp-summary no-data';}
+    else{sumTxt=fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':'');sumCls='dash-camp-summary';}
+  }
+  var bFld='<div class="dash-field" style="max-width:150px"><label>BNB Fee</label><div class="bnb-wrap" style="padding-top:7px"><label class="toggle-switch"><input type="checkbox" '+(bnbOn?'checked':'')+' onchange="updateBnb(\''+c.id+'\',this.checked)"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">'+(bnbOn?'BNB On':'BNB Off')+'</span></div></div>';
+
+  /* EBB selector if campaign has early bird */
+  var ebbSel=c.hasEarlyBird?buildEbbMultSelector(c):'';
+
+  var bodyHtml='';
+  if(t==='volume'&&r&&r.canCalc){
+    bodyHtml='<div class="dash-vol-row"><div class="dash-field"><label>Your Trade Volume (USD)</label><input type="number" class="vol-input" placeholder="e.g. 5000" value="'+(j.volume||'')+'" oninput="updateVol(\''+c.id+'\',this.value)" min="0"></div>'+bFld+'</div>'+ebbSel+'<div class="dash-reward" id="dreward-'+c.id+'"><span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter volume above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';
+  }
+  else if(t==='equal'&&r&&r.canCalc){
+    var effMin=r.effectiveMinVol!==undefined?r.effectiveMinVol:(c.minVolume||0);
+    var fc2=effMin*(bnbOn?0.00075:0.001);
+    var ebbNote='';
+    if(j.ebbMult&&j.ebbMult!=='none'&&c.minVolume){
+      ebbNote='<span style="color:var(--green);font-size:11px"> (with '+escHtml(j.ebbMult)+' boost: $'+Math.round(effMin).toLocaleString()+')</span>';
+    }
+    bodyHtml='<div class="dash-info-row">Participants: <strong>'+(c.maxParticipants||1).toLocaleString()+'</strong>'+(c.minVolume?' | Min vol: <strong>$'+c.minVolume.toLocaleString()+'</strong>'+ebbNote+' <span style="color:var(--red)">(fee approx '+fmtUSD(fc2)+')</span>':'')+'</div><div class="dash-vol-row">'+bFld+'</div>'+ebbSel+'<div class="dash-reward"><span class="dr-label">Fixed Reward</span><span class="dr-val">'+fmtToken(r.tokens)+' '+escHtml(c.name)+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';
+  }
+  else if(t==='ranked_fixed'&&r&&r.canCalc){
+    var rrate2=bnbOn?0.00075:0.001,uv2=j.volume||0,estFee=uv2*rrate2;
+    var effRankVol=r.effectiveRankVol!==undefined?r.effectiveRankVol:r.rankMinVol;
+    var rankEbbNote='';
+    if(j.ebbMult&&j.ebbMult!=='none'&&r.rankMinVol){
+      rankEbbNote=' <span style="color:var(--green)">(with '+escHtml(j.ebbMult)+': ~$'+Math.round(effRankVol).toLocaleString()+')</span>';
+    }
+    bodyHtml='<div class="dash-info-row">Rank <strong>'+r.rankStart+'</strong> to <strong>'+r.rankEnd+'</strong>'+(r.eligVol?' | Min elig: <strong>$'+r.eligVol.toLocaleString()+'</strong>':'')+(r.rankMinVol?' | Est. rank vol: <strong>$'+r.rankMinVol.toLocaleString()+'</strong>'+rankEbbNote:'')+'</div><div class="dash-vol-row"><div class="dash-field"><label>Your Trade Volume (USD)</label><input type="number" class="vol-input" placeholder="e.g. 10000" value="'+(j.volume||'')+'" oninput="updateVol(\''+c.id+'\',this.value)" min="0"></div>'+bFld+'</div>'+ebbSel+(uv2>0?'<div class="dash-reward"><span class="dr-label">Trading Fee</span><span class="dr-val" style="color:var(--red)">-'+fmtUSD(estFee)+'</span></div>':'')+(uv2>0&&r.inRank?'<div class="dash-reward" style="margin-top:6px"><span class="dr-label">Est. Reward</span><span class="dr-val">'+fmtToken(r.tokens)+' '+escHtml(c.name)+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>':uv2>0&&!r.inRank&&effRankVol>0?'<div class="dash-warn">Volume below estimated rank entry (~$'+Math.round(effRankVol).toLocaleString()+').</div>':'');
+  }
+  else if(t==='points_lb'&&r){
+    bodyHtml='<div class="dash-info-row">Total LB Points: <strong>'+(c.totalPoints||1).toLocaleString()+'</strong>'+(c.costPerPoint?' | Cost/pt: <strong style="color:var(--red)">$'+c.costPerPoint+'</strong>':'')+'</div><div class="dash-vol-row"><div class="dash-field"><label>Your Points</label><input type="number" class="vol-input" placeholder="e.g. 1500" value="'+(j.points||'')+'" oninput="updatePts(\''+c.id+'\',this.value)" min="0"></div></div><div class="dash-reward" id="dreward-'+c.id+'"><span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter points above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'')+'</div>';
+  }
+  else if(r&&r.isPointsNl){
+    bodyHtml='<div class="dash-info-row">Min Points: <strong>'+r.minPoints.toLocaleString()+'</strong>'+(r.costPerPt?' | Cost/pt: <strong style="color:var(--red)">$'+r.costPerPt+'</strong>':'')+(r.minCost?' | Min cost: <strong style="color:var(--red)">'+fmtUSD(r.minCost)+'</strong>':'')+'</div><div class="dash-note">Points-based — leaderboard unavailable.</div>';
+  }
+  else{bodyHtml='<div class="dash-note">Reward cannot be estimated.</div>';}
+
+  return'<div class="dash-camp" id="dcard-'+c.id+'"><div class="dash-camp-header" onclick="toggleExpand(\''+c.id+'\')"><div class="dash-camp-left"><img src="'+c.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="camp-name">'+escHtml(c.name)+'</div>'+typeBadge(t)+'</div></div><div class="dash-camp-right"><span id="dsummary-'+c.id+'" class="'+sumCls+'">'+sumTxt+'</span><span class="camp-timer '+sc+'" style="font-size:11px">'+info.text+'</span><button class="btn-remove" onclick="toggleJoin(\''+c.id+'\',event)">Remove</button><button class="btn-expand '+(isExp?'open':'')+'" id="dexpand-'+c.id+'" onclick="event.stopPropagation();toggleExpand(\''+c.id+'\')">&#9660;</button></div></div><div class="dash-camp-body '+(isExp?'':'collapsed')+'" id="dbody-'+c.id+'">'+bodyHtml+'</div></div>';
+}
+
+function renderDashboard(){
+  var activeJ=[],endedJ=[];
+  campaigns.forEach(function(c){if(!isJoined(c.id))return;if(isCampActive(c))activeJ.push(c);else endedJ.push(c);});
+  var bal=getBalance(),isLoss=bal.net<0,nc=isLoss?'var(--red)':'var(--green)';
+  document.getElementById('dash-balance').innerHTML='<div class="balance-card" style="background:linear-gradient(135deg,'+(isLoss?'#1f0f0f,#200d0d':'#0f1f15,#132018')+');border-color:'+(isLoss?'rgba(246,70,93,.4)':'rgba(14,203,129,.4)')+'"><div class="balance-label">Est. Net Profit</div><div class="balance-net" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div><div class="balance-sub">'+activeJ.length+' active | '+bal.cnt+' calculable</div><div class="balance-rows"><div class="bal-row"><div class="bal-row-label">Reward</div><div class="bal-row-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</div></div><div class="bal-row"><div class="bal-row-label">Fees</div><div class="bal-row-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</div></div><div class="bal-row"><div class="bal-row-label">Net</div><div class="bal-row-val" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div></div></div></div>';
+
+  var html='';
+  if(activeJ.length===0&&endedJ.length===0)html='<div class="empty-state" style="margin-bottom:20px"><h3>No Campaigns Joined</h3><p>Click "+ Join" on any campaign.</p></div>';
+  else{
+    if(activeJ.length>0){
+      html+='<div class="dash-header-row"><h2 style="margin-bottom:0">Joined ('+activeJ.length+')</h2><button class="dash-all-toggle" id="btn-all-expand" onclick="toggleAllExpand()">&#9650; Collapse All</button></div>';
+      activeJ.forEach(function(c){html+=buildDashCard(c);});
+    }else html+='<div class="empty-state" style="margin-bottom:20px"><h3>No Active Campaigns</h3></div>';
+    if(endedJ.length>0){
+      html+=divH('Completed','var(--gray)');
+      html+='<div style="display:flex;justify-content:flex-end;margin-bottom:9px"><button class="dash-all-toggle" id="btn-ended-expand" onclick="toggleAllEnded()">&#9660; Expand All</button></div>';
+      html+='<div id="ended-collapsed-row" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;align-items:center">';
+      endedJ.forEach(function(c){html+='<img src="'+c.logo+'" title="'+escHtml(c.name)+'" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid #333;filter:grayscale(1);opacity:0.5">';});
+      html+='<span style="color:var(--gray);font-size:12px;margin-left:3px">'+endedJ.length+' completed</span></div><div id="ended-expanded-list" style="display:none">';
+      endedJ.forEach(function(c){html+='<div class="dash-camp" style="filter:grayscale(1);opacity:0.5"><div style="display:flex;align-items:center;justify-content:space-between;padding:11px 15px;gap:9px"><div style="display:flex;align-items:center;gap:9px"><img src="'+c.logo+'" class="camp-logo"><div class="camp-name">'+escHtml(c.name)+'</div></div><span style="color:var(--gray);font-size:12px;font-family:monospace">COMPLETED</span></div></div>';});
+      html+='</div>';
+    }
+  }
+  document.getElementById('dash-joined').innerHTML=html;
+  renderCalc();
+}
+
+/* ══ RENDER CALC — FIX #3: only use actual entered volumes ══ */
+function renderCalc(){
+  var calcEl=document.getElementById('dash-calc');if(!calcEl)return;
+  var bal=getBalance(),totalVol=0,bnbVol=0;
+  campaigns.forEach(function(c){
+    var j=userData.joined[c.id];
+    if(!j||!isCampActive(c))return;
+    var vol=j.volume||0;
+    if(vol>0){totalVol+=vol;if(j.bnb)bnbVol+=vol;}
+  });
+  var bnbPct=totalVol>0?Math.round((bnbVol/totalVol)*100):0;
+  var potSave=(totalVol-bnbVol)*0.001*0.25;
+  calcEl.innerHTML='<div class="calc-section"><h2 style="margin-bottom:13px">Cost Calculator</h2><div class="calc-tabs"><button class="calc-tab active" onclick="switchTab(\'auto\',this)">Auto Summary</button><button class="calc-tab" onclick="switchTab(\'manual\',this)">Manual</button></div><div id="calc-auto" class="calc-panel active"><div class="calc-card"><div class="calc-row"><span class="calc-key">Total Volume</span><span class="calc-val">'+fmtUSD(totalVol)+'</span></div><div class="calc-row"><span class="calc-key">BNB Fee Used</span><span class="calc-val" style="color:var(--yellow)">'+fmtUSD(bnbVol)+' ('+bnbPct+'%)</span></div><div class="calc-row"><span class="calc-key">Total Fee</span><span class="calc-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</span></div><div class="calc-row"><span class="calc-key">Total Est. Reward</span><span class="calc-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</span></div><div class="calc-row"><span class="calc-key" style="font-weight:700">Net</span><span class="calc-val" style="color:'+(bal.net>=0?'var(--green)':'var(--red)')+';font-size:15px">'+(bal.net>=0?'+':'-')+fmtUSD(Math.abs(bal.net))+'</span></div></div>'+(bnbPct<100&&potSave>0.001?'<div class="savings-hint" style="background:var(--ydim);border-color:rgba(252,213,53,.3);color:var(--yellow)">Tip: BNB on all trades saves <strong>'+fmtUSD(potSave)+'</strong> more.</div>':'')+(bnbPct===100&&totalVol>0?'<div class="savings-hint" style="background:var(--gdim);border-color:rgba(14,203,129,.3);color:var(--green)">Using BNB on 100% of trades!</div>':'')+'</div><div id="calc-manual" class="calc-panel"><div class="calc-card"><div class="form-group" style="margin-bottom:11px"><label style="display:block;margin-bottom:3px;color:var(--gray);font-size:12px;font-weight:600">Trade Volume (USD)</label><input type="number" class="vol-input" id="m-vol" placeholder="e.g. 10000" value="'+(totalVol||'')+'" oninput="calcManual()"></div><div class="bnb-wrap" style="padding:9px 0;margin-bottom:11px;border-bottom:1px solid var(--border)"><label class="toggle-switch"><input type="checkbox" id="m-bnb" onchange="calcManual()"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">BNB Fee Discount (25% off)</span></div><div class="calc-row" style="padding:7px 0"><span class="calc-key">Fee Rate</span><span class="calc-val" id="m-rate">0.100%</span></div><div class="calc-row" style="padding:7px 0"><span class="calc-key">Trading Fee</span><span class="calc-val" style="color:var(--red)" id="m-fee">-</span></div><div class="calc-row" style="padding:7px 0;border-bottom:none"><span class="calc-key">BNB saves you</span><span class="calc-val" style="color:var(--yellow)" id="m-save">-</span></div></div></div></div>';
+}
 function switchTab(tab,btn){document.querySelectorAll('.calc-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');var a=document.getElementById('calc-auto'),m=document.getElementById('calc-manual');if(a)a.classList.toggle('active',tab==='auto');if(m)m.classList.toggle('active',tab==='manual');}window.switchTab=switchTab;
 function calcManual(){var vol=parseFloat((document.getElementById('m-vol')||{}).value)||0;var bnb=(document.getElementById('m-bnb')||{}).checked||false;var fee=vol*(bnb?0.00075:0.001),save=vol*0.001*0.25;var r=document.getElementById('m-rate'),f=document.getElementById('m-fee'),s=document.getElementById('m-save');if(r)r.innerText=bnb?'0.075% (BNB)':'0.100%';if(f)f.innerText=vol>0?'-'+fmtUSD(fee):'-';if(s)s.innerText=vol>0&&!bnb?fmtUSD(save):(bnb?'Already using BNB':'-');}window.calcManual=calcManual;
 
@@ -1748,6 +1984,17 @@ setInterval(function(){
   if(tickCount%8===0&&notices.length>1){noticeIdx=(noticeIdx+1)%notices.length;refreshNoticeSlot();}
 },1000);
 setInterval(fetchPrices,60000);
+
+/* ══ NAV PERSISTENCE: Restore section on page load (FIX #2) ══ */
+(function restoreNav(){
+  try{
+    var saved=sessionStorage.getItem('spotctr_nav');
+    if(saved&&saved!=='home'&&document.getElementById(saved)){
+      nav(saved);
+    }
+  }catch(e){}
+})();
+
 })();
 </script>
 </body>
