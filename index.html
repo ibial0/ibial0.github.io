@@ -90,25 +90,6 @@ h2::before{content:'';display:inline-block;width:4px;height:18px;background:line
 .hero-timer.state-active{color:var(--yellow);text-shadow:0 0 14px var(--yglow)}
 .hero-timer.state-reward{color:var(--green);text-shadow:0 0 14px var(--gglow)}
 .hero-timer.state-upcoming{color:var(--cyan)}
-/* Notice card */
-.notice-section{margin-bottom:6px}
-.notice-card{background:linear-gradient(135deg,#1a1608,#1c1a0a);border:1px solid rgba(245,158,11,.35);padding:20px;border-radius:14px;cursor:pointer;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column;user-select:none;min-height:200px}
-.notice-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(245,158,11,.12)}
-.notice-header-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);color:var(--orange);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-bottom:11px;width:fit-content}
-.notice-title{font-size:16px;font-weight:800;color:var(--white);margin-bottom:7px;line-height:1.3}
-.notice-camps-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
-.notice-camp-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);border-radius:20px;padding:2px 8px}
-.notice-camp-logo{width:16px;height:16px;border-radius:50%;object-fit:cover}
-.notice-camp-name{font-size:11px;font-weight:700;color:var(--orange)}
-.notice-desc{font-size:13px;color:var(--gray);line-height:1.7;flex:1;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
-.notice-footer{display:flex;justify-content:space-between;align-items:center;margin-top:13px;padding-top:11px;border-top:1px solid rgba(245,158,11,.15);flex-wrap:wrap;gap:8px}
-.notice-view-btn{color:var(--orange);font-size:12px;font-weight:700}
-.notice-nav{display:flex;gap:5px;align-items:center}
-.notice-nav-btn{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);color:var(--orange);width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .15s}
-.notice-nav-btn:hover{background:rgba(245,158,11,.25)}
-.notice-dots{display:flex;justify-content:center;gap:7px;margin-top:9px}
-.n-dot{width:6px;height:6px;border-radius:50%;background:rgba(245,158,11,.25);border:none;cursor:pointer;padding:0;transition:all .25s}
-.n-dot.active{background:var(--orange);transform:scale(1.35)}
 /* Multi-campaign checkbox list */
 .camp-cb-wrap{position:relative}
 .camp-cb-list{background:var(--bg);border:1px solid var(--border);border-radius:7px;max-height:200px;overflow-y:auto;margin-top:4px}
@@ -283,6 +264,25 @@ h2::before{content:'';display:inline-block;width:4px;height:18px;background:line
 .chat-send-btn{background:linear-gradient(135deg,var(--yellow),#f0a500);color:#000;border:none;padding:8px 14px;border-radius:20px;font-weight:700;font-size:13px;cursor:pointer;flex-shrink:0;transition:transform .2s}
 .chat-send-btn:hover{transform:translateY(-1px)}
 .chat-notice{background:var(--bg);border-radius:7px;padding:5px 11px;text-align:center;font-size:11px;color:var(--gray);margin:2px 0}
+/* Notice card */
+.notice-section{margin-bottom:6px}
+.notice-card{background:linear-gradient(135deg,#1a1608,#1c1a0a);border:1px solid rgba(245,158,11,.35);padding:20px;border-radius:14px;cursor:pointer;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column;user-select:none;min-height:200px}
+.notice-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(245,158,11,.12)}
+.notice-header-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);color:var(--orange);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-bottom:11px;width:fit-content}
+.notice-title{font-size:16px;font-weight:800;color:var(--white);margin-bottom:7px;line-height:1.3}
+.notice-camps-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.notice-camp-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);border-radius:20px;padding:2px 8px}
+.notice-camp-logo{width:16px;height:16px;border-radius:50%;object-fit:cover}
+.notice-camp-name{font-size:11px;font-weight:700;color:var(--orange)}
+.notice-desc{font-size:13px;color:var(--gray);line-height:1.7;flex:1;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.notice-footer{display:flex;justify-content:space-between;align-items:center;margin-top:13px;padding-top:11px;border-top:1px solid rgba(245,158,11,.15);flex-wrap:wrap;gap:8px}
+.notice-view-btn{color:var(--orange);font-size:12px;font-weight:700}
+.notice-nav{display:flex;gap:5px;align-items:center}
+.notice-nav-btn{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);color:var(--orange);width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.notice-nav-btn:hover{background:rgba(245,158,11,.25)}
+.notice-dots{display:flex;justify-content:center;gap:7px;margin-top:9px}
+.n-dot{width:6px;height:6px;border-radius:50%;background:rgba(245,158,11,.25);border:none;cursor:pointer;padding:0;transition:all .25s}
+.n-dot.active{background:var(--orange);transform:scale(1.35)}
 /* About */
 .about-card{background:var(--surface);border-radius:12px;padding:18px 22px;border:1px solid var(--border);margin-bottom:13px}
 .about-card-title{color:var(--yellow);font-size:14px;font-weight:700;margin-bottom:9px}
@@ -320,9 +320,6 @@ body.light .about-warn{color:#7f1d1d}
 .btn-submit:hover{transform:translateY(-2px)}
 .form-divider{border:none;border-top:1px solid var(--border);margin:11px 0}
 .form-section-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);font-weight:700;margin-bottom:8px;display:block}
-.admin-mode-tabs{display:flex;gap:5px;margin-bottom:16px;background:var(--bg);border-radius:7px;padding:3px}
-.admin-mode-tab{flex:1;padding:7px;border:none;border-radius:5px;font-size:12px;font-weight:700;cursor:pointer;background:transparent;color:var(--gray);transition:all .2s}
-.admin-mode-tab.active{background:var(--ydim);color:var(--yellow)}
 .det-header{text-align:center;margin-bottom:16px}
 .det-logo{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--border);margin-bottom:8px}
 .det-name{font-size:20px;font-weight:800;margin-bottom:3px}
@@ -583,14 +580,10 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 <div id="img-viewer" onclick="document.getElementById('img-viewer').style.display='none';tgUpdateBackBtn()"><img id="img-viewer-img" src=""></div>
 <input type="file" id="img-file-input" accept="image/*" style="display:none" onchange="handleImgUpload(event)">
 
-<!-- ADMIN MODAL -->
+<!-- ADMIN MODAL — Notice tab removed -->
 <div class="modal" id="admin-modal" onclick="handleModalBgClick(event,'admin-modal')">
   <div class="modal-content" onclick="event.stopPropagation()">
     <span class="close-modal" onclick="closeModal('admin-modal')">&#x2715;</span>
-    <div class="admin-mode-tabs">
-      <button class="admin-mode-tab active" id="mode-tab-campaign" onclick="setAdminMode('campaign')">📊 Campaign</button>
-      <button class="admin-mode-tab" id="mode-tab-notice" onclick="setAdminMode('notice')">📢 Notice</button>
-    </div>
     <div id="admin-campaign-form">
       <h2 id="modal-title" style="border:none;padding:0;display:block;margin-bottom:14px">Add New Campaign</h2>
       <form id="campaign-form" onsubmit="saveCampaign(event)">
@@ -660,22 +653,6 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
           </div>
         </div>
         <button type="submit" class="btn-submit" id="submit-btn">Publish Campaign</button>
-      </form>
-    </div>
-    <div id="admin-notice-form" style="display:none">
-      <h2 id="notice-modal-title" style="border:none;padding:0;display:block;margin-bottom:14px">📢 Add Notice</h2>
-      <form id="notice-form" onsubmit="saveNotice(event)">
-        <input type="hidden" id="notice-id">
-        <div class="form-group"><label>Notice Title</label><input type="text" id="notice-title" required placeholder="e.g. Reward Distribution Delayed"></div>
-        <div class="form-group"><label>Description</label><textarea id="notice-desc" required placeholder="Provide details..."></textarea></div>
-        <div class="form-group">
-          <label>Link Campaigns (optional, select multiple)</label>
-          <div class="camp-cb-list" id="notice-camp-cb-list">
-            <div style="padding:10px;color:var(--gray);font-size:12px;text-align:center">Loading campaigns...</div>
-          </div>
-          <div class="camp-cb-selected" id="notice-camp-selected"></div>
-        </div>
-        <button type="submit" class="btn-submit" id="notice-submit-btn">Publish Notice</button>
       </form>
     </div>
   </div>
@@ -775,6 +752,39 @@ if(isTgApp){
   });
 }
 
+/* ══ BROWSER BACK BUTTON HANDLING (Fix #5) ══
+   Push a history state when a modal/feature opens.
+   When user presses back, intercept popstate and close
+   the modal instead of navigating away. */
+var _historyModalOpen=false;
+function pushModalHistory(){
+  if(!_historyModalOpen){
+    history.pushState({spotctrModal:true},'');
+    _historyModalOpen=true;
+  }
+}
+function popModalHistory(){
+  if(_historyModalOpen){
+    _historyModalOpen=false;
+    /* don't go.back() — we consumed this state */
+  }
+}
+window.addEventListener('popstate',function(e){
+  if(e.state&&e.state.spotctrModal){
+    _historyModalOpen=false;
+    /* Close any open modal/overlay */
+    var iv=document.getElementById('img-viewer');
+    if(iv&&iv.style.display==='flex'){iv.style.display='none';window.tgUpdateBackBtn();return;}
+    var MODAL_IDS=['notice-modal','rules-modal','details-modal','admin-modal'];
+    for(var i=0;i<MODAL_IDS.length;i++){
+      var el=document.getElementById(MODAL_IDS[i]);
+      if(el&&el.style.display==='flex'){el.style.display='none';window.tgUpdateBackBtn();return;}
+    }
+    var mm=document.getElementById('mobile-menu');
+    if(mm&&mm.style.display==='flex'){mm.style.display='none';window.tgUpdateBackBtn();return;}
+  }
+});
+
 /* ══ CONFIG ══ */
 var SITE_URL='https://spotctr.online';
 var TG_BOT_URL='https://t.me/spotctrbot';
@@ -785,7 +795,11 @@ var db=firebase.database();
 var campaigns=[],notices=[],livePrices=JSON.parse(localStorage.getItem('spotctr_prices')||'{}');
 var isAdmin=false,detailCampId=null;
 var userData=JSON.parse(localStorage.getItem('spotctr_user')||'{"joined":{}}');
+
+/* FIX #6: Accurate timezone from browser — works with VPN too since
+   Intl.DateTimeFormat uses the OS/browser timezone setting, not IP */
 var userTZ=Intl.DateTimeFormat().resolvedOptions().timeZone;
+
 var allExpanded=true,endedExpanded=false,tickCount=0,urgCamps=[],urgIdx=0,noticeIdx=0;
 
 /* ══ EARLY BIRD BOOST STATE ══ */
@@ -807,6 +821,13 @@ function toggleTheme(){
 }
 window.toggleTheme=toggleTheme;
 applyTheme();
+
+/* FIX #6: Show actual user timezone in notice bar */
+(function updateTzNotice(){
+  var el=document.getElementById('tz-notice');
+  if(!el)return;
+  el.innerText='Times shown in your local timezone ('+userTZ+')';
+})();
 
 /* ══ TG CTA CARD ══ */
 var TG_ICON_SVG='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:26px;height:26px"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>';
@@ -911,7 +932,7 @@ db.ref('notices').on('value',function(snap){
 async function fetchPrices(){if(!campaigns.length)return;var ids=[];campaigns.forEach(function(c){if(ids.indexOf(c.coinId)<0)ids.push(c.coinId);});try{var r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids='+ids.join(',')+'&vs_currencies=usd');livePrices=await r.json();localStorage.setItem('spotctr_prices',JSON.stringify(livePrices));renderViews();updateGBB();if(document.getElementById('dash').classList.contains('active'))renderDashboard();}catch(e){}}
 
 /* ══ NAV ══ */
-function toggleMenu(){var m=document.getElementById('mobile-menu');m.style.display=m.style.display==='flex'?'none':'flex';window.tgUpdateBackBtn();}
+function toggleMenu(){var m=document.getElementById('mobile-menu');var willOpen=m.style.display!=='flex';m.style.display=willOpen?'flex':'none';if(willOpen)pushModalHistory();window.tgUpdateBackBtn();}
 window.toggleMenu=toggleMenu;
 
 function nav(id){
@@ -937,7 +958,7 @@ function promptAdmin(){
     document.getElementById('camp-id').value='';
     document.getElementById('modal-title').innerText='Add New Campaign';
     document.getElementById('submit-btn').innerText='Publish Campaign';
-    setAdminMode('campaign');onTypeChange();onMinVolChange();
+    onTypeChange();onMinVolChange();
     ebbSlotCount=0;
     document.getElementById('ebb-slots-container').innerHTML='';
     document.getElementById('fg-ebb').style.display='none';
@@ -996,7 +1017,7 @@ function getEbbSlots(){
   return slots;
 }
 
-/* ══ NOTICE MULTI-CAMPAIGN CHECKBOX LIST ══ */
+/* ══ Notice admin — kept for Firebase compatibility, just not shown in UI ══ */
 function buildNoticeCampList(selectedIds){
   var el=document.getElementById('notice-camp-cb-list');
   if(!el)return;
@@ -1030,24 +1051,12 @@ function getSelectedCampIds(){
   var ids=[];checks.forEach(function(cb){ids.push(cb.value);});return ids;
 }
 
-function setAdminMode(mode){
-  document.getElementById('admin-campaign-form').style.display=mode==='campaign'?'':'none';
-  document.getElementById('admin-notice-form').style.display=mode==='notice'?'':'none';
-  document.getElementById('mode-tab-campaign').classList.toggle('active',mode==='campaign');
-  document.getElementById('mode-tab-notice').classList.toggle('active',mode==='notice');
-  if(mode==='notice'){
-    var nid=document.getElementById('notice-id');if(nid)nid.value='';
-    var nt=document.getElementById('notice-title');if(nt)nt.value='';
-    var nd=document.getElementById('notice-desc');if(nd)nd.value='';
-    var ntitle=document.getElementById('notice-modal-title');if(ntitle)ntitle.innerText='📢 Add Notice';
-    var nsub=document.getElementById('notice-submit-btn');if(nsub)nsub.innerText='Publish Notice';
-    buildNoticeCampList([]);
-  }
-}
-window.setAdminMode=setAdminMode;
-
 /* ══ MODAL OPEN/CLOSE ══ */
-function openModal(id){document.getElementById(id).style.display='flex';window.tgUpdateBackBtn();}
+function openModal(id){
+  document.getElementById(id).style.display='flex';
+  pushModalHistory();
+  window.tgUpdateBackBtn();
+}
 function closeModal(id){
   document.getElementById(id).style.display='none';
   window.tgUpdateBackBtn();
@@ -1089,18 +1098,13 @@ function saveCampaign(e){
 }
 window.saveCampaign=saveCampaign;
 
-/* ══ SAVE NOTICE ══ */
+/* ══ SAVE NOTICE (kept for Firebase ops, not shown in UI) ══ */
 function saveNotice(e){
-  e.preventDefault();
-  var id=gv('notice-id')||Date.now().toString();
-  var linkedIds=getSelectedCampIds();
-  var noticeData={id:id,title:gv('notice-title'),description:gv('notice-desc'),linkedCampIds:linkedIds.length?linkedIds:null,createdAt:Date.now(),active:true};
-  db.ref('notices/'+id).set(noticeData,function(err){
-    if(!err)closeModal('admin-modal');
-    else alert('Error saving notice. Please try again.');
-  });
+  if(e)e.preventDefault();
+  var id=Date.now().toString();
+  var noticeData={id:id,title:'',description:'',linkedCampIds:null,createdAt:Date.now(),active:true};
+  db.ref('notices/'+id).set(noticeData);
 }
-window.saveNotice=saveNotice;
 
 /* ══ EDIT NOTICE ══ */
 function editNotice(id,ev){
@@ -1108,17 +1112,7 @@ function editNotice(id,ev){
   authAction(function(){
     var n=null;for(var i=0;i<notices.length;i++){if(notices[i].id===id){n=notices[i];break;}}
     if(!n)return;
-    setAdminMode('notice');
-    var nid=document.getElementById('notice-id');if(nid)nid.value=n.id;
-    var nt=document.getElementById('notice-title');if(nt)nt.value=n.title||'';
-    var nd=document.getElementById('notice-desc');if(nd)nd.value=n.description||'';
-    var ntitle=document.getElementById('notice-modal-title');if(ntitle)ntitle.innerText='✏️ Edit Notice';
-    var nsub=document.getElementById('notice-submit-btn');if(nsub)nsub.innerText='Save Changes';
-    var selIds=[];
-    if(n.linkedCampIds&&Array.isArray(n.linkedCampIds))selIds=n.linkedCampIds;
-    else if(n.linkedCampId)selIds=[n.linkedCampId];
-    buildNoticeCampList(selIds);
-    openModal('admin-modal');
+    /* Since notice form is removed from UI, just show the notice modal for editing is no longer needed */
   });
 }
 window.editNotice=editNotice;
@@ -1149,7 +1143,7 @@ function editCamp(id,ev){
     }
     document.getElementById('modal-title').innerText='Edit Campaign';
     document.getElementById('submit-btn').innerText='Save Changes';
-    setAdminMode('campaign');onTypeChange();openModal('admin-modal');
+    onTypeChange();openModal('admin-modal');
   });
 }
 window.editCamp=editCamp;
@@ -1289,11 +1283,10 @@ function buildNoticeSlot(){
       +'<button class="notice-nav-btn" onclick="event.stopPropagation();moveNotice(-1)">‹</button>'
       +'<span style="font-size:10px;color:var(--gray);align-self:center">'+(noticeIdx+1)+'/'+notices.length+'</span>'
       +'<button class="notice-nav-btn" onclick="event.stopPropagation();moveNotice(1)">›</button>'
-      +(isAdmin?'<button class="notice-nav-btn" onclick="event.stopPropagation();editNotice(\''+n.id+'\')" style="background:var(--ydim);border-color:rgba(252,213,53,.3);color:var(--yellow)">✏</button><button class="notice-nav-btn" onclick="event.stopPropagation();deleteNotice(\''+n.id+'\')" style="background:var(--rdim);border-color:var(--rdim);color:var(--red)">×</button>':'')
+      +(isAdmin?'<button class="notice-nav-btn" onclick="event.stopPropagation();deleteNotice(\''+n.id+'\')" style="background:var(--rdim);border-color:var(--rdim);color:var(--red)">×</button>':'')
       +'</div>';
   }else if(isAdmin){
     html+='<div class="notice-nav">'
-      +'<button class="notice-nav-btn" onclick="event.stopPropagation();editNotice(\''+n.id+'\')" style="background:var(--ydim);border-color:rgba(252,213,53,.3);color:var(--yellow)">✏</button>'
       +'<button class="notice-nav-btn" onclick="event.stopPropagation();deleteNotice(\''+n.id+'\')" style="background:var(--rdim);border-color:var(--rdim);color:var(--red)">×</button>'
       +'</div>';
   }
@@ -1356,7 +1349,6 @@ function showNotice(id){
   html+='<p style="color:var(--gray);font-size:13px;line-height:1.8">'+escHtml(n.description)+'</p>';
   if(isAdmin){
     html+='<div style="display:flex;gap:7px;margin-top:14px">'
-      +'<button class="btn-edit" style="flex:1;padding:8px;font-size:12px" onclick="closeModal(\'notice-modal\');editNotice(\''+n.id+'\')">✏️ Edit</button>'
       +'<button class="btn-del" style="flex:1;padding:8px" onclick="deleteNotice(\''+n.id+'\')">🗑️ Delete</button>'
       +'</div>';
   }
@@ -1446,16 +1438,32 @@ function getActiveEbbSlot(c){
   return null;
 }
 
+/* FIX #1: EBB color — green to red interpolation (no white/gray in the middle)
+   Uses HSL: green=120, red=0. Pure RGB-space interpolation was causing
+   the washed-out "white" appearance at mid-point. */
 function ebbSlotColor(idx,total){
   if(total<=1)return{main:'#0ecb81',dim:'rgba(14,203,129,0.2)'};
   var ratio=total>1?idx/(total-1):0;
-  var r=Math.round(14+(246-14)*ratio);
-  var g=Math.round(203+(70-203)*ratio);
-  var b=Math.round(129+(93-129)*ratio);
-  var hex='#'+('0'+r.toString(16)).slice(-2)+('0'+g.toString(16)).slice(-2)+('0'+b.toString(16)).slice(-2);
-  return{main:hex,dim:'rgba('+r+','+g+','+b+',0.2)'};
+  /* Interpolate hue: 145 (green) → 355 (red), via decreasing */
+  var hue=Math.round(145 - ratio*145);  /* 145→0 */
+  /* Saturation and lightness stay vivid */
+  var sat=80,lit=ratio<0.5?45:40;
+  /* Convert HSL to hex for ring/dot use */
+  var h=hue/360,s=sat/100,l=lit/100;
+  var r2,g2,b2;
+  if(s===0){r2=g2=b2=l;}else{
+    var hue2rgb=function(p,q,t){if(t<0)t+=1;if(t>1)t-=1;if(t<1/6)return p+(q-p)*6*t;if(t<1/2)return q;if(t<2/3)return p+(q-p)*(2/3-t)*6;return p;};
+    var q2=l<0.5?l*(1+s):l+s-l*s,p2=2*l-q2;
+    r2=hue2rgb(p2,q2,h+1/3);g2=hue2rgb(p2,q2,h);b2=hue2rgb(p2,q2,h-1/3);
+  }
+  var toHex=function(x){var v=Math.round(x*255);return('0'+v.toString(16)).slice(-2);};
+  var hex='#'+toHex(r2)+toHex(g2)+toHex(b2);
+  var ri=Math.round(r2*255),gi=Math.round(g2*255),bi=Math.round(b2*255);
+  return{main:hex,dim:'rgba('+ri+','+gi+','+bi+',0.2)'};
 }
 
+/* FIX #2: EBB line segment properly reflects time elapsed within each slot,
+   not just past/active binary state. */
 function buildEbbDisplay(c){
   if(!c||!c.hasEarlyBird||!c.earlyBirdSlots||!c.earlyBirdSlots.length)return'';
   var slots=c.earlyBirdSlots;
@@ -1493,6 +1501,7 @@ function buildEbbDisplay(c){
   html+='<span class="ebb-day-counter">Day '+dayNum+' of '+totalDays+'</span>';
   html+='</div>';
 
+  /* FIX #2: Build track with accurate per-slot fill based on elapsed time */
   html+='<div class="ebb-track-wrap"><div class="ebb-track" id="ebb-track-'+safeId(c.id)+'">';
   slots.forEach(function(slot,idx){
     var slotStart=parseEbbDate(slot.startUtc);
@@ -1500,23 +1509,41 @@ function buildEbbDisplay(c){
     var isPast=slotEnd!==null&&now>=slotEnd;
     var isActive=idx===activeIdx;
     var col=ebbSlotColor(idx,total);
-    var multColor=isActive?col.main:(isPast?'var(--gray)':'var(--gray)');
+    var multColor=isActive?col.main:(isPast?ebbSlotColor(idx,total).main:'var(--gray)');
 
     var slotDays=slotStart!==null&&slotEnd!==null?Math.ceil((slotEnd-slotStart)/86400000):1;
     var label='D'+(idx+1);
     if(slotDays>1)label='D'+(idx+1)+'-'+(idx+slotDays);
 
     var isFirst=idx===0,isLast=idx===slots.length-1;
-    var leftColor=isPast||isActive?col.main:'var(--border)';
-    var rightColor=isPast?col.main:(isActive?col.dim:'var(--border)');
 
-    html+='<div class="ebb-slot" style="min-width:'+(Math.max(64,slotDays*32))+'px">';
+    /* For the right segment of the active slot:
+       fill proportional to how much of this slot has elapsed */
+    var activeElapsedPct=0;
+    if(isActive&&slotStart!==null&&slotEnd!==null){
+      var slotDur=Math.max(slotEnd-slotStart,1);
+      activeElapsedPct=Math.max(0,Math.min(1,(now-slotStart)/slotDur));
+    }
+
+    var leftColor=isPast||isActive?col.main:'var(--border)';
+    /* Right segment: past slots fully filled, active slot partially filled using gradient trick */
+    var rightStyle='';
+    if(isPast){
+      rightStyle='background:'+col.main+';';
+    } else if(isActive){
+      /* Use linear-gradient to show exactly how much of this slot has elapsed */
+      rightStyle='background:linear-gradient(to right, '+col.main+' '+Math.round(activeElapsedPct*100)+'%, var(--border) '+Math.round(activeElapsedPct*100)+'%);';
+    } else {
+      rightStyle='background:var(--border);';
+    }
+
+    html+='<div class="ebb-slot" id="ebb-slot-el-'+safeId(c.id)+'-'+idx+'" style="min-width:'+(Math.max(64,slotDays*32))+'px">';
     html+='<div class="ebb-mult-label" style="color:'+multColor+';font-weight:'+(isActive?'800':'600')+'">'+escHtml(slot.multiplier)+'</div>';
     html+='<div class="ebb-line-row">';
-    if(!isFirst)html+='<div class="ebb-line-seg'+(isFirst?' seg-left':'')+'" style="background:'+leftColor+'"></div>';
+    if(!isFirst)html+='<div class="ebb-line-seg seg-left" style="background:'+leftColor+'"></div>';
     else html+='<div class="ebb-line-seg seg-left" style="background:transparent;pointer-events:none"></div>';
     html+='<div class="ebb-dot'+(isActive?' active-dot':'')+'" style="background:'+(isActive||isPast?col.main:'var(--border)')+';border-color:var(--bg)"></div>';
-    if(!isLast)html+='<div class="ebb-line-seg'+(isLast?' seg-right':'')+'" style="background:'+rightColor+'"></div>';
+    if(!isLast)html+='<div class="ebb-line-seg seg-right" id="ebb-rseg-'+safeId(c.id)+'-'+idx+'" style="'+rightStyle+'"></div>';
     else html+='<div class="ebb-line-seg seg-right" style="background:transparent;pointer-events:none"></div>';
     html+='</div>';
     html+='<div class="ebb-day-label">'+label+'</div>';
@@ -1578,6 +1605,7 @@ function buildEbbDisplay(c){
   return html;
 }
 
+/* FIX #2: updateEbbCountdown also updates the line segments accurately */
 function updateEbbCountdown(c){
   if(!c||!c.hasEarlyBird||!c.earlyBirdSlots)return;
   var slots=c.earlyBirdSlots;
@@ -1591,6 +1619,27 @@ function updateEbbCountdown(c){
     if(now>=s&&now<e){activeIdx=i;break;}
     if(now<s&&(nextIdx<0||s<parseEbbDate(slots[nextIdx].startUtc))){nextIdx=i;}
   }
+
+  /* Update line segments for accurate time-based fill */
+  slots.forEach(function(slot,idx){
+    var segEl=document.getElementById('ebb-rseg-'+safeId(c.id)+'-'+idx);
+    if(!segEl)return;
+    var slotStart=parseEbbDate(slot.startUtc);
+    var slotEnd=parseEbbDate(slot.endUtc);
+    var isPast=slotEnd!==null&&now>=slotEnd;
+    var isActive=idx===activeIdx;
+    var col=ebbSlotColor(idx,total);
+    if(isPast){
+      segEl.style.background=col.main;
+    } else if(isActive){
+      var slotDur=Math.max(slotEnd-slotStart,1);
+      var elapsedPct=Math.max(0,Math.min(1,(now-slotStart)/slotDur));
+      segEl.style.background='linear-gradient(to right, '+col.main+' '+Math.round(elapsedPct*100)+'%, var(--border) '+Math.round(elapsedPct*100)+'%)';
+    } else {
+      segEl.style.background='var(--border)';
+    }
+  });
+
   var showSlotIdx=activeIdx>=0?activeIdx:(nextIdx>=0?nextIdx:-1);
   if(showSlotIdx<0)return;
 
@@ -1707,7 +1756,7 @@ window.sendMsg=sendMsg;
 function chatKeydown(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}}
 window.chatKeydown=chatKeydown;
 function scrollChatBottom(){var c=document.getElementById('chat-messages');if(c)setTimeout(function(){c.scrollTop=c.scrollHeight;},60);}
-function viewImg(sid){var keys=Object.keys(chatMsgMap);for(var k=0;k<keys.length;k++){if(safeId(keys[k])===sid&&chatMsgMap[keys[k]].imageData){document.getElementById('img-viewer-img').src=chatMsgMap[keys[k]].imageData;document.getElementById('img-viewer').style.display='flex';window.tgUpdateBackBtn();return;}}}
+function viewImg(sid){var keys=Object.keys(chatMsgMap);for(var k=0;k<keys.length;k++){if(safeId(keys[k])===sid&&chatMsgMap[keys[k]].imageData){document.getElementById('img-viewer-img').src=chatMsgMap[keys[k]].imageData;var iv=document.getElementById('img-viewer');iv.style.display='flex';pushModalHistory();window.tgUpdateBackBtn();return;}}}
 window.viewImg=viewImg;
 
 /* ══ DASHBOARD ══ */
@@ -1850,7 +1899,6 @@ function switchTab(tab,btn){document.querySelectorAll('.calc-tab').forEach(funct
 function calcManual(){var vol=parseFloat((document.getElementById('m-vol')||{}).value)||0;var bnb=(document.getElementById('m-bnb')||{}).checked||false;var fee=vol*(bnb?0.00075:0.001),save=vol*0.001*0.25;var r=document.getElementById('m-rate'),f=document.getElementById('m-fee'),s=document.getElementById('m-save');if(r)r.innerText=bnb?'0.075% (BNB)':'0.100%';if(f)f.innerText=vol>0?'-'+fmtUSD(fee):'-';if(s)s.innerText=vol>0&&!bnb?fmtUSD(save):(bnb?'Already using BNB':'-');}window.calcManual=calcManual;
 
 /* ══ TICK ══ */
-document.getElementById('tz-notice').innerText='Times shown in your local timezone ('+userTZ+')';
 setInterval(function(){
   campaigns.forEach(function(c){
     var info=getTimerInfo(c),sc=info.state==='alert'?'state-alert':'state-'+info.state;
