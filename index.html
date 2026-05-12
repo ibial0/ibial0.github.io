@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="talentapp:project_verification" content="b14fee884be1af826bd2be7133127914461792a6ba75b7a581cba790a9ed3d85b3e7465cb885db1a95c0cebd25453f9edde9b7a2a698e3a4ba8f2a3386c20d11">
+  <meta name="talentapp:project_verification" content="b14fee884be1af826bd2be7133127914461792a6ba75b7a581cba790a9ed3d85b3e7465cb885db1a95c0cebd25453f9edde9b7a2a698e3a4ba8f2a3386c20d11">
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spot CTR</title>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -411,170 +411,170 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 .ebb-mult-hint strong{color:var(--white)}
 
 @media(max-width:768px){
-  header{padding:10px 12px}
-  #gbb{top:48px;padding:5px 10px;gap:6px}
-  .desktop-nav{display:none}
-  .hamburger{display:flex}
-  main{padding:11px 10px}
-  .home-grid{grid-template-columns:1fr}
-  .hero-timer{font-size:18px}
-  h2{font-size:14px}
-  .modal-content{padding:15px 12px}
-  .det-timer{font-size:17px}
-  .balance-rows{grid-template-columns:1fr}
-  .balance-net{font-size:28px}
-  .list-card{display:flex!important;flex-direction:column!important;gap:7px;padding:12px}
-  .list-card .type-badge,.list-card .diff-badge,.list-card .camp-est,.reward-mid{display:none!important}
-  .camp-info{width:100%}
-  .camp-name{font-size:13px}
-  .camp-price{font-size:12px;padding:3px 8px;background:var(--bg);border-radius:5px;display:inline-block;width:fit-content}
-  .reward-pool{text-align:left;padding:6px 8px;background:var(--bg);border-radius:5px}
-  .camp-timer{font-size:12px;text-align:left}
-  .admin-controls{justify-content:flex-end;padding-top:6px;border-top:1px solid var(--border)}
-  .btn-join{font-size:11px;padding:5px 11px}
-  .dash-vol-row{flex-direction:column;gap:7px}
-  .dash-camp-right{width:100%;justify-content:space-between}
-  .fab-chat{bottom:14px;right:14px;width:44px;height:44px;font-size:17px}
-  .fab-tooltip{bottom:64px;right:10px;max-width:190px}
-  .msg-action-bar{opacity:1}
-  .chat-img-msg{max-width:150px;max-height:130px}
-  .chat-lang-bar{gap:5px}
-  .tg-cta-card{flex-wrap:wrap}
-  .ebb-slot-row{flex-direction:column;align-items:stretch}
-  .ebb-slot-row input,.ebb-slot-row select{min-width:unset}
+  header{padding:10px 12px}
+  #gbb{top:48px;padding:5px 10px;gap:6px}
+  .desktop-nav{display:none}
+  .hamburger{display:flex}
+  main{padding:11px 10px}
+  .home-grid{grid-template-columns:1fr}
+  .hero-timer{font-size:18px}
+  h2{font-size:14px}
+  .modal-content{padding:15px 12px}
+  .det-timer{font-size:17px}
+  .balance-rows{grid-template-columns:1fr}
+  .balance-net{font-size:28px}
+  .list-card{display:flex!important;flex-direction:column!important;gap:7px;padding:12px}
+  .list-card .type-badge,.list-card .diff-badge,.list-card .camp-est,.reward-mid{display:none!important}
+  .camp-info{width:100%}
+  .camp-name{font-size:13px}
+  .camp-price{font-size:12px;padding:3px 8px;background:var(--bg);border-radius:5px;display:inline-block;width:fit-content}
+  .reward-pool{text-align:left;padding:6px 8px;background:var(--bg);border-radius:5px}
+  .camp-timer{font-size:12px;text-align:left}
+  .admin-controls{justify-content:flex-end;padding-top:6px;border-top:1px solid var(--border)}
+  .btn-join{font-size:11px;padding:5px 11px}
+  .dash-vol-row{flex-direction:column;gap:7px}
+  .dash-camp-right{width:100%;justify-content:space-between}
+  .fab-chat{bottom:14px;right:14px;width:44px;height:44px;font-size:17px}
+  .fab-tooltip{bottom:64px;right:10px;max-width:190px}
+  .msg-action-bar{opacity:1}
+  .chat-img-msg{max-width:150px;max-height:130px}
+  .chat-lang-bar{gap:5px}
+  .tg-cta-card{flex-wrap:wrap}
+  .ebb-slot-row{flex-direction:column;align-items:stretch}
+  .ebb-slot-row input,.ebb-slot-row select{min-width:unset}
 }
 </style>
 </head>
 <body>
 <header>
-  <a class="logo-wrap" href="https://spotctr.online">
-    <img src="https://spotctr.online/Logo.png" alt="Spot CTR" class="logo-img" onerror="this.style.display='none'">
-    <span class="logo-text">Spot CTR</span>
-  </a>
-  <nav class="desktop-nav">
-    <button onclick="nav('home')" id="nav-home" class="active">Home</button>
-    <button onclick="nav('reward')" id="nav-reward">Reward Board</button>
-    <button onclick="nav('dash')" id="nav-dash">My Dashboard</button>
-    <button onclick="nav('community')" id="nav-community"><span class="nav-live"></span>Community<span class="nav-notif" id="nav-notif-count" style="display:none"></span></button>
-    <button onclick="nav('about')" id="nav-about">About</button>
-    <button onclick="promptAdmin()" class="btn-admin">+ Add</button>
-  </nav>
-  <div class="header-right">
-    <a href="https://t.me/spotctrbot" target="_blank" class="tg-btn" title="Open in Telegram">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:17px;height:17px"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-    </a>
-    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
-    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-  </div>
+  <a class="logo-wrap" href="https://spotctr.online">
+    <img src="https://spotctr.online/Logo.png" alt="Spot CTR" class="logo-img" onerror="this.style.display='none'">
+    <span class="logo-text">Spot CTR</span>
+  </a>
+  <nav class="desktop-nav">
+    <button onclick="nav('home')" id="nav-home" class="active">Home</button>
+    <button onclick="nav('reward')" id="nav-reward">Reward Board</button>
+    <button onclick="nav('dash')" id="nav-dash">My Dashboard</button>
+    <button onclick="nav('community')" id="nav-community"><span class="nav-live"></span>Community<span class="nav-notif" id="nav-notif-count" style="display:none"></span></button>
+    <button onclick="nav('about')" id="nav-about">About</button>
+    <button onclick="promptAdmin()" class="btn-admin">+ Add</button>
+  </nav>
+  <div class="header-right">
+    <a href="https://t.me/spotctrbot" target="_blank" class="tg-btn" title="Open in Telegram">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:17px;height:17px"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    </a>
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
 </header>
 <div class="mobile-menu" id="mobile-menu">
-  <button onclick="nav('home');toggleMenu()">Home</button>
-  <button onclick="nav('reward');toggleMenu()">Reward Board</button>
-  <button onclick="nav('dash');toggleMenu()">My Dashboard</button>
-  <button onclick="nav('community');toggleMenu()">💬 Community</button>
-  <button onclick="nav('about');toggleMenu()">About</button>
-  <button onclick="promptAdmin();toggleMenu()" class="btn-admin">+ Add</button>
-  <button onclick="toggleTheme();toggleMenu()" id="mobile-theme-btn" style="background:none;border:none;color:var(--gray);font-size:13px;font-weight:600;cursor:pointer;padding:10px 12px;border-radius:6px;text-align:left">🌙 Toggle Theme</button>
+  <button onclick="nav('home');toggleMenu()">Home</button>
+  <button onclick="nav('reward');toggleMenu()">Reward Board</button>
+  <button onclick="nav('dash');toggleMenu()">My Dashboard</button>
+  <button onclick="nav('community');toggleMenu()">💬 Community</button>
+  <button onclick="nav('about');toggleMenu()">About</button>
+  <button onclick="promptAdmin();toggleMenu()" class="btn-admin">+ Add</button>
+  <button onclick="toggleTheme();toggleMenu()" id="mobile-theme-btn" style="background:none;border:none;color:var(--gray);font-size:13px;font-weight:600;cursor:pointer;padding:10px 12px;border-radius:6px;text-align:left">🌙 Toggle Theme</button>
 </div>
 <div id="gbb">
-  <span class="gbb-label">Est. Net Profit</span>
-  <span class="gbb-amount" id="gbb-val">+$0.00</span>
-  <span class="gbb-sub" id="gbb-sub">0 campaigns joined</span>
+  <span class="gbb-label">Est. Net Profit</span>
+  <span class="gbb-amount" id="gbb-val">+$0.00</span>
+  <span class="gbb-sub" id="gbb-sub">0 campaigns joined</span>
 </div>
 <main>
-  <div id="tz-notice" style="text-align:right;color:var(--gray);font-size:11px;margin-bottom:14px"></div>
-  <section id="home" class="section active">
-    <div id="home-notices"></div>
-    <h2>Featured Campaigns</h2>
-    <div id="home-featured"><div class="loading"><div class="spinner"></div>Loading...</div></div>
-    <div id="ending-soon-section" style="display:none">
-      <h2>Ending Soon</h2>
-      <div id="home-urgent"></div>
-    </div>
-    <div id="tg-cta-home" style="margin-top:8px"></div>
-    <div class="community-cta">
-      <div style="font-size:32px;margin-bottom:7px">💬</div>
-      <div style="font-size:15px;font-weight:700;margin-bottom:5px">Join the Community Chat</div>
-      <p style="color:var(--gray);font-size:13px;margin-bottom:13px">Discuss campaigns, share screenshots, and connect with fellow traders.</p>
-      <button class="btn-cta" onclick="nav('community')">Open Chat</button>
-    </div>
-  </section>
-  <section id="reward" class="section"><h2>Reward Board</h2><div id="reward-content"><div class="loading"><div class="spinner"></div>Loading...</div></div></section>
-  <section id="dash" class="section"><h2>My Dashboard</h2><div id="dash-balance"></div><div id="dash-joined"></div><div id="dash-calc"></div></section>
-  <section id="community" class="section">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;flex-wrap:wrap;gap:7px">
-      <h2 style="margin-bottom:0">Community Chat</h2>
-      <button class="share-btn share-btn-share" onclick="shareWebsite()">🔗 Share Spot CTR</button>
-    </div>
-    <div class="chat-wrap">
-      <div class="chat-header">
-        <span style="font-size:19px">💬</span>
-        <div class="chat-header-info"><div class="chat-header-title">Spot CTR Community</div><div class="chat-header-sub">Open chat, no account needed</div></div>
-        <button class="chat-hdr-btn" onclick="showRules()">📋 Rules</button>
-      </div>
-      <div class="chat-lang-bar">
-        <label>Read in:</label>
-        <select class="lang-select" id="lang-select" onchange="setReadLang(this.value)"></select>
-        <button class="chat-hdr-btn" id="btn-auto-tx" onclick="toggleAutoTranslate()">🔄 Auto</button>
-        <button class="chat-hdr-btn" id="btn-send-en" onclick="toggleSendAsEnglish()">↑ EN</button>
-      </div>
-      <div id="chat-notif-bar" class="chat-notif-bar" style="display:none">
-        <span class="nbar-txt" id="notif-bar-txt"></span>
-        <button onclick="navigateToReply()">View</button>
-        <button onclick="document.getElementById('chat-notif-bar').style.display='none'" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:16px;padding:0">×</button>
-      </div>
-      <div class="chat-messages" id="chat-messages"><div class="loading"><div class="spinner"></div>Loading...</div></div>
-      <div class="reply-indicator" id="reply-indicator">
-        <span style="color:var(--gray);font-size:11px;flex-shrink:0" id="reply-mode-label">Replying to</span>
-        <span class="ri-text" id="reply-indicator-text"></span>
-        <button class="reply-cancel" onclick="cancelReplyOrEdit()">✕</button>
-      </div>
-      <div class="chat-input-area">
-        <button class="chat-img-btn" onclick="document.getElementById('img-file-input').click()" title="Send image">📷</button>
-        <input class="chat-input" id="chat-input" type="text" placeholder="Type a message (Enter to send)" maxlength="2000" onkeydown="chatKeydown(event)">
-        <button class="chat-send-btn" onclick="sendMsg()">Send</button>
-      </div>
-    </div>
-  </section>
-  <section id="about" class="section">
-    <h2>About Spot CTR</h2>
-    <div class="about-warn">⚠️ <strong>Important Disclaimer:</strong> Spot CTR is an independent, personal tracking tool — <strong>not affiliated with or endorsed by Binance</strong> in any way. All reward estimates are based on personal analysis only. This is not a business website. Always verify campaign details directly on Binance's official platform before making any decisions.</div>
-    <div class="about-card">
-      <div class="about-card-title">📱 Available On</div>
-      <p>Spot CTR is available as both a web app and a Telegram Mini App. Use whichever is most convenient for you. Both platforms offer identical features.</p>
-      <div class="platform-links">
-        <a href="https://spotctr.online" target="_blank" class="platform-btn platform-btn-web">🌐 Web App at spotctr.online</a>
-        <a href="https://t.me/spotctrbot" target="_blank" class="platform-btn platform-btn-tg">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;flex-shrink:0"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-          Telegram Mini App @spotctrbot
-        </a>
-      </div>
-    </div>
-    <div class="about-card"><div class="about-card-title">🧭 What is Spot CTR?</div><p>Spot CTR is a personal tracking platform built to help Binance spot traders keep up with active trading campaigns, all in one clean and organized interface. Instead of hunting through multiple Binance pages, you can check estimated rewards, countdowns, difficulty levels, and campaign details right here in one place.<br><br>This platform focuses exclusively on <strong>Binance spot trading campaigns</strong>. It was created out of a genuine need to simplify how traders track their participation in these campaigns and save valuable time in the process.</p></div>
-    <div class="about-card"><div class="about-card-title">📊 How Are Estimates Calculated?</div><p>All reward estimates shown on this platform are based on personal analysis and independent research. Figures are calculated using available campaign parameters such as total pool size, number of participants, minimum trading volume requirements, and any publicly visible leaderboard data.<br><br>For volume-based campaigns, the estimate shows approximately how many tokens you might earn per $1,000 of trading volume. For equal-share campaigns, it shows the estimated share per participant based on the current participant count.<br><br><strong>These estimates are not guaranteed to be accurate.</strong> Actual rewards depend on real-time market conditions, total participation at campaign end, and Binance's final distribution. Always treat these numbers as rough guidance and not a guarantee.<br><br>As an additional safety measure, displayed estimates may be slightly adjusted above or below the raw calculated value to reduce large discrepancies between shown estimates and actual distributions.</p></div>
-    <div class="about-card"><div class="about-card-title">🎯 Which Campaigns Are Listed Here?</div><p>Only campaigns that offer a genuine, realistic earning opportunity to <strong>regular, everyday traders</strong> are added here. Many Binance campaigns include two separate reward pools: one for top-ranked traders (e.g. top 200 or top 1,000 with large fixed prizes), and a <strong>general pool</strong> shared among all other participants.<br><br>The top-rank special prizes are <strong>excluded from calculations here</strong>. Those positions are almost always dominated by market makers and institutional traders, not regular traders. For example:<br><br><span style="background:var(--bg);border-radius:7px;padding:10px 13px;display:block;margin-top:10px;border-left:3px solid var(--yellow)">A campaign awards <strong>$100,000</strong> to the Top 1,000 ranked traders, and <strong>$800,000</strong> shared equally among all traders ranked 1,001 and above. On Spot CTR, only the <strong>$800,000 general pool</strong> is calculated and displayed.</span></p></div>
-    <div class="about-card"><div class="about-card-title">⏳ A Note on Timeliness and Updates</div><p>Spot CTR is maintained by a <strong>single person</strong>. When Binance launches a new campaign or tournament, it may take some time before it appears here. Campaign parameters may also take a few days to update after a campaign goes live.<br><br>Your patience is sincerely appreciated. If you don't see a campaign here yet, it will likely be added soon. Please check back later.</p></div>
-    <div class="about-card"><div class="about-card-title">⚠️ Reward Delays and Postponements</div><p>Occasionally, Binance postpones a reward distribution deadline, sometimes indefinitely. When this happens, the affected campaign on Spot CTR will be marked with a <span class="postponed-badge" style="vertical-align:middle">⚠️ Delayed</span> badge, or a <span class="tbd-badge" style="vertical-align:middle">⏳ TBD</span> badge if no new date has been announced. Important notices about delays are shown directly on the homepage as a highlighted notice card.</p></div>
-    <div class="about-card"><div class="about-card-title">🔍 Do Your Own Research</div><p>This platform exists to save you time and give you a useful starting point — <strong>not to make trading decisions for you</strong>. Always verify campaign details directly on <strong>Binance's official platform</strong> before committing any funds. No information here should be taken as financial advice. Trade responsibly.</p></div>
-    <div class="about-card"><div class="about-card-title">📣 Share Spot CTR</div><p>If Spot CTR has saved you time or helped you discover a campaign, please share it with your fellow traders! Every share helps keep this project alive and growing.</p>
-      <div class="share-bar" style="margin-top:13px"><button class="share-btn share-btn-share" onclick="shareWebsite()">🔗 Share Spot CTR</button><button class="share-btn share-btn-copy" onclick="copyLink('https://spotctr.online')">📋 Copy Link</button></div>
-    </div>
-    <div style="margin-top:16px;display:flex;align-items:center;gap:13px">
-      <span style="color:var(--gray);font-size:13px">Follow on X:</span>
-      <a href="https://x.com/_IBIAL" target="_blank" style="color:var(--gray)"><svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-      <a href="https://t.me/spotctrbot" target="_blank" style="color:#29b6f6;font-size:13px;display:flex;align-items:center;gap:5px;text-decoration:none;font-weight:700">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-        Telegram Mini App
-      </a>
-    </div>
-  </section>
+  <div id="tz-notice" style="text-align:right;color:var(--gray);font-size:11px;margin-bottom:14px"></div>
+  <section id="home" class="section active">
+    <div id="home-notices"></div>
+    <h2>Featured Campaigns</h2>
+    <div id="home-featured"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+    <div id="ending-soon-section" style="display:none">
+      <h2>Ending Soon</h2>
+      <div id="home-urgent"></div>
+    </div>
+    <div id="tg-cta-home" style="margin-top:8px"></div>
+    <div class="community-cta">
+      <div style="font-size:32px;margin-bottom:7px">💬</div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:5px">Join the Community Chat</div>
+      <p style="color:var(--gray);font-size:13px;margin-bottom:13px">Discuss campaigns, share screenshots, and connect with fellow traders.</p>
+      <button class="btn-cta" onclick="nav('community')">Open Chat</button>
+    </div>
+  </section>
+  <section id="reward" class="section"><h2>Reward Board</h2><div id="reward-content"><div class="loading"><div class="spinner"></div>Loading...</div></div></section>
+  <section id="dash" class="section"><h2>My Dashboard</h2><div id="dash-balance"></div><div id="dash-joined"></div><div id="dash-calc"></div></section>
+  <section id="community" class="section">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;flex-wrap:wrap;gap:7px">
+      <h2 style="margin-bottom:0">Community Chat</h2>
+      <button class="share-btn share-btn-share" onclick="shareWebsite()">🔗 Share Spot CTR</button>
+    </div>
+    <div class="chat-wrap">
+      <div class="chat-header">
+        <span style="font-size:19px">💬</span>
+        <div class="chat-header-info"><div class="chat-header-title">Spot CTR Community</div><div class="chat-header-sub">Open chat, no account needed</div></div>
+        <button class="chat-hdr-btn" onclick="showRules()">📋 Rules</button>
+      </div>
+      <div class="chat-lang-bar">
+        <label>Read in:</label>
+        <select class="lang-select" id="lang-select" onchange="setReadLang(this.value)"></select>
+        <button class="chat-hdr-btn" id="btn-auto-tx" onclick="toggleAutoTranslate()">🔄 Auto</button>
+        <button class="chat-hdr-btn" id="btn-send-en" onclick="toggleSendAsEnglish()">↑ EN</button>
+      </div>
+      <div id="chat-notif-bar" class="chat-notif-bar" style="display:none">
+        <span class="nbar-txt" id="notif-bar-txt"></span>
+        <button onclick="navigateToReply()">View</button>
+        <button onclick="document.getElementById('chat-notif-bar').style.display='none'" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:16px;padding:0">×</button>
+      </div>
+      <div class="chat-messages" id="chat-messages"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+      <div class="reply-indicator" id="reply-indicator">
+        <span style="color:var(--gray);font-size:11px;flex-shrink:0" id="reply-mode-label">Replying to</span>
+        <span class="ri-text" id="reply-indicator-text"></span>
+        <button class="reply-cancel" onclick="cancelReplyOrEdit()">✕</button>
+      </div>
+      <div class="chat-input-area">
+        <button class="chat-img-btn" onclick="document.getElementById('img-file-input').click()" title="Send image">📷</button>
+        <input class="chat-input" id="chat-input" type="text" placeholder="Type a message (Enter to send)" maxlength="2000" onkeydown="chatKeydown(event)">
+        <button class="chat-send-btn" onclick="sendMsg()">Send</button>
+      </div>
+    </div>
+  </section>
+  <section id="about" class="section">
+    <h2>About Spot CTR</h2>
+    <div class="about-warn">⚠️ <strong>Important Disclaimer:</strong> Spot CTR is an independent, personal tracking tool — <strong>not affiliated with or endorsed by Binance</strong> in any way. All reward estimates are based on personal analysis only. This is not a business website. Always verify campaign details directly on Binance's official platform before making any decisions.</div>
+    <div class="about-card">
+      <div class="about-card-title">📱 Available On</div>
+      <p>Spot CTR is available as both a web app and a Telegram Mini App. Use whichever is most convenient for you. Both platforms offer identical features.</p>
+      <div class="platform-links">
+        <a href="https://spotctr.online" target="_blank" class="platform-btn platform-btn-web">🌐 Web App at spotctr.online</a>
+        <a href="https://t.me/spotctrbot" target="_blank" class="platform-btn platform-btn-tg">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;flex-shrink:0"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Telegram Mini App @spotctrbot
+        </a>
+      </div>
+    </div>
+    <div class="about-card"><div class="about-card-title">🧭 What is Spot CTR?</div><p>Spot CTR is a personal tracking platform built to help Binance spot traders keep up with active trading campaigns, all in one clean and organized interface. Instead of hunting through multiple Binance pages, you can check estimated rewards, countdowns, difficulty levels, and campaign details right here in one place.<br><br>This platform focuses exclusively on <strong>Binance spot trading campaigns</strong>. It was created out of a genuine need to simplify how traders track their participation in these campaigns and save valuable time in the process.</p></div>
+    <div class="about-card"><div class="about-card-title">📊 How Are Estimates Calculated?</div><p>All reward estimates shown on this platform are based on personal analysis and independent research. Figures are calculated using available campaign parameters such as total pool size, number of participants, minimum trading volume requirements, and any publicly visible leaderboard data.<br><br>For volume-based campaigns, the estimate shows approximately how many tokens you might earn per $1,000 of trading volume. For equal-share campaigns, it shows the estimated share per participant based on the current participant count.<br><br><strong>These estimates are not guaranteed to be accurate.</strong> Actual rewards depend on real-time market conditions, total participation at campaign end, and Binance's final distribution. Always treat these numbers as rough guidance and not a guarantee.<br><br>As an additional safety measure, displayed estimates may be slightly adjusted above or below the raw calculated value to reduce large discrepancies between shown estimates and actual distributions.</p></div>
+    <div class="about-card"><div class="about-card-title">🎯 Which Campaigns Are Listed Here?</div><p>Only campaigns that offer a genuine, realistic earning opportunity to <strong>regular, everyday traders</strong> are added here. Many Binance campaigns include two separate reward pools: one for top-ranked traders (e.g. top 200 or top 1,000 with large fixed prizes), and a <strong>general pool</strong> shared among all other participants.<br><br>The top-rank special prizes are <strong>excluded from calculations here</strong>. Those positions are almost always dominated by market makers and institutional traders, not regular traders. For example:<br><br><span style="background:var(--bg);border-radius:7px;padding:10px 13px;display:block;margin-top:10px;border-left:3px solid var(--yellow)">A campaign awards <strong>$100,000</strong> to the Top 1,000 ranked traders, and <strong>$800,000</strong> shared equally among all traders ranked 1,001 and above. On Spot CTR, only the <strong>$800,000 general pool</strong> is calculated and displayed.</span></p></div>
+    <div class="about-card"><div class="about-card-title">⏳ A Note on Timeliness and Updates</div><p>Spot CTR is maintained by a <strong>single person</strong>. When Binance launches a new campaign or tournament, it may take some time before it appears here. Campaign parameters may also take a few days to update after a campaign goes live.<br><br>Your patience is sincerely appreciated. If you don't see a campaign here yet, it will likely be added soon. Please check back later.</p></div>
+    <div class="about-card"><div class="about-card-title">⚠️ Reward Delays and Postponements</div><p>Occasionally, Binance postpones a reward distribution deadline, sometimes indefinitely. When this happens, the affected campaign on Spot CTR will be marked with a <span class="postponed-badge" style="vertical-align:middle">⚠️ Delayed</span> badge, or a <span class="tbd-badge" style="vertical-align:middle">⏳ TBD</span> badge if no new date has been announced. Important notices about delays are shown directly on the homepage as a highlighted notice card.</p></div>
+    <div class="about-card"><div class="about-card-title">🔍 Do Your Own Research</div><p>This platform exists to save you time and give you a useful starting point — <strong>not to make trading decisions for you</strong>. Always verify campaign details directly on <strong>Binance's official platform</strong> before committing any funds. No information here should be taken as financial advice. Trade responsibly.</p></div>
+    <div class="about-card"><div class="about-card-title">📣 Share Spot CTR</div><p>If Spot CTR has saved you time or helped you discover a campaign, please share it with your fellow traders! Every share helps keep this project alive and growing.</p>
+      <div class="share-bar" style="margin-top:13px"><button class="share-btn share-btn-share" onclick="shareWebsite()">🔗 Share Spot CTR</button><button class="share-btn share-btn-copy" onclick="copyLink('https://spotctr.online')">📋 Copy Link</button></div>
+    </div>
+    <div style="margin-top:16px;display:flex;align-items:center;gap:13px">
+      <span style="color:var(--gray);font-size:13px">Follow on X:</span>
+      <a href="https://x.com/_IBIAL" target="_blank" style="color:var(--gray)"><svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://t.me/spotctrbot" target="_blank" style="color:#29b6f6;font-size:13px;display:flex;align-items:center;gap:5px;text-decoration:none;font-weight:700">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        Telegram Mini App
+      </a>
+    </div>
+  </section>
 </main>
 
 <!-- FAB -->
 <button class="fab-chat" id="fab-chat" onclick="nav('community')" title="Community Chat">💬<span class="fab-notif" id="fab-notif" style="display:none"></span></button>
 <div class="fab-tooltip" id="fab-tooltip">
-  <span>💬 Join the community! Discuss campaigns and get tips from fellow traders.</span>
-  <button onclick="dismissFab(event)" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:16px;padding:0;line-height:1;flex-shrink:0">×</button>
+  <span>💬 Join the community! Discuss campaigns and get tips from fellow traders.</span>
+  <button onclick="dismissFab(event)" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:16px;padding:0;line-height:1;flex-shrink:0">×</button>
 </div>
 
 <div id="rxn-popup"></div>
@@ -583,140 +583,140 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 
 <!-- ADMIN MODAL — Notice tab removed -->
 <div class="modal" id="admin-modal" onclick="handleModalBgClick(event,'admin-modal')">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <span class="close-modal" onclick="closeModal('admin-modal')">&#x2715;</span>
-    <div id="admin-campaign-form">
-      <h2 id="modal-title" style="border:none;padding:0;display:block;margin-bottom:14px">Add New Campaign</h2>
-      <form id="campaign-form" onsubmit="saveCampaign(event)">
-        <input type="hidden" id="camp-id">
-        <span class="form-section-label">Campaign Info</span>
-        <div class="form-group"><label>Campaign Title (optional)</label><input type="text" id="camp-title"></div>
-        <div class="form-group"><label>Token Name (e.g. $BNB)</label><input type="text" id="token-name" required></div>
-        <div class="form-group"><label>CoinGecko Coin ID</label><input type="text" id="coin-id" required><div class="hint">e.g. binancecoin</div></div>
-        <div class="form-group"><label>Logo Image URL</label><input type="url" id="logo-url" required></div>
-        <div class="form-group"><label>Official Campaign Link (optional)</label><input type="url" id="camp-link"><div class="hint">Direct link to Binance campaign page</div></div>
-        <div class="form-group"><label>Total Reward Pool (Token Amount)</label><input type="number" id="reward-pool-amt" required></div>
-        <div class="form-group"><label>Campaign Type</label>
-          <select id="camp-type" onchange="onTypeChange()">
-            <option value="volume">Volume Based</option><option value="equal">Equal Share</option>
-            <option value="ranked_fixed">Ranked Fixed</option><option value="points_lb">Points + Leaderboard</option>
-            <option value="points_nl">Points (No LB)</option><option value="unestimable">Unestimable</option>
-          </select></div>
-        <div id="fg-volume"><div class="form-group"><label>Est. Tokens per $1,000 Volume</label><input type="number" step="any" id="est-reward"></div></div>
-        <div id="fg-equal" style="display:none"><div class="form-group"><label>Total Participants</label><input type="number" id="max-participants" min="1"></div></div>
-        <div id="fg-ranked" style="display:none">
-          <div class="form-group"><label>Rank Start</label><input type="number" id="rank-start" min="1"></div>
-          <div class="form-group"><label>Rank End</label><input type="number" id="rank-end" min="1"></div>
-          <div class="form-group"><label>Min Eligible Volume (USD)</label><input type="number" id="rank-elig-vol" min="0"></div>
-          <div class="form-group"><label>Est. Min Volume to Enter Rank (USD)</label><input type="number" id="rank-min-vol" min="0"></div>
-        </div>
-        <div id="fg-points-lb" style="display:none">
-          <div class="form-group"><label>Total Points on Leaderboard</label><input type="number" id="total-points" min="1"></div>
-          <div class="form-group"><label>Est. Cost per Point (USD)</label><input type="number" step="any" id="cost-per-point"></div>
-        </div>
-        <div id="fg-points-nl" style="display:none">
-          <div class="form-group"><label>Minimum Points Required</label><input type="number" id="min-points" min="1"></div>
-          <div class="form-group"><label>Est. Cost per Point (USD)</label><input type="number" step="any" id="cost-per-point-nl"></div>
-        </div>
-        <hr class="form-divider">
-        <span class="form-section-label">Min Volume Requirement</span>
-        <div class="form-group"><select id="has-min-vol" onchange="onMinVolChange()"><option value="no">No minimum</option><option value="yes">Yes, set minimum</option></select></div>
-        <div id="fg-minvol" style="display:none"><div class="form-group"><label>Min Volume (USD)</label><input type="number" id="min-volume" min="0"></div></div>
-        <hr class="form-divider">
-        <span class="form-section-label">Difficulty</span>
-        <div class="form-group"><select id="camp-difficulty"><option value="">Not Set</option><option value="Easy">Easy</option><option value="Medium">Medium</option><option value="Hard">Hard</option><option value="Very Hard">Very Hard</option></select></div>
-        <hr class="form-divider">
-        <span class="form-section-label">Campaign Period</span>
-        <div class="form-group"><label>Start Date and Time</label><input type="datetime-local" id="start-date" required></div>
-        <div class="form-group"><label>End Date and Time</label><input type="datetime-local" id="end-date" required></div>
-        <hr class="form-divider">
-        <span class="form-section-label">Reward Distribution</span>
-        <div class="form-group"><label>Reward Deadline</label><input type="datetime-local" id="reward-date"><div class="hint">Leave blank if not announced</div></div>
-        <div class="form-group">
-          <div class="check-row"><input type="checkbox" id="reward-tbd"><label for="reward-tbd">Reward date not yet announced (TBD)</label></div>
-          <div class="check-row"><input type="checkbox" id="reward-postponed"><label for="reward-postponed">⚠️ Mark reward as postponed/delayed</label></div>
-        </div>
-        <hr class="form-divider">
-        <span class="form-section-label">🚀 Early Bird Boost Multiplier</span>
-        <div class="form-group">
-          <div class="check-row">
-            <input type="checkbox" id="has-ebb" onchange="onEbbToggle()">
-            <label for="has-ebb">This campaign has an Early Bird Boost Multiplier</label>
-          </div>
-        </div>
-        <div id="fg-ebb" style="display:none">
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px">
-            <div style="font-size:11px;color:var(--gray);margin-bottom:10px;line-height:1.6">
-              📋 Add each time slot with its multiplier. Set start &amp; end times in <strong style="color:var(--yellow)">UTC</strong> format (YYYY-MM-DD HH:MM). You can add as many slots as needed.
-            </div>
-            <div class="ebb-slots-wrap" id="ebb-slots-container"></div>
-            <button type="button" class="ebb-add-btn" onclick="addEbbSlot()">+ Add Time Slot</button>
-          </div>
-        </div>
-        <button type="submit" class="btn-submit" id="submit-btn">Publish Campaign</button>
-      </form>
-    </div>
-  </div>
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-modal" onclick="closeModal('admin-modal')">&#x2715;</span>
+    <div id="admin-campaign-form">
+      <h2 id="modal-title" style="border:none;padding:0;display:block;margin-bottom:14px">Add New Campaign</h2>
+      <form id="campaign-form" onsubmit="saveCampaign(event)">
+        <input type="hidden" id="camp-id">
+        <span class="form-section-label">Campaign Info</span>
+        <div class="form-group"><label>Campaign Title (optional)</label><input type="text" id="camp-title"></div>
+        <div class="form-group"><label>Token Name (e.g. $BNB)</label><input type="text" id="token-name" required></div>
+        <div class="form-group"><label>CoinGecko Coin ID</label><input type="text" id="coin-id" required><div class="hint">e.g. binancecoin</div></div>
+        <div class="form-group"><label>Logo Image URL</label><input type="url" id="logo-url" required></div>
+        <div class="form-group"><label>Official Campaign Link (optional)</label><input type="url" id="camp-link"><div class="hint">Direct link to Binance campaign page</div></div>
+        <div class="form-group"><label>Total Reward Pool (Token Amount)</label><input type="number" id="reward-pool-amt" required></div>
+        <div class="form-group"><label>Campaign Type</label>
+          <select id="camp-type" onchange="onTypeChange()">
+            <option value="volume">Volume Based</option><option value="equal">Equal Share</option>
+            <option value="ranked_fixed">Ranked Fixed</option><option value="points_lb">Points + Leaderboard</option>
+            <option value="points_nl">Points (No LB)</option><option value="unestimable">Unestimable</option>
+          </select></div>
+        <div id="fg-volume"><div class="form-group"><label>Est. Tokens per $1,000 Volume</label><input type="number" step="any" id="est-reward"></div></div>
+        <div id="fg-equal" style="display:none"><div class="form-group"><label>Total Participants</label><input type="number" id="max-participants" min="1"></div></div>
+        <div id="fg-ranked" style="display:none">
+          <div class="form-group"><label>Rank Start</label><input type="number" id="rank-start" min="1"></div>
+          <div class="form-group"><label>Rank End</label><input type="number" id="rank-end" min="1"></div>
+          <div class="form-group"><label>Min Eligible Volume (USD)</label><input type="number" id="rank-elig-vol" min="0"></div>
+          <div class="form-group"><label>Est. Min Volume to Enter Rank (USD)</label><input type="number" id="rank-min-vol" min="0"></div>
+        </div>
+        <div id="fg-points-lb" style="display:none">
+          <div class="form-group"><label>Total Points on Leaderboard</label><input type="number" id="total-points" min="1"></div>
+          <div class="form-group"><label>Est. Cost per Point (USD)</label><input type="number" step="any" id="cost-per-point"></div>
+        </div>
+        <div id="fg-points-nl" style="display:none">
+          <div class="form-group"><label>Minimum Points Required</label><input type="number" id="min-points" min="1"></div>
+          <div class="form-group"><label>Est. Cost per Point (USD)</label><input type="number" step="any" id="cost-per-point-nl"></div>
+        </div>
+        <hr class="form-divider">
+        <span class="form-section-label">Min Volume Requirement</span>
+        <div class="form-group"><select id="has-min-vol" onchange="onMinVolChange()"><option value="no">No minimum</option><option value="yes">Yes, set minimum</option></select></div>
+        <div id="fg-minvol" style="display:none"><div class="form-group"><label>Min Volume (USD)</label><input type="number" id="min-volume" min="0"></div></div>
+        <hr class="form-divider">
+        <span class="form-section-label">Difficulty</span>
+        <div class="form-group"><select id="camp-difficulty"><option value="">Not Set</option><option value="Easy">Easy</option><option value="Medium">Medium</option><option value="Hard">Hard</option><option value="Very Hard">Very Hard</option></select></div>
+        <hr class="form-divider">
+        <span class="form-section-label">Campaign Period</span>
+        <div class="form-group"><label>Start Date and Time</label><input type="datetime-local" id="start-date" required></div>
+        <div class="form-group"><label>End Date and Time</label><input type="datetime-local" id="end-date" required></div>
+        <hr class="form-divider">
+        <span class="form-section-label">Reward Distribution</span>
+        <div class="form-group"><label>Reward Deadline</label><input type="datetime-local" id="reward-date"><div class="hint">Leave blank if not announced</div></div>
+        <div class="form-group">
+          <div class="check-row"><input type="checkbox" id="reward-tbd"><label for="reward-tbd">Reward date not yet announced (TBD)</label></div>
+          <div class="check-row"><input type="checkbox" id="reward-postponed"><label for="reward-postponed">⚠️ Mark reward as postponed/delayed</label></div>
+        </div>
+        <hr class="form-divider">
+        <span class="form-section-label">🚀 Early Bird Boost Multiplier</span>
+        <div class="form-group">
+          <div class="check-row">
+            <input type="checkbox" id="has-ebb" onchange="onEbbToggle()">
+            <label for="has-ebb">This campaign has an Early Bird Boost Multiplier</label>
+          </div>
+        </div>
+        <div id="fg-ebb" style="display:none">
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px">
+            <div style="font-size:11px;color:var(--gray);margin-bottom:10px;line-height:1.6">
+              📋 Add each time slot with its multiplier. Set start &amp; end times in <strong style="color:var(--yellow)">UTC</strong> format (YYYY-MM-DD HH:MM). You can add as many slots as needed.
+            </div>
+            <div class="ebb-slots-wrap" id="ebb-slots-container"></div>
+            <button type="button" class="ebb-add-btn" onclick="addEbbSlot()">+ Add Time Slot</button>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit" id="submit-btn">Publish Campaign</button>
+      </form>
+    </div>
+  </div>
 </div>
 
 <!-- DETAILS MODAL -->
 <div class="modal" id="details-modal" onclick="handleModalBgClick(event,'details-modal')">
-  <div class="modal-content" style="width:480px" onclick="event.stopPropagation()">
-    <span class="close-modal" onclick="closeModal('details-modal')">&#x2715;</span>
-    <div class="det-header">
-      <img id="det-logo" src="" class="det-logo">
-      <div class="det-name" id="det-name"></div>
-      <div class="det-title" id="det-title" style="display:none"></div>
-      <div id="det-type-badge" style="margin:4px 0 3px"></div>
-      <div class="det-price" id="det-price"></div>
-    </div>
-    <div id="det-official-wrap"></div>
-    <div class="det-info-box">
-      <div class="det-row"><span class="det-key">Starts</span><span class="det-val" id="det-start"></span></div>
-      <div class="det-row"><span class="det-key">Ends</span><span class="det-val" id="det-end"></span></div>
-      <div class="det-row" id="det-reward-row" style="display:none"><span class="det-key">Reward Deadline</span><span class="det-val" id="det-reward-date"></span></div>
-      <div class="det-row"><span class="det-key">Total Pool</span><span class="det-val" id="det-pool"></span></div>
-      <div class="det-row" id="det-est-row"><span class="det-key">Est. Reward</span><span class="det-val" id="det-est"></span></div>
-      </div>
-    <div class="det-timer-box">
-      <div class="det-timer-label" id="det-timer-label">Time Remaining</div>
-      <div class="det-timer state-active" id="det-timer"></div>
-    </div>
-    <div id="det-ebb-wrap"></div>
-    <button id="det-join-btn" onclick="toggleJoinFromModal()" style="width:100%;padding:9px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--gray);transition:all .2s;margin-bottom:9px">+ Join Campaign</button>
-    <div id="det-share-wrap"></div>
-  </div>
+  <div class="modal-content" style="width:480px" onclick="event.stopPropagation()">
+    <span class="close-modal" onclick="closeModal('details-modal')">&#x2715;</span>
+    <div class="det-header">
+      <img id="det-logo" src="" class="det-logo">
+      <div class="det-name" id="det-name"></div>
+      <div class="det-title" id="det-title" style="display:none"></div>
+      <div id="det-type-badge" style="margin:4px 0 3px"></div>
+      <div class="det-price" id="det-price"></div>
+    </div>
+    <div id="det-official-wrap"></div>
+    <div class="det-info-box">
+      <div class="det-row"><span class="det-key">Starts</span><span class="det-val" id="det-start"></span></div>
+      <div class="det-row"><span class="det-key">Ends</span><span class="det-val" id="det-end"></span></div>
+      <div class="det-row" id="det-reward-row" style="display:none"><span class="det-key">Reward Deadline</span><span class="det-val" id="det-reward-date"></span></div>
+      <div class="det-row"><span class="det-key">Total Pool</span><span class="det-val" id="det-pool"></span></div>
+      <div class="det-row" id="det-est-row"><span class="det-key">Est. Reward</span><span class="det-val" id="det-est"></span></div>
+    </div>
+    <div class="det-timer-box">
+      <div class="det-timer-label" id="det-timer-label">Time Remaining</div>
+      <div class="det-timer state-active" id="det-timer"></div>
+    </div>
+    <div id="det-ebb-wrap"></div>
+    <button id="det-join-btn" onclick="toggleJoinFromModal()" style="width:100%;padding:9px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--gray);transition:all .2s;margin-bottom:9px">+ Join Campaign</button>
+    <div id="det-share-wrap"></div>
+  </div>
 </div>
 
 <!-- RULES MODAL -->
 <div class="modal" id="rules-modal" onclick="handleModalBgClick(event,'rules-modal')">
-  <div class="modal-content" style="width:520px" onclick="event.stopPropagation()">
-    <span class="close-modal" onclick="closeModal('rules-modal')">&#x2715;</span>
-    <h2 style="border:none;padding:0;display:block;margin-bottom:14px">📋 Community Rules and Features</h2>
-    <div class="rule-section">Community Guidelines</div>
-    <div class="rule-item"><strong>🚫 No harmful content</strong>Offensive language, hate speech, racism, or personal attacks are strictly prohibited.</div>
-    <div class="rule-item"><strong>🔞 No adult or inappropriate content</strong>Sending explicit images or any inappropriate material is not allowed.</div>
-    <div class="rule-item"><strong>💰 No financial advice</strong>Do not give or take financial advice here. Always DYOR.</div>
-    <div class="rule-item"><strong>🔗 No spam or scams</strong>Do not share referral links, promotional spam, phishing links, or impersonate others.</div>
-    <div class="rule-item"><strong>✅ Keep it relevant</strong>This community is for discussing Binance spot trading campaigns.</div>
-    <div class="rule-section">Chat Features</div>
-    <div class="rule-item"><strong>📷 Image sharing</strong>Click 📷 to share a screenshot. Images are automatically compressed.</div>
-    <div class="rule-item"><strong>↩ Reply</strong>Click "Reply" on any message to quote and respond directly.</div>
-    <div class="rule-item"><strong>😊 Reactions</strong>Click the 😊 button to add emoji reactions.</div>
-    <div class="rule-item"><strong>✏️ Edit</strong>Click "Edit" on your own message to modify it.</div>
-    <div class="rule-item"><strong>🗑️ Delete</strong>Messages can be deleted using the admin password only.</div>
-    <div class="rule-item"><strong>🌐 Send as English (↑ EN)</strong>Auto-translate your message to English before sending.</div>
-    <div class="rule-item"><strong>🔄 Auto-translate</strong>Select your language and toggle "🔄 Auto" to translate all messages.</div>
-    <div class="rule-item"><strong>📩 Reply notifications</strong>A banner appears if someone replied to your messages while you were away.</div>
-  </div>
+  <div class="modal-content" style="width:520px" onclick="event.stopPropagation()">
+    <span class="close-modal" onclick="closeModal('rules-modal')">&#x2715;</span>
+    <h2 style="border:none;padding:0;display:block;margin-bottom:14px">📋 Community Rules and Features</h2>
+    <div class="rule-section">Community Guidelines</div>
+    <div class="rule-item"><strong>🚫 No harmful content</strong>Offensive language, hate speech, racism, or personal attacks are strictly prohibited.</div>
+    <div class="rule-item"><strong>🔞 No adult or inappropriate content</strong>Sending explicit images or any inappropriate material is not allowed.</div>
+    <div class="rule-item"><strong>💰 No financial advice</strong>Do not give or take financial advice here. Always DYOR.</div>
+    <div class="rule-item"><strong>🔗 No spam or scams</strong>Do not share referral links, promotional spam, phishing links, or impersonate others.</div>
+    <div class="rule-item"><strong>✅ Keep it relevant</strong>This community is for discussing Binance spot trading campaigns.</div>
+    <div class="rule-section">Chat Features</div>
+    <div class="rule-item"><strong>📷 Image sharing</strong>Click 📷 to share a screenshot. Images are automatically compressed.</div>
+    <div class="rule-item"><strong>↩ Reply</strong>Click "Reply" on any message to quote and respond directly.</div>
+    <div class="rule-item"><strong>😊 Reactions</strong>Click the 😊 button to add emoji reactions.</div>
+    <div class="rule-item"><strong>✏️ Edit</strong>Click "Edit" on your own message to modify it.</div>
+    <div class="rule-item"><strong>🗑️ Delete</strong>Messages can be deleted using the admin password only.</div>
+    <div class="rule-item"><strong>🌐 Send as English (↑ EN)</strong>Auto-translate your message to English before sending.</div>
+    <div class="rule-item"><strong>🔄 Auto-translate</strong>Select your language and toggle "🔄 Auto" to translate all messages.</div>
+    <div class="rule-item"><strong>📩 Reply notifications</strong>A banner appears if someone replied to your messages while you were away.</div>
+  </div>
 </div>
 
 <!-- NOTICE MODAL -->
 <div class="modal" id="notice-modal" onclick="handleModalBgClick(event,'notice-modal')">
-  <div class="modal-content" style="width:440px" onclick="event.stopPropagation()">
-    <span class="close-modal" onclick="closeModal('notice-modal')">&#x2715;</span>
-    <div id="notice-modal-body"></div>
-  </div>
+  <div class="modal-content" style="width:440px" onclick="event.stopPropagation()">
+    <span class="close-modal" onclick="closeModal('notice-modal')">&#x2715;</span>
+    <div id="notice-modal-body"></div>
+  </div>
 </div>
 
 <script>
@@ -727,63 +727,63 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 var tg=window.Telegram&&window.Telegram.WebApp?window.Telegram.WebApp:null;
 var isTgApp=!!(tg && tg.initData && tg.initData.length > 0);
 window.tgUpdateBackBtn=function(){
-  if(!tg)return;
-  var MODAL_IDS=['admin-modal','details-modal','rules-modal','notice-modal'];
-  var anyOpen=MODAL_IDS.some(function(id){var el=document.getElementById(id);return el&&el.style.display==='flex';});
-  var imgOpen=(function(){var iv=document.getElementById('img-viewer');return iv&&iv.style.display==='flex';})();
-  var menuOpen=(function(){var mm=document.getElementById('mobile-menu');return mm&&mm.style.display==='flex';})();
-  if(anyOpen||imgOpen||menuOpen)tg.BackButton.show();else tg.BackButton.hide();
+  if(!tg)return;
+  var MODAL_IDS=['admin-modal','details-modal','rules-modal','notice-modal'];
+  var anyOpen=MODAL_IDS.some(function(id){var el=document.getElementById(id);return el&&el.style.display==='flex';});
+  var imgOpen=(function(){var iv=document.getElementById('img-viewer');return iv&&iv.style.display==='flex';})();
+  var menuOpen=(function(){var mm=document.getElementById('mobile-menu');return mm&&mm.style.display==='flex';})();
+  if(anyOpen||imgOpen||menuOpen)tg.BackButton.show();else tg.BackButton.hide();
 };
 if(isTgApp){
-  tg.ready();tg.expand();
-  if(!localStorage.getItem('spotctr_theme_manual')){
-    localStorage.setItem('spotctr_theme',tg.colorScheme==='light'?'light':'dark');
-  }
-  tg.BackButton.onClick(function(){
-    var iv=document.getElementById('img-viewer');
-    if(iv&&iv.style.display==='flex'){iv.style.display='none';window.tgUpdateBackBtn();return;}
-    var MODAL_IDS=['notice-modal','rules-modal','details-modal','admin-modal'];
-    for(var i=0;i<MODAL_IDS.length;i++){var el=document.getElementById(MODAL_IDS[i]);if(el&&el.style.display==='flex'){el.style.display='none';window.tgUpdateBackBtn();return;}}
-    var mm=document.getElementById('mobile-menu');
-    if(mm&&mm.style.display==='flex'){mm.style.display='none';window.tgUpdateBackBtn();}
-  });
-  tg.onEvent('themeChanged',function(){
-    if(localStorage.getItem('spotctr_theme_manual'))return;
-    var s=tg.colorScheme;localStorage.setItem('spotctr_theme',s==='light'?'light':'dark');isDark=s!=='light';applyTheme();
-  });
+  tg.ready();tg.expand();
+  if(!localStorage.getItem('spotctr_theme_manual')){
+    localStorage.setItem('spotctr_theme',tg.colorScheme==='light'?'light':'dark');
+  }
+  tg.BackButton.onClick(function(){
+    var iv=document.getElementById('img-viewer');
+    if(iv&&iv.style.display==='flex'){iv.style.display='none';window.tgUpdateBackBtn();return;}
+    var MODAL_IDS=['notice-modal','rules-modal','details-modal','admin-modal'];
+    for(var i=0;i<MODAL_IDS.length;i++){var el=document.getElementById(MODAL_IDS[i]);if(el&&el.style.display==='flex'){el.style.display='none';window.tgUpdateBackBtn();return;}}
+    var mm=document.getElementById('mobile-menu');
+    if(mm&&mm.style.display==='flex'){mm.style.display='none';window.tgUpdateBackBtn();}
+  });
+  tg.onEvent('themeChanged',function(){
+    if(localStorage.getItem('spotctr_theme_manual'))return;
+    var s=tg.colorScheme;localStorage.setItem('spotctr_theme',s==='light'?'light':'dark');isDark=s!=='light';applyTheme();
+  });
 }
 
 /* ══ BROWSER BACK BUTTON HANDLING (Fix #5) ══
-   Push a history state when a modal/feature opens.
-   When user presses back, intercept popstate and close
-   the modal instead of navigating away. */
+   Push a history state when a modal/feature opens.
+   When user presses back, intercept popstate and close
+   the modal instead of navigating away. */
 var _historyModalOpen=false;
 function pushModalHistory(){
-  if(!_historyModalOpen){
-    history.pushState({spotctrModal:true},'');
-    _historyModalOpen=true;
-  }
+  if(!_historyModalOpen){
+    history.pushState({spotctrModal:true},'');
+    _historyModalOpen=true;
+  }
 }
 function popModalHistory(){
-  if(_historyModalOpen){
-    _historyModalOpen=false;
-    /* don't go.back() — we consumed this state */
-  }
+  if(_historyModalOpen){
+    _historyModalOpen=false;
+    /* don't go.back() — we consumed this state */
+  }
 }
 window.addEventListener('popstate',function(e){
-  if(e.state&&e.state.spotctrModal){
-    _historyModalOpen=false;
-    /* Close any open modal/overlay */
-    var iv=document.getElementById('img-viewer');
-    if(iv&&iv.style.display==='flex'){iv.style.display='none';window.tgUpdateBackBtn();return;}
-    var MODAL_IDS=['notice-modal','rules-modal','details-modal','admin-modal'];
-    for(var i=0;i<MODAL_IDS.length;i++){
-      var el=document.getElementById(MODAL_IDS[i]);
-      if(el&&el.style.display==='flex'){el.style.display='none';window.tgUpdateBackBtn();return;}
-    }
-    var mm=document.getElementById('mobile-menu');
-    if(mm&&mm.style.display==='flex'){mm.style.display='none';window.tgUpdateBackBtn();return;}
-  }
+  if(e.state&&e.state.spotctrModal){
+    _historyModalOpen=false;
+    /* Close any open modal/overlay */
+    var iv=document.getElementById('img-viewer');
+    if(iv&&iv.style.display==='flex'){iv.style.display='none';window.tgUpdateBackBtn();return;}
+    var MODAL_IDS=['notice-modal','rules-modal','details-modal','admin-modal'];
+    for(var i=0;i<MODAL_IDS.length;i++){
+      var el=document.getElementById(MODAL_IDS[i]);
+      if(el&&el.style.display==='flex'){el.style.display='none';window.tgUpdateBackBtn();return;}
+    }
+    var mm=document.getElementById('mobile-menu');
+    if(mm&&mm.style.display==='flex'){mm.style.display='none';window.tgUpdateBackBtn();return;}
+  }
 });
 
 /* ══ CONFIG ══ */
@@ -798,7 +798,7 @@ var isAdmin=false,detailCampId=null;
 var userData=JSON.parse(localStorage.getItem('spotctr_user')||'{"joined":{}}');
 
 /* FIX #6: Accurate timezone from browser — works with VPN too since
-   Intl.DateTimeFormat uses the OS/browser timezone setting, not IP */
+   Intl.DateTimeFormat uses the OS/browser timezone setting, not IP */
 var userTZ=Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 var allExpanded=true,endedExpanded=false,tickCount=0,urgCamps=[],urgIdx=0,noticeIdx=0;
@@ -810,42 +810,42 @@ var detEbbIntervalId=null;
 /* ══ THEME ══ */
 var isDark=localStorage.getItem('spotctr_theme')!=='light';
 function applyTheme(){
-  document.body.classList.toggle('light',!isDark);
-  var b=document.getElementById('theme-btn');if(b)b.innerText=isDark?'🌙':'☀️';
-  var mb=document.getElementById('mobile-theme-btn');if(mb)mb.innerText=(isDark?'🌙':'☀️')+' Toggle Theme';
+  document.body.classList.toggle('light',!isDark);
+  var b=document.getElementById('theme-btn');if(b)b.innerText=isDark?'🌙':'☀️';
+  var mb=document.getElementById('mobile-theme-btn');if(mb)mb.innerText=(isDark?'🌙':'☀️')+' Toggle Theme';
 }
 function toggleTheme(){
-  isDark=!isDark;
-  localStorage.setItem('spotctr_theme',isDark?'dark':'light');
-  localStorage.setItem('spotctr_theme_manual','1');
-  applyTheme();
+  isDark=!isDark;
+  localStorage.setItem('spotctr_theme',isDark?'dark':'light');
+  localStorage.setItem('spotctr_theme_manual','1');
+  applyTheme();
 }
 window.toggleTheme=toggleTheme;
 applyTheme();
 
 /* FIX #6: Show actual user timezone in notice bar */
 (function updateTzNotice(){
-  var el=document.getElementById('tz-notice');
-  if(!el)return;
-  el.innerText='Times shown in your local timezone ('+userTZ+')';
+  var el=document.getElementById('tz-notice');
+  if(!el)return;
+  el.innerText='Times shown in your local timezone ('+userTZ+')';
 })();
 
 /* ══ TG CTA CARD ══ */
 var TG_ICON_SVG='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:26px;height:26px"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>';
 function renderTgCtaCard(){
-  var el=document.getElementById('tg-cta-home');if(!el)return;
-  el.innerHTML='<div class="tg-cta-card"><div class="tg-cta-icon" style="color:#29b6f6">'+TG_ICON_SVG+'</div><div class="tg-cta-info"><div class="tg-cta-title">Also available as a Telegram Mini App</div><div class="tg-cta-sub">Track campaigns directly inside Telegram. Same features, no switching needed.</div></div><a href="https://t.me/spotctrbot" target="_blank" class="tg-cta-btn">Open in Telegram</a></div>';
+  var el=document.getElementById('tg-cta-home');if(!el)return;
+  el.innerHTML='<div class="tg-cta-card"><div class="tg-cta-icon" style="color:#29b6f6">'+TG_ICON_SVG+'</div><div class="tg-cta-info"><div class="tg-cta-title">Also available as a Telegram Mini App</div><div class="tg-cta-sub">Track campaigns directly inside Telegram. Same features, no switching needed.</div></div><a href="https://t.me/spotctrbot" target="_blank" class="tg-cta-btn">Open in Telegram</a></div>';
 }
 renderTgCtaCard();
 
 /* ══ SMART SHARE ══ */
 function getCampaignShareUrl(campId){
-  if(isTgApp)return 'https://t.me/spotctrbot?startapp=camp_'+campId;
-  return SITE_URL+'/#campaign='+campId;
+  if(isTgApp)return 'https://t.me/spotctrbot?startapp=camp_'+campId;
+  return SITE_URL+'/#campaign='+campId;
 }
 function shareWebsite(){
-  if(isTgApp)shareLink(TG_BOT_URL,'Check out Spot CTR on Telegram');
-  else shareLink(SITE_URL,'Spot CTR: Binance Campaign Tracker');
+  if(isTgApp)shareLink(TG_BOT_URL,'Check out Spot CTR on Telegram');
+  else shareLink(SITE_URL,'Spot CTR: Binance Campaign Tracker');
 }
 window.shareWebsite=shareWebsite;
 
@@ -900,7 +900,7 @@ function getCampById(id){for(var i=0;i<campaigns.length;i++){if(campaigns[i].id=
 
 /* ══ MODAL BACKDROP CLOSE ══ */
 function handleModalBgClick(e,modalId){
-  if(e.target===document.getElementById(modalId))closeModal(modalId);
+  if(e.target===document.getElementById(modalId))closeModal(modalId);
 }
 window.handleModalBgClick=handleModalBgClick;
 
@@ -914,20 +914,20 @@ setInterval(showFabTooltip,45000);
 
 /* ══ FIREBASE LISTENERS ══ */
 db.ref('campaigns').on('value',function(snap){
-  campaigns=snap.val()?Object.values(snap.val()):[];
-  fetchPrices();renderViews();updateGBB();
-  if(document.getElementById('dash').classList.contains('active'))renderDashboard();
+  campaigns=snap.val()?Object.values(snap.val()):[];
+  fetchPrices();renderViews();updateGBB();
+  if(document.getElementById('dash').classList.contains('active'))renderDashboard();
 });
 db.ref('notices').on('value',function(snap){
-  var raw=snap.val();
-  if(raw){
-    notices=Object.values(raw).filter(function(n){return n&&n.active;}).sort(function(a,b){return b.createdAt-a.createdAt;});
-  }else{
-    notices=[];
-  }
-  noticeIdx=0;
-  renderNotices();
-  renderViews();
+  var raw=snap.val();
+  if(raw){
+    notices=Object.values(raw).filter(function(n){return n&&n.active;}).sort(function(a,b){return b.createdAt-a.createdAt;});
+  }else{
+    notices=[];
+  }
+  noticeIdx=0;
+  renderNotices();
+  renderViews();
 });
 
 async function fetchPrices(){if(!campaigns.length)return;var ids=[];campaigns.forEach(function(c){if(ids.indexOf(c.coinId)<0)ids.push(c.coinId);});try{var r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids='+ids.join(',')+'&vs_currencies=usd');livePrices=await r.json();localStorage.setItem('spotctr_prices',JSON.stringify(livePrices));renderViews();updateGBB();if(document.getElementById('dash').classList.contains('active'))renderDashboard();}catch(e){}}
@@ -937,133 +937,133 @@ function toggleMenu(){var m=document.getElementById('mobile-menu');var willOpen=
 window.toggleMenu=toggleMenu;
 
 function nav(id){
-  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
-  document.querySelectorAll('.desktop-nav button,.mobile-menu button').forEach(function(b){b.classList.remove('active');});
-  var sec=document.getElementById(id);if(sec)sec.classList.add('active');
-  var nb=document.getElementById('nav-'+id);if(nb)nb.classList.add('active');
-  fabSetVisible(id==='home');
-  try{sessionStorage.setItem('spotctr_nav',id);}catch(e){}
-  if(id==='dash')renderDashboard();
-  else if(id==='community')initChat();
-  else renderViews();
-  if(tg)tg.MainButton.hide();
+  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.desktop-nav button,.mobile-menu button').forEach(function(b){b.classList.remove('active');});
+  var sec=document.getElementById(id);if(sec)sec.classList.add('active');
+  var nb=document.getElementById('nav-'+id);if(nb)nb.classList.add('active');
+  fabSetVisible(id==='home');
+  try{sessionStorage.setItem('spotctr_nav',id);}catch(e){}
+  if(id==='dash')renderDashboard();
+  else if(id==='community')initChat();
+  else renderViews();
+  if(tg)tg.MainButton.hide();
 }
 window.nav=nav;
 
 /* ══ ADMIN ══ */
 function promptAdmin(){
-  var p=prompt('Enter Admin Password:');
-  if(p==='@Sakib2020'){
-    isAdmin=true;
-    document.getElementById('campaign-form').reset();
-    document.getElementById('camp-id').value='';
-    document.getElementById('modal-title').innerText='Add New Campaign';
-    document.getElementById('submit-btn').innerText='Publish Campaign';
-    onTypeChange();onMinVolChange();
-    ebbSlotCount=0;
-    document.getElementById('ebb-slots-container').innerHTML='';
-    document.getElementById('fg-ebb').style.display='none';
-    openModal('admin-modal');
-  }else if(p!==null)alert('Incorrect Password!');
+  var p=prompt('Enter Admin Password:');
+  if(p==='@Sakib2020'){
+    isAdmin=true;
+    document.getElementById('campaign-form').reset();
+    document.getElementById('camp-id').value='';
+    document.getElementById('modal-title').innerText='Add New Campaign';
+    document.getElementById('submit-btn').innerText='Publish Campaign';
+    onTypeChange();onMinVolChange();
+    ebbSlotCount=0;
+    document.getElementById('ebb-slots-container').innerHTML='';
+    document.getElementById('fg-ebb').style.display='none';
+    openModal('admin-modal');
+  }else if(p!==null)alert('Incorrect Password!');
 }
 window.promptAdmin=promptAdmin;
 function authAction(cb){if(isAdmin){cb();return;}var p=prompt('Enter Admin Password:');if(p==='@Sakib2020'){isAdmin=true;cb();}else if(p!==null)alert('Incorrect Password!');}
 
 /* ══ EARLY BIRD BOOST ADMIN FUNCTIONS ══ */
 function onEbbToggle(){
-  var cb=document.getElementById('has-ebb');
-  var fg=document.getElementById('fg-ebb');
-  if(!cb||!fg)return;
-  fg.style.display=cb.checked?'':'none';
-  if(cb.checked&&ebbSlotCount===0){addEbbSlot();}
+  var cb=document.getElementById('has-ebb');
+  var fg=document.getElementById('fg-ebb');
+  if(!cb||!fg)return;
+  fg.style.display=cb.checked?'':'none';
+  if(cb.checked&&ebbSlotCount===0){addEbbSlot();}
 }
 window.onEbbToggle=onEbbToggle;
 
 function addEbbSlot(startUtc,endUtc,mult){
-  var container=document.getElementById('ebb-slots-container');
-  if(!container)return;
-  var idx=ebbSlotCount++;
-  var div=document.createElement('div');
-  div.className='ebb-slot-row';
-  div.id='ebb-slot-'+idx;
-  div.innerHTML=
-    '<input type="text" placeholder="Start UTC (YYYY-MM-DD HH:MM)" value="'+(startUtc||'')+'" id="ebb-start-'+idx+'" style="min-width:160px">'
-    +'<input type="text" placeholder="End UTC (YYYY-MM-DD HH:MM)" value="'+(endUtc||'')+'" id="ebb-end-'+idx+'" style="min-width:160px">'
-    +'<input type="text" placeholder="Mult (e.g. 2x)" value="'+(mult||'')+'" id="ebb-mult-'+idx+'" style="max-width:80px">'
-    +'<button type="button" class="ebb-remove-btn" onclick="removeEbbSlot(\'ebb-slot-'+idx+'\')">✕</button>';
-  container.appendChild(div);
+  var container=document.getElementById('ebb-slots-container');
+  if(!container)return;
+  var idx=ebbSlotCount++;
+  var div=document.createElement('div');
+  div.className='ebb-slot-row';
+  div.id='ebb-slot-'+idx;
+  div.innerHTML=
+    '<input type="text" placeholder="Start UTC (YYYY-MM-DD HH:MM)" value="'+(startUtc||'')+'" id="ebb-start-'+idx+'" style="min-width:160px">'
+    +'<input type="text" placeholder="End UTC (YYYY-MM-DD HH:MM)" value="'+(endUtc||'')+'" id="ebb-end-'+idx+'" style="min-width:160px">'
+    +'<input type="text" placeholder="Mult (e.g. 2x)" value="'+(mult||'')+'" id="ebb-mult-'+idx+'" style="max-width:80px">'
+    +'<button type="button" class="ebb-remove-btn" onclick="removeEbbSlot(\'ebb-slot-'+idx+'\')">✕</button>';
+  container.appendChild(div);
 }
 window.addEbbSlot=addEbbSlot;
 
 function removeEbbSlot(slotId){
-  var el=document.getElementById(slotId);
-  if(el)el.remove();
+  var el=document.getElementById(slotId);
+  if(el)el.remove();
 }
 window.removeEbbSlot=removeEbbSlot;
 
 function getEbbSlots(){
-  var slots=[];
-  var container=document.getElementById('ebb-slots-container');
-  if(!container)return slots;
-  var rows=container.querySelectorAll('.ebb-slot-row');
-  rows.forEach(function(row){
-    var id=row.id.replace('ebb-slot-','');
-    var s=document.getElementById('ebb-start-'+id);
-    var e=document.getElementById('ebb-end-'+id);
-    var m=document.getElementById('ebb-mult-'+id);
-    if(s&&e&&m&&s.value.trim()&&e.value.trim()&&m.value.trim()){
-      slots.push({startUtc:s.value.trim(),endUtc:e.value.trim(),multiplier:m.value.trim()});
-    }
-  });
-  return slots;
+  var slots=[];
+  var container=document.getElementById('ebb-slots-container');
+  if(!container)return slots;
+  var rows=container.querySelectorAll('.ebb-slot-row');
+  rows.forEach(function(row){
+    var id=row.id.replace('ebb-slot-','');
+    var s=document.getElementById('ebb-start-'+id);
+    var e=document.getElementById('ebb-end-'+id);
+    var m=document.getElementById('ebb-mult-'+id);
+    if(s&&e&&m&&s.value.trim()&&e.value.trim()&&m.value.trim()){
+      slots.push({startUtc:s.value.trim(),endUtc:e.value.trim(),multiplier:m.value.trim()});
+    }
+  });
+  return slots;
 }
 
 /* ══ Notice admin — kept for Firebase compatibility, just not shown in UI ══ */
 function buildNoticeCampList(selectedIds){
-  var el=document.getElementById('notice-camp-cb-list');
-  if(!el)return;
-  var active=campaigns.filter(isCampActive);
-  if(!active.length){el.innerHTML='<div style="padding:10px;color:var(--gray);font-size:12px;text-align:center">No active campaigns</div>';return;}
-  var html='';
-  active.forEach(function(c){
-    var checked=selectedIds&&selectedIds.indexOf(c.id)>=0;
-    html+='<label class="camp-cb-item">'
-      +'<input type="checkbox" value="'+escHtml(c.id)+'"'+(checked?' checked':'')+' onchange="updateNoticeSelectedTags()">'
-      +(c.logo?'<img src="'+escHtml(c.logo)+'" class="camp-cb-logo" onerror="this.style.display=\'none\'">':'')
-      +'<span class="camp-cb-name">'+escHtml(c.name)+'</span>'
-      +'</label>';
-  });
-  el.innerHTML=html;
-  updateNoticeSelectedTags();
+  var el=document.getElementById('notice-camp-cb-list');
+  if(!el)return;
+  var active=campaigns.filter(isCampActive);
+  if(!active.length){el.innerHTML='<div style="padding:10px;color:var(--gray);font-size:12px;text-align:center">No active campaigns</div>';return;}
+  var html='';
+  active.forEach(function(c){
+    var checked=selectedIds&&selectedIds.indexOf(c.id)>=0;
+    html+='<label class="camp-cb-item">'
+      +'<input type="checkbox" value="'+escHtml(c.id)+'"'+(checked?' checked':'')+' onchange="updateNoticeSelectedTags()">'
+      +(c.logo?'<img src="'+escHtml(c.logo)+'" class="camp-cb-logo" onerror="this.style.display=\'none\'">':'')
+      +'<span class="camp-cb-name">'+escHtml(c.name)+'</span>'
+      +'</label>';
+  });
+  el.innerHTML=html;
+  updateNoticeSelectedTags();
 }
 function updateNoticeSelectedTags(){
-  var el=document.getElementById('notice-camp-selected');if(!el)return;
-  var checks=document.querySelectorAll('#notice-camp-cb-list input[type=checkbox]:checked');
-  var html='';
-  checks.forEach(function(cb){
-    var c=getCampById(cb.value);if(!c)return;
-    html+='<span class="camp-cb-tag">'+(c.logo?'<img src="'+escHtml(c.logo)+'" style="width:14px;height:14px;border-radius:50%;object-fit:cover">':'')+escHtml(c.name)+'</span>';
-  });
-  el.innerHTML=html;
+  var el=document.getElementById('notice-camp-selected');if(!el)return;
+  var checks=document.querySelectorAll('#notice-camp-cb-list input[type=checkbox]:checked');
+  var html='';
+  checks.forEach(function(cb){
+    var c=getCampById(cb.value);if(!c)return;
+    html+='<span class="camp-cb-tag">'+(c.logo?'<img src="'+escHtml(c.logo)+'" style="width:14px;height:14px;border-radius:50%;object-fit:cover">':'')+escHtml(c.name)+'</span>';
+  });
+  el.innerHTML=html;
 }
 window.updateNoticeSelectedTags=updateNoticeSelectedTags;
 function getSelectedCampIds(){
-  var checks=document.querySelectorAll('#notice-camp-cb-list input[type=checkbox]:checked');
-  var ids=[];checks.forEach(function(cb){ids.push(cb.value);});return ids;
+  var checks=document.querySelectorAll('#notice-camp-cb-list input[type=checkbox]:checked');
+  var ids=[];checks.forEach(function(cb){ids.push(cb.value);});return ids;
 }
 
 /* ══ MODAL OPEN/CLOSE ══ */
 function openModal(id){
-  document.getElementById(id).style.display='flex';
-  pushModalHistory();
-  window.tgUpdateBackBtn();
+  document.getElementById(id).style.display='flex';
+  pushModalHistory();
+  window.tgUpdateBackBtn();
 }
 function closeModal(id){
-  document.getElementById(id).style.display='none';
-  window.tgUpdateBackBtn();
-  if(id==='details-modal'){
-    if(detEbbIntervalId){clearInterval(detEbbIntervalId);detEbbIntervalId=null;}
-  }
+  document.getElementById(id).style.display='none';
+  window.tgUpdateBackBtn();
+  if(id==='details-modal'){
+    if(detEbbIntervalId){clearInterval(detEbbIntervalId);detEbbIntervalId=null;}
+  }
 }
 window.openModal=openModal;window.closeModal=closeModal;
 function showRules(){openModal('rules-modal');}
@@ -1077,82 +1077,82 @@ function gv(id){var el=document.getElementById(id);return el?el.value:'';}
 function gn(id){return parseFloat(gv(id))||0;}
 
 function saveCampaign(e){
-  e.preventDefault();
-  var id=gv('camp-id')||Date.now().toString(),t=gv('camp-type'),hasMin=gv('has-min-vol')==='yes';
-  var rdTBD=document.getElementById('reward-tbd')?document.getElementById('reward-tbd').checked:false;
-  var rdPost=document.getElementById('reward-postponed')?document.getElementById('reward-postponed').checked:false;
-  var hasEbb=document.getElementById('has-ebb')?document.getElementById('has-ebb').checked:false;
-  var ebbSlots=hasEbb?getEbbSlots():null;
-  db.ref('campaigns/'+id).set({
-    id:id,title:gv('camp-title'),name:gv('token-name'),coinId:gv('coin-id').toLowerCase(),logo:gv('logo-url'),
-    campLink:gv('camp-link')||null,poolAmt:gn('reward-pool-amt'),type:t,difficulty:gv('camp-difficulty')||null,
-    estReward:t==='volume'?gv('est-reward'):'0',maxParticipants:t==='equal'?gn('max-participants'):null,
-    rankStart:t==='ranked_fixed'?gn('rank-start'):null,rankEnd:t==='ranked_fixed'?gn('rank-end'):null,
-    rankEligVol:t==='ranked_fixed'?gn('rank-elig-vol'):null,rankMinVol:t==='ranked_fixed'?gn('rank-min-vol'):null,
-    totalPoints:t==='points_lb'?gn('total-points'):null,costPerPoint:t==='points_lb'?gn('cost-per-point'):null,
-    minPoints:t==='points_nl'?gn('min-points'):null,costPerPointNl:t==='points_nl'?gn('cost-per-point-nl'):null,
-    minVolume:hasMin?gn('min-volume'):0,start:gv('start-date'),end:gv('end-date'),
-    rewardDate:(!rdTBD&&gv('reward-date'))||null,rewardDateTBD:rdTBD||null,rewardPostponed:rdPost||null,
-    hasEarlyBird:hasEbb||null,earlyBirdSlots:(hasEbb&&ebbSlots&&ebbSlots.length)?ebbSlots:null
-  });
-  closeModal('admin-modal');
+  e.preventDefault();
+  var id=gv('camp-id')||Date.now().toString(),t=gv('camp-type'),hasMin=gv('has-min-vol')==='yes';
+  var rdTBD=document.getElementById('reward-tbd')?document.getElementById('reward-tbd').checked:false;
+  var rdPost=document.getElementById('reward-postponed')?document.getElementById('reward-postponed').checked:false;
+  var hasEbb=document.getElementById('has-ebb')?document.getElementById('has-ebb').checked:false;
+  var ebbSlots=hasEbb?getEbbSlots():null;
+  db.ref('campaigns/'+id).set({
+    id:id,title:gv('camp-title'),name:gv('token-name'),coinId:gv('coin-id').toLowerCase(),logo:gv('logo-url'),
+    campLink:gv('camp-link')||null,poolAmt:gn('reward-pool-amt'),type:t,difficulty:gv('camp-difficulty')||null,
+    estReward:t==='volume'?gv('est-reward'):'0',maxParticipants:t==='equal'?gn('max-participants'):null,
+    rankStart:t==='ranked_fixed'?gn('rank-start'):null,rankEnd:t==='ranked_fixed'?gn('rank-end'):null,
+    rankEligVol:t==='ranked_fixed'?gn('rank-elig-vol'):null,rankMinVol:t==='ranked_fixed'?gn('rank-min-vol'):null,
+    totalPoints:t==='points_lb'?gn('total-points'):null,costPerPoint:t==='points_lb'?gn('cost-per-point'):null,
+    minPoints:t==='points_nl'?gn('min-points'):null,costPerPointNl:t==='points_nl'?gn('cost-per-point-nl'):null,
+    minVolume:hasMin?gn('min-volume'):0,start:gv('start-date'),end:gv('end-date'),
+    rewardDate:(!rdTBD&&gv('reward-date'))||null,rewardDateTBD:rdTBD||null,rewardPostponed:rdPost||null,
+    hasEarlyBird:hasEbb||null,earlyBirdSlots:(hasEbb&&ebbSlots&&ebbSlots.length)?ebbSlots:null
+  });
+  closeModal('admin-modal');
 }
 window.saveCampaign=saveCampaign;
 
 /* ══ SAVE NOTICE (kept for Firebase ops, not shown in UI) ══ */
 function saveNotice(e){
-  if(e)e.preventDefault();
-  var id=Date.now().toString();
-  var noticeData={id:id,title:'',description:'',linkedCampIds:null,createdAt:Date.now(),active:true};
-  db.ref('notices/'+id).set(noticeData);
+  if(e)e.preventDefault();
+  var id=Date.now().toString();
+  var noticeData={id:id,title:'',description:'',linkedCampIds:null,createdAt:Date.now(),active:true};
+  db.ref('notices/'+id).set(noticeData);
 }
 
 /* ══ EDIT NOTICE ══ */
 function editNotice(id,ev){
-  if(ev)ev.stopPropagation();
-  authAction(function(){
-    var n=null;for(var i=0;i<notices.length;i++){if(notices[i].id===id){n=notices[i];break;}}
-    if(!n)return;
-    /* Since notice form is removed from UI, just show the notice modal for editing is no longer needed */
-  });
+  if(ev)ev.stopPropagation();
+  authAction(function(){
+    var n=null;for(var i=0;i<notices.length;i++){if(notices[i].id===id){n=notices[i];break;}}
+    if(!n)return;
+    /* Since notice form is removed from UI, just show the notice modal for editing is no longer needed */
+  });
 }
 window.editNotice=editNotice;
 
 function deleteCamp(id,ev){ev.stopPropagation();authAction(function(){if(confirm('Delete?'))db.ref('campaigns/'+id).remove();});}
 window.deleteCamp=deleteCamp;
 function editCamp(id,ev){
-  ev.stopPropagation();
-  authAction(function(){
-    var c=getCampById(id);if(!c)return;
-    var fs={id:'camp-id',title:'camp-title',name:'token-name',coinId:'coin-id',logo:'logo-url',campLink:'camp-link',poolAmt:'reward-pool-amt',type:'camp-type',difficulty:'camp-difficulty',estReward:'est-reward',maxParticipants:'max-participants',rankStart:'rank-start',rankEnd:'rank-end',rankEligVol:'rank-elig-vol',rankMinVol:'rank-min-vol',totalPoints:'total-points',costPerPoint:'cost-per-point',minPoints:'min-points',costPerPointNl:'cost-per-point-nl',start:'start-date',end:'end-date',rewardDate:'reward-date'};
-    Object.keys(fs).forEach(function(k){var el=document.getElementById(fs[k]);if(el)el.value=c[k]||'';});
-    document.getElementById('has-min-vol').value=c.minVolume>0?'yes':'no';onMinVolChange();
-    document.getElementById('min-volume').value=c.minVolume>0?c.minVolume:'';
-    document.getElementById('reward-tbd').checked=!!c.rewardDateTBD;
-    document.getElementById('reward-postponed').checked=!!c.rewardPostponed;
-    var ebbCb=document.getElementById('has-ebb');
-    var fgEbb=document.getElementById('fg-ebb');
-    var ebbContainer=document.getElementById('ebb-slots-container');
-    ebbSlotCount=0;
-    if(ebbContainer)ebbContainer.innerHTML='';
-    if(ebbCb){
-      ebbCb.checked=!!(c.hasEarlyBird&&c.earlyBirdSlots&&c.earlyBirdSlots.length);
-      if(fgEbb)fgEbb.style.display=ebbCb.checked?'':'none';
-      if(ebbCb.checked&&c.earlyBirdSlots){
-        c.earlyBirdSlots.forEach(function(slot){addEbbSlot(slot.startUtc,slot.endUtc,slot.multiplier);});
-      }
-    }
-    document.getElementById('modal-title').innerText='Edit Campaign';
-    document.getElementById('submit-btn').innerText='Save Changes';
-    onTypeChange();openModal('admin-modal');
-  });
+  ev.stopPropagation();
+  authAction(function(){
+    var c=getCampById(id);if(!c)return;
+    var fs={id:'camp-id',title:'camp-title',name:'token-name',coinId:'coin-id',logo:'logo-url',campLink:'camp-link',poolAmt:'reward-pool-amt',type:'camp-type',difficulty:'camp-difficulty',estReward:'est-reward',maxParticipants:'max-participants',rankStart:'rank-start',rankEnd:'rank-end',rankEligVol:'rank-elig-vol',rankMinVol:'rank-min-vol',totalPoints:'total-points',costPerPoint:'cost-per-point',minPoints:'min-points',costPerPointNl:'cost-per-point-nl',start:'start-date',end:'end-date',rewardDate:'reward-date'};
+    Object.keys(fs).forEach(function(k){var el=document.getElementById(fs[k]);if(el)el.value=c[k]||'';});
+    document.getElementById('has-min-vol').value=c.minVolume>0?'yes':'no';onMinVolChange();
+    document.getElementById('min-volume').value=c.minVolume>0?c.minVolume:'';
+    document.getElementById('reward-tbd').checked=!!c.rewardDateTBD;
+    document.getElementById('reward-postponed').checked=!!c.rewardPostponed;
+    var ebbCb=document.getElementById('has-ebb');
+    var fgEbb=document.getElementById('fg-ebb');
+    var ebbContainer=document.getElementById('ebb-slots-container');
+    ebbSlotCount=0;
+    if(ebbContainer)ebbContainer.innerHTML='';
+    if(ebbCb){
+      ebbCb.checked=!!(c.hasEarlyBird&&c.earlyBirdSlots&&c.earlyBirdSlots.length);
+      if(fgEbb)fgEbb.style.display=ebbCb.checked?'':'none';
+      if(ebbCb.checked&&c.earlyBirdSlots){
+        c.earlyBirdSlots.forEach(function(slot){addEbbSlot(slot.startUtc,slot.endUtc,slot.multiplier);});
+      }
+    }
+    document.getElementById('modal-title').innerText='Edit Campaign';
+    document.getElementById('submit-btn').innerText='Save Changes';
+    onTypeChange();openModal('admin-modal');
+  });
 }
 window.editCamp=editCamp;
 
 /* ══ SHARE ══ */
 function shareLink(url,title){
-  if(tg&&isTgApp){tg.openTelegramLink('https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(title||'Spot CTR'));return;}
-  if(navigator.share)navigator.share({title:title||'Spot CTR',url:url}).catch(function(){});else copyLink(url);
+  if(tg&&isTgApp){tg.openTelegramLink('https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(title||'Spot CTR'));return;}
+  if(navigator.share)navigator.share({title:title||'Spot CTR',url:url}).catch(function(){});else copyLink(url);
 }
 window.shareLink=shareLink;
 function copyLink(url){navigator.clipboard.writeText(url).then(function(){alert('Link copied!');}).catch(function(){prompt('Copy this link:',url);});}
@@ -1160,21 +1160,21 @@ window.copyLink=copyLink;
 
 /* ══ DEEP LINK HANDLING ══ */
 setTimeout(function(){
-  var campId='';
-  var hash=window.location.hash;
-  if(hash&&hash.indexOf('#campaign=')>=0)campId=hash.replace('#campaign=','');
-  if(!campId&&isTgApp&&tg&&tg.initDataUnsafe&&tg.initDataUnsafe.start_param){
-    var sp=tg.initDataUnsafe.start_param;
-    if(sp.indexOf('camp_')===0)campId=sp.replace('camp_','');
-    else campId=sp;
-  }
-  if(!campId)return;
-  var att=0;
-  var iv=setInterval(function(){
-    att++;
-    var c=getCampById(campId);
-    if(c||att>20){clearInterval(iv);if(c)showDetails(encodeURIComponent(JSON.stringify(c)));}
-  },300);
+  var campId='';
+  var hash=window.location.hash;
+  if(hash&&hash.indexOf('#campaign=')>=0)campId=hash.replace('#campaign=','');
+  if(!campId&&isTgApp&&tg&&tg.initDataUnsafe&&tg.initDataUnsafe.start_param){
+    var sp=tg.initDataUnsafe.start_param;
+    if(sp.indexOf('camp_')===0)campId=sp.replace('camp_','');
+    else campId=sp;
+  }
+  if(!campId)return;
+  var att=0;
+  var iv=setInterval(function(){
+    att++;
+    var c=getCampById(campId);
+    if(c||att>20){clearInterval(iv);if(c)showDetails(encodeURIComponent(JSON.stringify(c)));}
+  },300);
 },500);
 
 /* ══ JOIN ══ */
@@ -1191,170 +1191,170 @@ function updateGBB(){var bal=getBalance(),cnt=0;campaigns.forEach(function(c){if
 
 /* ══ RENDER NOTICES ══ */
 function renderNotices(){
-  var el=document.getElementById('home-notices');
-  if(!el)return;
-  if(!notices.length){el.innerHTML='';return;}
-  var html='<div class="notice-section">'+buildNoticeSlot()+'</div>';
-  el.innerHTML=html;
-  attachNoticeSwipe();
+  var el=document.getElementById('home-notices');
+  if(!el)return;
+  if(!notices.length){el.innerHTML='';return;}
+  var html='<div class="notice-section">'+buildNoticeSlot()+'</div>';
+  el.innerHTML=html;
+  attachNoticeSwipe();
 }
 
 /* ══ RENDER VIEWS ══ */
 function renderViews(){
-  var empty='<div class="empty-state"><h3>No Campaigns Yet</h3><p>Click "+ Add" to get started.</p></div>';
-  if(!campaigns.length){
-    document.getElementById('home-featured').innerHTML=empty;
-    document.getElementById('home-urgent').innerHTML='';
-    document.getElementById('ending-soon-section').style.display='none';
-    document.getElementById('reward-content').innerHTML=empty;
-    return;
-  }
-  var nowMs=Date.now(),running=[],rewPending=[],fullyEnded=[];
-  campaigns.forEach(function(c){
-    var eT=new Date(c.end).getTime(),rT=c.rewardDate?new Date(c.rewardDate).getTime():null;
-    if(eT>nowMs)running.push(c);
-    else if(rT&&rT>nowMs)rewPending.push(c);
-    else fullyEnded.push(c);
-  });
-  function byVal(arr){return arr.slice().sort(function(a,b){return(b.poolAmt*(priceOf(b.coinId)||0))-(a.poolAmt*(priceOf(a.coinId)||0));});}
-  var sorted=byVal(running);
+  var empty='<div class="empty-state"><h3>No Campaigns Yet</h3><p>Click "+ Add" to get started.</p></div>';
+  if(!campaigns.length){
+    document.getElementById('home-featured').innerHTML=empty;
+    document.getElementById('home-urgent').innerHTML='';
+    document.getElementById('ending-soon-section').style.display='none';
+    document.getElementById('reward-content').innerHTML=empty;
+    return;
+  }
+  var nowMs=Date.now(),running=[],rewPending=[],fullyEnded=[];
+  campaigns.forEach(function(c){
+    var eT=new Date(c.end).getTime(),rT=c.rewardDate?new Date(c.rewardDate).getTime():null;
+    if(eT>nowMs)running.push(c);
+    else if(rT&&rT>nowMs)rewPending.push(c);
+    else fullyEnded.push(c);
+  });
+  function byVal(arr){return arr.slice().sort(function(a,b){return(b.poolAmt*(priceOf(b.coinId)||0))-(a.poolAmt*(priceOf(a.coinId)||0));});}
+  var sorted=byVal(running);
 
-  /* Reward Board */
-  if(campaigns.length){
-    var rHtml=sorted.length?sorted.map(function(c){return buildListCard(c,false);}).join(''):'<div class="empty-state"><h3>No Active Campaigns</h3></div>';
-    if(rewPending.length){rewPending.sort(function(a,b){return new Date(a.rewardDate)-new Date(b.rewardDate);});rHtml+=divH('⏳ Awaiting Reward Distribution','var(--green)');rHtml+=rewPending.map(function(c){return buildListCard(c,false);}).join('');}
-    if(fullyEnded.length){rHtml+=divH('✓ Ended Campaigns','var(--gray)');rHtml+=byVal(fullyEnded).map(function(c){return buildListCard(c,true);}).join('');}
-    document.getElementById('reward-content').innerHTML=rHtml;
-  }else{
-    document.getElementById('reward-content').innerHTML=empty;
-  }
+  /* Reward Board */
+  if(campaigns.length){
+    var rHtml=sorted.length?sorted.map(function(c){return buildListCard(c,false);}).join(''):'<div class="empty-state"><h3>No Active Campaigns</h3></div>';
+    if(rewPending.length){rewPending.sort(function(a,b){return new Date(a.rewardDate)-new Date(b.rewardDate);});rHtml+=divH('⏳ Awaiting Reward Distribution','var(--green)');rHtml+=rewPending.map(function(c){return buildListCard(c,false);}).join('');}
+    if(fullyEnded.length){rHtml+=divH('✓ Ended Campaigns','var(--gray)');rHtml+=byVal(fullyEnded).map(function(c){return buildListCard(c,true);}).join('');}
+    document.getElementById('reward-content').innerHTML=rHtml;
+  }else{
+    document.getElementById('reward-content').innerHTML=empty;
+  }
 
-  /* Home Featured */
-  var featuredHtml='';
-  if(sorted.length===0&&rewPending.length===0){
-    featuredHtml='<div class="empty-state"><h3>No Active Campaigns</h3></div>';
-  }else{
-    var s0=sorted[0]||rewPending[0],s1=sorted[1]||(sorted[0]?rewPending[0]:rewPending[1]);
-    var left2=s0?buildHeroCard(s0,false):'';
-    var right2=s1&&s1!==s0?buildHeroCard(s1,false):'';
-    featuredHtml='<div class="home-grid">'+left2+right2+'</div>';
-  }
-  document.getElementById('home-featured').innerHTML=featuredHtml;
+  /* Home Featured */
+  var featuredHtml='';
+  if(sorted.length===0&&rewPending.length===0){
+    featuredHtml='<div class="empty-state"><h3>No Active Campaigns</h3></div>';
+  }else{
+    var s0=sorted[0]||rewPending[0],s1=sorted[1]||(sorted[0]?rewPending[0]:rewPending[1]);
+    var left2=s0?buildHeroCard(s0,false):'';
+    var right2=s1&&s1!==s0?buildHeroCard(s1,false):'';
+    featuredHtml='<div class="home-grid">'+left2+right2+'</div>';
+  }
+  document.getElementById('home-featured').innerHTML=featuredHtml;
 
-  /* Ending Soon */
-  var THREE_DAYS=3*24*60*60*1000;
-  urgCamps=running.filter(function(c){return new Date(c.end).getTime()-nowMs<=THREE_DAYS;}).sort(function(a,b){return new Date(a.end)-new Date(b.end);});
-  var endingSec=document.getElementById('ending-soon-section');
-  if(urgCamps.length){
-    urgIdx=0;
-    document.getElementById('home-urgent').innerHTML=buildCarousel(urgCamps,'urg');
-    endingSec.style.display='';
-  }else{
-    document.getElementById('home-urgent').innerHTML='';
-    endingSec.style.display='none';
-  }
+  /* Ending Soon */
+  var THREE_DAYS=3*24*60*60*1000;
+  urgCamps=running.filter(function(c){return new Date(c.end).getTime()-nowMs<=THREE_DAYS;}).sort(function(a,b){return new Date(a.end)-new Date(b.end);});
+  var endingSec=document.getElementById('ending-soon-section');
+  if(urgCamps.length){
+    urgIdx=0;
+    document.getElementById('home-urgent').innerHTML=buildCarousel(urgCamps,'urg');
+    endingSec.style.display='';
+  }else{
+    document.getElementById('home-urgent').innerHTML='';
+    endingSec.style.display='none';
+  }
 }
 
 /* ══ NOTICE SLOT ══ */
 function buildNoticeSlot(){
-  if(!notices.length)return'';
-  if(noticeIdx>=notices.length)noticeIdx=0;
-  var n=notices[noticeIdx];
-  var linkedIds=[];
-  if(n.linkedCampIds&&Array.isArray(n.linkedCampIds))linkedIds=n.linkedCampIds;
-  else if(n.linkedCampId)linkedIds=[n.linkedCampId];
-  var linkedCamps=linkedIds.map(function(id){return getCampById(id);}).filter(Boolean);
+  if(!notices.length)return'';
+  if(noticeIdx>=notices.length)noticeIdx=0;
+  var n=notices[noticeIdx];
+  var linkedIds=[];
+  if(n.linkedCampIds&&Array.isArray(n.linkedCampIds))linkedIds=n.linkedCampIds;
+  else if(n.linkedCampId)linkedIds=[n.linkedCampId];
+  var linkedCamps=linkedIds.map(function(id){return getCampById(id);}).filter(Boolean);
 
-  var html='<div class="notice-card" id="notice-card-main" onclick="showNotice(\''+escHtml(n.id)+'\')">';
-  html+='<div class="notice-header-badge">📢 NOTICE</div>';
-  html+='<div class="notice-title">'+escHtml(n.title)+'</div>';
-  if(linkedCamps.length){
-    html+='<div class="notice-camps-row">';
-    linkedCamps.forEach(function(c){
-      html+='<span class="notice-camp-chip">'
-        +(c.logo?'<img src="'+escHtml(c.logo)+'" class="notice-camp-logo" onerror="this.style.display=\'none\'">':'')
-        +'<span class="notice-camp-name">'+escHtml(c.name)+'</span></span>';
-    });
-    html+='</div>';
-  }
-  html+='<div class="notice-desc">'+escHtml(n.description)+'</div>';
-  html+='<div class="notice-footer"><span class="notice-view-btn">Tap for details</span>';
-  if(notices.length>1){
-    html+='<div class="notice-nav">'
-      +'<button class="notice-nav-btn" onclick="event.stopPropagation();moveNotice(-1)">‹</button>'
-      +'<span style="font-size:10px;color:var(--gray);align-self:center">'+(noticeIdx+1)+'/'+notices.length+'</span>'
-      +'<button class="notice-nav-btn" onclick="event.stopPropagation();moveNotice(1)">›</button>'
-      +(isAdmin?'<button class="notice-nav-btn" onclick="event.stopPropagation();deleteNotice(\''+n.id+'\')" style="background:var(--rdim);border-color:var(--rdim);color:var(--red)">×</button>':'')
-      +'</div>';
-  }else if(isAdmin){
-    html+='<div class="notice-nav">'
-      +'<button class="notice-nav-btn" onclick="event.stopPropagation();deleteNotice(\''+n.id+'\')" style="background:var(--rdim);border-color:var(--rdim);color:var(--red)">×</button>'
-      +'</div>';
-  }
-  html+='</div>';
-  if(notices.length>1){
-    html+='<div class="notice-dots">';
-    for(var d=0;d<notices.length;d++){html+='<button class="n-dot'+(d===noticeIdx?' active':'')+'" onclick="event.stopPropagation();goNoticeDot('+d+')"></button>';}
-    html+='</div>';
-  }
-  html+='</div>';
-  return html;
+  var html='<div class="notice-card" id="notice-card-main" onclick="showNotice(\''+escHtml(n.id)+'\')">';
+  html+='<div class="notice-header-badge">📢 NOTICE</div>';
+  html+='<div class="notice-title">'+escHtml(n.title)+'</div>';
+  if(linkedCamps.length){
+    html+='<div class="notice-camps-row">';
+    linkedCamps.forEach(function(c){
+      html+='<span class="notice-camp-chip">'
+        +(c.logo?'<img src="'+escHtml(c.logo)+'" class="notice-camp-logo" onerror="this.style.display=\'none\'">':'')
+        +'<span class="notice-camp-name">'+escHtml(c.name)+'</span></span>';
+    });
+    html+='</div>';
+  }
+  html+='<div class="notice-desc">'+escHtml(n.description)+'</div>';
+  html+='<div class="notice-footer"><span class="notice-view-btn">Tap for details</span>';
+  if(notices.length>1){
+    html+='<div class="notice-nav">'
+      +'<button class="notice-nav-btn" onclick="event.stopPropagation();moveNotice(-1)">‹</button>'
+      +'<span style="font-size:10px;color:var(--gray);align-self:center">'+(noticeIdx+1)+'/'+notices.length+'</span>'
+      +'<button class="notice-nav-btn" onclick="event.stopPropagation();moveNotice(1)">›</button>'
+      +(isAdmin?'<button class="notice-nav-btn" onclick="event.stopPropagation();deleteNotice(\''+n.id+'\')" style="background:var(--rdim);border-color:var(--rdim);color:var(--red)">×</button>':'')
+      +'</div>';
+  }else if(isAdmin){
+    html+='<div class="notice-nav">'
+      +'<button class="notice-nav-btn" onclick="event.stopPropagation();deleteNotice(\''+n.id+'\')" style="background:var(--rdim);border-color:var(--rdim);color:var(--red)">×</button>'
+      +'</div>';
+  }
+  html+='</div>';
+  if(notices.length>1){
+    html+='<div class="notice-dots">';
+    for(var d=0;d<notices.length;d++){html+='<button class="n-dot'+(d===noticeIdx?' active':'')+'" onclick="event.stopPropagation();goNoticeDot('+d+')"></button>';}
+    html+='</div>';
+  }
+  html+='</div>';
+  return html;
 }
 window.goNoticeDot=function(idx){noticeIdx=idx;refreshNoticeSlot();};
 function refreshNoticeSlot(){
-  var wrap=document.getElementById('home-notices');
-  if(!wrap)return;
-  if(!notices.length){wrap.innerHTML='';return;}
-  wrap.innerHTML='<div class="notice-section">'+buildNoticeSlot()+'</div>';
-  attachNoticeSwipe();
+  var wrap=document.getElementById('home-notices');
+  if(!wrap)return;
+  if(!notices.length){wrap.innerHTML='';return;}
+  wrap.innerHTML='<div class="notice-section">'+buildNoticeSlot()+'</div>';
+  attachNoticeSwipe();
 }
 function attachNoticeSwipe(){
-  var card=document.getElementById('notice-card-main');
-  if(!card||notices.length<=1)return;
-  var sx=0,mDown=false,mX=0;
-  card.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
-  card.addEventListener('touchend',function(e){if(Math.abs(e.changedTouches[0].clientX-sx)>50)moveNotice(e.changedTouches[0].clientX>sx?-1:1);},{passive:true});
-  card.addEventListener('mousedown',function(e){mDown=true;mX=e.clientX;},{passive:true});
-  card.addEventListener('mouseup',function(e){if(mDown&&Math.abs(e.clientX-mX)>50){mDown=false;moveNotice(e.clientX>mX?-1:1);}mDown=false;});
+  var card=document.getElementById('notice-card-main');
+  if(!card||notices.length<=1)return;
+  var sx=0,mDown=false,mX=0;
+  card.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+  card.addEventListener('touchend',function(e){if(Math.abs(e.changedTouches[0].clientX-sx)>50)moveNotice(e.changedTouches[0].clientX>sx?-1:1);},{passive:true});
+  card.addEventListener('mousedown',function(e){mDown=true;mX=e.clientX;},{passive:true});
+  card.addEventListener('mouseup',function(e){if(mDown&&Math.abs(e.clientX-mX)>50){mDown=false;moveNotice(e.clientX>mX?-1:1);}mDown=false;});
 }
 function moveNotice(dir){
-  if(!notices.length)return;
-  noticeIdx=(noticeIdx+dir+notices.length)%notices.length;
-  refreshNoticeSlot();
+  if(!notices.length)return;
+  noticeIdx=(noticeIdx+dir+notices.length)%notices.length;
+  refreshNoticeSlot();
 }
 window.moveNotice=moveNotice;
 
 function showNotice(id){
-  var n=null;for(var i=0;i<notices.length;i++){if(notices[i].id===id){n=notices[i];break;}}
-  if(!n)return;
-  var linkedIds=[];
-  if(n.linkedCampIds&&Array.isArray(n.linkedCampIds))linkedIds=n.linkedCampIds;
-  else if(n.linkedCampId)linkedIds=[n.linkedCampId];
-  var linkedCamps=linkedIds.map(function(id){return getCampById(id);}).filter(Boolean);
+  var n=null;for(var i=0;i<notices.length;i++){if(notices[i].id===id){n=notices[i];break;}}
+  if(!n)return;
+  var linkedIds=[];
+  if(n.linkedCampIds&&Array.isArray(n.linkedCampIds))linkedIds=n.linkedCampIds;
+  else if(n.linkedCampId)linkedIds=[n.linkedCampId];
+  var linkedCamps=linkedIds.map(function(id){return getCampById(id);}).filter(Boolean);
 
-  var html='<div style="text-align:center;padding:13px 0 16px;border-bottom:1px solid var(--border);margin-bottom:14px">'
-    +'<div style="font-size:34px;margin-bottom:7px">📢</div>'
-    +'<div style="font-size:18px;font-weight:800;margin-bottom:5px">'+escHtml(n.title)+'</div>';
-  if(linkedCamps.length){
-    html+='<div style="margin-top:10px;display:flex;flex-wrap:wrap;justify-content:center;gap:5px">';
-    linkedCamps.forEach(function(c){
-      html+='<div class="notice-linked-camp" onclick="closeModal(\'notice-modal\');showDetails(\''+encodeURIComponent(JSON.stringify(c))+'\')">'
-        +(c.logo?'<img src="'+escHtml(c.logo)+'" style="width:22px;height:22px;border-radius:50%;object-fit:cover">':'')
-        +'<span style="font-size:12px;font-weight:700;color:var(--orange)">'+escHtml(c.name)+'</span>'
-        +'<span style="font-size:11px;color:var(--gray)">→</span>'
-        +'</div>';
-    });
-    html+='</div>';
-  }
-  html+='</div>';
-  html+='<p style="color:var(--gray);font-size:13px;line-height:1.8">'+escHtml(n.description)+'</p>';
-  if(isAdmin){
-    html+='<div style="display:flex;gap:7px;margin-top:14px">'
-      +'<button class="btn-del" style="flex:1;padding:8px" onclick="deleteNotice(\''+n.id+'\')">🗑️ Delete</button>'
-      +'</div>';
-  }
-  document.getElementById('notice-modal-body').innerHTML=html;
-  openModal('notice-modal');
+  var html='<div style="text-align:center;padding:13px 0 16px;border-bottom:1px solid var(--border);margin-bottom:14px">'
+    +'<div style="font-size:34px;margin-bottom:7px">📢</div>'
+    +'<div style="font-size:18px;font-weight:800;margin-bottom:5px">'+escHtml(n.title)+'</div>';
+  if(linkedCamps.length){
+    html+='<div style="margin-top:10px;display:flex;flex-wrap:wrap;justify-content:center;gap:5px">';
+    linkedCamps.forEach(function(c){
+      html+='<div class="notice-linked-camp" onclick="closeModal(\'notice-modal\');showDetails(\''+encodeURIComponent(JSON.stringify(c))+'\')">'
+        +(c.logo?'<img src="'+escHtml(c.logo)+'" style="width:22px;height:22px;border-radius:50%;object-fit:cover">':'')
+        +'<span style="font-size:12px;font-weight:700;color:var(--orange)">'+escHtml(c.name)+'</span>'
+        +'<span style="font-size:11px;color:var(--gray)">→</span>'
+        +'</div>';
+    });
+    html+='</div>';
+  }
+  html+='</div>';
+  html+='<p style="color:var(--gray);font-size:13px;line-height:1.8">'+escHtml(n.description)+'</p>';
+  if(isAdmin){
+    html+='<div style="display:flex;gap:7px;margin-top:14px">'
+      +'<button class="btn-del" style="flex:1;padding:8px" onclick="deleteNotice(\''+n.id+'\')">🗑️ Delete</button>'
+      +'</div>';
+  }
+  document.getElementById('notice-modal-body').innerHTML=html;
+  openModal('notice-modal');
 }
 window.showNotice=showNotice;
 function deleteNotice(id){if(!confirm('Delete this notice?'))return;db.ref('notices/'+id).remove();closeModal('notice-modal');closeModal('admin-modal');}
@@ -1362,348 +1362,351 @@ window.deleteNotice=deleteNotice;
 
 /* ══ HERO CARD and CAROUSEL ══ */
 function buildHeroCard(c,isUrgent){
-  var p=priceOf(c.coinId),info=getTimerInfo(c),key=isUrgent?'hu':'hf';
-  var enc=encodeURIComponent(JSON.stringify(c));
-  return'<div class="'+(isUrgent?'hero-card urgent':'hero-card')+'" onclick="showDetails(\''+enc+'\')">'
-    +(isUrgent?'<div class="urgent-badge">Ending Soon</div>':'')
-    +'<div class="hero-top"><img src="'+c.logo+'" class="hero-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="hero-name">'+escHtml(c.name)+'</div>'+typeBadge(c.type||'volume')+'</div></div>'
-    +'<div class="hero-price">'+fmtPrice(p)+'</div>'
-    +'<div class="hero-pool">Total Pool: <strong>'+c.poolAmt.toLocaleString()+' '+escHtml(c.name)+'</strong><br><span class="pool-usd">'+(p?'approx '+fmtUSD(c.poolAmt*p):'')+'</span></div>'
-    +'<div class="hero-timer-wrap"><div class="hero-timer-label" id="lbl-'+c.id+'-'+key+'">'+info.label+'</div><div class="hero-timer state-'+(info.state==='alert'?'active':info.state)+'" id="tmr-'+c.id+'-'+key+'">'+info.text+'</div></div>'
-    +joinBtn(c.id)+'</div>';
+  var p=priceOf(c.coinId),info=getTimerInfo(c),key=isUrgent?'hu':'hf';
+  var enc=encodeURIComponent(JSON.stringify(c));
+  return'<div class="'+(isUrgent?'hero-card urgent':'hero-card')+'" onclick="showDetails(\''+enc+'\')">'
+    +(isUrgent?'<div class="urgent-badge">Ending Soon</div>':'')
+    +'<div class="hero-top"><img src="'+c.logo+'" class="hero-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="hero-name">'+escHtml(c.name)+'</div>'+typeBadge(c.type||'volume')+'</div></div>'
+    +'<div class="hero-price">'+fmtPrice(p)+'</div>'
+    +'<div class="hero-pool">Total Pool: <strong>'+c.poolAmt.toLocaleString()+' '+escHtml(c.name)+'</strong><br><span class="pool-usd">'+(p?'approx '+fmtUSD(c.poolAmt*p):'')+'</span></div>'
+    +'<div class="hero-timer-wrap"><div class="hero-timer-label" id="lbl-'+c.id+'-'+key+'">'+info.label+'</div><div class="hero-timer state-'+(info.state==='alert'?'active':info.state)+'" id="tmr-'+c.id+'-'+key+'">'+info.text+'</div></div>'
+    +joinBtn(c.id)+'</div>';
 }
 function buildCarousel(camps,prefix){
-  if(!camps.length)return'';
-  if(camps.length===1)return'<div class="home-grid" style="margin-bottom:24px">'+buildHeroCard(camps[0],true)+'</div>';
-  var html='<div class="carousel-wrap"><div class="carousel-track" id="'+prefix+'-trk">';
-  camps.forEach(function(c){html+='<div class="carousel-slide"><div class="home-grid">'+buildHeroCard(c,true)+'</div></div>';});
-  html+='</div><div class="carousel-dots">';
-  camps.forEach(function(_,j){html+='<button class="c-dot'+(j===0?' on-r':'')+'" id="'+prefix+'-d'+j+'" onclick="goSlide(\''+prefix+'\','+j+')"></button>';});
-  html+='</div></div>';
-  setTimeout(function(){attachCarouselSwipe(prefix,camps.length);},60);
-  return html;
+  if(!camps.length)return'';
+  if(camps.length===1)return'<div class="home-grid" style="margin-bottom:24px">'+buildHeroCard(camps[0],true)+'</div>';
+  var html='<div class="carousel-wrap"><div class="carousel-track" id="'+prefix+'-trk">';
+  camps.forEach(function(c){html+='<div class="carousel-slide"><div class="home-grid">'+buildHeroCard(c,true)+'</div></div>';});
+  html+='</div><div class="carousel-dots">';
+  camps.forEach(function(_,j){html+='<button class="c-dot'+(j===0?' on-r':'')+'" id="'+prefix+'-d'+j+'" onclick="goSlide(\''+prefix+'\','+j+')"></button>';});
+  html+='</div></div>';
+  setTimeout(function(){attachCarouselSwipe(prefix,camps.length);},60);
+  return html;
 }
 function attachCarouselSwipe(prefix,total){
-  var trk=document.getElementById(prefix+'-trk');if(!trk||total<=1)return;
-  var sx=0,mDown=false,mX=0;
-  trk.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
-  trk.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50){var cur=prefix==='urg'?urgIdx:0;goSlide(prefix,(cur+(dx<0?1:-1)+total)%total);}},{passive:true});
-  trk.addEventListener('mousedown',function(e){mDown=true;mX=e.clientX;});
-  trk.addEventListener('mouseup',function(e){if(!mDown)return;mDown=false;var dx=e.clientX-mX;if(Math.abs(dx)>50){var cur=prefix==='urg'?urgIdx:0;goSlide(prefix,(cur+(dx<0?1:-1)+total)%total);}});
+  var trk=document.getElementById(prefix+'-trk');if(!trk||total<=1)return;
+  var sx=0,mDown=false,mX=0;
+  trk.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+  trk.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50){var cur=prefix==='urg'?urgIdx:0;goSlide(prefix,(cur+(dx<0?1:-1)+total)%total);}},{passive:true});
+  trk.addEventListener('mousedown',function(e){mDown=true;mX=e.clientX;});
+  trk.addEventListener('mouseup',function(e){if(!mDown)return;mDown=false;var dx=e.clientX-mX;if(Math.abs(dx)>50){var cur=prefix==='urg'?urgIdx:0;goSlide(prefix,(cur+(dx<0?1:-1)+total)%total);}});
 }
 function buildListCard(c,grayed){
-  var p=priceOf(c.coinId),info=getTimerInfo(c);
-  var gs=grayed?'filter:grayscale(1);opacity:0.45;':'',gt=grayed?'color:#555!important':'';
-  var enc=encodeURIComponent(JSON.stringify(c));
-  var sc=grayed?'state-ended':(info.state==='alert'?'state-alert':'state-'+info.state);
-  var extra=(c.rewardDateTBD?'<span class="tbd-badge">⏳ TBD</span>':'')+(c.rewardPostponed?'<span class="postponed-badge">⚠️ Delayed</span>':'');
-  if(!grayed&&c.hasEarlyBird){
-    var activeSlot=getActiveEbbSlot(c);
-    if(activeSlot)extra+='<span style="background:rgba(14,203,129,0.15);color:var(--green);border:1px solid rgba(14,203,129,0.3);border-radius:4px;padding:1px 5px;font-size:10px;font-weight:700;margin-left:2px">🚀 '+escHtml(activeSlot.multiplier)+'</span>';
-  }
-  return'<div class="list-card" style="'+gs+'" onclick="showDetails(\''+enc+'\')">'
-    +'<div class="camp-info"><img src="'+c.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="camp-name" style="'+gt+'">'+escHtml(c.name)+'</div>'+typeBadge(c.type||'volume')+extra+'</div></div>'
-    +'<div class="camp-price" style="'+gt+'">'+fmtPrice(p)+'</div>'
-    +'<div class="reward-mid">'+((!grayed&&c.difficulty)?diffBadge(c.difficulty):'')+'</div>'
-    +'<div class="reward-pool"><div class="pool-amt" style="'+gt+'">'+c.poolAmt.toLocaleString()+' '+escHtml(c.name)+'</div><div class="pool-usd">'+(p?'approx '+fmtUSD(c.poolAmt*p):'...')+'</div></div>'
-    +'<div><span class="timer-state-label">'+info.label+'</span><span class="camp-timer '+sc+'" id="tmr-'+c.id+'-r">'+info.text+'</span></div>'
-    +joinBtn(c.id)+adminBtns(c.id)+'</div>';
+  var p=priceOf(c.coinId),info=getTimerInfo(c);
+  var gs=grayed?'filter:grayscale(1);opacity:0.45;':'',gt=grayed?'color:#555!important':'';
+  var enc=encodeURIComponent(JSON.stringify(c));
+  var sc=grayed?'state-ended':(info.state==='alert'?'state-alert':'state-'+info.state);
+  var extra=(c.rewardDateTBD?'<span class="tbd-badge">⏳ TBD</span>':'')+(c.rewardPostponed?'<span class="postponed-badge">⚠️ Delayed</span>':'');
+  if(!grayed&&c.hasEarlyBird){
+    var activeSlot=getActiveEbbSlot(c);
+    if(activeSlot)extra+='<span style="background:rgba(14,203,129,0.15);color:var(--green);border:1px solid rgba(14,203,129,0.3);border-radius:4px;padding:1px 5px;font-size:10px;font-weight:700;margin-left:2px">🚀 '+escHtml(activeSlot.multiplier)+'</span>';
+  }
+  return'<div class="list-card" style="'+gs+'" onclick="showDetails(\''+enc+'\')">'
+    +'<div class="camp-info"><img src="'+c.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="camp-name" style="'+gt+'">'+escHtml(c.name)+'</div>'+typeBadge(c.type||'volume')+extra+'</div></div>'
+    +'<div class="camp-price" style="'+gt+'">'+fmtPrice(p)+'</div>'
+    +'<div class="reward-mid">'+((!grayed&&c.difficulty)?diffBadge(c.difficulty):'')+'</div>'
+    +'<div class="reward-pool"><div class="pool-amt" style="'+gt+'">'+c.poolAmt.toLocaleString()+' '+escHtml(c.name)+'</div><div class="pool-usd">'+(p?'approx '+fmtUSD(c.poolAmt*p):'...')+'</div></div>'
+    +'<div><span class="timer-state-label">'+info.label+'</span><span class="camp-timer '+sc+'" id="tmr-'+c.id+'-r">'+info.text+'</span></div>'
+    +joinBtn(c.id)+adminBtns(c.id)+'</div>';
 }
 function goSlide(prefix,idx){
-  var trk=document.getElementById(prefix+'-trk');
-  if(trk)trk.style.transform='translateX(-'+(idx*100)+'%)';
-  for(var i=0;i<10;i++){var d=document.getElementById(prefix+'-d'+i);if(!d)break;d.classList.remove('on-r');}
-  var active=document.getElementById(prefix+'-d'+idx);if(active)active.classList.add('on-r');
-  if(prefix==='urg')urgIdx=idx;
+  var trk=document.getElementById(prefix+'-trk');
+  if(trk)trk.style.transform='translateX(-'+(idx*100)+'%)';
+  for(var i=0;i<10;i++){var d=document.getElementById(prefix+'-d'+i);if(!d)break;d.classList.remove('on-r');}
+  var active=document.getElementById(prefix+'-d'+idx);if(active)active.classList.add('on-r');
+  if(prefix==='urg')urgIdx=idx;
 }
 window.goSlide=goSlide;
 
 /* ══ EARLY BIRD BOOST HELPERS ══ */
 function parseEbbDate(str){
-  if(!str)return null;
-  var s=str.trim().replace('T',' ');
-  var m=s.match(/^(\d{4})-(\d{2})-(\d{2})\s+(\d{2}):(\d{2})/);
-  if(!m)return null;
-  return Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5]);
+  if(!str)return null;
+  var s=str.trim().replace('T',' ');
+  var m=s.match(/^(\d{4})-(\d{2})-(\d{2})\s+(\d{2}):(\d{2})/);
+  if(!m)return null;
+  return Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5]);
 }
 
 function getActiveEbbSlot(c){
-  if(!c||!c.hasEarlyBird||!c.earlyBirdSlots)return null;
-  var now=Date.now();
-  for(var i=0;i<c.earlyBirdSlots.length;i++){
-    var slot=c.earlyBirdSlots[i];
-    var s=parseEbbDate(slot.startUtc);
-    var e=parseEbbDate(slot.endUtc);
-    if(s!==null&&e!==null&&now>=s&&now<e)return slot;
-  }
-  return null;
+  if(!c||!c.hasEarlyBird||!c.earlyBirdSlots)return null;
+  var now=Date.now();
+  for(var i=0;i<c.earlyBirdSlots.length;i++){
+    var slot=c.earlyBirdSlots[i];
+    var s=parseEbbDate(slot.startUtc);
+    var e=parseEbbDate(slot.endUtc);
+    if(s!==null&&e!==null&&now>=s&&now<e)return slot;
+  }
+  return null;
 }
 
 /* FIX #1: EBB color — green to red interpolation (no white/gray in the middle)
-   Uses HSL: green=120, red=0. Pure RGB-space interpolation was causing
-   the washed-out "white" appearance at mid-point. */
-function smoothGreenToRed(ratio){
-  var hue=Math.round(145*(1-ratio));
-  var sat=78,lit=44;
-  var h=hue/360,s=sat/100,l=lit/100;
-  var r2,g2,b2;
-  if(s===0){r2=g2=b2=l;}else{
-    var hue2rgb=function(p,q,t){if(t<0)t+=1;if(t>1)t-=1;if(t<1/6)return p+(q-p)*6*t;if(t<1/2)return q;if(t<2/3)return p+(q-p)*(2/3-t)*6;return p;};
-    var q2=l<0.5?l*(1+s):l+s-l*s,p2=2*l-q2;
-    r2=hue2rgb(p2,q2,h+1/3);g2=hue2rgb(p2,q2,h);b2=hue2rgb(p2,q2,h-1/3);
-  }
-  var toHex=function(x){var v=Math.round(x*255);return('0'+v.toString(16)).slice(-2);};
-  var hex='#'+toHex(r2)+toHex(g2)+toHex(b2);
-  var ri=Math.round(r2*255),gi=Math.round(g2*255),bi=Math.round(b2*255);
-  return{main:hex,dim:'rgba('+ri+','+gi+','+bi+',0.2)'};
+   Uses HSL: green=120, red=0. Pure RGB-space interpolation was causing
+   the washed-out "white" appearance at mid-point. */
+function ebbSlotColor(idx,total){
+  if(total<=1)return{main:'#0ecb81',dim:'rgba(14,203,129,0.2)'};
+  var ratio=total>1?idx/(total-1):0;
+  /* Interpolate hue: 145 (green) → 355 (red), via decreasing */
+  var hue=Math.round(145 - ratio*145);  /* 145→0 */
+  /* Saturation and lightness stay vivid */
+  var sat=80,lit=ratio<0.5?45:40;
+  /* Convert HSL to hex for ring/dot use */
+  var h=hue/360,s=sat/100,l=lit/100;
+  var r2,g2,b2;
+  if(s===0){r2=g2=b2=l;}else{
+    var hue2rgb=function(p,q,t){if(t<0)t+=1;if(t>1)t-=1;if(t<1/6)return p+(q-p)*6*t;if(t<1/2)return q;if(t<2/3)return p+(q-p)*(2/3-t)*6;return p;};
+    var q2=l<0.5?l*(1+s):l+s-l*s,p2=2*l-q2;
+    r2=hue2rgb(p2,q2,h+1/3);g2=hue2rgb(p2,q2,h);b2=hue2rgb(p2,q2,h-1/3);
+  }
+  var toHex=function(x){var v=Math.round(x*255);return('0'+v.toString(16)).slice(-2);};
+  var hex='#'+toHex(r2)+toHex(g2)+toHex(b2);
+  var ri=Math.round(r2*255),gi=Math.round(g2*255),bi=Math.round(b2*255);
+  return{main:hex,dim:'rgba('+ri+','+gi+','+bi+',0.2)'};
 }
 
+/* FIX #2: EBB line segment properly reflects time elapsed within each slot,
+   not just past/active binary state. */
 function buildEbbDisplay(c){
-  if(!c||!c.hasEarlyBird||!c.earlyBirdSlots||!c.earlyBirdSlots.length)return'';
-  var slots=c.earlyBirdSlots;
-  var now=Date.now();
+  if(!c||!c.hasEarlyBird||!c.earlyBirdSlots||!c.earlyBirdSlots.length)return'';
+  var slots=c.earlyBirdSlots;
+  var total=slots.length;
+  var now=Date.now();
 
-  var allStarts=slots.map(function(sl){return parseEbbDate(sl.startUtc);}).filter(function(x){return x!==null;});
-  var allEnds=slots.map(function(sl){return parseEbbDate(sl.endUtc);}).filter(function(x){return x!==null;});
-  var overallStart=allStarts.length?Math.min.apply(null,allStarts):now;
-  var overallEnd=allEnds.length?Math.max.apply(null,allEnds):now;
-  var totalDuration=Math.max(overallEnd-overallStart,1);
-  var totalDays=Math.ceil(totalDuration/86400000);
+  var activeIdx=-1,nextIdx=-1;
+  for(var i=0;i<slots.length;i++){
+    var s=parseEbbDate(slots[i].startUtc);
+    var e=parseEbbDate(slots[i].endUtc);
+    if(s===null||e===null)continue;
+    if(now>=s&&now<e){activeIdx=i;break;}
+    if(now<s&&(nextIdx<0||s<parseEbbDate(slots[nextIdx].startUtc))){nextIdx=i;}
+  }
 
-  var dayNum=now>overallStart?Math.ceil((now-overallStart)/86400000):1;
-  dayNum=Math.max(1,Math.min(dayNum,totalDays));
+  var allStarts=slots.map(function(sl){return parseEbbDate(sl.startUtc);}).filter(function(x){return x!==null;});
+  var allEnds=slots.map(function(sl){return parseEbbDate(sl.endUtc);}).filter(function(x){return x!==null;});
+  var overallStart=allStarts.length?Math.min.apply(null,allStarts):now;
+  var overallEnd=allEnds.length?Math.max.apply(null,allEnds):now;
+  var totalDuration=Math.max(overallEnd-overallStart,1);
 
-  var activeIdx=-1,nextIdx=-1;
-  for(var i=0;i<slots.length;i++){
-    var s=parseEbbDate(slots[i].startUtc),e=parseEbbDate(slots[i].endUtc);
-    if(s!==null&&e!==null&&now>=s&&now<e){activeIdx=i;break;}
-    if(now<s&&(nextIdx<0||s<parseEbbDate(slots[nextIdx].startUtc))){nextIdx=i;}
-  }
-  var todayMult=activeIdx>=0?slots[activeIdx].multiplier:(nextIdx>=0?null:'Ended');
+  var dayNum=now>overallStart?Math.ceil((now-overallStart)/(86400000)):1;
+  var totalDays=Math.ceil(totalDuration/86400000);
+  dayNum=Math.max(1,Math.min(dayNum,totalDays));
 
-  function getDaySlot(d){
-    var ds=overallStart+d*86400000,de=ds+86400000;
-    for(var si=0;si<slots.length;si++){
-      var ss=parseEbbDate(slots[si].startUtc),se=parseEbbDate(slots[si].endUtc);
-      if(ss!==null&&se!==null&&ds<se&&de>ss)return si;
-    }
-    return -1;
-  }
+  var todayMult=activeIdx>=0?slots[activeIdx].multiplier:(nextIdx>=0?null:'Ended');
 
-  var html='<div class="ebb-section">';
-  html+='<div class="ebb-header">';
-  html+='<div class="ebb-title-wrap"><span class="ebb-icon">🚀</span><span class="ebb-title">Early Bird Boost</span>';
-  if(todayMult&&todayMult!=='Ended'){
-    html+='<span class="ebb-today-badge">Today: '+escHtml(todayMult)+' Boost</span>';
-  }
-  html+='</div>';
-  html+='<span class="ebb-day-counter">Day '+dayNum+' of '+totalDays+'</span>';
-  html+='</div>';
+  var html='<div class="ebb-section">';
+  html+='<div class="ebb-header">';
+  html+='<div class="ebb-title-wrap"><span class="ebb-icon">🚀</span><span class="ebb-title">Early Bird Boost</span>';
+  if(todayMult&&todayMult!=='Ended'){
+    html+='<span class="ebb-today-badge">Today: '+escHtml(todayMult)+' Boost</span>';
+  }
+  html+='</div>';
+  html+='<span class="ebb-day-counter">Day '+dayNum+' of '+totalDays+'</span>';
+  html+='</div>';
 
-  html+='<div class="ebb-track-wrap"><div class="ebb-track" id="ebb-track-'+safeId(c.id)+'">';
+  /* FIX #2: Build track with accurate per-slot fill based on elapsed time */
+  html+='<div class="ebb-track-wrap"><div class="ebb-track" id="ebb-track-'+safeId(c.id)+'">';
+  slots.forEach(function(slot,idx){
+    var slotStart=parseEbbDate(slot.startUtc);
+    var slotEnd=parseEbbDate(slot.endUtc);
+    var isPast=slotEnd!==null&&now>=slotEnd;
+    var isActive=idx===activeIdx;
+    var col=ebbSlotColor(idx,total);
+    var multColor=isActive?col.main:(isPast?ebbSlotColor(idx,total).main:'var(--gray)');
 
-  for(var d=0;d<totalDays;d++){
-    var dayStart=overallStart+d*86400000;
-    var dayEnd=dayStart+86400000;
-    var isPastDay=dayEnd<=now;
-    var isCurrentDay=dayStart<=now&&now<dayEnd;
-    var daySlotIdx=getDaySlot(d);
-    var prevSlotIdx=d>0?getDaySlot(d-1):-1;
-    var isNewSlot=(d===0&&daySlotIdx>=0)||(daySlotIdx>=0&&daySlotIdx!==prevSlotIdx);
-    var colorRatio=totalDays>1?d/(totalDays-1):0;
-    var dayCol=smoothGreenToRed(colorRatio);
+    var slotDays=slotStart!==null&&slotEnd!==null?Math.ceil((slotEnd-slotStart)/86400000):1;
+    var label='D'+(idx+1);
+    if(slotDays>1)label='D'+(idx+1)+'-'+(idx+slotDays);
 
-    var multLabelHtml='';
-    if(isNewSlot&&daySlotIdx>=0){
-      var mc=isPastDay||isCurrentDay?dayCol.main:'var(--gray)';
-      var mw=isCurrentDay?'800':'600';
-      multLabelHtml='<div class="ebb-mult-label" style="color:'+mc+';font-weight:'+mw+'">'+escHtml(slots[daySlotIdx].multiplier)+'</div>';
-    }else{
-      multLabelHtml='<div class="ebb-mult-label" style="visibility:hidden">x</div>';
-    }
+    var isFirst=idx===0,isLast=idx===slots.length-1;
 
-    var dotHtml='';
-    if(isNewSlot){
-      var dotFilled=isPastDay||isCurrentDay;
-      dotHtml='<div class="ebb-dot'+(isCurrentDay?' active-dot':'')+'" style="background:'+(dotFilled?dayCol.main:'var(--border)')+';border-color:var(--bg)"></div>';
-    }else{
-      var tickColor=isPastDay||isCurrentDay?dayCol.main+'55':'rgba(132,142,156,0.18)';
-      dotHtml='<div style="width:4px;height:4px;border-radius:50%;border:1.5px dashed '+tickColor+';background:var(--bg);flex-shrink:0;position:relative;z-index:2"></div>';
-    }
+    /* For the right segment of the active slot:
+       fill proportional to how much of this slot has elapsed */
+    var activeElapsedPct=0;
+    if(isActive&&slotStart!==null&&slotEnd!==null){
+      var slotDur=Math.max(slotEnd-slotStart,1);
+      activeElapsedPct=Math.max(0,Math.min(1,(now-slotStart)/slotDur));
+    }
 
-    var leftHtml='';
-    if(d>0){
-      var leftFilled=(overallStart+d*86400000)<=now;
-      leftHtml='<div class="ebb-line-seg seg-left" style="background:'+(leftFilled?dayCol.main:'var(--border)')+'"></div>';
-    }else{
-      leftHtml='<div class="ebb-line-seg seg-left" style="background:transparent;pointer-events:none"></div>';
-    }
+    var leftColor=isPast||isActive?col.main:'var(--border)';
+    /* Right segment: past slots fully filled, active slot partially filled using gradient trick */
+    var rightStyle='';
+    if(isPast){
+      rightStyle='background:'+col.main+';';
+    } else if(isActive){
+      /* Use linear-gradient to show exactly how much of this slot has elapsed */
+      rightStyle='background:linear-gradient(to right, '+col.main+' '+Math.round(activeElapsedPct*100)+'%, var(--border) '+Math.round(activeElapsedPct*100)+'%);';
+    } else {
+      rightStyle='background:var(--border);';
+    }
 
-    var rightHtml='';
-    if(d<totalDays-1){
-      var initPct=isPastDay?100:(isCurrentDay?Math.round(Math.max(0,Math.min(1,(now-dayStart)/86400000))*100):0);
-      rightHtml='<div class="ebb-line-seg seg-right" id="ebb-rseg-'+safeId(c.id)+'-'+d+'" style="position:relative;background:var(--border)">'
-        +'<div id="ebb-rfill-'+safeId(c.id)+'-'+d+'" style="position:absolute;left:0;top:0;bottom:0;width:'+initPct+'%;background:'+dayCol.main+';transition:width 1s linear;border-radius:inherit"></div>'
-        +'</div>';
-    }else{
-      rightHtml='<div class="ebb-line-seg seg-right" style="background:transparent;pointer-events:none"></div>';
-    }
+    html+='<div class="ebb-slot" id="ebb-slot-el-'+safeId(c.id)+'-'+idx+'" style="min-width:'+(Math.max(64,slotDays*32))+'px">';
+    html+='<div class="ebb-mult-label" style="color:'+multColor+';font-weight:'+(isActive?'800':'600')+'">'+escHtml(slot.multiplier)+'</div>';
+    html+='<div class="ebb-line-row">';
+    if(!isFirst)html+='<div class="ebb-line-seg seg-left" style="background:'+leftColor+'"></div>';
+    else html+='<div class="ebb-line-seg seg-left" style="background:transparent;pointer-events:none"></div>';
+    html+='<div class="ebb-dot'+(isActive?' active-dot':'')+'" style="background:'+(isActive||isPast?col.main:'var(--border)')+';border-color:var(--bg)"></div>';
+    if(!isLast)html+='<div class="ebb-line-seg seg-right" id="ebb-rseg-'+safeId(c.id)+'-'+idx+'" style="'+rightStyle+'"></div>';
+    else html+='<div class="ebb-line-seg seg-right" style="background:transparent;pointer-events:none"></div>';
+    html+='</div>';
+    html+='<div class="ebb-day-label">'+label+'</div>';
+    html+='</div>';
+  });
+  html+='</div></div>';
 
-    html+='<div class="ebb-slot" id="ebb-day-el-'+safeId(c.id)+'-'+d+'" style="min-width:50px">';
-    html+=multLabelHtml;
-    html+='<div class="ebb-line-row">'+leftHtml+dotHtml+rightHtml+'</div>';
-    html+='<div class="ebb-day-label">D'+(d+1)+'</div>';
-    html+='</div>';
-  }
-  html+='</div></div>';
+  var showSlotIdx=activeIdx>=0?activeIdx:(nextIdx>=0?nextIdx:-1);
+  if(showSlotIdx>=0){
+    var cSlot=slots[showSlotIdx];
+    var cStart=parseEbbDate(cSlot.startUtc);
+    var cEnd=parseEbbDate(cSlot.endUtc);
+    var cTotal=cEnd-cStart;
+    var cRemaining=cEnd-now;
+    if(cRemaining<0)cRemaining=0;
+    var cPct=cTotal>0?Math.max(0,Math.min(1,cRemaining/cTotal)):0;
+    var col2=ebbSlotColor(showSlotIdx,total);
+    var r=30,circ=2*Math.PI*r;
+    var offset=circ*(1-cPct);
+    var handAngleDeg=(1-cPct)*360;
+    var hrs=Math.floor(cRemaining/3600000);
+    var mins=Math.floor((cRemaining%3600000)/60000);
+    var secs=Math.floor((cRemaining%60000)/1000);
+    var timeStr=(hrs>0?hrs+'h ':'')+pad(mins)+'m '+pad(secs)+'s';
+    var isCountingActive=activeIdx>=0;
 
-  var showSlotIdx=activeIdx>=0?activeIdx:(nextIdx>=0?nextIdx:-1);
-  if(showSlotIdx>=0){
-    var cSlot=slots[showSlotIdx];
-    var cStart=parseEbbDate(cSlot.startUtc);
-    var cEnd=parseEbbDate(cSlot.endUtc);
-    var cTotal=cEnd-cStart;
-    var cRemaining=activeIdx>=0?(cEnd-now):(cStart-now);
-    if(cRemaining<0)cRemaining=0;
-    var cPct=cTotal>0?Math.max(0,Math.min(1,cRemaining/cTotal)):0;
-    var slotDayApprox=cStart!==null?Math.max(0,Math.min(totalDays-1,Math.round((cStart-overallStart)/86400000))):0;
-    var slotColorRatio=totalDays>1?slotDayApprox/(totalDays-1):0;
-    var col2=smoothGreenToRed(slotColorRatio);
-    var r=30,circ=2*Math.PI*r,offset=circ*(1-cPct),handAngleDeg=(1-cPct)*360;
-    var hrs=Math.floor(cRemaining/3600000),mins2=Math.floor((cRemaining%3600000)/60000),secs=Math.floor((cRemaining%60000)/1000);
-    var timeStr=(hrs>0?hrs+'h ':'')+pad(mins2)+'m '+pad(secs)+'s';
-    var isCountingActive=activeIdx>=0;
+    html+='<div class="ebb-countdown-wrap" id="ebb-countdown-'+safeId(c.id)+'">';
+    html+='<div class="ebb-countdown-ring-wrap">';
+    html+='<svg class="ebb-countdown-ring" width="72" height="72" viewBox="0 0 72 72">';
+    for(var t=0;t<12;t++){
+      var tickAngle=t*30;var tr=tickAngle*Math.PI/180;
+      var x1=36+26*Math.sin(tr),y1=36-26*Math.cos(tr);
+      var x2=36+29*Math.sin(tr),y2=36-29*Math.cos(tr);
+      html+='<line x1="'+x1.toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+x2.toFixed(1)+'" y2="'+y2.toFixed(1)+'" stroke="rgba(132,142,156,0.3)" stroke-width="1.5" stroke-linecap="round"/>';
+    }
+    html+='<circle class="ebb-ring-bg" cx="36" cy="36" r="'+r+'"/>';
+    html+='<circle class="ebb-ring-prog" id="ebb-ring-prog-'+safeId(c.id)+'" cx="36" cy="36" r="'+r+'" stroke="'+col2.main+'" stroke-dasharray="'+circ.toFixed(2)+'" stroke-dashoffset="'+offset.toFixed(2)+'"/>';
+    html+='</svg>';
+    html+='<div style="position:absolute;top:0;left:0;width:72px;height:72px;pointer-events:none">';
+    html+='<div style="position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:'+col2.main+';transform:translate(-50%,-50%);z-index:3;box-shadow:0 0 6px '+col2.main+'"></div>';
+    html+='<div id="ebb-clock-hand-'+safeId(c.id)+'" style="position:absolute;top:50%;left:50%;width:3px;height:22px;background:'+col2.main+';border-radius:3px 3px 1px 1px;transform-origin:50% 100%;transform:translateX(-50%) translateY(-100%) rotate('+handAngleDeg.toFixed(1)+'deg);z-index:2;box-shadow:0 0 4px '+col2.dim+';transition:transform 1s linear"></div>';
+    html+='</div>';
+    html+='</div>';
+    html+='<div class="ebb-countdown-info">';
+    html+='<div class="ebb-countdown-label">'+(isCountingActive?'Current boost ends in':'Next boost starts in')+'</div>';
+    html+='<div class="ebb-time-display" id="ebb-time-'+safeId(c.id)+'">'+timeStr+'</div>';
+    html+='<div class="ebb-countdown-mult" style="color:'+col2.main+'">'+escHtml(cSlot.multiplier)+' Boost '+(isCountingActive?'active':'upcoming')+'</div>';
+    if(isCountingActive){
+      var nxt=slots[showSlotIdx+1];
+      html+='<div class="ebb-countdown-desc">'+(nxt?'Next: '+escHtml(nxt.multiplier):'Last boost tier — ends soon')+'</div>';
+    }else{
+      html+='<div class="ebb-countdown-desc">Early Bird period starts soon</div>';
+    }
+    html+='</div>';
+    html+='</div>';
+  }
 
-    html+='<div class="ebb-countdown-wrap" id="ebb-countdown-'+safeId(c.id)+'">';
-    html+='<div class="ebb-countdown-ring-wrap">';
-    html+='<svg class="ebb-countdown-ring" width="72" height="72" viewBox="0 0 72 72">';
-    for(var t2=0;t2<12;t2++){
-      var tickAngle=t2*30,tr2=tickAngle*Math.PI/180;
-      var x1=36+26*Math.sin(tr2),y1=36-26*Math.cos(tr2),x2=36+29*Math.sin(tr2),y2=36-29*Math.cos(tr2);
-      html+='<line x1="'+x1.toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+x2.toFixed(1)+'" y2="'+y2.toFixed(1)+'" stroke="rgba(132,142,156,0.3)" stroke-width="1.5" stroke-linecap="round"/>';
-    }
-    html+='<circle class="ebb-ring-bg" cx="36" cy="36" r="'+r+'"/>';
-    html+='<circle class="ebb-ring-prog" id="ebb-ring-prog-'+safeId(c.id)+'" cx="36" cy="36" r="'+r+'" stroke="'+col2.main+'" stroke-dasharray="'+circ.toFixed(2)+'" stroke-dashoffset="'+offset.toFixed(2)+'"/>';
-    html+='</svg>';
-    html+='<div style="position:absolute;top:0;left:0;width:72px;height:72px;pointer-events:none">';
-    html+='<div style="position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:'+col2.main+';transform:translate(-50%,-50%);z-index:3;box-shadow:0 0 6px '+col2.main+'"></div>';
-    html+='<div id="ebb-clock-hand-'+safeId(c.id)+'" style="position:absolute;top:50%;left:50%;width:3px;height:22px;background:'+col2.main+';border-radius:3px 3px 1px 1px;transform-origin:50% 100%;transform:translateX(-50%) translateY(-100%) rotate('+handAngleDeg.toFixed(1)+'deg);z-index:2;box-shadow:0 0 4px '+col2.dim+';transition:transform 1s linear"></div>';
-    html+='</div></div>';
-    html+='<div class="ebb-countdown-info">';
-    html+='<div class="ebb-countdown-label">'+(isCountingActive?'Current boost ends in':'Next boost starts in')+'</div>';
-    html+='<div class="ebb-time-display" id="ebb-time-'+safeId(c.id)+'">'+timeStr+'</div>';
-    html+='<div class="ebb-countdown-mult" style="color:'+col2.main+'">'+escHtml(cSlot.multiplier)+' Boost '+(isCountingActive?'active':'upcoming')+'</div>';
-    if(isCountingActive){var nxt=slots[showSlotIdx+1];html+='<div class="ebb-countdown-desc">'+(nxt?'Next: '+escHtml(nxt.multiplier):'Last boost tier — ends soon')+'</div>';}
-    else{html+='<div class="ebb-countdown-desc">Early Bird period starts soon</div>';}
-    html+='</div></div>';
-  }
-
-  html+='</div>';
-  return html;
+  html+='</div>';
+  return html;
 }
 
+/* FIX #2: updateEbbCountdown also updates the line segments accurately */
 function updateEbbCountdown(c){
-  if(!c||!c.hasEarlyBird||!c.earlyBirdSlots)return;
-  var slots=c.earlyBirdSlots;
-  var now=Date.now();
+  if(!c||!c.hasEarlyBird||!c.earlyBirdSlots)return;
+  var slots=c.earlyBirdSlots;
+  var total=slots.length;
+  var now=Date.now();
+  var activeIdx=-1,nextIdx=-1;
+  for(var i=0;i<slots.length;i++){
+    var s=parseEbbDate(slots[i].startUtc);
+    var e=parseEbbDate(slots[i].endUtc);
+    if(s===null||e===null)continue;
+    if(now>=s&&now<e){activeIdx=i;break;}
+    if(now<s&&(nextIdx<0||s<parseEbbDate(slots[nextIdx].startUtc))){nextIdx=i;}
+  }
 
-  var allStarts=slots.map(function(sl){return parseEbbDate(sl.startUtc);}).filter(function(x){return x!==null;});
-  var allEnds=slots.map(function(sl){return parseEbbDate(sl.endUtc);}).filter(function(x){return x!==null;});
-  var overallStart=allStarts.length?Math.min.apply(null,allStarts):now;
-  var overallEnd=allEnds.length?Math.max.apply(null,allEnds):now;
-  var totalDuration=Math.max(overallEnd-overallStart,1);
-  var totalDays=Math.ceil(totalDuration/86400000);
+  /* Update line segments for accurate time-based fill */
+  slots.forEach(function(slot,idx){
+    var segEl=document.getElementById('ebb-rseg-'+safeId(c.id)+'-'+idx);
+    if(!segEl)return;
+    var slotStart=parseEbbDate(slot.startUtc);
+    var slotEnd=parseEbbDate(slot.endUtc);
+    var isPast=slotEnd!==null&&now>=slotEnd;
+    var isActive=idx===activeIdx;
+    var col=ebbSlotColor(idx,total);
+    if(isPast){
+      segEl.style.background=col.main;
+    } else if(isActive){
+      var slotDur=Math.max(slotEnd-slotStart,1);
+      var elapsedPct=Math.max(0,Math.min(1,(now-slotStart)/slotDur));
+      segEl.style.background='linear-gradient(to right, '+col.main+' '+Math.round(elapsedPct*100)+'%, var(--border) '+Math.round(elapsedPct*100)+'%)';
+    } else {
+      segEl.style.background='var(--border)';
+    }
+  });
 
-  for(var d=0;d<totalDays-1;d++){
-    var dayStart=overallStart+d*86400000;
-    var dayEnd=dayStart+86400000;
-    var isPastDay=dayEnd<=now;
-    var isCurrentDay=dayStart<=now&&now<dayEnd;
-    var colorRatio=totalDays>1?d/(totalDays-1):0;
-    var dayCol=smoothGreenToRed(colorRatio);
-    var fillEl=document.getElementById('ebb-rfill-'+safeId(c.id)+'-'+d);
-    if(!fillEl)continue;
-    fillEl.style.background=dayCol.main;
-    if(isPastDay){
-      fillEl.style.width='100%';
-    }else if(isCurrentDay){
-      var progress=Math.max(0,Math.min(1,(now-dayStart)/86400000));
-      fillEl.style.width=Math.round(progress*100)+'%';
-    }else{
-      fillEl.style.width='0%';
-    }
-  }
+  var showSlotIdx=activeIdx>=0?activeIdx:(nextIdx>=0?nextIdx:-1);
+  if(showSlotIdx<0)return;
 
-  var activeIdx=-1,nextIdx=-1;
-  for(var i=0;i<slots.length;i++){
-    var s=parseEbbDate(slots[i].startUtc),e=parseEbbDate(slots[i].endUtc);
-    if(s!==null&&e!==null&&now>=s&&now<e){activeIdx=i;break;}
-    if(now<s&&(nextIdx<0||s<parseEbbDate(slots[nextIdx].startUtc))){nextIdx=i;}
-  }
-  var showSlotIdx=activeIdx>=0?activeIdx:(nextIdx>=0?nextIdx:-1);
-  if(showSlotIdx<0)return;
+  var cSlot=slots[showSlotIdx];
+  var cStart=parseEbbDate(cSlot.startUtc);
+  var cEnd=parseEbbDate(cSlot.endUtc);
+  var cTotal=cEnd-cStart;
+  var cRemaining=cEnd-now;
+  if(cRemaining<0)cRemaining=0;
+  var cPct=cTotal>0?Math.max(0,Math.min(1,cRemaining/cTotal)):0;
+  var col2=ebbSlotColor(showSlotIdx,total);
+  var r=30,circ=2*Math.PI*r;
+  var offset=circ*(1-cPct);
+  var handAngleDeg=(1-cPct)*360;
+  var hrs=Math.floor(cRemaining/3600000);
+  var mins=Math.floor((cRemaining%3600000)/60000);
+  var secs=Math.floor((cRemaining%60000)/1000);
+  var timeStr=(hrs>0?hrs+'h ':'')+pad(mins)+'m '+pad(secs)+'s';
 
-  var cSlot=slots[showSlotIdx];
-  var cStart=parseEbbDate(cSlot.startUtc);
-  var cEnd=parseEbbDate(cSlot.endUtc);
-  var cTotal=cEnd-cStart;
-  var cRemaining=activeIdx>=0?(cEnd-now):(cStart-now);
-  if(cRemaining<0)cRemaining=0;
-  var cPct=cTotal>0?Math.max(0,Math.min(1,cRemaining/cTotal)):0;
-
-  var slotDayApprox=cStart!==null?Math.max(0,Math.min(totalDays-1,Math.round((cStart-overallStart)/86400000))):0;
-  var slotColorRatio=totalDays>1?slotDayApprox/(totalDays-1):0;
-  var col2=smoothGreenToRed(slotColorRatio);
-  var r=30,circ=2*Math.PI*r,offset=circ*(1-cPct),handAngleDeg=(1-cPct)*360;
-  var hrs=Math.floor(cRemaining/3600000),mins2=Math.floor((cRemaining%3600000)/60000),secs=Math.floor((cRemaining%60000)/1000);
-  var timeStr=(hrs>0?hrs+'h ':'')+pad(mins2)+'m '+pad(secs)+'s';
-  var sid=safeId(c.id);
-  var timeEl=document.getElementById('ebb-time-'+sid);
-  var ringEl=document.getElementById('ebb-ring-prog-'+sid);
-  var handEl=document.getElementById('ebb-clock-hand-'+sid);
-  if(timeEl)timeEl.innerText=timeStr;
-  if(ringEl){ringEl.style.strokeDashoffset=offset.toFixed(2);ringEl.style.stroke=col2.main;}
-  if(handEl){handEl.style.transform='translateX(-50%) translateY(-100%) rotate('+handAngleDeg.toFixed(2)+'deg)';}
+  var sid=safeId(c.id);
+  var timeEl=document.getElementById('ebb-time-'+sid);
+  var ringEl=document.getElementById('ebb-ring-prog-'+sid);
+  var handEl=document.getElementById('ebb-clock-hand-'+sid);
+  if(timeEl)timeEl.innerText=timeStr;
+  if(ringEl){ringEl.style.strokeDashoffset=offset.toFixed(2);ringEl.style.stroke=col2.main;}
+  if(handEl){handEl.style.transform='translateX(-50%) translateY(-100%) rotate('+handAngleDeg.toFixed(2)+'deg)';}
 }
 
 /* ══ DETAILS MODAL ══ */
 function showDetails(enc){
-  var c=JSON.parse(decodeURIComponent(enc));detailCampId=c.id;
-  document.getElementById('det-logo').src=c.logo;
-  document.getElementById('det-name').innerText=c.name;
-  var titleEl=document.getElementById('det-title');if(c.title){titleEl.innerText=c.title;titleEl.style.display='block';}else titleEl.style.display='none';
-  var badges=typeBadge(c.type||'volume');if(c.difficulty)badges+=' '+diffBadge(c.difficulty);if(c.rewardDateTBD)badges+=' <span class="tbd-badge">⏳ TBD</span>';if(c.rewardPostponed)badges+=' <span class="postponed-badge">⚠️ Delayed</span>';
-  document.getElementById('det-type-badge').innerHTML=badges;
-  var p=priceOf(c.coinId);document.getElementById('det-price').innerText=p?fmtPrice(p):'Loading...';
-  var fmt={dateStyle:'medium',timeStyle:'short',timeZone:userTZ};
-  document.getElementById('det-start').innerText=new Date(c.start).toLocaleString('en-US',fmt);
-  document.getElementById('det-end').innerText=new Date(c.end).toLocaleString('en-US',fmt);
-  var rdr=document.getElementById('det-reward-row');
-  if(c.rewardDateTBD){rdr.style.display='flex';document.getElementById('det-reward-date').innerHTML='<span class="tbd-badge">⏳ Not Announced Yet</span>';}
-  else if(c.rewardDate){rdr.style.display='flex';document.getElementById('det-reward-date').innerText=new Date(c.rewardDate).toLocaleString('en-US',fmt);}
-  else rdr.style.display='none';
-  var pu=p?c.poolAmt*p:0;document.getElementById('det-pool').innerHTML=c.poolAmt.toLocaleString()+' '+escHtml(c.name)+(pu?'<span class="sub">approx '+fmtUSD(pu)+'</span>':'');
-  var t=c.type||'volume',estEl=document.getElementById('det-est'),estRow=document.getElementById('det-est-row');
-  if(t==='volume'){var en=parseFloat(c.estReward),eu=p&&!isNaN(en)?fmtUSD(en*p):null;estEl.innerHTML=en+' '+escHtml(c.name)+(eu?'<span class="sub">approx '+eu+' per $1K Vol</span>':'');estRow.style.display='flex';}
-  else if(t==='equal'){estEl.innerHTML=fmtToken(c.poolAmt/(c.maxParticipants||1))+' '+escHtml(c.name)+' each<span class="sub">'+(c.maxParticipants||'?')+' participants'+(c.minVolume?' | Min vol: $'+c.minVolume.toLocaleString():'')+' </span>';estRow.style.display='flex';}
-  else if(t==='ranked_fixed'){var cnt=Math.max((c.rankEnd||1)-(c.rankStart||1)+1,1);estEl.innerHTML=fmtToken(c.poolAmt/cnt)+' '+escHtml(c.name)+' each<span class="sub">Rank '+(c.rankStart||1)+' to '+(c.rankEnd||1)+' </span>';estRow.style.display='flex';}
-  else if(t==='points_lb'){estEl.innerHTML='Points-based<span class="sub">Total pts: '+((c.totalPoints||0).toLocaleString())+'</span>';estRow.style.display='flex';}
-  else if(t==='points_nl'){estEl.innerHTML='Points (no LB)<span class="sub">Min pts: '+(c.minPoints||'?')+'</span>';estRow.style.display='flex';}
-  else estRow.style.display='none';
-  document.getElementById('det-official-wrap').innerHTML=c.campLink?'<a href="'+escHtml(c.campLink)+'" target="_blank" rel="noopener" class="det-official-link"><svg viewBox="0 0 20 20" style="width:13px;height:13px;fill:currentColor;flex-shrink:0"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>View Official Campaign Page</a>':'';
-  var shareUrl=getCampaignShareUrl(c.id);
-  document.getElementById('det-share-wrap').innerHTML='<div class="share-bar"><button class="share-btn share-btn-copy" onclick="copyLink(\''+escHtml(shareUrl)+'\')">📋 Copy Campaign Link</button><button class="share-btn share-btn-share" onclick="shareLink(\''+escHtml(shareUrl)+'\',\''+escHtml(c.name)+' on Spot CTR\')">🔗 Share</button></div>';
-  updateJoinBtn(c.id);
+  var c=JSON.parse(decodeURIComponent(enc));detailCampId=c.id;
+  document.getElementById('det-logo').src=c.logo;
+  document.getElementById('det-name').innerText=c.name;
+  var titleEl=document.getElementById('det-title');if(c.title){titleEl.innerText=c.title;titleEl.style.display='block';}else titleEl.style.display='none';
+  var badges=typeBadge(c.type||'volume');if(c.difficulty)badges+=' '+diffBadge(c.difficulty);if(c.rewardDateTBD)badges+=' <span class="tbd-badge">⏳ TBD</span>';if(c.rewardPostponed)badges+=' <span class="postponed-badge">⚠️ Delayed</span>';
+  document.getElementById('det-type-badge').innerHTML=badges;
+  var p=priceOf(c.coinId);document.getElementById('det-price').innerText=p?fmtPrice(p):'Loading...';
+  var fmt={dateStyle:'medium',timeStyle:'short',timeZone:userTZ};
+  document.getElementById('det-start').innerText=new Date(c.start).toLocaleString('en-US',fmt);
+  document.getElementById('det-end').innerText=new Date(c.end).toLocaleString('en-US',fmt);
+  var rdr=document.getElementById('det-reward-row');
+  if(c.rewardDateTBD){rdr.style.display='flex';document.getElementById('det-reward-date').innerHTML='<span class="tbd-badge">⏳ Not Announced Yet</span>';}
+  else if(c.rewardDate){rdr.style.display='flex';document.getElementById('det-reward-date').innerText=new Date(c.rewardDate).toLocaleString('en-US',fmt);}
+  else rdr.style.display='none';
+  var pu=p?c.poolAmt*p:0;document.getElementById('det-pool').innerHTML=c.poolAmt.toLocaleString()+' '+escHtml(c.name)+(pu?'<span class="sub">approx '+fmtUSD(pu)+'</span>':'');
+  var t=c.type||'volume',estEl=document.getElementById('det-est'),estRow=document.getElementById('det-est-row');
+  if(t==='volume'){var en=parseFloat(c.estReward),eu=p&&!isNaN(en)?fmtUSD(en*p):null;estEl.innerHTML=en+' '+escHtml(c.name)+(eu?'<span class="sub">approx '+eu+' per $1K Vol</span>':'');estRow.style.display='flex';}
+  else if(t==='equal'){estEl.innerHTML=fmtToken(c.poolAmt/(c.maxParticipants||1))+' '+escHtml(c.name)+' each<span class="sub">'+(c.maxParticipants||'?')+' participants'+(c.minVolume?' | Min vol: $'+c.minVolume.toLocaleString():'')+' </span>';estRow.style.display='flex';}
+  else if(t==='ranked_fixed'){var cnt=Math.max((c.rankEnd||1)-(c.rankStart||1)+1,1);estEl.innerHTML=fmtToken(c.poolAmt/cnt)+' '+escHtml(c.name)+' each<span class="sub">Rank '+(c.rankStart||1)+' to '+(c.rankEnd||1)+' </span>';estRow.style.display='flex';}
+  else if(t==='points_lb'){estEl.innerHTML='Points-based<span class="sub">Total pts: '+((c.totalPoints||0).toLocaleString())+'</span>';estRow.style.display='flex';}
+  else if(t==='points_nl'){estEl.innerHTML='Points (no LB)<span class="sub">Min pts: '+(c.minPoints||'?')+'</span>';estRow.style.display='flex';}
+  else estRow.style.display='none';
+  document.getElementById('det-official-wrap').innerHTML=c.campLink?'<a href="'+escHtml(c.campLink)+'" target="_blank" rel="noopener" class="det-official-link"><svg viewBox="0 0 20 20" style="width:13px;height:13px;fill:currentColor;flex-shrink:0"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>View Official Campaign Page</a>':'';
+  var shareUrl=getCampaignShareUrl(c.id);
+  document.getElementById('det-share-wrap').innerHTML='<div class="share-bar"><button class="share-btn share-btn-copy" onclick="copyLink(\''+escHtml(shareUrl)+'\')">📋 Copy Campaign Link</button><button class="share-btn share-btn-share" onclick="shareLink(\''+escHtml(shareUrl)+'\',\''+escHtml(c.name)+' on Spot CTR\')">🔗 Share</button></div>';
+  updateJoinBtn(c.id);
 
-  var ebbWrap=document.getElementById('det-ebb-wrap');
-  if(ebbWrap){ebbWrap.innerHTML=buildEbbDisplay(c);}
+  var ebbWrap=document.getElementById('det-ebb-wrap');
+  if(ebbWrap){ebbWrap.innerHTML=buildEbbDisplay(c);}
 
-  openModal('details-modal');updateDetTimer(c);
+  openModal('details-modal');updateDetTimer(c);
 
-  if(detEbbIntervalId)clearInterval(detEbbIntervalId);
-  if(c.hasEarlyBird&&c.earlyBirdSlots&&c.earlyBirdSlots.length){
-    detEbbIntervalId=setInterval(function(){updateEbbCountdown(c);},1000);
-  }
+  if(detEbbIntervalId)clearInterval(detEbbIntervalId);
+  if(c.hasEarlyBird&&c.earlyBirdSlots&&c.earlyBirdSlots.length){
+    detEbbIntervalId=setInterval(function(){updateEbbCountdown(c);},1000);
+  }
 }
 window.showDetails=showDetails;
 function updateDetTimer(c){var info=getTimerInfo(c),el=document.getElementById('det-timer');el.innerText=info.text;el.className='det-timer state-'+(info.state==='alert'?'active':info.state);document.getElementById('det-timer-label').innerText=info.label;}
@@ -1713,20 +1716,20 @@ function compressImage(file,cb){var reader=new FileReader();reader.onload=functi
 function handleImgUpload(e){var file=e.target.files[0];if(!file)return;if(file.size>10*1024*1024){alert('Image too large. Max 10MB.');return;}compressImage(file,function(dataUrl){var id=Date.now().toString(36)+Math.random().toString(36).substr(2,5);db.ref('chat/messages/'+id).set({id:id,emoji:myEmoji,uid:myId,timestamp:Date.now(),imageData:dataUrl});scrollChatBottom();});e.target.value='';}
 window.handleImgUpload=handleImgUpload;
 function initChat(){
-  if(chatInit)return;chatInit=true;
-  buildLangSelect();
-  document.getElementById('btn-auto-tx').classList.toggle('active',autoTranslateAll);
-  document.getElementById('btn-send-en').classList.toggle('active',sendAsEnglish);
-  var cutoff=Date.now()-(30*24*60*60*1000);
-  db.ref('chat/messages').orderByChild('timestamp').endAt(cutoff).once('value',function(snap){snap.forEach(function(child){child.ref.remove();});});
-  var loadedAt=Date.now();
-  db.ref('chat/messages').orderByChild('timestamp').limitToLast(200).once('value',function(snap){
-    var msgs=[];snap.forEach(function(child){var v=child.val();chatMsgMap[v.id]=v;msgs.push(v);});
-    renderInitialChat(msgs);checkNewReplies(msgs);
-    db.ref('chat/messages').orderByChild('timestamp').startAt(loadedAt).on('child_added',function(snap){var msg=snap.val();if(chatMsgMap[msg.id])return;chatMsgMap[msg.id]=msg;appendChatMsg(msg);scrollChatBottom();if(autoTranslateAll&&userReadLang!=='en')setTimeout(function(){translateMsgInPlace(msg.id);},100);});
-    db.ref('chat/messages').on('child_changed',function(snap){var msg=snap.val();chatMsgMap[msg.id]=msg;updateMsgEl(msg);});
-    db.ref('chat/messages').on('child_removed',function(snap){var msg=snap.val();delete chatMsgMap[msg.id];var el=document.getElementById('cm-'+safeId(msg.id));if(el)el.remove();});
-  });
+  if(chatInit)return;chatInit=true;
+  buildLangSelect();
+  document.getElementById('btn-auto-tx').classList.toggle('active',autoTranslateAll);
+  document.getElementById('btn-send-en').classList.toggle('active',sendAsEnglish);
+  var cutoff=Date.now()-(30*24*60*60*1000);
+  db.ref('chat/messages').orderByChild('timestamp').endAt(cutoff).once('value',function(snap){snap.forEach(function(child){child.ref.remove();});});
+  var loadedAt=Date.now();
+  db.ref('chat/messages').orderByChild('timestamp').limitToLast(200).once('value',function(snap){
+    var msgs=[];snap.forEach(function(child){var v=child.val();chatMsgMap[v.id]=v;msgs.push(v);});
+    renderInitialChat(msgs);checkNewReplies(msgs);
+    db.ref('chat/messages').orderByChild('timestamp').startAt(loadedAt).on('child_added',function(snap){var msg=snap.val();if(chatMsgMap[msg.id])return;chatMsgMap[msg.id]=msg;appendChatMsg(msg);scrollChatBottom();if(autoTranslateAll&&userReadLang!=='en')setTimeout(function(){translateMsgInPlace(msg.id);},100);});
+    db.ref('chat/messages').on('child_changed',function(snap){var msg=snap.val();chatMsgMap[msg.id]=msg;updateMsgEl(msg);});
+    db.ref('chat/messages').on('child_removed',function(snap){var msg=snap.val();delete chatMsgMap[msg.id];var el=document.getElementById('cm-'+safeId(msg.id));if(el)el.remove();});
+  });
 }
 function checkNewReplies(msgs){unreadReplies=[];newReplyCount=0;msgs.forEach(function(msg){if(msg.replyTo&&msg.replyTo.uid===myId&&msg.timestamp>lastVisit){unreadReplies.push(msg.id);newReplyCount++;}});updateNotifBadge();if(newReplyCount>0){var bar=document.getElementById('chat-notif-bar'),txt=document.getElementById('notif-bar-txt');if(bar&&txt){txt.innerText='📩 '+newReplyCount+' new repl'+(newReplyCount===1?'y':'ies')+' to your messages';bar.style.display='flex';}}localStorage.setItem('spotctr_lastVisit',Date.now().toString());lastVisit=Date.now();}
 function updateNotifBadge(){var nc=document.getElementById('nav-notif-count'),fab=document.getElementById('fab-notif');if(newReplyCount>0){if(nc){nc.innerText=newReplyCount;nc.style.display='inline-flex';}if(fab){fab.innerText=newReplyCount;fab.style.display='flex';}}else{if(nc)nc.style.display='none';if(fab)fab.style.display='none';}}
@@ -1763,33 +1766,33 @@ function updatePts(id,val){if(!userData.joined[id])return;userData.joined[id].po
 function updateBnb(id,checked){if(!userData.joined[id])return;userData.joined[id].bnb=checked;saveUD();refreshReward(id);updateGBB();renderCalc();}window.updateBnb=updateBnb;
 
 function updateEbbMultiplier(campId,multStr){
-  if(!userData.joined[campId])return;
-  userData.joined[campId].ebbMult=multStr||null;
-  saveUD();refreshReward(campId);updateGBB();renderCalc();
-  var pills=document.querySelectorAll('[data-ebb-camp="'+campId+'"]');
-  pills.forEach(function(p){p.classList.toggle('selected',p.getAttribute('data-ebb-val')===(multStr||'none'));});
+  if(!userData.joined[campId])return;
+  userData.joined[campId].ebbMult=multStr||null;
+  saveUD();refreshReward(campId);updateGBB();renderCalc();
+  var pills=document.querySelectorAll('[data-ebb-camp="'+campId+'"]');
+  pills.forEach(function(p){p.classList.toggle('selected',p.getAttribute('data-ebb-val')===(multStr||'none'));});
 }
 window.updateEbbMultiplier=updateEbbMultiplier;
 
 function buildEbbMultSelector(c){
-  if(!c||!c.hasEarlyBird||!c.earlyBirdSlots||!c.earlyBirdSlots.length)return'';
-  var j=userData.joined[c.id];
-  var currentMult=j?j.ebbMult:null;
-  var mults=[];
-  c.earlyBirdSlots.forEach(function(slot){if(slot.multiplier&&mults.indexOf(slot.multiplier)<0)mults.push(slot.multiplier);});
-  if(!mults.length)return'';
-  var activeSlot=getActiveEbbSlot(c);
-  var html='<div class="ebb-mult-selector">';
-  html+='<div class="ebb-mult-selector-label">🚀 Early Bird Multiplier Used';
-  if(activeSlot)html+=' <span style="color:var(--green);font-size:10px;font-weight:600">(Active: '+escHtml(activeSlot.multiplier)+')</span>';
-  html+='</div>';
-  html+='<div class="ebb-mult-pills">';
-  html+='<button class="ebb-mult-pill none-pill'+((!currentMult||currentMult==='none')?' selected':'')+'" data-ebb-camp="'+c.id+'" data-ebb-val="none" onclick="updateEbbMultiplier(\''+c.id+'\',null)">No Boost</button>';
-  mults.forEach(function(m){html+='<button class="ebb-mult-pill'+(currentMult===m?' selected':'')+'" data-ebb-camp="'+c.id+'" data-ebb-val="'+escHtml(m)+'" onclick="updateEbbMultiplier(\''+c.id+'\',\''+escHtml(m)+'\')">'+escHtml(m)+'</button>';});
-  html+='</div>';
-  if(currentMult&&currentMult!=='none'){var multVal=parseFloat(currentMult);if(!isNaN(multVal)&&multVal>0&&c.minVolume>0){var effectiveVol=c.minVolume/multVal;html+='<div class="ebb-mult-hint">With <strong>'+escHtml(currentMult)+'</strong> boost, your <strong>$'+fmtUSD(effectiveVol).replace('$','')+' volume</strong> counts as $'+c.minVolume.toLocaleString()+' minimum requirement.</div>';}}
-  html+='</div>';
-  return html;
+  if(!c||!c.hasEarlyBird||!c.earlyBirdSlots||!c.earlyBirdSlots.length)return'';
+  var j=userData.joined[c.id];
+  var currentMult=j?j.ebbMult:null;
+  var mults=[];
+  c.earlyBirdSlots.forEach(function(slot){if(slot.multiplier&&mults.indexOf(slot.multiplier)<0)mults.push(slot.multiplier);});
+  if(!mults.length)return'';
+  var activeSlot=getActiveEbbSlot(c);
+  var html='<div class="ebb-mult-selector">';
+  html+='<div class="ebb-mult-selector-label">🚀 Early Bird Multiplier Used';
+  if(activeSlot)html+=' <span style="color:var(--green);font-size:10px;font-weight:600">(Active: '+escHtml(activeSlot.multiplier)+')</span>';
+  html+='</div>';
+  html+='<div class="ebb-mult-pills">';
+  html+='<button class="ebb-mult-pill none-pill'+((!currentMult||currentMult==='none')?' selected':'')+'" data-ebb-camp="'+c.id+'" data-ebb-val="none" onclick="updateEbbMultiplier(\''+c.id+'\',null)">No Boost</button>';
+  mults.forEach(function(m){html+='<button class="ebb-mult-pill'+(currentMult===m?' selected':'')+'" data-ebb-camp="'+c.id+'" data-ebb-val="'+escHtml(m)+'" onclick="updateEbbMultiplier(\''+c.id+'\',\''+escHtml(m)+'\')">'+escHtml(m)+'</button>';});
+  html+='</div>';
+  if(currentMult&&currentMult!=='none'){var multVal=parseFloat(currentMult);if(!isNaN(multVal)&&multVal>0&&c.minVolume>0){var effectiveVol=c.minVolume/multVal;html+='<div class="ebb-mult-hint">With <strong>'+escHtml(currentMult)+'</strong> boost, your <strong>$'+fmtUSD(effectiveVol).replace('$','')+' volume</strong> counts as $'+c.minVolume.toLocaleString()+' minimum requirement.</div>';}}
+  html+='</div>';
+  return html;
 }
 
 function toggleExpand(id){if(!userData.joined[id])return;userData.joined[id].expanded=!userData.joined[id].expanded;saveUD();var body=document.getElementById('dbody-'+id),btn=document.getElementById('dexpand-'+id);if(body)body.classList.toggle('collapsed',!userData.joined[id].expanded);if(btn)btn.classList.toggle('open',userData.joined[id].expanded);}window.toggleExpand=toggleExpand;
@@ -1797,129 +1800,130 @@ function toggleAllExpand(){allExpanded=!allExpanded;campaigns.forEach(function(c
 function toggleAllEnded(){endedExpanded=!endedExpanded;var list=document.getElementById('ended-expanded-list'),row=document.getElementById('ended-collapsed-row'),btn=document.getElementById('btn-ended-expand');if(list)list.style.display=endedExpanded?'block':'none';if(row)row.style.display=endedExpanded?'none':'flex';if(btn)btn.innerHTML=endedExpanded?'&#9650; Collapse All':'&#9660; Expand All';}window.toggleAllEnded=toggleAllEnded;
 
 function calcReward(c){
-  var j=userData.joined[c.id];
-  if(!j)return null;
-  var p=priceOf(c.coinId),t=c.type||'volume';
-  var ebbMultVal=1;
-  if(j.ebbMult&&j.ebbMult!=='none'){var mv=parseFloat(j.ebbMult);if(!isNaN(mv)&&mv>0)ebbMultVal=mv;}
-  if(t==='volume'){var en=parseFloat(c.estReward)||0,tok=(j.volume/1000)*en;return{tokens:tok,usd:tok*p,canCalc:true,pointsCost:0};}
-  if(t==='equal'){var mp=parseFloat(c.maxParticipants)||1,tok2=c.poolAmt/mp,rate=j.bnb?0.00075:0.001;var effectiveMinVol=(c.minVolume||0)/ebbMultVal;return{tokens:tok2,usd:tok2*p,canCalc:true,feeCost:effectiveMinVol*rate,pointsCost:0,ebbMultVal:ebbMultVal,effectiveMinVol:effectiveMinVol};}
-  if(t==='ranked_fixed'){var rs=parseFloat(c.rankStart)||1,re=parseFloat(c.rankEnd)||1,count=Math.max(re-rs+1,1),tok3=c.poolAmt/count,eligVol=c.rankEligVol||0,rankVol=c.rankMinVol||0,rrate=j.bnb?0.00075:0.001,uv=j.volume||0;var effectiveRankVol=rankVol/ebbMultVal;return{tokens:tok3,usd:tok3*p,canCalc:true,rankStart:rs,rankEnd:re,eligVol:eligVol,rankMinVol:rankVol,effectiveRankVol:effectiveRankVol,inRank:uv>=effectiveRankVol&&effectiveRankVol>0,eligible:uv>=eligVol,feeCost:effectiveRankVol>0?effectiveRankVol*rrate:eligVol*rrate,pointsCost:0,ebbMultVal:ebbMultVal};}
-  if(t==='points_lb'){var tp=parseFloat(c.totalPoints)||1,up=j.points||0,tok4=up>0?(up/tp)*c.poolAmt:0,cpp=parseFloat(c.costPerPoint)||0;return{tokens:tok4,usd:tok4*p,canCalc:true,pointsCost:up*cpp};}
-  if(t==='points_nl'){var minPts=parseFloat(c.minPoints)||0,cpp2=parseFloat(c.costPerPointNl)||0;return{tokens:null,usd:null,canCalc:false,isPointsNl:true,minPoints:minPts,costPerPt:cpp2,minCost:minPts*cpp2,pointsCost:0};}
-  return{tokens:null,usd:null,canCalc:false,pointsCost:0};
+  var j=userData.joined[c.id];
+  if(!j)return null;
+  var p=priceOf(c.coinId),t=c.type||'volume';
+  var ebbMultVal=1;
+  if(j.ebbMult&&j.ebbMult!=='none'){var mv=parseFloat(j.ebbMult);if(!isNaN(mv)&&mv>0)ebbMultVal=mv;}
+  if(t==='volume'){var en=parseFloat(c.estReward)||0,tok=(j.volume/1000)*en;return{tokens:tok,usd:tok*p,canCalc:true,pointsCost:0};}
+  if(t==='equal'){var mp=parseFloat(c.maxParticipants)||1,tok2=c.poolAmt/mp,rate=j.bnb?0.00075:0.001;var effectiveMinVol=(c.minVolume||0)/ebbMultVal;return{tokens:tok2,usd:tok2*p,canCalc:true,feeCost:effectiveMinVol*rate,pointsCost:0,ebbMultVal:ebbMultVal,effectiveMinVol:effectiveMinVol};}
+  if(t==='ranked_fixed'){var rs=parseFloat(c.rankStart)||1,re=parseFloat(c.rankEnd)||1,count=Math.max(re-rs+1,1),tok3=c.poolAmt/count,eligVol=c.rankEligVol||0,rankVol=c.rankMinVol||0,rrate=j.bnb?0.00075:0.001,uv=j.volume||0;var effectiveRankVol=rankVol/ebbMultVal;return{tokens:tok3,usd:tok3*p,canCalc:true,rankStart:rs,rankEnd:re,eligVol:eligVol,rankMinVol:rankVol,effectiveRankVol:effectiveRankVol,inRank:uv>=effectiveRankVol&&effectiveRankVol>0,eligible:uv>=eligVol,feeCost:effectiveRankVol>0?effectiveRankVol*rrate:eligVol*rrate,pointsCost:0,ebbMultVal:ebbMultVal};}
+  if(t==='points_lb'){var tp=parseFloat(c.totalPoints)||1,up=j.points||0,tok4=up>0?(up/tp)*c.poolAmt:0,cpp=parseFloat(c.costPerPoint)||0;return{tokens:tok4,usd:tok4*p,canCalc:true,pointsCost:up*cpp};}
+  if(t==='points_nl'){var minPts=parseFloat(c.minPoints)||0,cpp2=parseFloat(c.costPerPointNl)||0;return{tokens:null,usd:null,canCalc:false,isPointsNl:true,minPoints:minPts,costPerPt:cpp2,minCost:minPts*cpp2,pointsCost:0};}
+  return{tokens:null,usd:null,canCalc:false,pointsCost:0};
 }
 
 function getBalance(){
-  var tot=0,fee=0,cnt=0;
-  campaigns.forEach(function(c){
-    if(!isJoined(c.id)||!isCampActive(c))return;
-    var j=userData.joined[c.id],r=calcReward(c),t=c.type||'volume';
-    if(!j)return;
-    var hasData=false;
-    if(t==='volume'&&(j.volume||0)>0)hasData=true;
-    else if(t==='equal')hasData=true;
-    else if(t==='ranked_fixed'&&(j.volume||0)>0)hasData=true;
-    else if(t==='points_lb'&&(j.points||0)>0)hasData=true;
-    if(r&&r.usd!==null&&hasData){if(t==='ranked_fixed'){if(r.inRank){tot+=r.usd;cnt++;}}else{tot+=r.usd;cnt++;}}
-    if(t==='volume'&&(j.volume||0)>0)fee+=(j.volume||0)*(j.bnb?0.00075:0.001);
-    else if(t==='equal'&&r&&r.feeCost)fee+=r.feeCost;
-    else if(t==='ranked_fixed'&&r&&r.feeCost&&(j.volume||0)>0)fee+=r.feeCost;
-    else if(t==='points_lb'&&r&&r.pointsCost&&(j.points||0)>0)fee+=r.pointsCost;
-  });
-  return{net:tot-fee,totalReward:tot,totalFee:fee,cnt:cnt};
+  var tot=0,fee=0,cnt=0;
+  campaigns.forEach(function(c){
+    if(!isJoined(c.id)||!isCampActive(c))return;
+    var j=userData.joined[c.id],r=calcReward(c),t=c.type||'volume';
+    if(!j)return;
+    var hasData=false;
+    if(t==='volume'&&(j.volume||0)>0)hasData=true;
+    else if(t==='equal')hasData=true;
+    else if(t==='ranked_fixed'&&(j.volume||0)>0)hasData=true;
+    else if(t==='points_lb'&&(j.points||0)>0)hasData=true;
+    if(r&&r.usd!==null&&hasData){if(t==='ranked_fixed'){if(r.inRank){tot+=r.usd;cnt++;}}else{tot+=r.usd;cnt++;}}
+    if(t==='volume'&&(j.volume||0)>0)fee+=(j.volume||0)*(j.bnb?0.00075:0.001);
+    else if(t==='equal'&&r&&r.feeCost)fee+=r.feeCost;
+    else if(t==='ranked_fixed'&&r&&r.feeCost&&(j.volume||0)>0)fee+=r.feeCost;
+    else if(t==='points_lb'&&r&&r.pointsCost&&(j.points||0)>0)fee+=r.pointsCost;
+  });
+  return{net:tot-fee,totalReward:tot,totalFee:fee,cnt:cnt};
 }
 
 function refreshReward(campId){
-  var c=getCampById(campId);if(!c)return;
-  var el=document.getElementById('dreward-'+campId);if(!el)return;
-  var r=calcReward(c),p=priceOf(c.coinId);
-  if(r&&r.canCalc&&r.tokens!==null)el.innerHTML='<span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter value above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'');
-  var sumEl=document.getElementById('dsummary-'+campId);
-  if(sumEl){if(r&&r.canCalc&&r.tokens&&r.tokens>0){sumEl.innerText=fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':'');sumEl.className='dash-camp-summary';}else{sumEl.innerText='Not set';sumEl.className='dash-camp-summary no-data';}}
+  var c=getCampById(campId);if(!c)return;
+  var el=document.getElementById('dreward-'+campId);if(!el)return;
+  var r=calcReward(c),p=priceOf(c.coinId);
+  if(r&&r.canCalc&&r.tokens!==null)el.innerHTML='<span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter value above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'');
+  var sumEl=document.getElementById('dsummary-'+campId);
+  if(sumEl){if(r&&r.canCalc&&r.tokens&&r.tokens>0){sumEl.innerText=fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':'');sumEl.className='dash-camp-summary';}else{sumEl.innerText='Not set';sumEl.className='dash-camp-summary no-data';}}
 }
 
 function buildDashCard(c){
-  var j=userData.joined[c.id];if(!j)return'';
-  var p=priceOf(c.coinId),info=getTimerInfo(c),r=calcReward(c),t=c.type||'volume';
-  var sc=info.state==='alert'?'state-alert':'state-'+info.state;
-  var bnbOn=j.bnb||false,isExp=j.expanded!==false;
-  var sumTxt='Not set',sumCls='dash-camp-summary no-data';
-  if(r&&r.canCalc&&r.tokens&&r.tokens>0){
-    if(t==='ranked_fixed'){sumTxt=r.inRank?fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':''):'Not in rank';sumCls=r.inRank?'dash-camp-summary':'dash-camp-summary no-data';}
-    else{sumTxt=fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':'');sumCls='dash-camp-summary';}
-  }
-  var bFld='<div class="dash-field" style="max-width:150px"><label>BNB Fee</label><div class="bnb-wrap" style="padding-top:7px"><label class="toggle-switch"><input type="checkbox" '+(bnbOn?'checked':'')+' onchange="updateBnb(\''+c.id+'\',this.checked)"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">'+(bnbOn?'BNB On':'BNB Off')+'</span></div></div>';
-  var ebbSel=c.hasEarlyBird?buildEbbMultSelector(c):'';
-  var bodyHtml='';
-  if(t==='volume'&&r&&r.canCalc){bodyHtml='<div class="dash-vol-row"><div class="dash-field"><label>Your Trade Volume (USD)</label><input type="number" class="vol-input" placeholder="e.g. 5000" value="'+(j.volume||'')+'" oninput="updateVol(\''+c.id+'\',this.value)" min="0"></div>'+bFld+'</div>'+ebbSel+'<div class="dash-reward" id="dreward-'+c.id+'"><span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter volume above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';}
-  else if(t==='equal'&&r&&r.canCalc){var effMin=r.effectiveMinVol!==undefined?r.effectiveMinVol:(c.minVolume||0);var fc2=effMin*(bnbOn?0.00075:0.001);var ebbNote='';if(j.ebbMult&&j.ebbMult!=='none'&&c.minVolume){ebbNote='<span style="color:var(--green);font-size:11px"> (with '+escHtml(j.ebbMult)+' boost: $'+Math.round(effMin).toLocaleString()+')</span>';}bodyHtml='<div class="dash-info-row">Participants: <strong>'+(c.maxParticipants||1).toLocaleString()+'</strong>'+(c.minVolume?' | Min vol: <strong>$'+c.minVolume.toLocaleString()+'</strong>'+ebbNote+' <span style="color:var(--red)">(fee approx '+fmtUSD(fc2)+')</span>':'')+'</div><div class="dash-vol-row">'+bFld+'</div>'+ebbSel+'<div class="dash-reward"><span class="dr-label">Fixed Reward</span><span class="dr-val">'+fmtToken(r.tokens)+' '+escHtml(c.name)+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';}
-  else if(t==='ranked_fixed'&&r&&r.canCalc){var rrate2=bnbOn?0.00075:0.001,uv2=j.volume||0,estFee=uv2*rrate2;var effRankVol=r.effectiveRankVol!==undefined?r.effectiveRankVol:r.rankMinVol;var rankEbbNote='';if(j.ebbMult&&j.ebbMult!=='none'&&r.rankMinVol){rankEbbNote=' <span style="color:var(--green)">(with '+escHtml(j.ebbMult)+': ~$'+Math.round(effRankVol).toLocaleString()+')</span>';}bodyHtml='<div class="dash-info-row">Rank <strong>'+r.rankStart+'</strong> to <strong>'+r.rankEnd+'</strong>'+(r.eligVol?' | Min elig: <strong>$'+r.eligVol.toLocaleString()+'</strong>':'')+(r.rankMinVol?' | Est. rank vol: <strong>$'+r.rankMinVol.toLocaleString()+'</strong>'+rankEbbNote:'')+'</div><div class="dash-vol-row"><div class="dash-field"><label>Your Trade Volume (USD)</label><input type="number" class="vol-input" placeholder="e.g. 10000" value="'+(j.volume||'')+'" oninput="updateVol(\''+c.id+'\',this.value)" min="0"></div>'+bFld+'</div>'+ebbSel+(uv2>0?'<div class="dash-reward"><span class="dr-label">Trading Fee</span><span class="dr-val" style="color:var(--red)">-'+fmtUSD(estFee)+'</span></div>':'')+(uv2>0&&r.inRank?'<div class="dash-reward" style="margin-top:6px"><span class="dr-label">Est. Reward</span><span class="dr-val">'+fmtToken(r.tokens)+' '+escHtml(c.name)+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>':uv2>0&&!r.inRank&&effRankVol>0?'<div class="dash-warn">Volume below estimated rank entry (~$'+Math.round(effRankVol).toLocaleString()+').</div>':'');}
-  else if(t==='points_lb'&&r){bodyHtml='<div class="dash-info-row">Total LB Points: <strong>'+(c.totalPoints||1).toLocaleString()+'</strong>'+(c.costPerPoint?' | Cost/pt: <strong style="color:var(--red)">$'+c.costPerPoint+'</strong>':'')+'</div><div class="dash-vol-row"><div class="dash-field"><label>Your Points</label><input type="number" class="vol-input" placeholder="e.g. 1500" value="'+(j.points||'')+'" oninput="updatePts(\''+c.id+'\',this.value)" min="0"></div></div><div class="dash-reward" id="dreward-'+c.id+'"><span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter points above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'')+'</div>';}
-  else if(r&&r.isPointsNl){bodyHtml='<div class="dash-info-row">Min Points: <strong>'+r.minPoints.toLocaleString()+'</strong>'+(r.costPerPt?' | Cost/pt: <strong style="color:var(--red)">$'+r.costPerPt+'</strong>':'')+(r.minCost?' | Min cost: <strong style="color:var(--red)">'+fmtUSD(r.minCost)+'</strong>':'')+'</div><div class="dash-note">Points-based — leaderboard unavailable.</div>';}
-  else{bodyHtml='<div class="dash-note">Reward cannot be estimated.</div>';}
-  return'<div class="dash-camp" id="dcard-'+c.id+'"><div class="dash-camp-header" onclick="toggleExpand(\''+c.id+'\')"><div class="dash-camp-left"><img src="'+c.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="camp-name">'+escHtml(c.name)+'</div>'+typeBadge(t)+'</div></div><div class="dash-camp-right"><span id="dsummary-'+c.id+'" class="'+sumCls+'">'+sumTxt+'</span><span class="camp-timer '+sc+'" style="font-size:11px">'+info.text+'</span><button class="btn-remove" onclick="toggleJoin(\''+c.id+'\',event)">Remove</button><button class="btn-expand '+(isExp?'open':'')+'" id="dexpand-'+c.id+'" onclick="event.stopPropagation();toggleExpand(\''+c.id+'\')">&#9660;</button></div></div><div class="dash-camp-body '+(isExp?'':'collapsed')+'" id="dbody-'+c.id+'">'+bodyHtml+'</div></div>';
+  var j=userData.joined[c.id];if(!j)return'';
+  var p=priceOf(c.coinId),info=getTimerInfo(c),r=calcReward(c),t=c.type||'volume';
+  var sc=info.state==='alert'?'state-alert':'state-'+info.state;
+  var bnbOn=j.bnb||false,isExp=j.expanded!==false;
+  var sumTxt='Not set',sumCls='dash-camp-summary no-data';
+  if(r&&r.canCalc&&r.tokens&&r.tokens>0){
+    if(t==='ranked_fixed'){sumTxt=r.inRank?fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':''):'Not in rank';sumCls=r.inRank?'dash-camp-summary':'dash-camp-summary no-data';}
+    else{sumTxt=fmtToken(r.tokens)+' '+c.name+(p?' (approx '+fmtUSD(r.usd)+')':'');sumCls='dash-camp-summary';}
+  }
+  var bFld='<div class="dash-field" style="max-width:150px"><label>BNB Fee</label><div class="bnb-wrap" style="padding-top:7px"><label class="toggle-switch"><input type="checkbox" '+(bnbOn?'checked':'')+' onchange="updateBnb(\''+c.id+'\',this.checked)"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">'+(bnbOn?'BNB On':'BNB Off')+'</span></div></div>';
+  var ebbSel=c.hasEarlyBird?buildEbbMultSelector(c):'';
+  var bodyHtml='';
+  if(t==='volume'&&r&&r.canCalc){bodyHtml='<div class="dash-vol-row"><div class="dash-field"><label>Your Trade Volume (USD)</label><input type="number" class="vol-input" placeholder="e.g. 5000" value="'+(j.volume||'')+'" oninput="updateVol(\''+c.id+'\',this.value)" min="0"></div>'+bFld+'</div>'+ebbSel+'<div class="dash-reward" id="dreward-'+c.id+'"><span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter volume above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';}
+  else if(t==='equal'&&r&&r.canCalc){var effMin=r.effectiveMinVol!==undefined?r.effectiveMinVol:(c.minVolume||0);var fc2=effMin*(bnbOn?0.00075:0.001);var ebbNote='';if(j.ebbMult&&j.ebbMult!=='none'&&c.minVolume){ebbNote='<span style="color:var(--green);font-size:11px"> (with '+escHtml(j.ebbMult)+' boost: $'+Math.round(effMin).toLocaleString()+')</span>';}bodyHtml='<div class="dash-info-row">Participants: <strong>'+(c.maxParticipants||1).toLocaleString()+'</strong>'+(c.minVolume?' | Min vol: <strong>$'+c.minVolume.toLocaleString()+'</strong>'+ebbNote+' <span style="color:var(--red)">(fee approx '+fmtUSD(fc2)+')</span>':'')+'</div><div class="dash-vol-row">'+bFld+'</div>'+ebbSel+'<div class="dash-reward"><span class="dr-label">Fixed Reward</span><span class="dr-val">'+fmtToken(r.tokens)+' '+escHtml(c.name)+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';}
+  else if(t==='ranked_fixed'&&r&&r.canCalc){var rrate2=bnbOn?0.00075:0.001,uv2=j.volume||0,estFee=uv2*rrate2;var effRankVol=r.effectiveRankVol!==undefined?r.effectiveRankVol:r.rankMinVol;var rankEbbNote='';if(j.ebbMult&&j.ebbMult!=='none'&&r.rankMinVol){rankEbbNote=' <span style="color:var(--green)">(with '+escHtml(j.ebbMult)+': ~$'+Math.round(effRankVol).toLocaleString()+')</span>';}bodyHtml='<div class="dash-info-row">Rank <strong>'+r.rankStart+'</strong> to <strong>'+r.rankEnd+'</strong>'+(r.eligVol?' | Min elig: <strong>$'+r.eligVol.toLocaleString()+'</strong>':'')+(r.rankMinVol?' | Est. rank vol: <strong>$'+r.rankMinVol.toLocaleString()+'</strong>'+rankEbbNote:'')+'</div><div class="dash-vol-row"><div class="dash-field"><label>Your Trade Volume (USD)</label><input type="number" class="vol-input" placeholder="e.g. 10000" value="'+(j.volume||'')+'" oninput="updateVol(\''+c.id+'\',this.value)" min="0"></div>'+bFld+'</div>'+ebbSel+(uv2>0?'<div class="dash-reward"><span class="dr-label">Trading Fee</span><span class="dr-val" style="color:var(--red)">-'+fmtUSD(estFee)+'</span></div>':'')+(uv2>0&&r.inRank?'<div class="dash-reward" style="margin-top:6px"><span class="dr-label">Est. Reward</span><span class="dr-val">'+fmtToken(r.tokens)+' '+escHtml(c.name)+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>':uv2>0&&!r.inRank&&effRankVol>0?'<div class="dash-warn">Volume below estimated rank entry (~$'+Math.round(effRankVol).toLocaleString()+').</div>':'');}
+  else if(t==='points_lb'&&r){bodyHtml='<div class="dash-info-row">Total LB Points: <strong>'+(c.totalPoints||1).toLocaleString()+'</strong>'+(c.costPerPoint?' | Cost/pt: <strong style="color:var(--red)">$'+c.costPerPoint+'</strong>':'')+'</div><div class="dash-vol-row"><div class="dash-field"><label>Your Points</label><input type="number" class="vol-input" placeholder="e.g. 1500" value="'+(j.points||'')+'" oninput="updatePts(\''+c.id+'\',this.value)" min="0"></div></div><div class="dash-reward" id="dreward-'+c.id+'"><span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter points above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'')+'</div>';}
+  else if(r&&r.isPointsNl){bodyHtml='<div class="dash-info-row">Min Points: <strong>'+r.minPoints.toLocaleString()+'</strong>'+(r.costPerPt?' | Cost/pt: <strong style="color:var(--red)">$'+r.costPerPt+'</strong>':'')+(r.minCost?' | Min cost: <strong style="color:var(--red)">'+fmtUSD(r.minCost)+'</strong>':'')+'</div><div class="dash-note">Points-based — leaderboard unavailable.</div>';}
+  else{bodyHtml='<div class="dash-note">Reward cannot be estimated.</div>';}
+  return'<div class="dash-camp" id="dcard-'+c.id+'"><div class="dash-camp-header" onclick="toggleExpand(\''+c.id+'\')"><div class="dash-camp-left"><img src="'+c.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="camp-name">'+escHtml(c.name)+'</div>'+typeBadge(t)+'</div></div><div class="dash-camp-right"><span id="dsummary-'+c.id+'" class="'+sumCls+'">'+sumTxt+'</span><span class="camp-timer '+sc+'" style="font-size:11px">'+info.text+'</span><button class="btn-remove" onclick="toggleJoin(\''+c.id+'\',event)">Remove</button><button class="btn-expand '+(isExp?'open':'')+'" id="dexpand-'+c.id+'" onclick="event.stopPropagation();toggleExpand(\''+c.id+'\')">&#9660;</button></div></div><div class="dash-camp-body '+(isExp?'':'collapsed')+'" id="dbody-'+c.id+'">'+bodyHtml+'</div></div>';
 }
 
 function renderDashboard(){
-  var activeJ=[],endedJ=[];
-  campaigns.forEach(function(c){if(!isJoined(c.id))return;if(isCampActive(c))activeJ.push(c);else endedJ.push(c);});
-  var bal=getBalance(),isLoss=bal.net<0,nc=isLoss?'var(--red)':'var(--green)';
-  document.getElementById('dash-balance').innerHTML='<div class="balance-card" style="background:linear-gradient(135deg,'+(isLoss?'#1f0f0f,#200d0d':'#0f1f15,#132018')+');border-color:'+(isLoss?'rgba(246,70,93,.4)':'rgba(14,203,129,.4)')+'"><div class="balance-label">Est. Net Profit</div><div class="balance-net" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div><div class="balance-sub">'+activeJ.length+' active | '+bal.cnt+' calculable</div><div class="balance-rows"><div class="bal-row"><div class="bal-row-label">Reward</div><div class="bal-row-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</div></div><div class="bal-row"><div class="bal-row-label">Fees</div><div class="bal-row-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</div></div><div class="bal-row"><div class="bal-row-label">Net</div><div class="bal-row-val" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div></div></div></div>';
-  var html='';
-  if(activeJ.length===0&&endedJ.length===0)html='<div class="empty-state" style="margin-bottom:20px"><h3>No Campaigns Joined</h3><p>Click "+ Join" on any campaign.</p></div>';
-  else{
-    if(activeJ.length>0){html+='<div class="dash-header-row"><h2 style="margin-bottom:0">Joined ('+activeJ.length+')</h2><button class="dash-all-toggle" id="btn-all-expand" onclick="toggleAllExpand()">&#9650; Collapse All</button></div>';activeJ.forEach(function(c){html+=buildDashCard(c);});}
-    else html+='<div class="empty-state" style="margin-bottom:20px"><h3>No Active Campaigns</h3></div>';
-    if(endedJ.length>0){
-      html+=divH('Completed','var(--gray)');
-      html+='<div style="display:flex;justify-content:flex-end;margin-bottom:9px"><button class="dash-all-toggle" id="btn-ended-expand" onclick="toggleAllEnded()">&#9660; Expand All</button></div>';
-      html+='<div id="ended-collapsed-row" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;align-items:center">';
-      endedJ.forEach(function(c){html+='<img src="'+c.logo+'" title="'+escHtml(c.name)+'" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid #333;filter:grayscale(1);opacity:0.5">';});
-      html+='<span style="color:var(--gray);font-size:12px;margin-left:3px">'+endedJ.length+' completed</span></div><div id="ended-expanded-list" style="display:none">';
-      endedJ.forEach(function(c){html+='<div class="dash-camp" style="filter:grayscale(1);opacity:0.5"><div style="display:flex;align-items:center;justify-content:space-between;padding:11px 15px;gap:9px"><div style="display:flex;align-items:center;gap:9px"><img src="'+c.logo+'" class="camp-logo"><div class="camp-name">'+escHtml(c.name)+'</div></div><span style="color:var(--gray);font-size:12px;font-family:monospace">COMPLETED</span></div></div>';});
-      html+='</div>';
-    }
-  }
-  document.getElementById('dash-joined').innerHTML=html;
-  renderCalc();
+  var activeJ=[],endedJ=[];
+  campaigns.forEach(function(c){if(!isJoined(c.id))return;if(isCampActive(c))activeJ.push(c);else endedJ.push(c);});
+  var bal=getBalance(),isLoss=bal.net<0,nc=isLoss?'var(--red)':'var(--green)';
+  document.getElementById('dash-balance').innerHTML='<div class="balance-card" style="background:linear-gradient(135deg,'+(isLoss?'#1f0f0f,#200d0d':'#0f1f15,#132018')+');border-color:'+(isLoss?'rgba(246,70,93,.4)':'rgba(14,203,129,.4)')+'"><div class="balance-label">Est. Net Profit</div><div class="balance-net" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div><div class="balance-sub">'+activeJ.length+' active | '+bal.cnt+' calculable</div><div class="balance-rows"><div class="bal-row"><div class="bal-row-label">Reward</div><div class="bal-row-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</div></div><div class="bal-row"><div class="bal-row-label">Fees</div><div class="bal-row-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</div></div><div class="bal-row"><div class="bal-row-label">Net</div><div class="bal-row-val" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div></div></div></div>';
+  var html='';
+  if(activeJ.length===0&&endedJ.length===0)html='<div class="empty-state" style="margin-bottom:20px"><h3>No Campaigns Joined</h3><p>Click "+ Join" on any campaign.</p></div>';
+  else{
+    if(activeJ.length>0){html+='<div class="dash-header-row"><h2 style="margin-bottom:0">Joined ('+activeJ.length+')</h2><button class="dash-all-toggle" id="btn-all-expand" onclick="toggleAllExpand()">&#9650; Collapse All</button></div>';activeJ.forEach(function(c){html+=buildDashCard(c);});}
+    else html+='<div class="empty-state" style="margin-bottom:20px"><h3>No Active Campaigns</h3></div>';
+    if(endedJ.length>0){
+      html+=divH('Completed','var(--gray)');
+      html+='<div style="display:flex;justify-content:flex-end;margin-bottom:9px"><button class="dash-all-toggle" id="btn-ended-expand" onclick="toggleAllEnded()">&#9660; Expand All</button></div>';
+      html+='<div id="ended-collapsed-row" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;align-items:center">';
+      endedJ.forEach(function(c){html+='<img src="'+c.logo+'" title="'+escHtml(c.name)+'" style="width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid #333;filter:grayscale(1);opacity:0.5">';});
+      html+='<span style="color:var(--gray);font-size:12px;margin-left:3px">'+endedJ.length+' completed</span></div><div id="ended-expanded-list" style="display:none">';
+      endedJ.forEach(function(c){html+='<div class="dash-camp" style="filter:grayscale(1);opacity:0.5"><div style="display:flex;align-items:center;justify-content:space-between;padding:11px 15px;gap:9px"><div style="display:flex;align-items:center;gap:9px"><img src="'+c.logo+'" class="camp-logo"><div class="camp-name">'+escHtml(c.name)+'</div></div><span style="color:var(--gray);font-size:12px;font-family:monospace">COMPLETED</span></div></div>';});
+      html+='</div>';
+    }
+  }
+  document.getElementById('dash-joined').innerHTML=html;
+  renderCalc();
 }
 
 function renderCalc(){
-  var calcEl=document.getElementById('dash-calc');if(!calcEl)return;
-  var bal=getBalance(),totalVol=0,bnbVol=0;
-  campaigns.forEach(function(c){var j=userData.joined[c.id];if(!j||!isCampActive(c))return;var vol=j.volume||0;if(vol>0){totalVol+=vol;if(j.bnb)bnbVol+=vol;}});
-  var bnbPct=totalVol>0?Math.round((bnbVol/totalVol)*100):0;
-  var potSave=(totalVol-bnbVol)*0.001*0.25;
-  calcEl.innerHTML='<div class="calc-section"><h2 style="margin-bottom:13px">Cost Calculator</h2><div class="calc-tabs"><button class="calc-tab active" onclick="switchTab(\'auto\',this)">Auto Summary</button><button class="calc-tab" onclick="switchTab(\'manual\',this)">Manual</button></div><div id="calc-auto" class="calc-panel active"><div class="calc-card"><div class="calc-row"><span class="calc-key">Total Volume</span><span class="calc-val">'+fmtUSD(totalVol)+'</span></div><div class="calc-row"><span class="calc-key">BNB Fee Used</span><span class="calc-val" style="color:var(--yellow)">'+fmtUSD(bnbVol)+' ('+bnbPct+'%)</span></div><div class="calc-row"><span class="calc-key">Total Fee</span><span class="calc-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</span></div><div class="calc-row"><span class="calc-key">Total Est. Reward</span><span class="calc-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</span></div><div class="calc-row"><span class="calc-key" style="font-weight:700">Net</span><span class="calc-val" style="color:'+(bal.net>=0?'var(--green)':'var(--red)')+';font-size:15px">'+(bal.net>=0?'+':'-')+fmtUSD(Math.abs(bal.net))+'</span></div></div>'+(bnbPct<100&&potSave>0.001?'<div class="savings-hint" style="background:var(--ydim);border-color:rgba(252,213,53,.3);color:var(--yellow)">Tip: BNB on all trades saves <strong>'+fmtUSD(potSave)+'</strong> more.</div>':'')+(bnbPct===100&&totalVol>0?'<div class="savings-hint" style="background:var(--gdim);border-color:rgba(14,203,129,.3);color:var(--green)">Using BNB on 100% of trades!</div>':'')+'</div><div id="calc-manual" class="calc-panel"><div class="calc-card"><div class="form-group" style="margin-bottom:11px"><label style="display:block;margin-bottom:3px;color:var(--gray);font-size:12px;font-weight:600">Trade Volume (USD)</label><input type="number" class="vol-input" id="m-vol" placeholder="e.g. 10000" value="'+(totalVol||'')+'" oninput="calcManual()"></div><div class="bnb-wrap" style="padding:9px 0;margin-bottom:11px;border-bottom:1px solid var(--border)"><label class="toggle-switch"><input type="checkbox" id="m-bnb" onchange="calcManual()"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">BNB Fee Discount (25% off)</span></div><div class="calc-row" style="padding:7px 0"><span class="calc-key">Fee Rate</span><span class="calc-val" id="m-rate">0.100%</span></div><div class="calc-row" style="padding:7px 0"><span class="calc-key">Trading Fee</span><span class="calc-val" style="color:var(--red)" id="m-fee">-</span></div><div class="calc-row" style="padding:7px 0;border-bottom:none"><span class="calc-key">BNB saves you</span><span class="calc-val" style="color:var(--yellow)" id="m-save">-</span></div></div></div></div>';
+  var calcEl=document.getElementById('dash-calc');if(!calcEl)return;
+  var bal=getBalance(),totalVol=0,bnbVol=0;
+  campaigns.forEach(function(c){var j=userData.joined[c.id];if(!j||!isCampActive(c))return;var vol=j.volume||0;if(vol>0){totalVol+=vol;if(j.bnb)bnbVol+=vol;}});
+  var bnbPct=totalVol>0?Math.round((bnbVol/totalVol)*100):0;
+  var potSave=(totalVol-bnbVol)*0.001*0.25;
+  calcEl.innerHTML='<div class="calc-section"><h2 style="margin-bottom:13px">Cost Calculator</h2><div class="calc-tabs"><button class="calc-tab active" onclick="switchTab(\'auto\',this)">Auto Summary</button><button class="calc-tab" onclick="switchTab(\'manual\',this)">Manual</button></div><div id="calc-auto" class="calc-panel active"><div class="calc-card"><div class="calc-row"><span class="calc-key">Total Volume</span><span class="calc-val">'+fmtUSD(totalVol)+'</span></div><div class="calc-row"><span class="calc-key">BNB Fee Used</span><span class="calc-val" style="color:var(--yellow)">'+fmtUSD(bnbVol)+' ('+bnbPct+'%)</span></div><div class="calc-row"><span class="calc-key">Total Fee</span><span class="calc-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</span></div><div class="calc-row"><span class="calc-key">Total Est. Reward</span><span class="calc-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</span></div><div class="calc-row"><span class="calc-key" style="font-weight:700">Net</span><span class="calc-val" style="color:'+(bal.net>=0?'var(--green)':'var(--red)')+';font-size:15px">'+(bal.net>=0?'+':'-')+fmtUSD(Math.abs(bal.net))+'</span></div></div>'+(bnbPct<100&&potSave>0.001?'<div class="savings-hint" style="background:var(--ydim);border-color:rgba(252,213,53,.3);color:var(--yellow)">Tip: BNB on all trades saves <strong>'+fmtUSD(potSave)+'</strong> more.</div>':'')+(bnbPct===100&&totalVol>0?'<div class="savings-hint" style="background:var(--gdim);border-color:rgba(14,203,129,.3);color:var(--green)">Using BNB on 100% of trades!</div>':'')+'</div><div id="calc-manual" class="calc-panel"><div class="calc-card"><div class="form-group" style="margin-bottom:11px"><label style="display:block;margin-bottom:3px;color:var(--gray);font-size:12px;font-weight:600">Trade Volume (USD)</label><input type="number" class="vol-input" id="m-vol" placeholder="e.g. 10000" value="'+(totalVol||'')+'" oninput="calcManual()"></div><div class="bnb-wrap" style="padding:9px 0;margin-bottom:11px;border-bottom:1px solid var(--border)"><label class="toggle-switch"><input type="checkbox" id="m-bnb" onchange="calcManual()"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">BNB Fee Discount (25% off)</span></div><div class="calc-row" style="padding:7px 0"><span class="calc-key">Fee Rate</span><span class="calc-val" id="m-rate">0.100%</span></div><div class="calc-row" style="padding:7px 0"><span class="calc-key">Trading Fee</span><span class="calc-val" style="color:var(--red)" id="m-fee">-</span></div><div class="calc-row" style="padding:7px 0;border-bottom:none"><span class="calc-key">BNB saves you</span><span class="calc-val" style="color:var(--yellow)" id="m-save">-</span></div></div></div></div>';
 }
 function switchTab(tab,btn){document.querySelectorAll('.calc-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');var a=document.getElementById('calc-auto'),m=document.getElementById('calc-manual');if(a)a.classList.toggle('active',tab==='auto');if(m)m.classList.toggle('active',tab==='manual');}window.switchTab=switchTab;
 function calcManual(){var vol=parseFloat((document.getElementById('m-vol')||{}).value)||0;var bnb=(document.getElementById('m-bnb')||{}).checked||false;var fee=vol*(bnb?0.00075:0.001),save=vol*0.001*0.25;var r=document.getElementById('m-rate'),f=document.getElementById('m-fee'),s=document.getElementById('m-save');if(r)r.innerText=bnb?'0.075% (BNB)':'0.100%';if(f)f.innerText=vol>0?'-'+fmtUSD(fee):'-';if(s)s.innerText=vol>0&&!bnb?fmtUSD(save):(bnb?'Already using BNB':'-');}window.calcManual=calcManual;
 
 /* ══ TICK ══ */
 setInterval(function(){
-  campaigns.forEach(function(c){
-    var info=getTimerInfo(c),sc=info.state==='alert'?'state-alert':'state-'+info.state;
-    ['hf','hu','r'].forEach(function(suf){
-      var el=document.getElementById('tmr-'+c.id+'-'+suf);
-      if(el){el.innerText=info.text;el.className=(suf.charAt(0)==='h'?'hero-timer ':'camp-timer ')+sc;}
-      var lb=document.getElementById('lbl-'+c.id+'-'+suf);
-      if(lb)lb.innerText=info.label;
-    });
-  });
-  if(document.getElementById('details-modal').style.display==='flex'&&detailCampId){var dc=getCampById(detailCampId);if(dc)updateDetTimer(dc);}
-  tickCount++;
-  if(tickCount%5===0&&urgCamps.length>1){urgIdx=(urgIdx+1)%urgCamps.length;goSlide('urg',urgIdx);}
-  if(tickCount%8===0&&notices.length>1){noticeIdx=(noticeIdx+1)%notices.length;refreshNoticeSlot();}
+  campaigns.forEach(function(c){
+    var info=getTimerInfo(c),sc=info.state==='alert'?'state-alert':'state-'+info.state;
+    ['hf','hu','r'].forEach(function(suf){
+      var el=document.getElementById('tmr-'+c.id+'-'+suf);
+      if(el){el.innerText=info.text;el.className=(suf.charAt(0)==='h'?'hero-timer ':'camp-timer ')+sc;}
+      var lb=document.getElementById('lbl-'+c.id+'-'+suf);
+      if(lb)lb.innerText=info.label;
+    });
+  });
+  if(document.getElementById('details-modal').style.display==='flex'&&detailCampId){var dc=getCampById(detailCampId);if(dc)updateDetTimer(dc);}
+  tickCount++;
+  if(tickCount%5===0&&urgCamps.length>1){urgIdx=(urgIdx+1)%urgCamps.length;goSlide('urg',urgIdx);}
+  if(tickCount%8===0&&notices.length>1){noticeIdx=(noticeIdx+1)%notices.length;refreshNoticeSlot();}
 },1000);
 setInterval(fetchPrices,60000);
 
 /* ══ NAV PERSISTENCE ══ */
 (function restoreNav(){
-  try{var saved=sessionStorage.getItem('spotctr_nav');if(saved&&saved!=='home'&&document.getElementById(saved)){nav(saved);}}catch(e){}
+  try{var saved=sessionStorage.getItem('spotctr_nav');if(saved&&saved!=='home'&&document.getElementById(saved)){nav(saved);}}catch(e){}
 })();
 
 })();
 </script>
 </body>
 </html>
+
