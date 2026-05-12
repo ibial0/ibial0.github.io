@@ -1442,14 +1442,9 @@ function getActiveEbbSlot(c){
 /* FIX #1: EBB color — green to red interpolation (no white/gray in the middle)
    Uses HSL: green=120, red=0. Pure RGB-space interpolation was causing
    the washed-out "white" appearance at mid-point. */
-function ebbSlotColor(idx,total){
-  if(total<=1)return{main:'#0ecb81',dim:'rgba(14,203,129,0.2)'};
-  var ratio=total>1?idx/(total-1):0;
-  /* Interpolate hue: 145 (green) → 355 (red), via decreasing */
-  var hue=Math.round(145 - ratio*145);  /* 145→0 */
-  /* Saturation and lightness stay vivid */
-  var sat=80,lit=ratio<0.5?45:40;
-  /* Convert HSL to hex for ring/dot use */
+function smoothGreenToRed(ratio){
+  var hue=Math.round(145*(1-ratio));
+  var sat=78,lit=44;
   var h=hue/360,s=sat/100,l=lit/100;
   var r2,g2,b2;
   if(s===0){r2=g2=b2=l;}else{
@@ -1461,36 +1456,37 @@ function ebbSlotColor(idx,total){
   var hex='#'+toHex(r2)+toHex(g2)+toHex(b2);
   var ri=Math.round(r2*255),gi=Math.round(g2*255),bi=Math.round(b2*255);
   return{main:hex,dim:'rgba('+ri+','+gi+','+bi+',0.2)'};
-}
-
-/* FIX #2: EBB line segment properly reflects time elapsed within each slot,
-   not just past/active binary state. */
 function buildEbbDisplay(c){
   if(!c||!c.hasEarlyBird||!c.earlyBirdSlots||!c.earlyBirdSlots.length)return'';
   var slots=c.earlyBirdSlots;
-  var total=slots.length;
   var now=Date.now();
-
-  var activeIdx=-1,nextIdx=-1;
-  for(var i=0;i<slots.length;i++){
-    var s=parseEbbDate(slots[i].startUtc);
-    var e=parseEbbDate(slots[i].endUtc);
-    if(s===null||e===null)continue;
-    if(now>=s&&now<e){activeIdx=i;break;}
-    if(now<s&&(nextIdx<0||s<parseEbbDate(slots[nextIdx].startUtc))){nextIdx=i;}
-  }
 
   var allStarts=slots.map(function(sl){return parseEbbDate(sl.startUtc);}).filter(function(x){return x!==null;});
   var allEnds=slots.map(function(sl){return parseEbbDate(sl.endUtc);}).filter(function(x){return x!==null;});
   var overallStart=allStarts.length?Math.min.apply(null,allStarts):now;
   var overallEnd=allEnds.length?Math.max.apply(null,allEnds):now;
   var totalDuration=Math.max(overallEnd-overallStart,1);
-
-  var dayNum=now>overallStart?Math.ceil((now-overallStart)/(86400000)):1;
   var totalDays=Math.ceil(totalDuration/86400000);
+
+  var dayNum=now>overallStart?Math.ceil((now-overallStart)/86400000):1;
   dayNum=Math.max(1,Math.min(dayNum,totalDays));
 
+  var activeIdx=-1,nextIdx=-1;
+  for(var i=0;i<slots.length;i++){
+    var s=parseEbbDate(slots[i].startUtc),e=parseEbbDate(slots[i].endUtc);
+    if(s!==null&&e!==null&&now>=s&&now<e){activeIdx=i;break;}
+    if(now<s&&(nextIdx<0||s<parseEbbDate(slots[nextIdx].startUtc))){nextIdx=i;}
+  }
   var todayMult=activeIdx>=0?slots[activeIdx].multiplier:(nextIdx>=0?null:'Ended');
+
+  function getDaySlot(d){
+    var ds=overallStart+d*86400000,de=ds+86400000;
+    for(var si=0;si<slots.length;si++){
+      var ss=parseEbbDate(slots[si].startUtc),se=parseEbbDate(slots[si].endUtc);
+      if(ss!==null&&se!==null&&ds<se&&de>ss)return si;
+    }
+    return -1;
+  }
 
   var html='<div class="ebb-section">';
   html+='<div class="ebb-header">';
@@ -1502,54 +1498,61 @@ function buildEbbDisplay(c){
   html+='<span class="ebb-day-counter">Day '+dayNum+' of '+totalDays+'</span>';
   html+='</div>';
 
-  /* FIX #2: Build track with accurate per-slot fill based on elapsed time */
   html+='<div class="ebb-track-wrap"><div class="ebb-track" id="ebb-track-'+safeId(c.id)+'">';
-  slots.forEach(function(slot,idx){
-    var slotStart=parseEbbDate(slot.startUtc);
-    var slotEnd=parseEbbDate(slot.endUtc);
-    var isPast=slotEnd!==null&&now>=slotEnd;
-    var isActive=idx===activeIdx;
-    var col=ebbSlotColor(idx,total);
-    var multColor=isActive?col.main:(isPast?ebbSlotColor(idx,total).main:'var(--gray)');
 
-    var slotDays=slotStart!==null&&slotEnd!==null?Math.ceil((slotEnd-slotStart)/86400000):1;
-    var label='D'+(idx+1);
-    if(slotDays>1)label='D'+(idx+1)+'-'+(idx+slotDays);
+  for(var d=0;d<totalDays;d++){
+    var dayStart=overallStart+d*86400000;
+    var dayEnd=dayStart+86400000;
+    var isPastDay=dayEnd<=now;
+    var isCurrentDay=dayStart<=now&&now<dayEnd;
+    var daySlotIdx=getDaySlot(d);
+    var prevSlotIdx=d>0?getDaySlot(d-1):-1;
+    var isNewSlot=(d===0&&daySlotIdx>=0)||(daySlotIdx>=0&&daySlotIdx!==prevSlotIdx);
+    var colorRatio=totalDays>1?d/(totalDays-1):0;
+    var dayCol=smoothGreenToRed(colorRatio);
 
-    var isFirst=idx===0,isLast=idx===slots.length-1;
-
-    /* For the right segment of the active slot:
-       fill proportional to how much of this slot has elapsed */
-    var activeElapsedPct=0;
-    if(isActive&&slotStart!==null&&slotEnd!==null){
-      var slotDur=Math.max(slotEnd-slotStart,1);
-      activeElapsedPct=Math.max(0,Math.min(1,(now-slotStart)/slotDur));
+    var multLabelHtml='';
+    if(isNewSlot&&daySlotIdx>=0){
+      var mc=isPastDay||isCurrentDay?dayCol.main:'var(--gray)';
+      var mw=isCurrentDay?'800':'600';
+      multLabelHtml='<div class="ebb-mult-label" style="color:'+mc+';font-weight:'+mw+'">'+escHtml(slots[daySlotIdx].multiplier)+'</div>';
+    }else{
+      multLabelHtml='<div class="ebb-mult-label" style="visibility:hidden">x</div>';
     }
 
-    var leftColor=isPast||isActive?col.main:'var(--border)';
-    /* Right segment: past slots fully filled, active slot partially filled using gradient trick */
-    var rightStyle='';
-    if(isPast){
-      rightStyle='background:'+col.main+';';
-    } else if(isActive){
-      /* Use linear-gradient to show exactly how much of this slot has elapsed */
-      rightStyle='background:linear-gradient(to right, '+col.main+' '+Math.round(activeElapsedPct*100)+'%, var(--border) '+Math.round(activeElapsedPct*100)+'%);';
-    } else {
-      rightStyle='background:var(--border);';
+    var dotHtml='';
+    if(isNewSlot){
+      var dotFilled=isPastDay||isCurrentDay;
+      dotHtml='<div class="ebb-dot'+(isCurrentDay?' active-dot':'')+'" style="background:'+(dotFilled?dayCol.main:'var(--border)')+';border-color:var(--bg)"></div>';
+    }else{
+      var tickColor=isPastDay||isCurrentDay?dayCol.main+'55':'rgba(132,142,156,0.18)';
+      dotHtml='<div style="width:4px;height:4px;border-radius:50%;border:1.5px dashed '+tickColor+';background:var(--bg);flex-shrink:0;position:relative;z-index:2"></div>';
     }
 
-    html+='<div class="ebb-slot" id="ebb-slot-el-'+safeId(c.id)+'-'+idx+'" style="min-width:'+(Math.max(64,slotDays*32))+'px">';
-    html+='<div class="ebb-mult-label" style="color:'+multColor+';font-weight:'+(isActive?'800':'600')+'">'+escHtml(slot.multiplier)+'</div>';
-    html+='<div class="ebb-line-row">';
-    if(!isFirst)html+='<div class="ebb-line-seg seg-left" style="background:'+leftColor+'"></div>';
-    else html+='<div class="ebb-line-seg seg-left" style="background:transparent;pointer-events:none"></div>';
-    html+='<div class="ebb-dot'+(isActive?' active-dot':'')+'" style="background:'+(isActive||isPast?col.main:'var(--border)')+';border-color:var(--bg)"></div>';
-    if(!isLast)html+='<div class="ebb-line-seg seg-right" id="ebb-rseg-'+safeId(c.id)+'-'+idx+'" style="'+rightStyle+'"></div>';
-    else html+='<div class="ebb-line-seg seg-right" style="background:transparent;pointer-events:none"></div>';
+    var leftHtml='';
+    if(d>0){
+      var leftFilled=(overallStart+d*86400000)<=now;
+      leftHtml='<div class="ebb-line-seg seg-left" style="background:'+(leftFilled?dayCol.main:'var(--border)')+'"></div>';
+    }else{
+      leftHtml='<div class="ebb-line-seg seg-left" style="background:transparent;pointer-events:none"></div>';
+    }
+
+    var rightHtml='';
+    if(d<totalDays-1){
+      var initPct=isPastDay?100:(isCurrentDay?Math.round(Math.max(0,Math.min(1,(now-dayStart)/86400000))*100):0);
+      rightHtml='<div class="ebb-line-seg seg-right" id="ebb-rseg-'+safeId(c.id)+'-'+d+'" style="position:relative;background:var(--border)">'
+        +'<div id="ebb-rfill-'+safeId(c.id)+'-'+d+'" style="position:absolute;left:0;top:0;bottom:0;width:'+initPct+'%;background:'+dayCol.main+';transition:width 1s linear;border-radius:inherit"></div>'
+        +'</div>';
+    }else{
+      rightHtml='<div class="ebb-line-seg seg-right" style="background:transparent;pointer-events:none"></div>';
+    }
+
+    html+='<div class="ebb-slot" id="ebb-day-el-'+safeId(c.id)+'-'+d+'" style="min-width:50px">';
+    html+=multLabelHtml;
+    html+='<div class="ebb-line-row">'+leftHtml+dotHtml+rightHtml+'</div>';
+    html+='<div class="ebb-day-label">D'+(d+1)+'</div>';
     html+='</div>';
-    html+='<div class="ebb-day-label">'+label+'</div>';
-    html+='</div>';
-  });
+  }
   html+='</div></div>';
 
   var showSlotIdx=activeIdx>=0?activeIdx:(nextIdx>=0?nextIdx:-1);
@@ -1558,26 +1561,23 @@ function buildEbbDisplay(c){
     var cStart=parseEbbDate(cSlot.startUtc);
     var cEnd=parseEbbDate(cSlot.endUtc);
     var cTotal=cEnd-cStart;
-    var cRemaining=cEnd-now;
+    var cRemaining=activeIdx>=0?(cEnd-now):(cStart-now);
     if(cRemaining<0)cRemaining=0;
     var cPct=cTotal>0?Math.max(0,Math.min(1,cRemaining/cTotal)):0;
-    var col2=ebbSlotColor(showSlotIdx,total);
-    var r=30,circ=2*Math.PI*r;
-    var offset=circ*(1-cPct);
-    var handAngleDeg=(1-cPct)*360;
-    var hrs=Math.floor(cRemaining/3600000);
-    var mins=Math.floor((cRemaining%3600000)/60000);
-    var secs=Math.floor((cRemaining%60000)/1000);
-    var timeStr=(hrs>0?hrs+'h ':'')+pad(mins)+'m '+pad(secs)+'s';
+    var slotDayApprox=cStart!==null?Math.max(0,Math.min(totalDays-1,Math.round((cStart-overallStart)/86400000))):0;
+    var slotColorRatio=totalDays>1?slotDayApprox/(totalDays-1):0;
+    var col2=smoothGreenToRed(slotColorRatio);
+    var r=30,circ=2*Math.PI*r,offset=circ*(1-cPct),handAngleDeg=(1-cPct)*360;
+    var hrs=Math.floor(cRemaining/3600000),mins2=Math.floor((cRemaining%3600000)/60000),secs=Math.floor((cRemaining%60000)/1000);
+    var timeStr=(hrs>0?hrs+'h ':'')+pad(mins2)+'m '+pad(secs)+'s';
     var isCountingActive=activeIdx>=0;
 
     html+='<div class="ebb-countdown-wrap" id="ebb-countdown-'+safeId(c.id)+'">';
     html+='<div class="ebb-countdown-ring-wrap">';
     html+='<svg class="ebb-countdown-ring" width="72" height="72" viewBox="0 0 72 72">';
-    for(var t=0;t<12;t++){
-      var tickAngle=t*30;var tr=tickAngle*Math.PI/180;
-      var x1=36+26*Math.sin(tr),y1=36-26*Math.cos(tr);
-      var x2=36+29*Math.sin(tr),y2=36-29*Math.cos(tr);
+    for(var t2=0;t2<12;t2++){
+      var tickAngle=t2*30,tr2=tickAngle*Math.PI/180;
+      var x1=36+26*Math.sin(tr2),y1=36-26*Math.cos(tr2),x2=36+29*Math.sin(tr2),y2=36-29*Math.cos(tr2);
       html+='<line x1="'+x1.toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+x2.toFixed(1)+'" y2="'+y2.toFixed(1)+'" stroke="rgba(132,142,156,0.3)" stroke-width="1.5" stroke-linecap="round"/>';
     }
     html+='<circle class="ebb-ring-bg" cx="36" cy="36" r="'+r+'"/>';
@@ -1586,61 +1586,56 @@ function buildEbbDisplay(c){
     html+='<div style="position:absolute;top:0;left:0;width:72px;height:72px;pointer-events:none">';
     html+='<div style="position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:'+col2.main+';transform:translate(-50%,-50%);z-index:3;box-shadow:0 0 6px '+col2.main+'"></div>';
     html+='<div id="ebb-clock-hand-'+safeId(c.id)+'" style="position:absolute;top:50%;left:50%;width:3px;height:22px;background:'+col2.main+';border-radius:3px 3px 1px 1px;transform-origin:50% 100%;transform:translateX(-50%) translateY(-100%) rotate('+handAngleDeg.toFixed(1)+'deg);z-index:2;box-shadow:0 0 4px '+col2.dim+';transition:transform 1s linear"></div>';
-    html+='</div>';
-    html+='</div>';
+    html+='</div></div>';
     html+='<div class="ebb-countdown-info">';
     html+='<div class="ebb-countdown-label">'+(isCountingActive?'Current boost ends in':'Next boost starts in')+'</div>';
     html+='<div class="ebb-time-display" id="ebb-time-'+safeId(c.id)+'">'+timeStr+'</div>';
     html+='<div class="ebb-countdown-mult" style="color:'+col2.main+'">'+escHtml(cSlot.multiplier)+' Boost '+(isCountingActive?'active':'upcoming')+'</div>';
-    if(isCountingActive){
-      var nxt=slots[showSlotIdx+1];
-      html+='<div class="ebb-countdown-desc">'+(nxt?'Next: '+escHtml(nxt.multiplier):'Last boost tier — ends soon')+'</div>';
-    }else{
-      html+='<div class="ebb-countdown-desc">Early Bird period starts soon</div>';
-    }
-    html+='</div>';
-    html+='</div>';
+    if(isCountingActive){var nxt=slots[showSlotIdx+1];html+='<div class="ebb-countdown-desc">'+(nxt?'Next: '+escHtml(nxt.multiplier):'Last boost tier — ends soon')+'</div>';}
+    else{html+='<div class="ebb-countdown-desc">Early Bird period starts soon</div>';}
+    html+='</div></div>';
   }
 
   html+='</div>';
   return html;
-}
-
-/* FIX #2: updateEbbCountdown also updates the line segments accurately */
 function updateEbbCountdown(c){
   if(!c||!c.hasEarlyBird||!c.earlyBirdSlots)return;
   var slots=c.earlyBirdSlots;
-  var total=slots.length;
   var now=Date.now();
-  var activeIdx=-1,nextIdx=-1;
-  for(var i=0;i<slots.length;i++){
-    var s=parseEbbDate(slots[i].startUtc);
-    var e=parseEbbDate(slots[i].endUtc);
-    if(s===null||e===null)continue;
-    if(now>=s&&now<e){activeIdx=i;break;}
-    if(now<s&&(nextIdx<0||s<parseEbbDate(slots[nextIdx].startUtc))){nextIdx=i;}
+
+  var allStarts=slots.map(function(sl){return parseEbbDate(sl.startUtc);}).filter(function(x){return x!==null;});
+  var allEnds=slots.map(function(sl){return parseEbbDate(sl.endUtc);}).filter(function(x){return x!==null;});
+  var overallStart=allStarts.length?Math.min.apply(null,allStarts):now;
+  var overallEnd=allEnds.length?Math.max.apply(null,allEnds):now;
+  var totalDuration=Math.max(overallEnd-overallStart,1);
+  var totalDays=Math.ceil(totalDuration/86400000);
+
+  for(var d=0;d<totalDays-1;d++){
+    var dayStart=overallStart+d*86400000;
+    var dayEnd=dayStart+86400000;
+    var isPastDay=dayEnd<=now;
+    var isCurrentDay=dayStart<=now&&now<dayEnd;
+    var colorRatio=totalDays>1?d/(totalDays-1):0;
+    var dayCol=smoothGreenToRed(colorRatio);
+    var fillEl=document.getElementById('ebb-rfill-'+safeId(c.id)+'-'+d);
+    if(!fillEl)continue;
+    fillEl.style.background=dayCol.main;
+    if(isPastDay){
+      fillEl.style.width='100%';
+    }else if(isCurrentDay){
+      var progress=Math.max(0,Math.min(1,(now-dayStart)/86400000));
+      fillEl.style.width=Math.round(progress*100)+'%';
+    }else{
+      fillEl.style.width='0%';
+    }
   }
 
-  /* Update line segments for accurate time-based fill */
-  slots.forEach(function(slot,idx){
-    var segEl=document.getElementById('ebb-rseg-'+safeId(c.id)+'-'+idx);
-    if(!segEl)return;
-    var slotStart=parseEbbDate(slot.startUtc);
-    var slotEnd=parseEbbDate(slot.endUtc);
-    var isPast=slotEnd!==null&&now>=slotEnd;
-    var isActive=idx===activeIdx;
-    var col=ebbSlotColor(idx,total);
-    if(isPast){
-      segEl.style.background=col.main;
-    } else if(isActive){
-      var slotDur=Math.max(slotEnd-slotStart,1);
-      var elapsedPct=Math.max(0,Math.min(1,(now-slotStart)/slotDur));
-      segEl.style.background='linear-gradient(to right, '+col.main+' '+Math.round(elapsedPct*100)+'%, var(--border) '+Math.round(elapsedPct*100)+'%)';
-    } else {
-      segEl.style.background='var(--border)';
-    }
-  });
-
+  var activeIdx=-1,nextIdx=-1;
+  for(var i=0;i<slots.length;i++){
+    var s=parseEbbDate(slots[i].startUtc),e=parseEbbDate(slots[i].endUtc);
+    if(s!==null&&e!==null&&now>=s&&now<e){activeIdx=i;break;}
+    if(now<s&&(nextIdx<0||s<parseEbbDate(slots[nextIdx].startUtc))){nextIdx=i;}
+  }
   var showSlotIdx=activeIdx>=0?activeIdx:(nextIdx>=0?nextIdx:-1);
   if(showSlotIdx<0)return;
 
@@ -1648,18 +1643,16 @@ function updateEbbCountdown(c){
   var cStart=parseEbbDate(cSlot.startUtc);
   var cEnd=parseEbbDate(cSlot.endUtc);
   var cTotal=cEnd-cStart;
-  var cRemaining=cEnd-now;
+  var cRemaining=activeIdx>=0?(cEnd-now):(cStart-now);
   if(cRemaining<0)cRemaining=0;
   var cPct=cTotal>0?Math.max(0,Math.min(1,cRemaining/cTotal)):0;
-  var col2=ebbSlotColor(showSlotIdx,total);
-  var r=30,circ=2*Math.PI*r;
-  var offset=circ*(1-cPct);
-  var handAngleDeg=(1-cPct)*360;
-  var hrs=Math.floor(cRemaining/3600000);
-  var mins=Math.floor((cRemaining%3600000)/60000);
-  var secs=Math.floor((cRemaining%60000)/1000);
-  var timeStr=(hrs>0?hrs+'h ':'')+pad(mins)+'m '+pad(secs)+'s';
 
+  var slotDayApprox=cStart!==null?Math.max(0,Math.min(totalDays-1,Math.round((cStart-overallStart)/86400000))):0;
+  var slotColorRatio=totalDays>1?slotDayApprox/(totalDays-1):0;
+  var col2=smoothGreenToRed(slotColorRatio);
+  var r=30,circ=2*Math.PI*r,offset=circ*(1-cPct),handAngleDeg=(1-cPct)*360;
+  var hrs=Math.floor(cRemaining/3600000),mins2=Math.floor((cRemaining%3600000)/60000),secs=Math.floor((cRemaining%60000)/1000);
+  var timeStr=(hrs>0?hrs+'h ':'')+pad(mins2)+'m '+pad(secs)+'s';
   var sid=safeId(c.id);
   var timeEl=document.getElementById('ebb-time-'+sid);
   var ringEl=document.getElementById('ebb-ring-prog-'+sid);
@@ -1667,9 +1660,7 @@ function updateEbbCountdown(c){
   if(timeEl)timeEl.innerText=timeStr;
   if(ringEl){ringEl.style.strokeDashoffset=offset.toFixed(2);ringEl.style.stroke=col2.main;}
   if(handEl){handEl.style.transform='translateX(-50%) translateY(-100%) rotate('+handAngleDeg.toFixed(2)+'deg)';}
-}
-
-/* ══ DETAILS MODAL ══ */
+}/* ══ DETAILS MODAL ══ */
 function showDetails(enc){
   var c=JSON.parse(decodeURIComponent(enc));detailCampId=c.id;
   document.getElementById('det-logo').src=c.logo;
