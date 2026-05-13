@@ -811,9 +811,31 @@ var campaigns=[],notices=[],livePrices=JSON.parse(localStorage.getItem('spotctr_
 var isAdmin=false,detailCampId=null;
 var userData=JSON.parse(localStorage.getItem('spotctr_user')||'{"joined":{}}');
 
-/* FIX #6: Accurate timezone from browser — works with VPN too since
-   Intl.DateTimeFormat uses the OS/browser timezone setting, not IP */
+/* Timezone detection: try IP-based first (reflects VPN), fallback to browser/OS */
 var userTZ=Intl.DateTimeFormat().resolvedOptions().timeZone;
+(function detectTzByIp(){
+  try{
+    var cached=sessionStorage.getItem('spotctr_iptz');
+    if(cached){ userTZ=cached; return; }
+  }catch(e){}
+  fetch('https://ipapi.co/json/').then(function(r){return r.json();}).then(function(d){
+    if(d&&d.timezone){
+      userTZ=d.timezone;
+      try{sessionStorage.setItem('spotctr_iptz',d.timezone);}catch(e){}
+      var el=document.getElementById('tz-notice');
+      if(el)el.innerText='Times shown in your local timezone ('+userTZ+')';
+    }
+  }).catch(function(){
+    fetch('https://worldtimeapi.org/api/ip').then(function(r){return r.json();}).then(function(d){
+      if(d&&d.timezone){
+        userTZ=d.timezone;
+        try{sessionStorage.setItem('spotctr_iptz',d.timezone);}catch(e){}
+        var el=document.getElementById('tz-notice');
+        if(el)el.innerText='Times shown in your local timezone ('+userTZ+')';
+      }
+    }).catch(function(){});
+  });
+})();
 
 var allExpanded=true,endedExpanded=false,tickCount=0,urgCamps=[],urgIdx=0,noticeIdx=0;
 
