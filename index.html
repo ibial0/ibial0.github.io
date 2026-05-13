@@ -370,17 +370,21 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
 .ebb-track-wrap{position:relative;overflow-x:auto;overflow-y:visible;padding-bottom:4px;margin-bottom:14px;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .ebb-track-wrap::-webkit-scrollbar{height:3px}
 .ebb-track-wrap::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.ebb-track{display:flex;align-items:flex-end;gap:0;min-width:max-content;padding:20px 4px 0}
-.ebb-slot{display:flex;flex-direction:column;align-items:center;position:relative;min-width:64px}
-.ebb-mult-label{font-size:11px;font-weight:700;margin-bottom:5px;transition:color .3s}
-.ebb-line-row{display:flex;align-items:center;width:100%;position:relative;height:8px}
-.ebb-line-seg{flex:1;height:4px;border-radius:0;position:relative;transition:background .3s}
-.ebb-line-seg.seg-left{border-radius:3px 0 0 3px}
-.ebb-line-seg.seg-right{border-radius:0 3px 3px 0}
-.ebb-line-seg.seg-only{border-radius:3px}
-.ebb-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--bg);flex-shrink:0;position:relative;z-index:2;transition:all .3s}
-.ebb-dot.active-dot{width:14px;height:14px;border:2px solid var(--bg);box-shadow:0 0 8px rgba(14,203,129,0.6)}
-.ebb-day-label{font-size:10px;color:var(--gray);margin-top:5px;font-weight:600;white-space:nowrap}
+.ebb-track{position:relative;padding:6px 14px 4px;min-width:100%}
+.ebb-mult-row{position:relative;height:20px;margin-bottom:6px}
+.ebb-mult-lbl{position:absolute;top:0;font-size:12px;font-weight:700;white-space:nowrap;transform:translateX(-4px);transition:color .3s,font-size .3s;line-height:20px}
+.ebb-mult-lbl.active{font-weight:800;font-size:14px;letter-spacing:.2px}
+.ebb-bar-row{position:relative;height:18px;margin:0}
+.ebb-bar{position:absolute;left:0;right:0;top:50%;height:7px;transform:translateY(-50%);border-radius:4px;background:rgba(132,142,156,0.22);overflow:hidden}
+body.light .ebb-bar{background:rgba(74,85,104,0.18)}
+.ebb-bar-fill{position:absolute;inset:0;background:linear-gradient(in oklch to right,#0ecb81 0%,#f6c026 50%,#f6465d 100%);background-image:linear-gradient(to right,#0ecb81 0%,#7fd33a 25%,#f6c026 50%,#f6873a 75%,#f6465d 100%);clip-path:inset(0 100% 0 0);transition:clip-path 1s linear;will-change:clip-path}
+@supports (background:linear-gradient(in oklch to right,red,blue)){.ebb-bar-fill{background-image:linear-gradient(in oklch to right,#0ecb81 0%,#f6c026 50%,#f6465d 100%)}}
+.ebb-dot2{position:absolute;top:50%;width:11px;height:11px;border-radius:50%;border:2px solid var(--bg);transform:translate(-50%,-50%);z-index:3;transition:background .3s,width .3s,height .3s,box-shadow .3s;background:var(--border)}
+.ebb-dot2.elapsed{background:currentColor}
+.ebb-dot2.active{width:15px;height:15px;box-shadow:0 0 10px currentColor;border-color:var(--bg)}
+.ebb-daylbl-row{position:relative;height:16px;margin-top:6px}
+.ebb-daylbl{position:absolute;top:0;transform:translateX(-50%);font-size:11px;color:var(--gray);font-weight:600;white-space:nowrap;line-height:16px}
+.ebb-daylbl.active{color:var(--white);font-weight:800}
 .ebb-countdown-wrap{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:14px}
 .ebb-countdown-ring-wrap{position:relative;flex-shrink:0;width:72px;height:72px}
 .ebb-countdown-ring{transform:rotate(-90deg);width:72px;height:72px}
@@ -648,6 +652,16 @@ body.light .community-cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
           <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px">
             <div style="font-size:11px;color:var(--gray);margin-bottom:10px;line-height:1.6">
               📋 Add each time slot with its multiplier. Set start &amp; end times in <strong style="color:var(--yellow)">UTC</strong> format (YYYY-MM-DD HH:MM). You can add as many slots as needed.
+            </div>
+            <div style="background:rgba(14,203,129,0.05);border:1px dashed rgba(14,203,129,0.35);border-radius:8px;padding:10px;margin-bottom:12px">
+              <div style="font-size:11px;color:var(--green);font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px">⚡ Quick paste (auto-fill)</div>
+              <div style="font-size:11px;color:var(--gray);margin-bottom:8px;line-height:1.55">Paste the full schedule. Each slot is two lines: <code style="color:var(--white)">YYYY-MM-DD HH:MM to YYYY-MM-DD HH:MM</code> then <code style="color:var(--white)">2x</code>. Any number of days supported.</div>
+              <textarea id="ebb-paste-input" rows="6" placeholder="2026-05-07 10:00 to 2026-05-08 10:00&#10;2x&#10;&#10;2026-05-08 10:01 to 2026-05-09 10:00&#10;1.8x" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:8px;color:var(--white);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;line-height:1.5;resize:vertical"></textarea>
+              <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+                <button type="button" class="ebb-add-btn" onclick="ebbPasteFill(false)" style="background:var(--green);color:#001a0d;border-color:var(--green)">📥 Parse &amp; Fill</button>
+                <button type="button" class="ebb-add-btn" onclick="ebbPasteFill(true)">➕ Append</button>
+                <span id="ebb-paste-status" style="font-size:11px;color:var(--gray);align-self:center"></span>
+              </div>
             </div>
             <div class="ebb-slots-wrap" id="ebb-slots-container"></div>
             <button type="button" class="ebb-add-btn" onclick="addEbbSlot()">+ Add Time Slot</button>
@@ -1000,6 +1014,56 @@ function removeEbbSlot(slotId){
   if(el)el.remove();
 }
 window.removeEbbSlot=removeEbbSlot;
+
+/* Parse a pasted EBB schedule and auto-fill slot rows.
+   Format expected (any whitespace, blank lines OK):
+     YYYY-MM-DD HH:MM to YYYY-MM-DD HH:MM
+     2x
+   Repeated for as many slots as needed. No upper limit on count.
+   `append=true` adds to existing rows; otherwise it replaces them. */
+function ebbParseSchedule(text){
+  if(!text)return[];
+  var lines=String(text).replace(/\r/g,'').split('\n');
+  var clean=[];
+  for(var i=0;i<lines.length;i++){var t=lines[i].trim();if(t)clean.push(t);}
+  var rangeRe=/(\d{4}-\d{2}-\d{2})[ T]+(\d{1,2}:\d{2})\s*(?:to|—|–|-|→|->)\s*(\d{4}-\d{2}-\d{2})[ T]+(\d{1,2}:\d{2})/i;
+  var multRe=/^(\d+(?:\.\d+)?)\s*x\s*$/i;
+  var slots=[],j=0;
+  while(j<clean.length){
+    var rm=clean[j].match(rangeRe);
+    if(!rm){j++;continue;}
+    var start=rm[1]+' '+(rm[2].length===4?'0'+rm[2]:rm[2]);
+    var end=rm[3]+' '+(rm[4].length===4?'0'+rm[4]:rm[4]);
+    var mult='';
+    /* Look for the multiplier on any of the next few non-empty lines */
+    for(var k=j+1;k<Math.min(clean.length,j+4);k++){
+      var mm=clean[k].match(multRe);
+      if(mm){mult=mm[1]+'x';j=k;break;}
+      if(rangeRe.test(clean[k]))break;
+    }
+    if(!mult){j++;continue;}
+    slots.push({startUtc:start,endUtc:end,multiplier:mult});
+    j++;
+  }
+  return slots;
+}
+
+function ebbPasteFill(append){
+  var ta=document.getElementById('ebb-paste-input');
+  var status=document.getElementById('ebb-paste-status');
+  if(!ta){return;}
+  var slots=ebbParseSchedule(ta.value);
+  if(!slots.length){if(status){status.textContent='⚠️ No valid slots found. Check the format.';status.style.color='var(--red,#f6465d)';}return;}
+  if(!append){
+    var container=document.getElementById('ebb-slots-container');
+    if(container)container.innerHTML='';
+    ebbSlotCount=0;
+  }
+  slots.forEach(function(s){addEbbSlot(s.startUtc,s.endUtc,s.multiplier);});
+  if(status){status.textContent='✅ '+slots.length+' slot'+(slots.length>1?'s':'')+' '+(append?'appended':'loaded')+'.';status.style.color='var(--green)';}
+}
+window.ebbPasteFill=ebbPasteFill;
+window.ebbParseSchedule=ebbParseSchedule;
 
 function getEbbSlots(){
   var slots=[];
@@ -1439,129 +1503,119 @@ function getActiveEbbSlot(c){
   return null;
 }
 
-/* FIX #1: EBB color — green to red interpolation (no white/gray in the middle)
-   Uses HSL: green=120, red=0. Pure RGB-space interpolation was causing
-   the washed-out "white" appearance at mid-point. */
-function ebbSlotColor(idx,total){
-  if(total<=1)return{main:'#0ecb81',dim:'rgba(14,203,129,0.2)'};
-  var ratio=total>1?idx/(total-1):0;
-  /* Interpolate hue: 145 (green) → 355 (red), via decreasing */
-  var hue=Math.round(145 - ratio*145);  /* 145→0 */
-  /* Saturation and lightness stay vivid */
-  var sat=80,lit=ratio<0.5?45:40;
-  /* Convert HSL to hex for ring/dot use */
-  var h=hue/360,s=sat/100,l=lit/100;
-  var r2,g2,b2;
-  if(s===0){r2=g2=b2=l;}else{
-    var hue2rgb=function(p,q,t){if(t<0)t+=1;if(t>1)t-=1;if(t<1/6)return p+(q-p)*6*t;if(t<1/2)return q;if(t<2/3)return p+(q-p)*(2/3-t)*6;return p;};
-    var q2=l<0.5?l*(1+s):l+s-l*s,p2=2*l-q2;
-    r2=hue2rgb(p2,q2,h+1/3);g2=hue2rgb(p2,q2,h);b2=hue2rgb(p2,q2,h-1/3);
-  }
-  var toHex=function(x){var v=Math.round(x*255);return('0'+v.toString(16)).slice(-2);};
-  var hex='#'+toHex(r2)+toHex(g2)+toHex(b2);
-  var ri=Math.round(r2*255),gi=Math.round(g2*255),bi=Math.round(b2*255);
-  return{main:hex,dim:'rgba('+ri+','+gi+','+bi+',0.2)'};
+/* EBB color: smooth blended green→red interpolation in sRGB.
+   No distinct teal/yellow/orange mid-tones — just a continuous mix
+   between the two endpoint colors (RGB lerp). */
+function ebbLerpColor(t){
+  if(t<0)t=0;if(t>1)t=1;
+  /* Bright 3-stop interpolation: green → yellow → red. Avoids the muddy mid-tones a pure RGB lerp produces. */
+  var stops=[[14,203,129],[246,192,38],[246,70,93]];
+  var seg=t*2,i=Math.min(1,Math.floor(seg)),u=seg-i;
+  var a=stops[i],b=stops[i+1];
+  var R=Math.round(a[0]+(b[0]-a[0])*u);
+  var G=Math.round(a[1]+(b[1]-a[1])*u);
+  var B=Math.round(a[2]+(b[2]-a[2])*u);
+  return{main:'rgb('+R+','+G+','+B+')',dim:'rgba('+R+','+G+','+B+',0.25)'};
 }
 
-/* FIX #2: EBB line segment properly reflects time elapsed within each slot,
-   not just past/active binary state. */
-function buildEbbDisplay(c){
-  if(!c||!c.hasEarlyBird||!c.earlyBirdSlots||!c.earlyBirdSlots.length)return'';
-  var slots=c.earlyBirdSlots;
-  var total=slots.length;
-  var now=Date.now();
-
-  var activeIdx=-1,nextIdx=-1;
+/* Build slot meta: parsed start/end + day count + cumulative day offset.
+   One entry per multiplier slot (NOT per day). The display has one dot at
+   the start of each slot plus one final closing dot, with day-number labels
+   under each dot (e.g., 2x for 2 days → start D1, end D3). */
+function buildEbbSlotMeta(slots){
+  var meta=[];if(!slots)return meta;
+  var cumDays=0;
   for(var i=0;i<slots.length;i++){
     var s=parseEbbDate(slots[i].startUtc);
     var e=parseEbbDate(slots[i].endUtc);
     if(s===null||e===null)continue;
-    if(now>=s&&now<e){activeIdx=i;break;}
-    if(now<s&&(nextIdx<0||s<parseEbbDate(slots[nextIdx].startUtc))){nextIdx=i;}
+    var dur=Math.max(e-s,1);
+    var days=Math.max(1,Math.round(dur/86400000));
+    meta.push({idx:i,start:s,end:e,dur:dur,days:days,startDay:cumDays,multiplier:slots[i].multiplier});
+    cumDays+=days;
   }
+  return meta;
+}
 
-  var allStarts=slots.map(function(sl){return parseEbbDate(sl.startUtc);}).filter(function(x){return x!==null;});
-  var allEnds=slots.map(function(sl){return parseEbbDate(sl.endUtc);}).filter(function(x){return x!==null;});
-  var overallStart=allStarts.length?Math.min.apply(null,allStarts):now;
-  var overallEnd=allEnds.length?Math.max.apply(null,allEnds):now;
-  var totalDuration=Math.max(overallEnd-overallStart,1);
+function buildEbbDisplay(c){
+  if(!c||!c.hasEarlyBird||!c.earlyBirdSlots||!c.earlyBirdSlots.length)return'';
+  var meta=buildEbbSlotMeta(c.earlyBirdSlots);
+  if(!meta.length)return'';
+  var totalDays=meta[meta.length-1].startDay+meta[meta.length-1].days;
+  var totalStart=meta[0].start;
+  var totalEnd=meta[meta.length-1].end;
+  var totalDur=Math.max(totalEnd-totalStart,1);
+  var now=Date.now();
 
-  var dayNum=now>overallStart?Math.ceil((now-overallStart)/(86400000)):1;
-  var totalDays=Math.ceil(totalDuration/86400000);
-  dayNum=Math.max(1,Math.min(dayNum,totalDays));
+  var activeIdx=-1,nextIdx=-1;
+  for(var j=0;j<meta.length;j++){
+    if(now>=meta[j].start&&now<meta[j].end){activeIdx=j;break;}
+    if(now<meta[j].start&&nextIdx<0)nextIdx=j;
+  }
+  var curDayNum;
+  if(now<totalStart)curDayNum=1;
+  else if(now>=totalEnd)curDayNum=totalDays;
+  else curDayNum=Math.min(totalDays,Math.floor((now-totalStart)/86400000)+1);
 
-  var todayMult=activeIdx>=0?slots[activeIdx].multiplier:(nextIdx>=0?null:'Ended');
+  var todayMult=activeIdx>=0?meta[activeIdx].multiplier:null;
+  var overallPct=Math.max(0,Math.min(1,(now-totalStart)/totalDur));
 
   var html='<div class="ebb-section">';
-  html+='<div class="ebb-header">';
-  html+='<div class="ebb-title-wrap"><span class="ebb-icon">🚀</span><span class="ebb-title">Early Bird Boost</span>';
-  if(todayMult&&todayMult!=='Ended'){
-    html+='<span class="ebb-today-badge">Today: '+escHtml(todayMult)+' Boost</span>';
+  html+='<div class="ebb-header"><div class="ebb-title-wrap"><span class="ebb-icon">🚀</span><span class="ebb-title">Early Bird Boost</span>';
+  if(todayMult)html+='<span class="ebb-today-badge">Today: '+escHtml(todayMult)+' Boost</span>';
+  html+='</div><span class="ebb-day-counter">Day '+curDayNum+' of '+totalDays+'</span></div>';
+
+  var sid=safeId(c.id);
+  html+='<div class="ebb-track-wrap"><div class="ebb-track" id="ebb-track-'+sid+'">';
+
+  /* Multiplier labels — one per slot, positioned over its starting dot */
+  html+='<div class="ebb-mult-row">';
+  meta.forEach(function(m,i){
+    var startPct=(m.startDay/totalDays)*100;
+    var widthPct=(m.days/totalDays)*100;
+    var isAct=i===activeIdx;
+    var isPast=now>=m.end;
+    var col=ebbLerpColor(m.startDay/Math.max(totalDays,1));
+    var lblColor=(isPast||isAct)?col.main:'var(--gray)';
+    html+='<div class="ebb-mult-lbl'+(isAct?' active':'')+'" id="ebb-lbl-'+sid+'-'+i+'" style="left:'+startPct.toFixed(3)+'%;min-width:'+widthPct.toFixed(3)+'%;color:'+lblColor+'">'+escHtml(m.multiplier)+'</div>';
+  });
+  html+='</div>';
+
+  /* Bar: gray track underneath, gradient fill clipped to elapsed portion (grows with time) */
+  html+='<div class="ebb-bar-row"><div class="ebb-bar"><div class="ebb-bar-fill" id="ebb-fill-'+sid+'" style="clip-path:inset(0 '+(100-overallPct*100).toFixed(3)+'% 0 0)"></div></div>';
+
+  /* Dots: one at start of each slot + one at the final end */
+  for(var b=0;b<=meta.length;b++){
+    var pct,dotElapsed,boundaryTime;
+    if(b<meta.length){pct=(meta[b].startDay/totalDays)*100;boundaryTime=meta[b].start;}
+    else{pct=100;boundaryTime=totalEnd;}
+    dotElapsed=now>=boundaryTime;
+    var isActDot=(activeIdx>=0&&b===activeIdx);
+    var dotCol=ebbLerpColor(pct/100);
+    var cls='ebb-dot2'+(dotElapsed?' elapsed':'')+(isActDot?' active':'');
+    html+='<div class="'+cls+'" id="ebb-dot-'+sid+'-'+b+'" style="left:'+pct.toFixed(3)+'%;color:'+dotCol.main+'"></div>';
   }
   html+='</div>';
-  html+='<span class="ebb-day-counter">Day '+dayNum+' of '+totalDays+'</span>';
+
+  /* Day labels: under each dot. Start of slot i = D(startDay+1); final dot = D(totalDays+1) */
+  html+='<div class="ebb-daylbl-row">';
+  for(var b2=0;b2<=meta.length;b2++){
+    var pct2,dayN,isActLbl;
+    if(b2<meta.length){pct2=(meta[b2].startDay/totalDays)*100;dayN=meta[b2].startDay+1;isActLbl=(activeIdx>=0&&b2===activeIdx);}
+    else{pct2=100;dayN=totalDays+1;isActLbl=false;}
+    html+='<div class="ebb-daylbl'+(isActLbl?' active':'')+'" id="ebb-daylbl-'+sid+'-'+b2+'" style="left:'+pct2.toFixed(3)+'%">D'+dayN+'</div>';
+  }
   html+='</div>';
-
-  /* FIX #2: Build track with accurate per-slot fill based on elapsed time */
-  html+='<div class="ebb-track-wrap"><div class="ebb-track" id="ebb-track-'+safeId(c.id)+'">';
-  slots.forEach(function(slot,idx){
-    var slotStart=parseEbbDate(slot.startUtc);
-    var slotEnd=parseEbbDate(slot.endUtc);
-    var isPast=slotEnd!==null&&now>=slotEnd;
-    var isActive=idx===activeIdx;
-    var col=ebbSlotColor(idx,total);
-    var multColor=isActive?col.main:(isPast?ebbSlotColor(idx,total).main:'var(--gray)');
-
-    var slotDays=slotStart!==null&&slotEnd!==null?Math.ceil((slotEnd-slotStart)/86400000):1;
-    var label='D'+(idx+1);
-    if(slotDays>1)label='D'+(idx+1)+'-'+(idx+slotDays);
-
-    var isFirst=idx===0,isLast=idx===slots.length-1;
-
-    /* For the right segment of the active slot:
-       fill proportional to how much of this slot has elapsed */
-    var activeElapsedPct=0;
-    if(isActive&&slotStart!==null&&slotEnd!==null){
-      var slotDur=Math.max(slotEnd-slotStart,1);
-      activeElapsedPct=Math.max(0,Math.min(1,(now-slotStart)/slotDur));
-    }
-
-    var leftColor=isPast||isActive?col.main:'var(--border)';
-    /* Right segment: past slots fully filled, active slot partially filled using gradient trick */
-    var rightStyle='';
-    if(isPast){
-      rightStyle='background:'+col.main+';';
-    } else if(isActive){
-      /* Use linear-gradient to show exactly how much of this slot has elapsed */
-      rightStyle='background:linear-gradient(to right, '+col.main+' '+Math.round(activeElapsedPct*100)+'%, var(--border) '+Math.round(activeElapsedPct*100)+'%);';
-    } else {
-      rightStyle='background:var(--border);';
-    }
-
-    html+='<div class="ebb-slot" id="ebb-slot-el-'+safeId(c.id)+'-'+idx+'" style="min-width:'+(Math.max(64,slotDays*32))+'px">';
-    html+='<div class="ebb-mult-label" style="color:'+multColor+';font-weight:'+(isActive?'800':'600')+'">'+escHtml(slot.multiplier)+'</div>';
-    html+='<div class="ebb-line-row">';
-    if(!isFirst)html+='<div class="ebb-line-seg seg-left" style="background:'+leftColor+'"></div>';
-    else html+='<div class="ebb-line-seg seg-left" style="background:transparent;pointer-events:none"></div>';
-    html+='<div class="ebb-dot'+(isActive?' active-dot':'')+'" style="background:'+(isActive||isPast?col.main:'var(--border)')+';border-color:var(--bg)"></div>';
-    if(!isLast)html+='<div class="ebb-line-seg seg-right" id="ebb-rseg-'+safeId(c.id)+'-'+idx+'" style="'+rightStyle+'"></div>';
-    else html+='<div class="ebb-line-seg seg-right" style="background:transparent;pointer-events:none"></div>';
-    html+='</div>';
-    html+='<div class="ebb-day-label">'+label+'</div>';
-    html+='</div>';
-  });
   html+='</div></div>';
 
-  var showSlotIdx=activeIdx>=0?activeIdx:(nextIdx>=0?nextIdx:-1);
+  /* Countdown — tied to current/next slot */
+  var showSlotIdx=activeIdx>=0?activeIdx:nextIdx;
   if(showSlotIdx>=0){
-    var cSlot=slots[showSlotIdx];
-    var cStart=parseEbbDate(cSlot.startUtc);
-    var cEnd=parseEbbDate(cSlot.endUtc);
-    var cTotal=cEnd-cStart;
-    var cRemaining=cEnd-now;
-    if(cRemaining<0)cRemaining=0;
+    var cSlot=meta[showSlotIdx];
+    var cTotal=cSlot.dur;
+    var cRemaining=Math.max(0,cSlot.end-now);
     var cPct=cTotal>0?Math.max(0,Math.min(1,cRemaining/cTotal)):0;
-    var col2=ebbSlotColor(showSlotIdx,total);
+    var col2=ebbLerpColor(cSlot.startDay/Math.max(totalDays,1));
     var r=30,circ=2*Math.PI*r;
     var offset=circ*(1-cPct);
     var handAngleDeg=(1-cPct)*360;
@@ -1571,30 +1625,30 @@ function buildEbbDisplay(c){
     var timeStr=(hrs>0?hrs+'h ':'')+pad(mins)+'m '+pad(secs)+'s';
     var isCountingActive=activeIdx>=0;
 
-    html+='<div class="ebb-countdown-wrap" id="ebb-countdown-'+safeId(c.id)+'">';
+    html+='<div class="ebb-countdown-wrap" id="ebb-countdown-'+sid+'">';
     html+='<div class="ebb-countdown-ring-wrap">';
     html+='<svg class="ebb-countdown-ring" width="72" height="72" viewBox="0 0 72 72">';
-    for(var t=0;t<12;t++){
-      var tickAngle=t*30;var tr=tickAngle*Math.PI/180;
+    for(var tt=0;tt<12;tt++){
+      var tickAngle=tt*30;var tr=tickAngle*Math.PI/180;
       var x1=36+26*Math.sin(tr),y1=36-26*Math.cos(tr);
       var x2=36+29*Math.sin(tr),y2=36-29*Math.cos(tr);
       html+='<line x1="'+x1.toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+x2.toFixed(1)+'" y2="'+y2.toFixed(1)+'" stroke="rgba(132,142,156,0.3)" stroke-width="1.5" stroke-linecap="round"/>';
     }
     html+='<circle class="ebb-ring-bg" cx="36" cy="36" r="'+r+'"/>';
-    html+='<circle class="ebb-ring-prog" id="ebb-ring-prog-'+safeId(c.id)+'" cx="36" cy="36" r="'+r+'" stroke="'+col2.main+'" stroke-dasharray="'+circ.toFixed(2)+'" stroke-dashoffset="'+offset.toFixed(2)+'"/>';
+    html+='<circle class="ebb-ring-prog" id="ebb-ring-prog-'+sid+'" cx="36" cy="36" r="'+r+'" stroke="'+col2.main+'" stroke-dasharray="'+circ.toFixed(2)+'" stroke-dashoffset="'+offset.toFixed(2)+'"/>';
     html+='</svg>';
     html+='<div style="position:absolute;top:0;left:0;width:72px;height:72px;pointer-events:none">';
     html+='<div style="position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:'+col2.main+';transform:translate(-50%,-50%);z-index:3;box-shadow:0 0 6px '+col2.main+'"></div>';
-    html+='<div id="ebb-clock-hand-'+safeId(c.id)+'" style="position:absolute;top:50%;left:50%;width:3px;height:22px;background:'+col2.main+';border-radius:3px 3px 1px 1px;transform-origin:50% 100%;transform:translateX(-50%) translateY(-100%) rotate('+handAngleDeg.toFixed(1)+'deg);z-index:2;box-shadow:0 0 4px '+col2.dim+';transition:transform 1s linear"></div>';
+    html+='<div id="ebb-clock-hand-'+sid+'" style="position:absolute;top:50%;left:50%;width:3px;height:22px;background:'+col2.main+';border-radius:3px 3px 1px 1px;transform-origin:50% 100%;transform:translateX(-50%) translateY(-100%) rotate('+handAngleDeg.toFixed(1)+'deg);z-index:2;box-shadow:0 0 4px '+col2.dim+';transition:transform 1s linear"></div>';
     html+='</div>';
     html+='</div>';
     html+='<div class="ebb-countdown-info">';
     html+='<div class="ebb-countdown-label">'+(isCountingActive?'Current boost ends in':'Next boost starts in')+'</div>';
-    html+='<div class="ebb-time-display" id="ebb-time-'+safeId(c.id)+'">'+timeStr+'</div>';
+    html+='<div class="ebb-time-display" id="ebb-time-'+sid+'">'+timeStr+'</div>';
     html+='<div class="ebb-countdown-mult" style="color:'+col2.main+'">'+escHtml(cSlot.multiplier)+' Boost '+(isCountingActive?'active':'upcoming')+'</div>';
     if(isCountingActive){
-      var nxt=slots[showSlotIdx+1];
-      html+='<div class="ebb-countdown-desc">'+(nxt?'Next: '+escHtml(nxt.multiplier):'Last boost tier — ends soon')+'</div>';
+      var nxt=meta[showSlotIdx+1];
+      html+='<div class="ebb-countdown-desc">'+(nxt?'Next: '+escHtml(nxt.multiplier):'Last boost tier, ends soon')+'</div>';
     }else{
       html+='<div class="ebb-countdown-desc">Early Bird period starts soon</div>';
     }
@@ -1606,52 +1660,63 @@ function buildEbbDisplay(c){
   return html;
 }
 
-/* FIX #2: updateEbbCountdown also updates the line segments accurately */
+/* Live tick: advance the bar overlay smoothly with elapsed time, refresh dots
+   and labels as boundaries cross, and update the countdown ring/text. */
 function updateEbbCountdown(c){
   if(!c||!c.hasEarlyBird||!c.earlyBirdSlots)return;
-  var slots=c.earlyBirdSlots;
-  var total=slots.length;
+  var meta=buildEbbSlotMeta(c.earlyBirdSlots);
+  if(!meta.length)return;
+  var totalDays=meta[meta.length-1].startDay+meta[meta.length-1].days;
+  var totalStart=meta[0].start;
+  var totalEnd=meta[meta.length-1].end;
+  var totalDur=Math.max(totalEnd-totalStart,1);
   var now=Date.now();
+  var sid=safeId(c.id);
+
   var activeIdx=-1,nextIdx=-1;
-  for(var i=0;i<slots.length;i++){
-    var s=parseEbbDate(slots[i].startUtc);
-    var e=parseEbbDate(slots[i].endUtc);
-    if(s===null||e===null)continue;
-    if(now>=s&&now<e){activeIdx=i;break;}
-    if(now<s&&(nextIdx<0||s<parseEbbDate(slots[nextIdx].startUtc))){nextIdx=i;}
+  for(var j=0;j<meta.length;j++){
+    if(now>=meta[j].start&&now<meta[j].end){activeIdx=j;break;}
+    if(now<meta[j].start&&nextIdx<0)nextIdx=j;
   }
 
-  /* Update line segments for accurate time-based fill */
-  slots.forEach(function(slot,idx){
-    var segEl=document.getElementById('ebb-rseg-'+safeId(c.id)+'-'+idx);
-    if(!segEl)return;
-    var slotStart=parseEbbDate(slot.startUtc);
-    var slotEnd=parseEbbDate(slot.endUtc);
-    var isPast=slotEnd!==null&&now>=slotEnd;
-    var isActive=idx===activeIdx;
-    var col=ebbSlotColor(idx,total);
-    if(isPast){
-      segEl.style.background=col.main;
-    } else if(isActive){
-      var slotDur=Math.max(slotEnd-slotStart,1);
-      var elapsedPct=Math.max(0,Math.min(1,(now-slotStart)/slotDur));
-      segEl.style.background='linear-gradient(to right, '+col.main+' '+Math.round(elapsedPct*100)+'%, var(--border) '+Math.round(elapsedPct*100)+'%)';
-    } else {
-      segEl.style.background='var(--border)';
-    }
+  var overallPct=Math.max(0,Math.min(1,(now-totalStart)/totalDur));
+  var fillEl=document.getElementById('ebb-fill-'+sid);
+  if(fillEl)fillEl.style.clipPath='inset(0 '+(100-overallPct*100).toFixed(3)+'% 0 0)';
+
+  /* Refresh dot states (elapsed/active) */
+  for(var b=0;b<=meta.length;b++){
+    var dotEl=document.getElementById('ebb-dot-'+sid+'-'+b);
+    if(!dotEl)continue;
+    var boundaryTime=b<meta.length?meta[b].start:totalEnd;
+    var dotElapsed=now>=boundaryTime;
+    var isActDot=(activeIdx>=0&&b===activeIdx);
+    dotEl.classList.toggle('elapsed',dotElapsed);
+    dotEl.classList.toggle('active',isActDot);
+  }
+  /* Refresh mult-label active state and color */
+  meta.forEach(function(m,i){
+    var lbl=document.getElementById('ebb-lbl-'+sid+'-'+i);
+    if(!lbl)return;
+    var isAct=i===activeIdx;
+    var isPast=now>=m.end;
+    var col=ebbLerpColor(m.startDay/Math.max(totalDays,1));
+    lbl.classList.toggle('active',isAct);
+    lbl.style.color=(isPast||isAct)?col.main:'var(--gray)';
   });
+  /* Refresh day-label active state */
+  for(var b2=0;b2<=meta.length;b2++){
+    var dl=document.getElementById('ebb-daylbl-'+sid+'-'+b2);
+    if(!dl)continue;
+    dl.classList.toggle('active',(activeIdx>=0&&b2===activeIdx));
+  }
 
-  var showSlotIdx=activeIdx>=0?activeIdx:(nextIdx>=0?nextIdx:-1);
+  var showSlotIdx=activeIdx>=0?activeIdx:nextIdx;
   if(showSlotIdx<0)return;
-
-  var cSlot=slots[showSlotIdx];
-  var cStart=parseEbbDate(cSlot.startUtc);
-  var cEnd=parseEbbDate(cSlot.endUtc);
-  var cTotal=cEnd-cStart;
-  var cRemaining=cEnd-now;
-  if(cRemaining<0)cRemaining=0;
+  var cSlot=meta[showSlotIdx];
+  var cTotal=cSlot.dur;
+  var cRemaining=Math.max(0,cSlot.end-now);
   var cPct=cTotal>0?Math.max(0,Math.min(1,cRemaining/cTotal)):0;
-  var col2=ebbSlotColor(showSlotIdx,total);
+  var col2=ebbLerpColor(cSlot.startDay/Math.max(totalDays,1));
   var r=30,circ=2*Math.PI*r;
   var offset=circ*(1-cPct);
   var handAngleDeg=(1-cPct)*360;
@@ -1660,7 +1725,6 @@ function updateEbbCountdown(c){
   var secs=Math.floor((cRemaining%60000)/1000);
   var timeStr=(hrs>0?hrs+'h ':'')+pad(mins)+'m '+pad(secs)+'s';
 
-  var sid=safeId(c.id);
   var timeEl=document.getElementById('ebb-time-'+sid);
   var ringEl=document.getElementById('ebb-ring-prog-'+sid);
   var handEl=document.getElementById('ebb-clock-hand-'+sid);
@@ -1926,4 +1990,3 @@ setInterval(fetchPrices,60000);
 </script>
 </body>
 </html>
-
