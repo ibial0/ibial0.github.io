@@ -140,7 +140,12 @@ h2::before{content:'';display:inline-block;width:4px;height:18px;background:line
 .pool-amt{font-weight:700;color:var(--white);font-size:13px}
 .pool-usd{font-size:11px;color:var(--gray);margin-top:1px}
 .camp-timer{font-family:'Courier New',monospace;font-size:12px;font-weight:700;text-align:right;white-space:nowrap}
-.camp-timer.state-active{color:var(--yellow)}.camp-timer.state-reward{color:var(--green)}.camp-timer.state-ended{color:var(--gray)}.camp-timer.state-upcoming{color:var(--cyan)}.camp-timer.state-alert{color:var(--red);animation:blink 1s infinite}
+.camp-timer.state-active{color:var(--yellow)}.camp-timer.state-reward{color:var(--green)}.camp-timer.state-ended{color:var(--gray)}.camp-timer.state-upcoming{color:var(--cyan)}.camp-timer.state-alert{color:var(--red);animation:blink 1s infinite}.camp-timer.state-rumored{color:#a78bfa;letter-spacing:.5px}.hero-timer.state-rumored{color:#a78bfa}
+.rumored-badge{display:inline-block;background:linear-gradient(135deg,rgba(167,139,250,.18),rgba(139,92,246,.22));color:#c4b5fd;border:1px solid rgba(167,139,250,.45);padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin-left:4px}
+.rumored-banner{display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(167,139,250,.10),rgba(139,92,246,.08));border:1px dashed rgba(167,139,250,.45);color:#c4b5fd;border-radius:8px;padding:8px 12px;font-size:11px;font-weight:600;line-height:1.5;margin:8px 0}
+.list-card.rumored{border-color:rgba(167,139,250,.35);background:linear-gradient(180deg,rgba(167,139,250,.05),transparent)}
+.hero-card.rumored{border-color:rgba(167,139,250,.4)}
+.rumored-tba{color:#9ca3af;font-style:italic;font-size:11px;letter-spacing:.3px}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.5}}
 .timer-state-label{font-size:9px;color:var(--gray);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:1px}
 .admin-controls{display:flex;gap:4px}
@@ -338,6 +343,8 @@ body.light .about-warn{color:#7f1d1d}
 .det-timer.state-active{color:var(--yellow);text-shadow:0 0 14px var(--yglow)}
 .det-timer.state-reward{color:var(--green);text-shadow:0 0 14px var(--gglow)}
 .det-timer.state-ended{color:var(--gray)}
+.det-timer.state-rumored{color:#a78bfa;text-shadow:0 0 14px rgba(167,139,250,.35);font-size:18px;letter-spacing:.5px}
+.det-timer.state-upcoming{color:var(--cyan)}
 .det-official-link{display:flex;align-items:center;gap:7px;background:var(--ydim);border:1px solid rgba(252,213,53,.25);border-radius:7px;padding:9px 13px;margin-bottom:13px;text-decoration:none;color:var(--yellow);font-size:13px;font-weight:600;transition:background .2s}
 .det-official-link:hover{background:rgba(252,213,53,.2)}
 .rule-item{background:var(--bg);border-radius:7px;padding:11px 14px;margin-bottom:7px;border-left:3px solid var(--border);font-size:12px;color:var(--gray);line-height:1.7}
@@ -593,6 +600,13 @@ body.light .ebb-bar{background:rgba(74,85,104,0.18)}
       <h2 id="modal-title" style="border:none;padding:0;display:block;margin-bottom:14px">Add New Campaign</h2>
       <form id="campaign-form" onsubmit="saveCampaign(event)">
         <input type="hidden" id="camp-id">
+        <div style="background:linear-gradient(135deg,rgba(167,139,250,.08),rgba(139,92,246,.05));border:1px dashed rgba(167,139,250,.4);border-radius:9px;padding:10px 12px;margin-bottom:12px">
+          <div class="check-row" style="margin:0">
+            <input type="checkbox" id="is-rumored" onchange="onRumoredToggle()" style="accent-color:#a78bfa">
+            <label for="is-rumored" style="color:#c4b5fd;font-weight:700">🔮 Rumored / Unconfirmed Campaign</label>
+          </div>
+          <div class="hint" style="color:#9ca3af;margin-top:4px;font-style:normal">Use this when a campaign or tournament is expected but not officially announced. Only Token Name, Coin ID and Logo are required. Pool, dates and other details can be filled later.</div>
+        </div>
         <span class="form-section-label">Campaign Info</span>
         <div class="form-group"><label>Campaign Title (optional)</label><input type="text" id="camp-title"></div>
         <div class="form-group"><label>Token Name (e.g. $BNB)</label><input type="text" id="token-name" required></div>
@@ -686,8 +700,8 @@ body.light .ebb-bar{background:rgba(74,85,104,0.18)}
     </div>
     <div id="det-official-wrap"></div>
     <div class="det-info-box">
-      <div class="det-row"><span class="det-key">Starts</span><span class="det-val" id="det-start"></span></div>
-      <div class="det-row"><span class="det-key">Ends</span><span class="det-val" id="det-end"></span></div>
+      <div class="det-row" id="det-start-row"><span class="det-key">Starts</span><span class="det-val" id="det-start"></span></div>
+      <div class="det-row" id="det-end-row"><span class="det-key">Ends</span><span class="det-val" id="det-end"></span></div>
       <div class="det-row" id="det-reward-row" style="display:none"><span class="det-key">Reward Deadline</span><span class="det-val" id="det-reward-date"></span></div>
       <div class="det-row"><span class="det-key">Total Pool</span><span class="det-val" id="det-pool"></span></div>
       <div class="det-row" id="det-est-row"><span class="det-key">Est. Reward</span><span class="det-val" id="det-est"></span></div>
@@ -917,10 +931,10 @@ async function translateAllVisible(){if(userReadLang==='en')return;var keys=Obje
 /* ══ HELPERS ══ */
 function saveUD(){localStorage.setItem('spotctr_user',JSON.stringify(userData));}
 function isJoined(id){return!!userData.joined[id];}
-function isCampActive(c){var n=Date.now(),ended=new Date(c.end).getTime()<=n,rDone=!c.rewardDate||new Date(c.rewardDate).getTime()<=n;return!(ended&&rDone);}
+function isCampActive(c){if(!c)return false;if(c.rumored)return true;var n=Date.now(),ended=new Date(c.end).getTime()<=n,rDone=!c.rewardDate||new Date(c.rewardDate).getTime()<=n;return!(ended&&rDone);}
 function pad(n){return n.toString().padStart(2,'0');}
 function fmtDiff(d){return pad(Math.floor(d/86400000))+'d '+pad(Math.floor((d%86400000)/3600000))+'h '+pad(Math.floor((d%3600000)/60000))+'m '+pad(Math.floor((d%60000)/1000))+'s';}
-function getTimerInfo(c){var now=Date.now(),start=new Date(c.start).getTime(),end=new Date(c.end).getTime(),re=c.rewardDate?new Date(c.rewardDate).getTime():null;if(now<start)return{text:fmtDiff(start-now),state:'upcoming',label:'Starts In'};if(now<end){var d=end-now;return{text:fmtDiff(d),state:d<86400000?'alert':'active',label:'Campaign Ends In'};}if(re&&now<re)return{text:fmtDiff(re-now),state:'reward',label:'Reward Distribution In'};return{text:'ENDED',state:'ended',label:'Campaign Ended'};}
+function getTimerInfo(c){if(c&&c.rumored)return{text:'Awaiting Confirmation',state:'rumored',label:'Possible Upcoming'};var now=Date.now(),start=new Date(c.start).getTime(),end=new Date(c.end).getTime(),re=c.rewardDate?new Date(c.rewardDate).getTime():null;if(now<start)return{text:fmtDiff(start-now),state:'upcoming',label:'Starts In'};if(now<end){var d=end-now;return{text:fmtDiff(d),state:d<86400000?'alert':'active',label:'Campaign Ends In'};}if(re&&now<re)return{text:fmtDiff(re-now),state:'reward',label:'Reward Distribution In'};return{text:'ENDED',state:'ended',label:'Campaign Ended'};}
 function priceOf(id){return(livePrices[id]&&livePrices[id].usd)?livePrices[id].usd:0;}
 function fmtUSD(n){if(!n||isNaN(n))return'$0.00';if(n>=1e6)return'$'+(n/1e6).toFixed(2)+'M';if(n>=1000)return'$'+(n/1000).toFixed(1)+'K';return'$'+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});}
 function fmtToken(n){if(!n||isNaN(n))return'0';if(n>=1000)return n.toLocaleString(undefined,{maximumFractionDigits:2});if(n>=1)return n.toFixed(4);if(n>=0.0001)return n.toFixed(6);return n.toFixed(8);}
@@ -996,6 +1010,7 @@ function promptAdmin(){
     document.getElementById('modal-title').innerText='Add New Campaign';
     document.getElementById('submit-btn').innerText='Publish Campaign';
     onTypeChange();onMinVolChange();
+    var ru=document.getElementById('is-rumored');if(ru)ru.checked=false;onRumoredToggle();
     ebbSlotCount=0;
     document.getElementById('ebb-slots-container').innerHTML='';
     document.getElementById('fg-ebb').style.display='none';
@@ -1158,6 +1173,21 @@ window.showRules=showRules;
 function onTypeChange(){var t=document.getElementById('camp-type')?document.getElementById('camp-type').value:'volume';['fg-volume','fg-equal','fg-ranked','fg-points-lb','fg-points-nl'].forEach(function(x){var el=document.getElementById(x);if(el)el.style.display='none';});var m={volume:'fg-volume',equal:'fg-equal',ranked_fixed:'fg-ranked',points_lb:'fg-points-lb',points_nl:'fg-points-nl'};if(m[t]){var s=document.getElementById(m[t]);if(s)s.style.display='';}}
 window.onTypeChange=onTypeChange;
 function onMinVolChange(){var v=document.getElementById('has-min-vol')?document.getElementById('has-min-vol').value:'no';var fg=document.getElementById('fg-minvol');if(fg)fg.style.display=v==='yes'?'':'none';}
+function onRumoredToggle(){
+  var cb=document.getElementById('is-rumored');var ru=cb&&cb.checked;
+  ['reward-pool-amt','start-date','end-date','logo-url','coin-id'].forEach(function(id){
+    var el=document.getElementById(id);if(!el)return;
+    if(id==='logo-url'||id==='coin-id'){el.required=true;return;}
+    el.required=!ru;
+  });
+  var lblMap={'reward-pool-amt':'Total Reward Pool (Token Amount)','start-date':'Start Date and Time','end-date':'End Date and Time'};
+  Object.keys(lblMap).forEach(function(id){
+    var el=document.getElementById(id);if(!el)return;
+    var lbl=el.parentElement&&el.parentElement.querySelector('label');
+    if(lbl)lbl.innerText=lblMap[id]+(ru?' (optional)':'');
+  });
+}
+window.onRumoredToggle=onRumoredToggle;
 window.onMinVolChange=onMinVolChange;
 function gv(id){var el=document.getElementById(id);return el?el.value:'';}
 function gn(id){return parseFloat(gv(id))||0;}
@@ -1169,6 +1199,7 @@ function saveCampaign(e){
   var rdPost=document.getElementById('reward-postponed')?document.getElementById('reward-postponed').checked:false;
   var hasEbb=document.getElementById('has-ebb')?document.getElementById('has-ebb').checked:false;
   var ebbSlots=hasEbb?getEbbSlots():null;
+  var rumored=document.getElementById('is-rumored')?document.getElementById('is-rumored').checked:false;
   db.ref('campaigns/'+id).set({
     id:id,title:gv('camp-title'),name:gv('token-name'),coinId:gv('coin-id').toLowerCase(),logo:gv('logo-url'),
     campLink:gv('camp-link')||null,poolAmt:gn('reward-pool-amt'),type:t,difficulty:gv('camp-difficulty')||null,
@@ -1177,9 +1208,10 @@ function saveCampaign(e){
     rankEligVol:t==='ranked_fixed'?gn('rank-elig-vol'):null,rankMinVol:t==='ranked_fixed'?gn('rank-min-vol'):null,
     totalPoints:t==='points_lb'?gn('total-points'):null,costPerPoint:t==='points_lb'?gn('cost-per-point'):null,
     minPoints:t==='points_nl'?gn('min-points'):null,costPerPointNl:t==='points_nl'?gn('cost-per-point-nl'):null,
-    minVolume:hasMin?gn('min-volume'):0,start:gv('start-date'),end:gv('end-date'),
+    minVolume:hasMin?gn('min-volume'):0,start:gv('start-date')||null,end:gv('end-date')||null,
     rewardDate:(!rdTBD&&gv('reward-date'))||null,rewardDateTBD:rdTBD||null,rewardPostponed:rdPost||null,
-    hasEarlyBird:hasEbb||null,earlyBirdSlots:(hasEbb&&ebbSlots&&ebbSlots.length)?ebbSlots:null
+    hasEarlyBird:hasEbb||null,earlyBirdSlots:(hasEbb&&ebbSlots&&ebbSlots.length)?ebbSlots:null,
+    rumored:rumored||null
   });
   closeModal('admin-modal');
 }
@@ -1229,6 +1261,7 @@ function editCamp(id,ev){
       }
     }
     document.getElementById('modal-title').innerText='Edit Campaign';
+    var ruEl=document.getElementById('is-rumored');if(ruEl){ruEl.checked=!!c.rumored;onRumoredToggle();}
     document.getElementById('submit-btn').innerText='Save Changes';
     onTypeChange();openModal('admin-modal');
   });
@@ -1295,19 +1328,21 @@ function renderViews(){
     document.getElementById('reward-content').innerHTML=empty;
     return;
   }
-  var nowMs=Date.now(),running=[],rewPending=[],fullyEnded=[];
+  var nowMs=Date.now(),running=[],rewPending=[],fullyEnded=[],rumored=[];
   campaigns.forEach(function(c){
+    if(c.rumored){rumored.push(c);return;}
     var eT=new Date(c.end).getTime(),rT=c.rewardDate?new Date(c.rewardDate).getTime():null;
     if(eT>nowMs)running.push(c);
     else if(rT&&rT>nowMs)rewPending.push(c);
     else fullyEnded.push(c);
   });
-  function byVal(arr){return arr.slice().sort(function(a,b){return(b.poolAmt*(priceOf(b.coinId)||0))-(a.poolAmt*(priceOf(a.coinId)||0));});}
+  function byVal(arr){return arr.slice().sort(function(a,b){return((b.poolAmt||0)*(priceOf(b.coinId)||0))-((a.poolAmt||0)*(priceOf(a.coinId)||0));});}
   var sorted=byVal(running);
 
   /* Reward Board */
   if(campaigns.length){
     var rHtml=sorted.length?sorted.map(function(c){return buildListCard(c,false);}).join(''):'<div class="empty-state"><h3>No Active Campaigns</h3></div>';
+    if(rumored.length){rHtml+=divH('🔮 Possible Upcoming (Unconfirmed)','#a78bfa');rHtml+=rumored.map(function(c){return buildListCard(c,false);}).join('');}
     if(rewPending.length){rewPending.sort(function(a,b){return new Date(a.rewardDate)-new Date(b.rewardDate);});rHtml+=divH('⏳ Awaiting Reward Distribution','var(--green)');rHtml+=rewPending.map(function(c){return buildListCard(c,false);}).join('');}
     if(fullyEnded.length){rHtml+=divH('✓ Ended Campaigns','var(--gray)');rHtml+=byVal(fullyEnded).map(function(c){return buildListCard(c,true);}).join('');}
     document.getElementById('reward-content').innerHTML=rHtml;
@@ -1450,13 +1485,18 @@ window.deleteNotice=deleteNotice;
 function buildHeroCard(c,isUrgent){
   var p=priceOf(c.coinId),info=getTimerInfo(c),key=isUrgent?'hu':'hf';
   var enc=encodeURIComponent(JSON.stringify(c));
-  return'<div class="'+(isUrgent?'hero-card urgent':'hero-card')+'" onclick="showDetails(\''+enc+'\')">'
+  var ru=!!c.rumored;
+  var poolHtml=ru&&!c.poolAmt
+    ? '<span class="rumored-tba">Pool not announced yet</span>'
+    : 'Total Pool: <strong>'+(c.poolAmt||0).toLocaleString()+' '+escHtml(c.name)+'</strong><br><span class="pool-usd">'+(p&&c.poolAmt?'approx '+fmtUSD(c.poolAmt*p):'')+'</span>';
+  return'<div class="'+(isUrgent?'hero-card urgent':'hero-card')+(ru?' rumored':'')+'" onclick="showDetails(\''+enc+'\')">'
     +(isUrgent?'<div class="urgent-badge">Ending Soon</div>':'')
-    +'<div class="hero-top"><img src="'+c.logo+'" class="hero-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="hero-name">'+escHtml(c.name)+'</div>'+typeBadge(c.type||'volume')+'</div></div>'
+    +(ru?'<div style="position:absolute;top:-1px;right:16px;background:linear-gradient(90deg,#a78bfa,#8b5cf6);color:#fff;padding:3px 12px;border-radius:0 0 10px 10px;font-weight:700;font-size:10px;letter-spacing:1px;text-transform:uppercase">🔮 Rumored</div>':'')
+    +'<div class="hero-top"><img src="'+c.logo+'" class="hero-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="hero-name">'+escHtml(c.name)+'</div>'+(ru?'<span class="rumored-badge">Unconfirmed</span>':typeBadge(c.type||'volume'))+'</div></div>'
     +'<div class="hero-price">'+fmtPrice(p)+'</div>'
-    +'<div class="hero-pool">Total Pool: <strong>'+c.poolAmt.toLocaleString()+' '+escHtml(c.name)+'</strong><br><span class="pool-usd">'+(p?'approx '+fmtUSD(c.poolAmt*p):'')+'</span></div>'
+    +'<div class="hero-pool">'+poolHtml+'</div>'
     +'<div class="hero-timer-wrap"><div class="hero-timer-label" id="lbl-'+c.id+'-'+key+'">'+info.label+'</div><div class="hero-timer state-'+(info.state==='alert'?'active':info.state)+'" id="tmr-'+c.id+'-'+key+'">'+info.text+'</div></div>'
-    +joinBtn(c.id)+'</div>';
+    +(ru?'':joinBtn(c.id))+'</div>';
 }
 function buildCarousel(camps,prefix){
   if(!camps.length)return'';
@@ -1479,21 +1519,28 @@ function attachCarouselSwipe(prefix,total){
 }
 function buildListCard(c,grayed){
   var p=priceOf(c.coinId),info=getTimerInfo(c);
+  var ru=!!c.rumored;
   var gs=grayed?'filter:grayscale(1);opacity:0.45;':'',gt=grayed?'color:#555!important':'';
   var enc=encodeURIComponent(JSON.stringify(c));
   var sc=grayed?'state-ended':(info.state==='alert'?'state-alert':'state-'+info.state);
-  var extra=(c.rewardDateTBD?'<span class="tbd-badge">⏳ TBD</span>':'')+(c.rewardPostponed?'<span class="postponed-badge">⚠️ Delayed</span>':'');
-  if(!grayed&&c.hasEarlyBird){
+  var extra='';
+  if(ru)extra+='<span class="rumored-badge">🔮 Rumored</span>';
+  extra+=(c.rewardDateTBD?'<span class="tbd-badge">⏳ TBD</span>':'')+(c.rewardPostponed?'<span class="postponed-badge">⚠️ Delayed</span>':'');
+  if(!grayed&&!ru&&c.hasEarlyBird){
     var activeSlot=getActiveEbbSlot(c);
     if(activeSlot)extra+='<span style="background:rgba(14,203,129,0.15);color:var(--green);border:1px solid rgba(14,203,129,0.3);border-radius:4px;padding:1px 5px;font-size:10px;font-weight:700;margin-left:2px">🚀 '+escHtml(activeSlot.multiplier)+'</span>';
   }
-  return'<div class="list-card" style="'+gs+'" onclick="showDetails(\''+enc+'\')">'
-    +'<div class="camp-info"><img src="'+c.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="camp-name" style="'+gt+'">'+escHtml(c.name)+'</div>'+typeBadge(c.type||'volume')+extra+'</div></div>'
+  var poolCellHtml=ru&&!c.poolAmt
+    ? '<div class="pool-amt rumored-tba" style="'+gt+'">Pool TBA</div><div class="pool-usd">Not yet announced</div>'
+    : '<div class="pool-amt" style="'+gt+'">'+(c.poolAmt||0).toLocaleString()+' '+escHtml(c.name)+'</div><div class="pool-usd">'+(p&&c.poolAmt?'approx '+fmtUSD(c.poolAmt*p):'...')+'</div>';
+  var typeBadgeHtml=ru?'<span class="rumored-badge">Unconfirmed</span>':typeBadge(c.type||'volume');
+  return'<div class="list-card'+(ru?' rumored':'')+'" style="'+gs+'" onclick="showDetails(\''+enc+'\')">'
+    +'<div class="camp-info"><img src="'+c.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="camp-name" style="'+gt+'">'+escHtml(c.name)+'</div>'+typeBadgeHtml+extra+'</div></div>'
     +'<div class="camp-price" style="'+gt+'">'+fmtPrice(p)+'</div>'
-    +'<div class="reward-mid">'+((!grayed&&c.difficulty)?diffBadge(c.difficulty):'')+'</div>'
-    +'<div class="reward-pool"><div class="pool-amt" style="'+gt+'">'+c.poolAmt.toLocaleString()+' '+escHtml(c.name)+'</div><div class="pool-usd">'+(p?'approx '+fmtUSD(c.poolAmt*p):'...')+'</div></div>'
+    +'<div class="reward-mid">'+((!grayed&&!ru&&c.difficulty)?diffBadge(c.difficulty):'')+'</div>'
+    +'<div class="reward-pool">'+poolCellHtml+'</div>'
     +'<div><span class="timer-state-label">'+info.label+'</span><span class="camp-timer '+sc+'" id="tmr-'+c.id+'-r">'+info.text+'</span></div>'
-    +joinBtn(c.id)+adminBtns(c.id)+'</div>';
+    +(ru?'<div></div>':joinBtn(c.id))+adminBtns(c.id)+'</div>';
 }
 function goSlide(prefix,idx){
   var trk=document.getElementById(prefix+'-trk');
@@ -1761,28 +1808,38 @@ function showDetails(enc){
   document.getElementById('det-logo').src=c.logo;
   document.getElementById('det-name').innerText=c.name;
   var titleEl=document.getElementById('det-title');if(c.title){titleEl.innerText=c.title;titleEl.style.display='block';}else titleEl.style.display='none';
-  var badges=typeBadge(c.type||'volume');if(c.difficulty)badges+=' '+diffBadge(c.difficulty);if(c.rewardDateTBD)badges+=' <span class="tbd-badge">⏳ TBD</span>';if(c.rewardPostponed)badges+=' <span class="postponed-badge">⚠️ Delayed</span>';
+  var ru=!!c.rumored;
+  var badges=ru?'<span class="rumored-badge">🔮 Rumored / Unconfirmed</span>':typeBadge(c.type||'volume');
+  if(!ru&&c.difficulty)badges+=' '+diffBadge(c.difficulty);
+  if(c.rewardDateTBD)badges+=' <span class="tbd-badge">⏳ TBD</span>';if(c.rewardPostponed)badges+=' <span class="postponed-badge">⚠️ Delayed</span>';
   document.getElementById('det-type-badge').innerHTML=badges;
   var p=priceOf(c.coinId);document.getElementById('det-price').innerText=p?fmtPrice(p):'Loading...';
   var fmt={dateStyle:'medium',timeStyle:'short',timeZone:userTZ};
-  document.getElementById('det-start').innerText=new Date(c.start).toLocaleString('en-US',fmt);
-  document.getElementById('det-end').innerText=new Date(c.end).toLocaleString('en-US',fmt);
+  var startRow=document.getElementById('det-start-row'),endRow=document.getElementById('det-end-row');
+  if(c.start){startRow.style.display='flex';document.getElementById('det-start').innerText=new Date(c.start).toLocaleString('en-US',fmt);}else if(ru){startRow.style.display='flex';document.getElementById('det-start').innerHTML='<span class="rumored-tba">Not announced</span>';}else startRow.style.display='flex';
+  if(c.end){endRow.style.display='flex';document.getElementById('det-end').innerText=new Date(c.end).toLocaleString('en-US',fmt);}else if(ru){endRow.style.display='flex';document.getElementById('det-end').innerHTML='<span class="rumored-tba">Not announced</span>';}else endRow.style.display='flex';
   var rdr=document.getElementById('det-reward-row');
   if(c.rewardDateTBD){rdr.style.display='flex';document.getElementById('det-reward-date').innerHTML='<span class="tbd-badge">⏳ Not Announced Yet</span>';}
   else if(c.rewardDate){rdr.style.display='flex';document.getElementById('det-reward-date').innerText=new Date(c.rewardDate).toLocaleString('en-US',fmt);}
+  else if(ru){rdr.style.display='flex';document.getElementById('det-reward-date').innerHTML='<span class="rumored-tba">Not announced</span>';}
   else rdr.style.display='none';
-  var pu=p?c.poolAmt*p:0;document.getElementById('det-pool').innerHTML=c.poolAmt.toLocaleString()+' '+escHtml(c.name)+(pu?'<span class="sub">approx '+fmtUSD(pu)+'</span>':'');
+  var pu=p&&c.poolAmt?c.poolAmt*p:0;
+  document.getElementById('det-pool').innerHTML=(ru&&!c.poolAmt)?'<span class="rumored-tba">Not announced yet</span>':((c.poolAmt||0).toLocaleString()+' '+escHtml(c.name)+(pu?'<span class="sub">approx '+fmtUSD(pu)+'</span>':''));
   var t=c.type||'volume',estEl=document.getElementById('det-est'),estRow=document.getElementById('det-est-row');
-  if(t==='volume'){var en=parseFloat(c.estReward),eu=p&&!isNaN(en)?fmtUSD(en*p):null;estEl.innerHTML=en+' '+escHtml(c.name)+(eu?'<span class="sub">approx '+eu+' per $1K Vol</span>':'');estRow.style.display='flex';}
+  if(ru){estRow.style.display='none';}
+  else if(t==='volume'){var en=parseFloat(c.estReward),eu=p&&!isNaN(en)?fmtUSD(en*p):null;estEl.innerHTML=en+' '+escHtml(c.name)+(eu?'<span class="sub">approx '+eu+' per $1K Vol</span>':'');estRow.style.display='flex';}
   else if(t==='equal'){estEl.innerHTML=fmtToken(c.poolAmt/(c.maxParticipants||1))+' '+escHtml(c.name)+' each<span class="sub">'+(c.maxParticipants||'?')+' participants'+(c.minVolume?' | Min vol: $'+c.minVolume.toLocaleString():'')+' </span>';estRow.style.display='flex';}
   else if(t==='ranked_fixed'){var cnt=Math.max((c.rankEnd||1)-(c.rankStart||1)+1,1);estEl.innerHTML=fmtToken(c.poolAmt/cnt)+' '+escHtml(c.name)+' each<span class="sub">Rank '+(c.rankStart||1)+' to '+(c.rankEnd||1)+' </span>';estRow.style.display='flex';}
   else if(t==='points_lb'){estEl.innerHTML='Points-based<span class="sub">Total pts: '+((c.totalPoints||0).toLocaleString())+'</span>';estRow.style.display='flex';}
   else if(t==='points_nl'){estEl.innerHTML='Points (no LB)<span class="sub">Min pts: '+(c.minPoints||'?')+'</span>';estRow.style.display='flex';}
   else estRow.style.display='none';
-  document.getElementById('det-official-wrap').innerHTML=c.campLink?'<a href="'+escHtml(c.campLink)+'" target="_blank" rel="noopener" class="det-official-link"><svg viewBox="0 0 20 20" style="width:13px;height:13px;fill:currentColor;flex-shrink:0"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>View Official Campaign Page</a>':'';
+  var officialWrap=document.getElementById('det-official-wrap');
+  if(ru&&!c.campLink){officialWrap.innerHTML='<div class="rumored-banner">🔮 <span>This is a <strong>rumored / unconfirmed</strong> campaign. It may or may not launch officially. Details will be updated once confirmed.</span></div>';}
+  else{officialWrap.innerHTML=(ru?'<div class="rumored-banner">🔮 <span>This is a <strong>rumored / unconfirmed</strong> campaign. It may or may not launch officially.</span></div>':'')+(c.campLink?'<a href="'+escHtml(c.campLink)+'" target="_blank" rel="noopener" class="det-official-link"><svg viewBox="0 0 20 20" style="width:13px;height:13px;fill:currentColor;flex-shrink:0"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>View Official Campaign Page</a>':'');}
   var shareUrl=getCampaignShareUrl(c.id);
   document.getElementById('det-share-wrap').innerHTML='<div class="share-bar"><button class="share-btn share-btn-copy" onclick="copyLink(\''+escHtml(shareUrl)+'\')">📋 Copy Campaign Link</button><button class="share-btn share-btn-share" onclick="shareLink(\''+escHtml(shareUrl)+'\',\''+escHtml(c.name)+' on Spot CTR\')">🔗 Share</button></div>';
-  updateJoinBtn(c.id);
+  var joinBtnEl=document.getElementById('det-join-btn');if(joinBtnEl)joinBtnEl.style.display=ru?'none':'';
+  if(!ru)updateJoinBtn(c.id);
 
   var ebbWrap=document.getElementById('det-ebb-wrap');
   if(ebbWrap){ebbWrap.innerHTML=buildEbbDisplay(c);}
