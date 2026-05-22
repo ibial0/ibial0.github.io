@@ -434,17 +434,23 @@ body.light .ebb-bar{background:rgba(74,85,104,0.18)}
   .det-timer{font-size:17px}
   .balance-rows{grid-template-columns:1fr}
   .balance-net{font-size:28px}
-  .list-card{display:flex!important;flex-direction:column!important;gap:7px;padding:12px}
+  .list-card{display:grid!important;grid-template-columns:1fr auto;column-gap:12px;row-gap:9px;padding:13px 14px;align-items:center}
   .list-card .type-badge,.list-card .diff-badge,.list-card .camp-est,.reward-mid{display:none!important}
-  .camp-info{width:100%}
-  .camp-name{font-size:13px}
-  .camp-price{font-size:12px;padding:3px 8px;background:var(--bg);border-radius:5px;display:inline-block;width:fit-content}
-  .reward-pool{text-align:left;padding:6px 8px;background:var(--bg);border-radius:5px}
-  .camp-timer{font-size:12px;text-align:left}
-  .admin-controls{justify-content:flex-end;padding-top:6px;border-top:1px solid var(--border)}
-  .btn-join{font-size:11px;padding:5px 11px}
+  .list-card > .camp-info{grid-column:1 / -1;width:100%;align-items:center}
+  .list-card > .camp-info > div{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+  .list-card > .camp-info > div > div:first-child{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .list-card > .camp-price{grid-column:1;justify-self:start;align-self:center;font-size:12px;padding:4px 9px;background:var(--bg);border-radius:6px}
+  .list-card > .reward-pool{grid-column:1 / -1;text-align:left;background:var(--bg);border-radius:7px;padding:8px 11px}
+  .list-card > .reward-pool .pool-amt,.list-card > .reward-pool .pool-usd{text-align:left}
+  .list-card > div:has(> .camp-timer){grid-column:2;justify-self:end;text-align:right}
+  .list-card > div:has(> .camp-timer) .timer-state-label{text-align:right}
+  .list-card .camp-timer{font-size:12px;text-align:right;display:block}
+  .list-card .btn-join{grid-column:1 / -1;width:100%;font-size:12px;padding:7px 11px}
+  .list-card .admin-controls{grid-column:1 / -1;justify-content:flex-end;padding-top:7px;border-top:1px solid var(--border)}
+  .camp-name{font-size:13.5px;line-height:1.3}
   .dash-vol-row{flex-direction:column;gap:7px}
   .dash-camp-right{width:100%;justify-content:space-between}
+  .dash-camp-header{padding:12px 13px;gap:10px}
   .fab-chat{bottom:14px;right:14px;width:44px;height:44px;font-size:17px}
   .fab-tooltip{bottom:64px;right:10px;max-width:190px}
   .msg-action-bar{opacity:1}
@@ -611,7 +617,21 @@ body.light .ebb-bar{background:rgba(74,85,104,0.18)}
         <div class="form-group"><label>Campaign Title (optional)</label><input type="text" id="camp-title"></div>
         <div class="form-group"><label>Token Name (e.g. $BNB)</label><input type="text" id="token-name" required></div>
         <div class="form-group"><label>CoinGecko Coin ID</label><input type="text" id="coin-id" required><div class="hint">e.g. binancecoin</div></div>
-        <div class="form-group"><label>Logo Image URL</label><input type="url" id="logo-url" required></div>
+        <div class="form-group">
+          <label>Token Logo</label>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+            <img id="logo-preview" src="" alt="" style="width:42px;height:42px;border-radius:50%;object-fit:cover;border:1px solid var(--border);background:#2b3139;display:none;flex-shrink:0">
+            <div style="flex:1;min-width:0">
+              <input type="text" id="logo-url" placeholder="Paste any image URL (jpg, png, webp, gif, etc.)" required oninput="onLogoUrlInput()" style="width:100%">
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <label for="logo-file-input" style="display:inline-flex;align-items:center;gap:6px;background:var(--ydim);border:1px dashed rgba(252,213,53,.45);color:var(--yellow);padding:6px 12px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s">📁 Upload from device</label>
+            <input type="file" id="logo-file-input" accept="image/*" style="display:none" onchange="handleLogoFileUpload(event)">
+            <span id="logo-upload-status" class="hint" style="margin:0"></span>
+          </div>
+          <div class="hint" style="margin-top:5px">Paste any image link or upload directly from your device. The image will be auto formatted to a circular logo.</div>
+        </div>
         <div class="form-group"><label>Official Campaign Link (optional)</label><input type="url" id="camp-link"><div class="hint">Direct link to Binance campaign page</div></div>
         <div class="form-group"><label>Total Reward Pool (Token Amount)</label><input type="number" id="reward-pool-amt" required></div>
         <div class="form-group"><label>Campaign Type</label>
@@ -1014,6 +1034,8 @@ function promptAdmin(){
     ebbSlotCount=0;
     document.getElementById('ebb-slots-container').innerHTML='';
     document.getElementById('fg-ebb').style.display='none';
+    var lp=document.getElementById('logo-preview');if(lp){lp.style.display='none';lp.src='';}
+    var ls=document.getElementById('logo-upload-status');if(ls)ls.textContent='';
     openModal('admin-modal');
   }else if(p!==null)alert('Incorrect Password!');
 }
@@ -1263,6 +1285,8 @@ function editCamp(id,ev){
     document.getElementById('modal-title').innerText='Edit Campaign';
     var ruEl=document.getElementById('is-rumored');if(ruEl){ruEl.checked=!!c.rumored;onRumoredToggle();}
     document.getElementById('submit-btn').innerText='Save Changes';
+    var ls=document.getElementById('logo-upload-status');if(ls)ls.textContent='';
+    onLogoUrlInput();
     onTypeChange();openModal('admin-modal');
   });
 }
@@ -1853,6 +1877,60 @@ function showDetails(enc){
 }
 window.showDetails=showDetails;
 function updateDetTimer(c){var info=getTimerInfo(c),el=document.getElementById('det-timer');el.innerText=info.text;el.className='det-timer state-'+(info.state==='alert'?'active':info.state);document.getElementById('det-timer-label').innerText=info.label;}
+
+/* ══ LOGO UPLOAD / PREVIEW ══ */
+function onLogoUrlInput(){
+  var url=document.getElementById('logo-url').value.trim();
+  var prev=document.getElementById('logo-preview');
+  if(!url){prev.style.display='none';prev.src='';return;}
+  prev.style.display='';
+  prev.src=url;
+  prev.onerror=function(){prev.style.display='none';};
+}
+window.onLogoUrlInput=onLogoUrlInput;
+
+function processLogoImage(file,cb){
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var img=new Image();
+    img.onload=function(){
+      var size=256;
+      var canvas=document.createElement('canvas');
+      canvas.width=size;canvas.height=size;
+      var ctx=canvas.getContext('2d');
+      // cover crop into square (matches object-fit:cover on round logos)
+      var w=img.width,h=img.height;
+      var ratio=Math.max(size/w,size/h);
+      var nw=w*ratio,nh=h*ratio;
+      var dx=(size-nw)/2,dy=(size-nh)/2;
+      ctx.drawImage(img,dx,dy,nw,nh);
+      // Use PNG to preserve transparency; if too big, fallback to JPEG
+      var dataUrl=canvas.toDataURL('image/png');
+      if(dataUrl.length>180000)dataUrl=canvas.toDataURL('image/jpeg',0.85);
+      cb(dataUrl);
+    };
+    img.onerror=function(){cb(null);};
+    img.src=e.target.result;
+  };
+  reader.onerror=function(){cb(null);};
+  reader.readAsDataURL(file);
+}
+function handleLogoFileUpload(e){
+  var file=e.target.files[0];if(!file)return;
+  var statusEl=document.getElementById('logo-upload-status');
+  if(file.size>10*1024*1024){statusEl.textContent='File too large (max 10MB).';statusEl.style.color='var(--red)';e.target.value='';return;}
+  statusEl.textContent='Processing...';statusEl.style.color='var(--gray)';
+  processLogoImage(file,function(dataUrl){
+    if(!dataUrl){statusEl.textContent='Could not read image. Try another file.';statusEl.style.color='var(--red)';return;}
+    var inp=document.getElementById('logo-url');
+    inp.value=dataUrl;
+    onLogoUrlInput();
+    statusEl.textContent='✓ Uploaded';statusEl.style.color='var(--green)';
+  });
+  e.target.value='';
+}
+window.handleLogoFileUpload=handleLogoFileUpload;
+
 
 /* ══ CHAT ══ */
 function compressImage(file,cb){var reader=new FileReader();reader.onload=function(e){var img=new Image();img.onload=function(){var canvas=document.createElement('canvas'),maxDim=480,w=img.width,h=img.height;if(w>h&&w>maxDim){h=Math.round(h*maxDim/w);w=maxDim;}else if(h>maxDim){w=Math.round(w*maxDim/h);h=maxDim;}canvas.width=w;canvas.height=h;canvas.getContext('2d').drawImage(img,0,0,w,h);cb(canvas.toDataURL('image/jpeg',0.42));};img.src=e.target.result;};reader.readAsDataURL(file);}
