@@ -434,22 +434,21 @@ body.light .ebb-bar{background:rgba(74,85,104,0.18)}
   .det-timer{font-size:17px}
   .balance-rows{grid-template-columns:1fr}
   .balance-net{font-size:28px}
-  .list-card{display:flex!important;flex-direction:column;align-items:stretch;gap:10px;padding:13px 14px}
+  .list-card{display:grid!important;grid-template-columns:1fr auto;align-items:center;gap:8px 10px;padding:11px 12px}
   .list-card:hover{transform:none}
-  .list-card .type-badge,.list-card .diff-badge,.list-card .camp-est,.reward-mid{display:none!important}
-  .list-card > .camp-info{width:100%;align-items:center;justify-content:flex-start}
-  .list-card > .camp-info > div{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
-  .list-card > .camp-info > div > .camp-name{width:100%}
-  .list-card > .camp-info > div > span,
-  .list-card > .camp-info > div > .type-badge{align-self:flex-start;width:auto;display:inline-flex}
-  .list-card > .camp-price{align-self:center;font-size:12px;padding:4px 12px;background:var(--bg);border-radius:6px;display:inline-block;width:auto}
-  .list-card > .reward-pool{align-self:center;width:auto;max-width:90%;text-align:center;background:var(--bg);border-radius:7px;padding:7px 16px;display:inline-block}
-  .list-card > .reward-pool .pool-amt,.list-card > .reward-pool .pool-usd{text-align:center}
-  .list-card > div:has(> .camp-timer){align-self:center;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px}
-  .list-card > div:has(> .camp-timer) .timer-state-label{text-align:center}
-  .list-card .camp-timer{font-size:12px;text-align:center;display:inline-block;background:var(--bg);padding:4px 12px;border-radius:6px;width:auto}
-  .list-card .btn-join{align-self:center;width:auto;min-width:140px;font-size:12px;padding:7px 22px}
-  .list-card .admin-controls{justify-content:center;padding-top:7px;border-top:1px solid var(--border)}
+  .list-card .type-badge,.list-card .diff-badge,.list-card .camp-est,.reward-mid,.list-card > .camp-price{display:none!important}
+  .list-card > .camp-info{grid-column:1;grid-row:1;min-width:0;align-items:center;gap:11px}
+  .list-card > .camp-info > div{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+  .list-card > .camp-info > div > .camp-name{width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .list-card .camp-logo{width:48px;height:48px}
+  .list-card > div:has(> .camp-timer){grid-column:2;grid-row:1;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:1px}
+  .list-card > div:has(> .camp-timer) .timer-state-label{font-size:9px;letter-spacing:.3px}
+  .list-card .camp-timer{font-size:13px;font-weight:800;background:none;padding:0}
+  .list-card > .reward-pool{grid-column:1;grid-row:2;text-align:left;display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+  .list-card > .reward-pool .pool-amt{font-size:12px}
+  .list-card > .reward-pool .pool-usd{font-size:11px}
+  .list-card > .btn-join{grid-column:2;grid-row:2;justify-self:end;width:auto;min-width:92px;font-size:12px;padding:7px 16px}
+  .list-card .admin-controls{grid-column:1/-1;justify-content:center;padding-top:7px;border-top:1px solid var(--border)}
   .camp-name{font-size:13.5px;line-height:1.3}
   .dash-vol-row{flex-direction:column;gap:7px}
   .dash-camp-right{width:100%;justify-content:space-between}
@@ -483,6 +482,12 @@ body.light .ebb-bar{background:rgba(74,85,104,0.18)}
 /* ===== Distributing badge ===== */
 .distributing-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:5px;font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--green),#0a9d63);box-shadow:0 0 10px var(--gglow);animation:distpulse 1.6s infinite;margin-left:2px;vertical-align:middle}
 @keyframes distpulse{0%,100%{box-shadow:0 0 8px var(--gglow)}50%{box-shadow:0 0 16px var(--gglow),0 0 4px var(--gglow)}}
+.dist-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#7bf5b4;box-shadow:0 0 7px #7bf5b4,0 0 3px #fff;animation:distblink 1.1s ease-in-out infinite;flex-shrink:0}
+@keyframes distblink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.72)}}
+.receive-prompt{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:9px;background:linear-gradient(135deg,rgba(14,203,129,.12),rgba(14,203,129,.04));border:1px solid rgba(14,203,129,.35);border-radius:9px;padding:11px 14px;margin-bottom:12px}
+.receive-q{display:flex;align-items:center;gap:7px;color:var(--green);font-weight:700;font-size:13px;line-height:1.35}
+.receive-yes{background:linear-gradient(135deg,var(--green),#0a9d63);color:#fff;border:none;border-radius:7px;padding:8px 16px;font-weight:800;font-size:12.5px;cursor:pointer;white-space:nowrap;box-shadow:0 0 12px var(--gglow);transition:transform .15s}
+.receive-yes:hover{transform:translateY(-1px)}
 body.light .distributing-badge{color:#fff}
 /* ===== Mobile bottom nav ===== */
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(30,35,41,0.98);backdrop-filter:blur(14px);border-top:1px solid var(--border);z-index:96;justify-content:space-around;align-items:stretch;padding:6px 4px;padding-bottom:calc(6px + env(safe-area-inset-bottom,0px))}
@@ -906,6 +911,7 @@ var db=firebase.database();
 var campaigns=[],notices=[],livePrices=JSON.parse(localStorage.getItem('spotctr_prices')||'{}');
 var isAdmin=false,detailCampId=null;
 var userData=JSON.parse(localStorage.getItem('spotctr_user')||'{"joined":{}}');
+if(!userData.received)userData.received={};
 
 /* Timezone detection: try IP-based first (reflects VPN), fallback to browser/OS */
 var userTZ=Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -1390,6 +1396,9 @@ setTimeout(function(){
 /* ══ JOIN ══ */
 function toggleJoin(id,ev){if(ev)ev.stopPropagation();if(userData.joined[id])delete userData.joined[id];else userData.joined[id]={volume:0,bnb:false,points:0,expanded:true,ebbMult:null};saveUD();renderViews();updateGBB();if(document.getElementById('dash').classList.contains('active'))renderDashboard();}
 window.toggleJoin=toggleJoin;
+function markReceived(id,ev){if(ev)ev.stopPropagation();if(!userData.received)userData.received={};userData.received[id]=Date.now();saveUD();renderViews();updateGBB();if(document.getElementById('dash').classList.contains('active'))renderDashboard();}
+window.markReceived=markReceived;
+function isReceived(id){return!!(userData.received&&userData.received[id]);}
 function toggleJoinFromModal(){if(!detailCampId)return;toggleJoin(detailCampId,null);updateJoinBtn(detailCampId);}
 window.toggleJoinFromModal=toggleJoinFromModal;
 function updateJoinBtn(id){var btn=document.getElementById('det-join-btn');if(!btn)return;var j=isJoined(id);btn.innerText=j?'✓ Joined — Click to Leave':'+ Join Campaign';btn.style.borderColor=j?'var(--green)':'var(--border)';btn.style.background=j?'var(--gdim)':'transparent';btn.style.color=j?'var(--green)':'var(--gray)';}
@@ -1434,7 +1443,7 @@ function renderViews(){
   if(campaigns.length){
     var rHtml=sorted.length?sorted.map(function(c){return buildListCard(c,false);}).join(''):'<div class="empty-state"><h3>No Active Campaigns</h3></div>';
     if(rumored.length){rHtml+=divH('🔮 Possible Upcoming (Unconfirmed)','#a78bfa');rHtml+=rumored.map(function(c){return buildListCard(c,false);}).join('');}
-    if(rewPending.length){rewPending.sort(function(a,b){return new Date(a.rewardDate)-new Date(b.rewardDate);});rHtml+=divH('⏳ Awaiting Reward Distribution','var(--green)');rHtml+=rewPending.map(function(c){return buildListCard(c,false);}).join('');}
+    if(rewPending.length){rewPending.sort(function(a,b){var ad=a.distributing?1:0,bd=b.distributing?1:0;if(ad!==bd)return ad-bd;return new Date(a.rewardDate)-new Date(b.rewardDate);});rHtml+=divH('⏳ Awaiting Reward Distribution','var(--green)');rHtml+=rewPending.map(function(c){return buildListCard(c,false);}).join('');}
     if(fullyEnded.length){rHtml+=divH('✓ Ended Campaigns','var(--gray)');rHtml+=byVal(fullyEnded).map(function(c){return buildListCard(c,true);}).join('');}
     document.getElementById('reward-content').innerHTML=rHtml;
   }else{
@@ -1617,7 +1626,7 @@ function buildListCard(c,grayed){
   var extra='';
   if(ru)extra+='<span class="rumored-badge">🔮 Rumored</span>';
   extra+=(c.rewardDateTBD?'<span class="tbd-badge">⏳ TBD</span>':'')+(c.rewardPostponed?'<span class="postponed-badge">⚠️ Delayed</span>':'');
-  if(!grayed&&c.distributing)extra+='<span class="distributing-badge">🟢 Distributing</span>';
+  if(!grayed&&c.distributing)extra+='<span class="distributing-badge"><span class="dist-dot"></span> Distributing</span>';
   if(!grayed&&!ru&&c.hasEarlyBird){
     var activeSlot=getActiveEbbSlot(c);
     if(activeSlot)extra+='<span style="background:rgba(14,203,129,0.15);color:var(--green);border:1px solid rgba(14,203,129,0.3);border-radius:4px;padding:1px 5px;font-size:10px;font-weight:700;margin-left:2px">🚀 '+escHtml(activeSlot.multiplier)+'</span>';
@@ -1915,7 +1924,7 @@ function showDetails(enc){
   var badges=ru?'<span class="rumored-badge">🔮 Rumored / Unconfirmed</span>':typeBadge(c.type||'volume');
   if(!ru&&c.difficulty)badges+=' '+diffBadge(c.difficulty);
   if(c.rewardDateTBD)badges+=' <span class="tbd-badge">⏳ TBD</span>';if(c.rewardPostponed)badges+=' <span class="postponed-badge">⚠️ Delayed</span>';
-  if(c.distributing)badges+=' <span class="distributing-badge">🟢 Distributing Now</span>';
+  if(c.distributing)badges+=' <span class="distributing-badge"><span class="dist-dot"></span> Distributing Now</span>';
   document.getElementById('det-type-badge').innerHTML=badges;
   var p=priceOf(c.coinId);document.getElementById('det-price').innerText=p?fmtPrice(p):'Loading...';
   var fmt={dateStyle:'medium',timeStyle:'short',timeZone:userTZ};
@@ -2162,18 +2171,19 @@ function buildDashCard(c){
   var bFld='<div class="dash-field" style="max-width:150px"><label>BNB Fee</label><div class="bnb-wrap" style="padding-top:7px"><label class="toggle-switch"><input type="checkbox" '+(bnbOn?'checked':'')+' onchange="updateBnb(\''+c.id+'\',this.checked)"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">'+(bnbOn?'BNB On':'BNB Off')+'</span></div></div>';
   var ebbSel=c.hasEarlyBird?buildEbbMultSelector(c):'';
   var bodyHtml='';
+  var recvPrompt=(c.distributing&&!isReceived(c.id))?'<div class="receive-prompt"><span class="receive-q"><span class="dist-dot"></span> Rewards are being distributed — have you received your reward?</span><button class="receive-yes" onclick="markReceived(\''+c.id+'\',event)">Yes, received ✓</button></div>':'';
   if(t==='volume'&&r&&r.canCalc){bodyHtml='<div class="dash-vol-row"><div class="dash-field"><label>Your Trade Volume (USD)</label><input type="number" class="vol-input" placeholder="e.g. 5000" value="'+(j.volume||'')+'" oninput="updateVol(\''+c.id+'\',this.value)" min="0"></div>'+bFld+'</div>'+ebbSel+'<div class="dash-reward" id="dreward-'+c.id+'"><span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter volume above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';}
   else if(t==='equal'&&r&&r.canCalc){var effMin=r.effectiveMinVol!==undefined?r.effectiveMinVol:(c.minVolume||0);var fc2=effMin*(bnbOn?0.00075:0.001);var ebbNote='';if(j.ebbMult&&j.ebbMult!=='none'&&c.minVolume){ebbNote='<span style="color:var(--green);font-size:11px"> (with '+escHtml(j.ebbMult)+' boost: $'+Math.round(effMin).toLocaleString()+')</span>';}bodyHtml='<div class="dash-info-row">Participants: <strong>'+(c.maxParticipants||1).toLocaleString()+'</strong>'+(c.minVolume?' | Min vol: <strong>$'+c.minVolume.toLocaleString()+'</strong>'+ebbNote+' <span style="color:var(--red)">(fee approx '+fmtUSD(fc2)+')</span>':'')+'</div><div class="dash-vol-row">'+bFld+'</div>'+ebbSel+'<div class="dash-reward"><span class="dr-label">Fixed Reward</span><span class="dr-val">'+fmtToken(r.tokens)+' '+escHtml(c.name)+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';}
   else if(t==='ranked_fixed'&&r&&r.canCalc){var rrate2=bnbOn?0.00075:0.001,uv2=j.volume||0,estFee=uv2*rrate2;var effRankVol=r.effectiveRankVol!==undefined?r.effectiveRankVol:r.rankMinVol;var rankEbbNote='';if(j.ebbMult&&j.ebbMult!=='none'&&r.rankMinVol){rankEbbNote=' <span style="color:var(--green)">(with '+escHtml(j.ebbMult)+': ~$'+Math.round(effRankVol).toLocaleString()+')</span>';}bodyHtml='<div class="dash-info-row">Rank <strong>'+r.rankStart+'</strong> to <strong>'+r.rankEnd+'</strong>'+(r.eligVol?' | Min elig: <strong>$'+r.eligVol.toLocaleString()+'</strong>':'')+(r.rankMinVol?' | Est. rank vol: <strong>$'+r.rankMinVol.toLocaleString()+'</strong>'+rankEbbNote:'')+'</div><div class="dash-vol-row"><div class="dash-field"><label>Your Trade Volume (USD)</label><input type="number" class="vol-input" placeholder="e.g. 10000" value="'+(j.volume||'')+'" oninput="updateVol(\''+c.id+'\',this.value)" min="0"></div>'+bFld+'</div>'+ebbSel+(uv2>0?'<div class="dash-reward"><span class="dr-label">Trading Fee</span><span class="dr-val" style="color:var(--red)">-'+fmtUSD(estFee)+'</span></div>':'')+(uv2>0&&r.inRank?'<div class="dash-reward" style="margin-top:6px"><span class="dr-label">Est. Reward</span><span class="dr-val">'+fmtToken(r.tokens)+' '+escHtml(c.name)+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>':uv2>0&&!r.inRank&&effRankVol>0?'<div class="dash-warn">Volume below estimated rank entry (~$'+Math.round(effRankVol).toLocaleString()+').</div>':'');}
   else if(t==='points_lb'&&r){bodyHtml='<div class="dash-info-row">Total LB Points: <strong>'+(c.totalPoints||1).toLocaleString()+'</strong>'+(c.costPerPoint?' | Cost/pt: <strong style="color:var(--red)">$'+c.costPerPoint+'</strong>':'')+'</div><div class="dash-vol-row"><div class="dash-field"><label>Your Points</label><input type="number" class="vol-input" placeholder="e.g. 1500" value="'+(j.points||'')+'" oninput="updatePts(\''+c.id+'\',this.value)" min="0"></div></div><div class="dash-reward" id="dreward-'+c.id+'"><span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter points above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'')+'</div>';}
   else if(r&&r.isPointsNl){bodyHtml='<div class="dash-info-row">Min Points: <strong>'+r.minPoints.toLocaleString()+'</strong>'+(r.costPerPt?' | Cost/pt: <strong style="color:var(--red)">$'+r.costPerPt+'</strong>':'')+(r.minCost?' | Min cost: <strong style="color:var(--red)">'+fmtUSD(r.minCost)+'</strong>':'')+'</div><div class="dash-note">Points-based — leaderboard unavailable.</div>';}
   else{bodyHtml='<div class="dash-note">Reward cannot be estimated.</div>';}
-  return'<div class="dash-camp" id="dcard-'+c.id+'"><div class="dash-camp-header" onclick="toggleExpand(\''+c.id+'\')"><div class="dash-camp-left"><img src="'+c.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="camp-name">'+escHtml(c.name)+'</div>'+typeBadge(t)+'</div></div><div class="dash-camp-right"><span id="dsummary-'+c.id+'" class="'+sumCls+'">'+sumTxt+'</span><span class="camp-timer '+sc+'" style="font-size:11px">'+info.text+'</span><button class="btn-remove" onclick="toggleJoin(\''+c.id+'\',event)">Remove</button><button class="btn-expand '+(isExp?'open':'')+'" id="dexpand-'+c.id+'" onclick="event.stopPropagation();toggleExpand(\''+c.id+'\')">&#9660;</button></div></div><div class="dash-camp-body '+(isExp?'':'collapsed')+'" id="dbody-'+c.id+'">'+bodyHtml+'</div></div>';
+  return'<div class="dash-camp" id="dcard-'+c.id+'"><div class="dash-camp-header" onclick="toggleExpand(\''+c.id+'\')"><div class="dash-camp-left"><img src="'+c.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="camp-name">'+escHtml(c.name)+'</div>'+typeBadge(t)+'</div></div><div class="dash-camp-right"><span id="dsummary-'+c.id+'" class="'+sumCls+'">'+sumTxt+'</span><span class="camp-timer '+sc+'" style="font-size:11px">'+info.text+'</span><button class="btn-remove" onclick="toggleJoin(\''+c.id+'\',event)">Remove</button><button class="btn-expand '+(isExp?'open':'')+'" id="dexpand-'+c.id+'" onclick="event.stopPropagation();toggleExpand(\''+c.id+'\')">&#9660;</button></div></div><div class="dash-camp-body '+(isExp?'':'collapsed')+'" id="dbody-'+c.id+'">'+recvPrompt+bodyHtml+'</div></div>';
 }
 
 function renderDashboard(){
   var activeJ=[],endedJ=[];
-  campaigns.forEach(function(c){if(!isJoined(c.id))return;if(isCampActive(c))activeJ.push(c);else endedJ.push(c);});
+  campaigns.forEach(function(c){if(!isJoined(c.id))return;if(isCampActive(c)&&!isReceived(c.id))activeJ.push(c);else endedJ.push(c);});
   var bal=getBalance(),isLoss=bal.net<0,nc=isLoss?'var(--red)':'var(--green)';
   document.getElementById('dash-balance').innerHTML='<div class="balance-card" style="background:linear-gradient(135deg,'+(isLoss?'#1f0f0f,#200d0d':'#0f1f15,#132018')+');border-color:'+(isLoss?'rgba(246,70,93,.4)':'rgba(14,203,129,.4)')+'"><div class="balance-label">Est. Net Profit</div><div class="balance-net" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div><div class="balance-sub">'+activeJ.length+' active | '+bal.cnt+' calculable</div><div class="balance-rows"><div class="bal-row"><div class="bal-row-label">Reward</div><div class="bal-row-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</div></div><div class="bal-row"><div class="bal-row-label">Fees</div><div class="bal-row-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</div></div><div class="bal-row"><div class="bal-row-label">Net</div><div class="bal-row-val" style="color:'+nc+'">'+(isLoss?'-':'+')+fmtUSD(Math.abs(bal.net))+'</div></div></div></div>';
   var html='';
