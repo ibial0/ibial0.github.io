@@ -4,6 +4,15 @@
   <meta name="talentapp:project_verification" content="b14fee884be1af826bd2be7133127914461792a6ba75b7a581cba790a9ed3d85b3e7465cb885db1a95c0cebd25453f9edde9b7a2a698e3a4ba8f2a3386c20d11">
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spot CTR</title>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://spotctr-default-rtdb.firebaseio.com" crossorigin>
+<link rel="preconnect" href="https://api.coingecko.com" crossorigin>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="https://spotctr-default-rtdb.firebaseio.com">
+<link rel="dns-prefetch" href="https://api.coingecko.com">
+<link rel="dns-prefetch" href="https://translate.googleapis.com">
+<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.min.js">
+<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-database-compat.min.js">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -16,7 +25,7 @@
 <meta property="og:description" content="Track Binance Spot Trading campaigns in one place."/>
 <meta property="og:image" content="https://spotctr.online/Logo.png"/>
 <meta property="og:url" content="https://spotctr.online"/>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script defer src="https://telegram.org/js/telegram-web-app.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M21ZTEQY07"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M21ZTEQY07');</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.min.js"></script>
@@ -512,6 +521,12 @@ body.light .bottom-nav{background:rgba(255,255,255,0.98);box-shadow:0 -1px 10px 
   .fab-chat{bottom:74px}
   .fab-tooltip{bottom:124px}
 }
+.bnb-master{display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(135deg,var(--ydim),rgba(245,158,11,.06));border:1px solid rgba(252,213,53,.32);border-radius:12px;padding:12px 15px;margin-bottom:13px}
+.bnb-master-info{display:flex;flex-direction:column;gap:2px;min-width:0}
+.bnb-master-title{font-size:13.5px;font-weight:700;color:var(--white);display:flex;align-items:center;gap:6px}
+.bnb-master-title::before{content:'⚡';font-size:14px}
+.bnb-master-sub{font-size:11px;color:var(--gray);line-height:1.35}
+.bnb-master .toggle-switch{flex-shrink:0}
 </style>
 </head>
 <body>
@@ -631,7 +646,7 @@ body.light .bottom-nav{background:rgba(255,255,255,0.98);box-shadow:0 -1px 10px 
     <div class="about-card"><div class="about-card-title">🎯 Which Campaigns Are Listed Here?</div><p>Only campaigns that offer a genuine, realistic earning opportunity to <strong>regular, everyday traders</strong> are added here. Many Binance campaigns include two separate reward pools: one for top-ranked traders (e.g. top 200 or top 1,000 with large fixed prizes), and a <strong>general pool</strong> shared among all other participants.<br><br>The top-rank special prizes are <strong>excluded from calculations here</strong>. Those positions are almost always dominated by market makers and institutional traders, not regular traders. For example:<br><br><span style="background:var(--bg);border-radius:7px;padding:10px 13px;display:block;margin-top:10px;border-left:3px solid var(--yellow)">A campaign awards <strong>$100,000</strong> to the Top 1,000 ranked traders, and <strong>$800,000</strong> shared equally among all traders ranked 1,001 and above. On Spot CTR, only the <strong>$800,000 general pool</strong> is calculated and displayed.</span></p></div>
     <div class="about-card"><div class="about-card-title">⏳ A Note on Timeliness and Updates</div><p>Spot CTR is maintained by a <strong>single person</strong>. When Binance launches a new campaign or tournament, it may take some time before it appears here. Campaign parameters may also take a few days to update after a campaign goes live.<br><br>Your patience is sincerely appreciated. If you don't see a campaign here yet, it will likely be added soon. Please check back later.</p></div>
     <div class="about-card"><div class="about-card-title">⚠️ Reward Delays and Postponements</div><p>Occasionally, Binance postpones a reward distribution deadline, sometimes indefinitely. When this happens, the affected campaign on Spot CTR will be marked with a <span class="postponed-badge" style="vertical-align:middle">⚠️ Delayed</span> badge, or a <span class="tbd-badge" style="vertical-align:middle">⏳ TBD</span> badge if no new date has been announced. Important notices about delays are shown directly on the homepage as a highlighted notice card.</p></div>
-    <div class="about-card"><div class="about-card-title">🔍 Do Your Own Research</div><p>This platform exists to save you time and give you a useful starting point. It is <strong>not meant to make trading decisions for you</strong>. Always verify campaign details directly on <strong>Binance's official platform</strong> before committing any funds. No information here should be taken as financial advice. Trade responsibly.</p></div>
+    <div class="about-card"><div class="about-card-title">🔍 Do Your Own Research</div><p>This platform exists to save you time and give you a useful starting point, <strong>not to make trading decisions for you</strong>. Always verify campaign details directly on <strong>Binance's official platform</strong> before committing any funds. No information here should be taken as financial advice. Trade responsibly.</p></div>
     <div class="about-card"><div class="about-card-title">📣 Share Spot CTR</div><p>If Spot CTR has saved you time or helped you discover a campaign, please share it with your fellow traders! Every share helps keep this project alive and growing.</p>
       <div class="share-bar" style="margin-top:13px"><button class="share-btn share-btn-share" onclick="shareWebsite()">🔗 Share Spot CTR</button><button class="share-btn share-btn-copy" onclick="copyLink('https://spotctr.online')">📋 Copy Link</button></div>
     </div>
@@ -1389,7 +1404,7 @@ setTimeout(function(){
   var iv=setInterval(function(){
     att++;
     var c=getCampById(campId);
-    if(c||att>20){clearInterval(iv);if(c)showDetails(encodeURIComponent(JSON.stringify(c)).replace(/'/g,'%27'));}
+    if(c||att>20){clearInterval(iv);if(c)showDetails(encodeURIComponent(JSON.stringify(c)));}
   },300);
 },500);
 
@@ -1559,7 +1574,7 @@ function showNotice(id){
   if(linkedCamps.length){
     html+='<div style="margin-top:10px;display:flex;flex-wrap:wrap;justify-content:center;gap:5px">';
     linkedCamps.forEach(function(c){
-      html+='<div class="notice-linked-camp" onclick="closeModal(\'notice-modal\');showDetails(\''+encodeURIComponent(JSON.stringify(c)).replace(/'/g,'%27')+'\')">'
+      html+='<div class="notice-linked-camp" onclick="closeModal(\'notice-modal\');showDetails(\''+encodeURIComponent(JSON.stringify(c))+'\')">'
         +(c.logo?'<img src="'+escHtml(c.logo)+'" style="width:22px;height:22px;border-radius:50%;object-fit:cover">':'')
         +'<span style="font-size:12px;font-weight:700;color:var(--orange)">'+escHtml(c.name)+'</span>'
         +'<span style="font-size:11px;color:var(--gray)">→</span>'
@@ -1584,7 +1599,7 @@ window.deleteNotice=deleteNotice;
 /* ══ HERO CARD and CAROUSEL ══ */
 function buildHeroCard(c,isUrgent){
   var p=priceOf(c.coinId),info=getTimerInfo(c),key=isUrgent?'hu':'hf';
-  var enc=encodeURIComponent(JSON.stringify(c)).replace(/'/g,'%27');
+  var enc=encodeURIComponent(JSON.stringify(c));
   var ru=!!c.rumored;
   var poolHtml=ru&&!c.poolAmt
     ? '<span class="rumored-tba">Pool not announced yet</span>'
@@ -1621,7 +1636,7 @@ function buildListCard(c,grayed){
   var p=priceOf(c.coinId),info=getTimerInfo(c);
   var ru=!!c.rumored;
   var gs=grayed?'filter:grayscale(1);opacity:0.45;':'',gt=grayed?'color:#555!important':'';
-  var enc=encodeURIComponent(JSON.stringify(c)).replace(/'/g,'%27');
+  var enc=encodeURIComponent(JSON.stringify(c));
   var sc=grayed?'state-ended':(info.state==='alert'?'state-alert':'state-'+info.state);
   var extra='';
   if(ru)extra+='<span class="rumored-badge">🔮 Rumored</span>';
@@ -2080,6 +2095,7 @@ window.viewImg=viewImg;
 function updateVol(id,val){if(!userData.joined[id])return;userData.joined[id].volume=parseFloat(val)||0;saveUD();refreshReward(id);updateGBB();renderCalc();}window.updateVol=updateVol;
 function updatePts(id,val){if(!userData.joined[id])return;userData.joined[id].points=parseFloat(val)||0;saveUD();refreshReward(id);updateGBB();renderCalc();}window.updatePts=updatePts;
 function updateBnb(id,checked){if(!userData.joined[id])return;userData.joined[id].bnb=checked;saveUD();refreshReward(id);updateGBB();renderCalc();}window.updateBnb=updateBnb;
+function toggleAllBnb(on){campaigns.forEach(function(c){if(isJoined(c.id)&&isCampActive(c)){userData.joined[c.id].bnb=on;}});saveUD();updateGBB();renderDashboard();}window.toggleAllBnb=toggleAllBnb;
 
 function updateEbbMultiplier(campId,multStr){
   if(!userData.joined[campId])return;
@@ -2132,15 +2148,17 @@ function calcReward(c){
 function getBalance(){
   var tot=0,fee=0,cnt=0;
   campaigns.forEach(function(c){
-    if(!isJoined(c.id)||!isCampActive(c))return;
+    if(!isJoined(c.id)||!isCampActive(c)||isReceived(c.id))return;
     var j=userData.joined[c.id],r=calcReward(c),t=c.type||'volume';
     if(!j)return;
     var hasData=false;
     if(t==='volume'&&(j.volume||0)>0)hasData=true;
+    else if(t==='equal')hasData=true;
     else if(t==='ranked_fixed'&&(j.volume||0)>0)hasData=true;
     else if(t==='points_lb'&&(j.points||0)>0)hasData=true;
     if(r&&r.usd!==null&&hasData){if(t==='ranked_fixed'){if(r.inRank){tot+=r.usd;cnt++;}}else{tot+=r.usd;cnt++;}}
     if(t==='volume'&&(j.volume||0)>0)fee+=(j.volume||0)*(j.bnb?0.00075:0.001);
+    else if(t==='equal'&&r&&r.feeCost)fee+=r.feeCost;
     else if(t==='ranked_fixed'&&r&&r.feeCost&&(j.volume||0)>0)fee+=r.feeCost;
     else if(t==='points_lb'&&r&&r.pointsCost&&(j.points||0)>0)fee+=r.pointsCost;
   });
@@ -2174,7 +2192,7 @@ function buildDashCard(c){
   else if(t==='equal'&&r&&r.canCalc){var effMin=r.effectiveMinVol!==undefined?r.effectiveMinVol:(c.minVolume||0);var fc2=effMin*(bnbOn?0.00075:0.001);var ebbNote='';if(j.ebbMult&&j.ebbMult!=='none'&&c.minVolume){ebbNote='<span style="color:var(--green);font-size:11px"> (with '+escHtml(j.ebbMult)+' boost: $'+Math.round(effMin).toLocaleString()+')</span>';}bodyHtml='<div class="dash-info-row">Participants: <strong>'+(c.maxParticipants||1).toLocaleString()+'</strong>'+(c.minVolume?' | Min vol: <strong>$'+c.minVolume.toLocaleString()+'</strong>'+ebbNote+' <span style="color:var(--red)">(fee approx '+fmtUSD(fc2)+')</span>':'')+'</div><div class="dash-vol-row">'+bFld+'</div>'+ebbSel+'<div class="dash-reward"><span class="dr-label">Fixed Reward</span><span class="dr-val">'+fmtToken(r.tokens)+' '+escHtml(c.name)+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>';}
   else if(t==='ranked_fixed'&&r&&r.canCalc){var rrate2=bnbOn?0.00075:0.001,uv2=j.volume||0,estFee=uv2*rrate2;var effRankVol=r.effectiveRankVol!==undefined?r.effectiveRankVol:r.rankMinVol;var rankEbbNote='';if(j.ebbMult&&j.ebbMult!=='none'&&r.rankMinVol){rankEbbNote=' <span style="color:var(--green)">(with '+escHtml(j.ebbMult)+': ~$'+Math.round(effRankVol).toLocaleString()+')</span>';}bodyHtml='<div class="dash-info-row">Rank <strong>'+r.rankStart+'</strong> to <strong>'+r.rankEnd+'</strong>'+(r.eligVol?' | Min elig: <strong>$'+r.eligVol.toLocaleString()+'</strong>':'')+(r.rankMinVol?' | Est. rank vol: <strong>$'+r.rankMinVol.toLocaleString()+'</strong>'+rankEbbNote:'')+'</div><div class="dash-vol-row"><div class="dash-field"><label>Your Trade Volume (USD)</label><input type="number" class="vol-input" placeholder="e.g. 10000" value="'+(j.volume||'')+'" oninput="updateVol(\''+c.id+'\',this.value)" min="0"></div>'+bFld+'</div>'+ebbSel+(uv2>0?'<div class="dash-reward"><span class="dr-label">Trading Fee</span><span class="dr-val" style="color:var(--red)">-'+fmtUSD(estFee)+'</span></div>':'')+(uv2>0&&r.inRank?'<div class="dash-reward" style="margin-top:6px"><span class="dr-label">Est. Reward</span><span class="dr-val">'+fmtToken(r.tokens)+' '+escHtml(c.name)+'</span>'+(p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+'</div>':uv2>0&&!r.inRank&&effRankVol>0?'<div class="dash-warn">Volume below estimated rank entry (~$'+Math.round(effRankVol).toLocaleString()+').</div>':'');}
   else if(t==='points_lb'&&r){bodyHtml='<div class="dash-info-row">Total LB Points: <strong>'+(c.totalPoints||1).toLocaleString()+'</strong>'+(c.costPerPoint?' | Cost/pt: <strong style="color:var(--red)">$'+c.costPerPoint+'</strong>':'')+'</div><div class="dash-vol-row"><div class="dash-field"><label>Your Points</label><input type="number" class="vol-input" placeholder="e.g. 1500" value="'+(j.points||'')+'" oninput="updatePts(\''+c.id+'\',this.value)" min="0"></div></div><div class="dash-reward" id="dreward-'+c.id+'"><span class="dr-label">Est. Reward</span><span class="dr-val">'+(r.tokens>0?fmtToken(r.tokens)+' '+escHtml(c.name):'Enter points above')+'</span>'+(r.tokens>0&&p?'<span class="dr-usd">approx '+fmtUSD(r.usd)+'</span>':'')+(r.pointsCost>0?'<span class="dr-usd" style="color:var(--red)">Fee approx '+fmtUSD(r.pointsCost)+'</span>':'')+'</div>';}
-  else if(r&&r.isPointsNl){bodyHtml='<div class="dash-info-row">Min Points: <strong>'+r.minPoints.toLocaleString()+'</strong>'+(r.costPerPt?' | Cost/pt: <strong style="color:var(--red)">$'+r.costPerPt+'</strong>':'')+(r.minCost?' | Min cost: <strong style="color:var(--red)">'+fmtUSD(r.minCost)+'</strong>':'')+'</div><div class="dash-note">Points-based. Leaderboard unavailable.</div>';}
+  else if(r&&r.isPointsNl){bodyHtml='<div class="dash-info-row">Min Points: <strong>'+r.minPoints.toLocaleString()+'</strong>'+(r.costPerPt?' | Cost/pt: <strong style="color:var(--red)">$'+r.costPerPt+'</strong>':'')+(r.minCost?' | Min cost: <strong style="color:var(--red)">'+fmtUSD(r.minCost)+'</strong>':'')+'</div><div class="dash-note">Points-based reward, leaderboard unavailable.</div>';}
   else{bodyHtml='<div class="dash-note">Reward cannot be estimated.</div>';}
   return'<div class="dash-camp" id="dcard-'+c.id+'"><div class="dash-camp-header" onclick="toggleExpand(\''+c.id+'\')"><div class="dash-camp-left"><img src="'+c.logo+'" class="camp-logo" onerror="this.style.background=\'#2b3139\'"><div><div class="camp-name">'+escHtml(c.name)+'</div>'+typeBadge(t)+'</div></div><div class="dash-camp-right"><span id="dsummary-'+c.id+'" class="'+sumCls+'">'+sumTxt+'</span><span class="camp-timer '+sc+'" style="font-size:11px">'+info.text+'</span><button class="btn-remove" onclick="toggleJoin(\''+c.id+'\',event)">Remove</button><button class="btn-expand '+(isExp?'open':'')+'" id="dexpand-'+c.id+'" onclick="event.stopPropagation();toggleExpand(\''+c.id+'\')">&#9660;</button></div></div>'+recvPrompt+'<div class="dash-camp-body '+(isExp?'':'collapsed')+'" id="dbody-'+c.id+'">'+bodyHtml+'</div></div>';
 }
@@ -2187,7 +2205,7 @@ function renderDashboard(){
   var html='';
   if(activeJ.length===0&&endedJ.length===0)html='<div class="empty-state" style="margin-bottom:20px"><h3>No Campaigns Joined</h3><p>Click "+ Join" on any campaign.</p></div>';
   else{
-    if(activeJ.length>0){html+='<div class="dash-header-row"><h2 style="margin-bottom:0">Joined ('+activeJ.length+')</h2><button class="dash-all-toggle" id="btn-all-expand" onclick="toggleAllExpand()">&#9650; Collapse All</button></div>';activeJ.forEach(function(c){html+=buildDashCard(c);});}
+    if(activeJ.length>0){html+='<div class="dash-header-row"><h2 style="margin-bottom:0">Joined ('+activeJ.length+')</h2><button class="dash-all-toggle" id="btn-all-expand" onclick="toggleAllExpand()">&#9650; Collapse All</button></div>';if(activeJ.length>=2){var allBnb=activeJ.every(function(c){return userData.joined[c.id]&&userData.joined[c.id].bnb;});html+='<div class="bnb-master"><div class="bnb-master-info"><span class="bnb-master-title">BNB Fee for All Campaigns</span><span class="bnb-master-sub">'+(allBnb?'BNB discount is on for all joined campaigns':'Turn the BNB fee discount on or off across every joined campaign at once')+'</span></div><label class="toggle-switch"><input type="checkbox" '+(allBnb?'checked':'')+' onchange="toggleAllBnb(this.checked)"><div class="toggle-track"></div><div class="toggle-thumb"></div></label></div>';}activeJ.forEach(function(c){html+=buildDashCard(c);});}
     else html+='<div class="empty-state" style="margin-bottom:20px"><h3>No Active Campaigns</h3></div>';
     if(endedJ.length>0){
       html+=divH('Completed','var(--gray)');
@@ -2207,9 +2225,10 @@ function renderCalc(){
   var calcEl=document.getElementById('dash-calc');if(!calcEl)return;
   var bal=getBalance(),totalVol=0,bnbVol=0,offCamps=[];
   campaigns.forEach(function(c){
-    var j=userData.joined[c.id];if(!j||!isCampActive(c))return;
+    var j=userData.joined[c.id];if(!j||!isCampActive(c)||isReceived(c.id))return;
     var t=c.type||'volume',r=calcReward(c),effVol=0;
     if(t==='volume'){effVol=j.volume||0;}
+    else if(t==='equal'){if(r&&r.effectiveMinVol)effVol=r.effectiveMinVol;else if(c.minVolume)effVol=c.minVolume;}
     else if(t==='ranked_fixed'){effVol=j.volume||0;}
     if(effVol>0){
       totalVol+=effVol;
@@ -2225,7 +2244,7 @@ function renderCalc(){
     var more=offCamps.length>3?' and '+(offCamps.length-3)+' more':'';
     hintHtml='<div class="savings-hint" style="background:var(--ydim);border-color:rgba(252,213,53,.3);color:var(--yellow);margin-top:0;margin-bottom:12px">Enable BNB Fee on '+(names?names+more:'your campaigns')+' to save approx <strong>'+fmtUSD(potSave)+'</strong> in fees.</div>';
   } else if(bnbPct===100&&totalVol>0){
-    hintHtml='<div class="savings-hint" style="background:var(--gdim);border-color:rgba(14,203,129,.3);color:var(--green);margin-top:0;margin-bottom:12px">Using BNB Fee on 100% of trades. Maximum savings active.</div>';
+    hintHtml='<div class="savings-hint" style="background:var(--gdim);border-color:rgba(14,203,129,.3);color:var(--green);margin-top:0;margin-bottom:12px">Using BNB Fee on 100% of trades, maximum savings active.</div>';
   }
   calcEl.innerHTML='<div class="calc-section"><h2 style="margin-bottom:13px">Cost Calculator</h2><div class="calc-tabs"><button class="calc-tab active" onclick="switchTab(\'auto\',this)">Auto Summary</button><button class="calc-tab" onclick="switchTab(\'manual\',this)">Manual</button></div><div id="calc-auto" class="calc-panel active">'+hintHtml+'<div class="calc-card"><div class="calc-row"><span class="calc-key">Total Volume</span><span class="calc-val">'+fmtUSD(totalVol)+'</span></div><div class="calc-row"><span class="calc-key">BNB Fee Used</span><span class="calc-val" style="color:var(--yellow)">'+fmtUSD(bnbVol)+' ('+bnbPct+'%)</span></div><div class="calc-row"><span class="calc-key">Total Fee</span><span class="calc-val" style="color:var(--red)">-'+fmtUSD(bal.totalFee)+'</span></div><div class="calc-row"><span class="calc-key">Total Est. Reward</span><span class="calc-val" style="color:var(--green)">'+fmtUSD(bal.totalReward)+'</span></div><div class="calc-row"><span class="calc-key" style="font-weight:700">Net</span><span class="calc-val" style="color:'+(bal.net>=0?'var(--green)':'var(--red)')+';font-size:15px">'+(bal.net>=0?'+':'-')+fmtUSD(Math.abs(bal.net))+'</span></div></div></div><div id="calc-manual" class="calc-panel"><div class="calc-card"><div class="form-group" style="margin-bottom:11px"><label style="display:block;margin-bottom:3px;color:var(--gray);font-size:12px;font-weight:600">Trade Volume (USD)</label><input type="number" class="vol-input" id="m-vol" placeholder="e.g. 10000" value="'+(totalVol||'')+'" oninput="calcManual()"></div><div class="bnb-wrap" style="padding:9px 0;margin-bottom:11px;border-bottom:1px solid var(--border)"><label class="toggle-switch"><input type="checkbox" id="m-bnb" onchange="calcManual()"><div class="toggle-track"></div><div class="toggle-thumb"></div></label><span class="bnb-txt">BNB Fee Discount (25% off)</span></div><div class="calc-row" style="padding:7px 0"><span class="calc-key">Fee Rate</span><span class="calc-val" id="m-rate">0.100%</span></div><div class="calc-row" style="padding:7px 0"><span class="calc-key">Trading Fee</span><span class="calc-val" style="color:var(--red)" id="m-fee">-</span></div><div class="calc-row" style="padding:7px 0;border-bottom:none"><span class="calc-key">BNB saves you</span><span class="calc-val" style="color:var(--yellow)" id="m-save">-</span></div></div></div></div>';
 }
