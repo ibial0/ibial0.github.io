@@ -1046,6 +1046,7 @@ var TL={volume:{label:'Vol. Based',cls:'type-volume'},equal:{label:'Equal Share'
 function typeBadge(t){var i=TL[t]||TL.volume;return'<span class="type-badge '+i.cls+'">'+i.label+'</span>';}
 function diffBadge(d){if(!d)return'';var c=d==='Easy'?'diff-easy':d==='Medium'?'diff-medium':d==='Very Hard'?'diff-vhard':'diff-hard';return'<span class="diff-badge '+c+'">'+d+'</span>';}
 function escHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function campPayload(c){return encodeURIComponent(JSON.stringify(c)).replace(/'/g,'%27');}
 function hasBadWord(t){var l=t.toLowerCase();return BAD_WORDS.some(function(w){return l.indexOf(w)!==-1;});}
 function divH(label,color){return'<div class="section-divider"><span style="color:'+color+'">'+label+'</span></div>';}
 function safeId(id){return id.replace(/[^a-zA-Z0-9]/g,'');}
@@ -1404,7 +1405,7 @@ setTimeout(function(){
   var iv=setInterval(function(){
     att++;
     var c=getCampById(campId);
-    if(c||att>20){clearInterval(iv);if(c)showDetails(encodeURIComponent(JSON.stringify(c)));}
+    if(c||att>20){clearInterval(iv);if(c)showDetails(campPayload(c));}
   },300);
 },500);
 
@@ -1574,7 +1575,7 @@ function showNotice(id){
   if(linkedCamps.length){
     html+='<div style="margin-top:10px;display:flex;flex-wrap:wrap;justify-content:center;gap:5px">';
     linkedCamps.forEach(function(c){
-      html+='<div class="notice-linked-camp" onclick="closeModal(\'notice-modal\');showDetails(\''+encodeURIComponent(JSON.stringify(c))+'\')">'
+      html+='<div class="notice-linked-camp" onclick="closeModal(\'notice-modal\');showDetails(\''+campPayload(c)+'\')">'
         +(c.logo?'<img src="'+escHtml(c.logo)+'" style="width:22px;height:22px;border-radius:50%;object-fit:cover">':'')
         +'<span style="font-size:12px;font-weight:700;color:var(--orange)">'+escHtml(c.name)+'</span>'
         +'<span style="font-size:11px;color:var(--gray)">→</span>'
@@ -1599,7 +1600,7 @@ window.deleteNotice=deleteNotice;
 /* ══ HERO CARD and CAROUSEL ══ */
 function buildHeroCard(c,isUrgent){
   var p=priceOf(c.coinId),info=getTimerInfo(c),key=isUrgent?'hu':'hf';
-  var enc=encodeURIComponent(JSON.stringify(c));
+  var enc=campPayload(c);
   var ru=!!c.rumored;
   var poolHtml=ru&&!c.poolAmt
     ? '<span class="rumored-tba">Pool not announced yet</span>'
@@ -1636,7 +1637,7 @@ function buildListCard(c,grayed){
   var p=priceOf(c.coinId),info=getTimerInfo(c);
   var ru=!!c.rumored;
   var gs=grayed?'filter:grayscale(1);opacity:0.45;':'',gt=grayed?'color:#555!important':'';
-  var enc=encodeURIComponent(JSON.stringify(c));
+  var enc=campPayload(c);
   var sc=grayed?'state-ended':(info.state==='alert'?'state-alert':'state-'+info.state);
   var extra='';
   if(ru)extra+='<span class="rumored-badge">🔮 Rumored</span>';
