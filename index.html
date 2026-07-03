@@ -754,6 +754,7 @@ body.light .bottom-nav{background:rgba(255,255,255,0.98);box-shadow:0 -1px 10px 
           <div class="check-row"><input type="checkbox" id="reward-postponed"><label for="reward-postponed">⚠️ Mark reward as postponed/delayed</label></div>
           <div class="check-row"><input type="checkbox" id="is-distributing" style="accent-color:#0ecb81"><label for="is-distributing" style="color:#0ecb81;font-weight:700">🟢 Reward distribution in progress (Distributing now)</label></div>
         </div>
+        <div class="form-group" id="fg-orig-reward"><label>Original deadline (before it was postponed)</label><input type="datetime-local" id="orig-reward-date"><div class="hint">Only needed if you ticked "postponed/delayed" above. Put the earlier deadline here; the "Reward Deadline" field then holds the new (postponed) date. Leave blank if no earlier date was announced.</div></div>
         <hr class="form-divider">
         <span class="form-section-label">🚀 Early Bird Boost Multiplier</span>
         <div class="form-group">
@@ -769,8 +770,13 @@ body.light .bottom-nav{background:rgba(255,255,255,0.98);box-shadow:0 -1px 10px 
             </div>
             <div class="form-group" style="margin-bottom:12px">
               <label style="font-size:12px;color:var(--gray)">Boost limited to a specific pair? (optional)</label>
-              <input type="text" id="ebb-pair" placeholder="e.g. BTC/USDT — leave blank for all eligible pairs">
-              <div class="hint">If the multiplier is only active for one particular trading pair, write it here. Leave blank when the boost applies to every eligible pair.</div>
+              <input type="text" id="ebb-pair" placeholder="e.g. BTC/USDT or just BNB (leave blank for all pairs)">
+              <div class="hint">If the boost applies to only one pair, write it here. You can write it as BNB/USDT or just the coin name like BNB. Leave blank when the boost applies to every eligible pair.</div>
+            </div>
+            <div class="form-group" style="margin-bottom:12px">
+              <label style="font-size:12px;color:var(--gray)">Multiplier for that pair (optional)</label>
+              <input type="text" id="ebb-pair-mult" placeholder="e.g. 2x">
+              <div class="hint">Enter the boost multiplier for the specific pair above. Use this when the boost stays the same across the whole campaign and you have not added time slots below.</div>
             </div>
             <div style="background:rgba(14,203,129,0.05);border:1px dashed rgba(14,203,129,0.35);border-radius:8px;padding:10px;margin-bottom:12px">
               <div style="font-size:11px;color:var(--green);font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px">⚡ Quick paste (auto-fill)</div>
@@ -811,6 +817,7 @@ body.light .bottom-nav{background:rgba(255,255,255,0.98);box-shadow:0 -1px 10px 
       <div class="det-row"><span class="det-key">Total Pool</span><span class="det-val" id="det-pool"></span></div>
       <div class="det-row" id="det-est-row"><span class="det-key">Est. Reward</span><span class="det-val" id="det-est"></span></div>
     </div>
+    <div id="det-postpone-wrap"></div>
     <div id="det-pairs-wrap"></div>
     <div class="det-timer-box">
       <div class="det-timer-label" id="det-timer-label">Time Remaining</div>
@@ -1327,9 +1334,9 @@ function saveCampaign(e){
     totalPoints:t==='points_lb'?gn('total-points'):null,costPerPoint:t==='points_lb'?gn('cost-per-point'):null,
     minPoints:t==='points_nl'?gn('min-points'):null,costPerPointNl:t==='points_nl'?gn('cost-per-point-nl'):null,
     minVolume:hasMin?gn('min-volume'):0,start:gv('start-date')||null,end:gv('end-date')||null,
-    rewardDate:(!rdTBD&&gv('reward-date'))||null,rewardDateTBD:rdTBD||null,rewardPostponed:rdPost||null,
+    rewardDate:(!rdTBD&&gv('reward-date'))||null,rewardDateTBD:rdTBD||null,rewardPostponed:rdPost||null,origRewardDate:(rdPost&&gv('orig-reward-date'))||null,
     hasEarlyBird:hasEbb||null,earlyBirdSlots:(hasEbb&&ebbSlots&&ebbSlots.length)?ebbSlots:null,
-    ebbPair:(hasEbb&&gv('ebb-pair').trim())?gv('ebb-pair').trim():null,
+    ebbPair:(hasEbb&&gv('ebb-pair').trim())?gv('ebb-pair').trim():null,ebbPairMult:(hasEbb&&gv('ebb-pair-mult').trim())?gv('ebb-pair-mult').trim():null,
     rumored:rumored||null,
     description:gv('camp-desc')||null,pairs:parsePairs(gv('camp-pairs')),distributing:dist||null
   });
@@ -1370,6 +1377,7 @@ function editCamp(id,ev){
     document.getElementById('min-volume').value=c.minVolume>0?c.minVolume:'';
     document.getElementById('reward-tbd').checked=!!c.rewardDateTBD;
     document.getElementById('reward-postponed').checked=!!c.rewardPostponed;
+    var orEl=document.getElementById('orig-reward-date');if(orEl)orEl.value=c.origRewardDate||'';
     var ebbCb=document.getElementById('has-ebb');
     var fgEbb=document.getElementById('fg-ebb');
     var ebbContainer=document.getElementById('ebb-slots-container');
@@ -1383,6 +1391,7 @@ function editCamp(id,ev){
       }
     }
     var ebbPairEl=document.getElementById('ebb-pair');if(ebbPairEl)ebbPairEl.value=c.ebbPair||'';
+    var ebbPairMultEl=document.getElementById('ebb-pair-mult');if(ebbPairMultEl)ebbPairMultEl.value=c.ebbPairMult||'';
     document.getElementById('modal-title').innerText='Edit Campaign';
     var ruEl=document.getElementById('is-rumored');if(ruEl){ruEl.checked=!!c.rumored;onRumoredToggle();}
     document.getElementById('submit-btn').innerText='Save Changes';
@@ -1659,6 +1668,10 @@ function buildListCard(c,grayed){
     var activeSlot=getActiveEbbSlot(c);
     if(activeSlot)extra+='<span style="background:rgba(14,203,129,0.15);color:var(--green);border:1px solid rgba(14,203,129,0.3);border-radius:4px;padding:1px 5px;font-size:10px;font-weight:700;margin-left:2px">🚀 '+escHtml(activeSlot.multiplier)+'</span>';
   }
+  if(!grayed&&!ru&&c.ebbPair){
+    var actPS=c.hasEarlyBird?getActiveEbbSlot(c):null;
+    if(!actPS)extra+='<span style="background:rgba(252,213,53,0.15);color:var(--yellow);border:1px solid rgba(252,213,53,0.3);border-radius:4px;padding:1px 5px;font-size:10px;font-weight:700;margin-left:2px">⚡ '+escHtml(c.ebbPairMult||'2x')+' '+escHtml(c.ebbPair)+'</span>';
+  }
   var poolCellHtml=ru&&!c.poolAmt
     ? '<div class="pool-amt rumored-tba" style="'+gt+'">Pool TBA</div><div class="pool-usd">Not yet announced</div>'
     : '<div class="pool-amt" style="'+gt+'">'+(c.poolAmt||0).toLocaleString()+' '+escHtml(c.name)+'</div><div class="pool-usd">'+(p&&c.poolAmt?'approx '+fmtUSD(c.poolAmt*p):'...')+'</div>';
@@ -1735,10 +1748,28 @@ function buildEbbSlotMeta(slots){
   return meta;
 }
 
+function buildPairBoostCard(c){
+  if(!c||!c.ebbPair)return'';
+  var mult=(c.ebbPairMult&&c.ebbPairMult.trim())?c.ebbPairMult.trim():'2x';
+  var now=Date.now();
+  var s=c.start?new Date(c.start).getTime():NaN,e=c.end?new Date(c.end).getTime():NaN;
+  var status='Active for the entire campaign',pct=null;
+  if(!isNaN(s)&&!isNaN(e)&&e>s){
+    if(now<s){status='Starts soon';pct=0;}
+    else if(now>=e){status='Campaign ended';pct=100;}
+    else{status='Active now';pct=Math.max(0,Math.min(100,(now-s)/(e-s)*100));}
+  }
+  var html='<div class="ebb-section">';
+  html+='<div class="ebb-header"><div class="ebb-title-wrap"><span class="ebb-icon">\u26a1</span><span class="ebb-title">Pair Boost</span><span class="ebb-today-badge">'+escHtml(mult)+' Boost</span></div><span class="ebb-day-counter">'+escHtml(status)+'</span></div>';
+  html+='<div style="background:rgba(252,213,53,.08);border:1px solid rgba(252,213,53,.25);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--yellow);font-weight:600;line-height:1.6">\u26a1 <strong style="color:var(--white)">'+escHtml(mult)+'</strong> volume boost active only on <strong style="color:var(--white)">'+escHtml(c.ebbPair)+'</strong>.<div style="color:var(--gray);font-weight:500;font-size:11px;margin-top:4px">This boost counts for the entire campaign, from start to finish.</div></div>';
+  if(pct!==null){html+='<div class="ebb-bar-row" style="margin-top:12px"><div class="ebb-bar"><div class="ebb-bar-fill" style="clip-path:inset(0 '+(100-pct).toFixed(2)+'% 0 0)"></div></div></div>';}
+  html+='</div>';
+  return html;
+}
 function buildEbbDisplay(c){
-  if(!c||!c.hasEarlyBird||!c.earlyBirdSlots||!c.earlyBirdSlots.length)return'';
+  if(!c||!c.hasEarlyBird)return c&&c.ebbPair?buildPairBoostCard(c):'';
   var meta=buildEbbSlotMeta(c.earlyBirdSlots);
-  if(!meta.length)return'';
+  if(!meta.length)return c.ebbPair?buildPairBoostCard(c):'';
   var totalDays=meta[meta.length-1].startDay+meta[meta.length-1].days;
   var totalStart=meta[0].start;
   var totalEnd=meta[meta.length-1].end;
@@ -1762,7 +1793,7 @@ function buildEbbDisplay(c){
   html+='<div class="ebb-header"><div class="ebb-title-wrap"><span class="ebb-icon">🚀</span><span class="ebb-title">Early Bird Boost</span>';
   if(todayMult)html+='<span class="ebb-today-badge">Today: '+escHtml(todayMult)+' Boost</span>';
   html+='</div><span class="ebb-day-counter">Day '+curDayNum+' of '+totalDays+'</span></div>';
-  if(c.ebbPair)html+='<div style="display:flex;align-items:center;gap:6px;background:rgba(252,213,53,.08);border:1px solid rgba(252,213,53,.25);border-radius:7px;padding:7px 10px;margin-bottom:10px;font-size:11.5px;color:var(--yellow);font-weight:600">⚡ Boost active only on <strong style="color:var(--white)">'+escHtml(c.ebbPair)+'</strong></div>';
+  if(c.ebbPair)html+='<div style="display:flex;align-items:center;gap:6px;background:rgba(252,213,53,.08);border:1px solid rgba(252,213,53,.25);border-radius:7px;padding:7px 10px;margin-bottom:10px;font-size:11.5px;color:var(--yellow);font-weight:600">⚡ '+(c.ebbPairMult?escHtml(c.ebbPairMult)+' ':'')+'Boost active only on <strong style="color:var(--white)">'+escHtml(c.ebbPair)+'</strong></div>';
 
   var sid=safeId(c.id);
   html+='<div class="ebb-track-wrap"><div class="ebb-track" id="ebb-track-'+sid+'">';
@@ -1944,6 +1975,22 @@ window.toggleDesc=toggleDesc;
 async function gTranslate(text,toLang){try{var chunks=[],s=text;while(s.length>1400){var idx=s.lastIndexOf('\n',1400);if(idx<400)idx=s.lastIndexOf(' ',1400);if(idx<400)idx=1400;chunks.push(s.slice(0,idx));s=s.slice(idx);}chunks.push(s);var res='';for(var i=0;i<chunks.length;i++){var r=await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl='+toLang+'&dt=t&q='+encodeURIComponent(chunks[i]));var d=await r.json();if(d&&d[0]){res+=d[0].filter(function(x){return x&&x[0];}).map(function(x){return x[0];}).join('');}else res+=chunks[i];}return res||text;}catch(e){return text;}}
 async function translateDesc(lang){var box=document.getElementById('det-desc-text');if(!box)return;if(!lang||lang==='original'){box.innerText=curDescText;return;}var key='dd_'+lang;if(descTxCache[key]){box.innerText=descTxCache[key];return;}box.style.opacity='0.45';var out=await gTranslate(curDescText,lang);descTxCache[key]=out;box.innerText=out;box.style.opacity='1';}
 window.translateDesc=translateDesc;
+function buildPostponeDisplay(c){
+  if(!c||!c.rewardPostponed)return'';
+  var fmt={dateStyle:'medium',timeStyle:'short',timeZone:userTZ};
+  var origTxt=c.origRewardDate?new Date(c.origRewardDate).toLocaleString('en-US',fmt):null;
+  var newTxt=c.rewardDate?new Date(c.rewardDate).toLocaleString('en-US',fmt):null;
+  var rows='';
+  if(origTxt)rows+='<div class="det-row"><span class="det-key">Original deadline</span><span class="det-val" style="text-decoration:line-through;color:var(--gray)">'+escHtml(origTxt)+'</span></div>';
+  if(newTxt)rows+='<div class="det-row"><span class="det-key">New deadline</span><span class="det-val" style="color:var(--yellow);font-weight:700">'+escHtml(newTxt)+'</span></div>';
+  else rows+='<div class="det-row"><span class="det-key">New deadline</span><span class="det-val" style="color:var(--gray)">Not yet announced</span></div>';
+  var note=origTxt?(newTxt?'This campaign\u2019s reward deadline was postponed to a later date.':'This campaign\u2019s reward deadline was postponed, and a new date has not been announced yet.'):'This campaign\u2019s reward distribution has been postponed.';
+  return '<div class="det-info-box" style="border:1px solid rgba(246,192,38,.3);background:rgba(246,192,38,.05);margin-top:10px">'
+    +'<div style="font-size:12px;font-weight:800;color:var(--yellow);margin-bottom:8px;display:flex;align-items:center;gap:6px">\u26a0\ufe0f Reward Distribution Postponed</div>'
+    +rows
+    +'<div style="font-size:11px;color:var(--gray);line-height:1.6;margin-top:8px">'+note+'</div>'
+    +'</div>';
+}
 function showDetails(enc){
   var c=JSON.parse(decodeURIComponent(enc));detailCampId=c.id;
   document.getElementById('det-logo').src=c.logo;
@@ -1961,10 +2008,12 @@ function showDetails(enc){
   if(c.start){startRow.style.display='flex';document.getElementById('det-start').innerText=new Date(c.start).toLocaleString('en-US',fmt);}else if(ru){startRow.style.display='flex';document.getElementById('det-start').innerHTML='<span class="rumored-tba">Not announced</span>';}else startRow.style.display='flex';
   if(c.end){endRow.style.display='flex';document.getElementById('det-end').innerText=new Date(c.end).toLocaleString('en-US',fmt);}else if(ru){endRow.style.display='flex';document.getElementById('det-end').innerHTML='<span class="rumored-tba">Not announced</span>';}else endRow.style.display='flex';
   var rdr=document.getElementById('det-reward-row');
-  if(c.rewardDateTBD){rdr.style.display='flex';document.getElementById('det-reward-date').innerHTML='<span class="tbd-badge">⏳ Not Announced Yet</span>';}
+  if(c.rewardPostponed){rdr.style.display='none';}
+  else if(c.rewardDateTBD){rdr.style.display='flex';document.getElementById('det-reward-date').innerHTML='<span class="tbd-badge">⏳ Not Announced Yet</span>';}
   else if(c.rewardDate){rdr.style.display='flex';document.getElementById('det-reward-date').innerText=new Date(c.rewardDate).toLocaleString('en-US',fmt);}
   else if(ru){rdr.style.display='flex';document.getElementById('det-reward-date').innerHTML='<span class="rumored-tba">Not announced</span>';}
   else rdr.style.display='none';
+  var postWrap=document.getElementById('det-postpone-wrap');if(postWrap)postWrap.innerHTML=buildPostponeDisplay(c);
   var pu=p&&c.poolAmt?c.poolAmt*p:0;
   document.getElementById('det-pool').innerHTML=(ru&&!c.poolAmt)?'<span class="rumored-tba">Not announced yet</span>':((c.poolAmt||0).toLocaleString()+' '+escHtml(c.name)+(pu?'<span class="sub">approx '+fmtUSD(pu)+'</span>':''));
   var t=c.type||'volume',estEl=document.getElementById('det-est'),estRow=document.getElementById('det-est-row');
