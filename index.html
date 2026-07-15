@@ -331,10 +331,28 @@ body.light .about-warn{color:#7f1d1d}
 .form-group .check-row{display:flex;align-items:center;gap:7px;padding:7px 0}
 .form-group .check-row input[type=checkbox]{width:15px;height:15px;accent-color:var(--yellow);flex-shrink:0}
 .form-group .check-row label{margin:0;color:var(--white);font-size:12px}
+/* ── Toggle-switch styled checkbox (used inside .check-row.as-toggle) ── */
+.check-row.as-toggle{gap:11px;padding:8px 0;cursor:pointer}
+.check-row.as-toggle input[type=checkbox]{appearance:none;-webkit-appearance:none;position:relative;width:38px;height:22px;border-radius:12px;background:var(--border);cursor:pointer;transition:background .25s;flex-shrink:0;margin:0;border:none;box-shadow:inset 0 1px 2px rgba(0,0,0,.35)}
+.check-row.as-toggle input[type=checkbox]::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .25s,background .25s;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.check-row.as-toggle input[type=checkbox]:checked{background:var(--yellow)}
+.check-row.as-toggle input[type=checkbox]:checked::after{transform:translateX(16px)}
+.check-row.as-toggle input[type=checkbox][data-tone="green"]:checked{background:var(--green)}
+.check-row.as-toggle input[type=checkbox][data-tone="purple"]:checked{background:#a78bfa}
+.check-row.as-toggle input[type=checkbox][data-tone="orange"]:checked{background:#f6873a}
+.check-row.as-toggle label{cursor:pointer;user-select:none}
 .btn-submit{background:linear-gradient(135deg,var(--yellow),#f0a500);color:#000;border:none;padding:10px 16px;width:100%;font-weight:700;border-radius:7px;font-size:13px;cursor:pointer;margin-top:8px;box-shadow:0 4px 12px var(--yglow);transition:transform .2s}
 .btn-submit:hover{transform:translateY(-2px)}
 .form-divider{border:none;border-top:1px solid var(--border);margin:11px 0}
 .form-section-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);font-weight:700;margin-bottom:8px;display:block}
+/* ── Reward Board filter bar ── */
+.rb-filter-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:linear-gradient(135deg,rgba(252,213,53,.05),rgba(252,213,53,.02));border:1px solid var(--border);border-radius:11px;padding:8px 12px;margin:0 0 14px 0}
+.rb-filter-bar .rb-fl-lbl{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--gray);font-weight:700;flex-shrink:0}
+.rb-filter-bar select.rb-fl-sel{background:var(--surface);border:1px solid var(--border);color:var(--white);border-radius:8px;padding:6px 10px;font-size:12px;font-weight:600;cursor:pointer;transition:border-color .2s,color .2s;min-width:0}
+.rb-filter-bar select.rb-fl-sel:hover,.rb-filter-bar select.rb-fl-sel:focus{border-color:var(--yellow);color:var(--yellow);outline:none}
+.rb-filter-bar select.rb-fl-sel.active-filter{border-color:var(--yellow);color:var(--yellow);background:rgba(252,213,53,.06)}
+.rb-filter-bar .rb-fl-count{margin-left:auto;font-size:11px;color:var(--gray);font-weight:600}
+@media (max-width:640px){.rb-filter-bar{padding:8px 10px;gap:7px}.rb-filter-bar select.rb-fl-sel{font-size:11.5px;padding:6px 8px;flex:1;min-width:0}.rb-filter-bar .rb-fl-count{width:100%;text-align:right;margin:0}}
 .det-header{text-align:center;margin-bottom:16px}
 .det-logo{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--border);margin-bottom:8px}
 .det-name{font-size:20px;font-weight:800;margin-bottom:3px}
@@ -680,8 +698,8 @@ body.light .bottom-nav{background:rgba(255,255,255,0.98);box-shadow:0 -1px 10px 
       <form id="campaign-form" onsubmit="saveCampaign(event)">
         <input type="hidden" id="camp-id">
         <div style="background:linear-gradient(135deg,rgba(167,139,250,.08),rgba(139,92,246,.05));border:1px dashed rgba(167,139,250,.4);border-radius:9px;padding:10px 12px;margin-bottom:12px">
-          <div class="check-row" style="margin:0">
-            <input type="checkbox" id="is-rumored" onchange="onRumoredToggle()" style="accent-color:#a78bfa">
+          <div class="check-row as-toggle" style="margin:0">
+            <input type="checkbox" id="is-rumored" onchange="onRumoredToggle()" data-tone="purple">
             <label for="is-rumored" style="color:#c4b5fd;font-weight:700">🔮 Rumored / Unconfirmed Campaign</label>
           </div>
           <div class="hint" style="color:#9ca3af;margin-top:4px;font-style:normal">Use this when a campaign or tournament is expected but not officially announced. Only Token Name, Coin ID and Logo are required. Pool, dates and other details can be filled later.</div>
@@ -750,15 +768,15 @@ body.light .bottom-nav{background:rgba(255,255,255,0.98);box-shadow:0 -1px 10px 
         <span class="form-section-label">Reward Distribution</span>
         <div class="form-group"><label>Reward Deadline</label><input type="datetime-local" id="reward-date"><div class="hint">Leave blank if not announced</div></div>
         <div class="form-group">
-          <div class="check-row"><input type="checkbox" id="reward-tbd"><label for="reward-tbd">Reward date not yet announced (TBD)</label></div>
-          <div class="check-row"><input type="checkbox" id="reward-postponed"><label for="reward-postponed">⚠️ Mark reward as postponed/delayed</label></div>
-          <div class="check-row"><input type="checkbox" id="is-distributing" style="accent-color:#0ecb81"><label for="is-distributing" style="color:#0ecb81;font-weight:700">🟢 Reward distribution in progress (Distributing now)</label></div>
+          <div class="check-row as-toggle"><input type="checkbox" id="reward-tbd"><label for="reward-tbd">Reward date not yet announced (TBD)</label></div>
+          <div class="check-row as-toggle"><input type="checkbox" id="reward-postponed" data-tone="orange"><label for="reward-postponed">⚠️ Mark reward as postponed/delayed</label></div>
+          <div class="check-row as-toggle"><input type="checkbox" id="is-distributing" data-tone="green"><label for="is-distributing" style="color:#0ecb81;font-weight:700">🟢 Reward distribution in progress (Distributing now)</label></div>
         </div>
         <div class="form-group" id="fg-orig-reward"><label>Original deadline (before it was postponed)</label><input type="datetime-local" id="orig-reward-date"><div class="hint">Only needed if you ticked "postponed/delayed" above. Put the earlier deadline here; the "Reward Deadline" field then holds the new (postponed) date. Leave blank if no earlier date was announced.</div></div>
         <hr class="form-divider">
         <span class="form-section-label">🚀 Early Bird Boost Multiplier</span>
         <div class="form-group">
-          <div class="check-row">
+          <div class="check-row as-toggle">
             <input type="checkbox" id="has-ebb" onchange="onEbbToggle()">
             <label for="has-ebb">This campaign has an Early Bird Boost Multiplier</label>
           </div>
@@ -769,14 +787,9 @@ body.light .bottom-nav{background:rgba(255,255,255,0.98);box-shadow:0 -1px 10px 
               📋 Add each time slot with its multiplier. Set start &amp; end times in <strong style="color:var(--yellow)">UTC</strong> format (YYYY-MM-DD HH:MM). You can add as many slots as needed.
             </div>
             <div class="form-group" style="margin-bottom:12px">
-              <label style="font-size:12px;color:var(--gray)">Boost limited to a specific pair? (optional)</label>
-              <input type="text" id="ebb-pair" placeholder="e.g. BTC/USDT or just BNB (leave blank for all pairs)">
-              <div class="hint">If the boost applies to only one pair, write it here. You can write it as BNB/USDT or just the coin name like BNB. Leave blank when the boost applies to every eligible pair.</div>
-            </div>
-            <div class="form-group" style="margin-bottom:12px">
-              <label style="font-size:12px;color:var(--gray)">Multiplier for that pair (optional)</label>
-              <input type="text" id="ebb-pair-mult" placeholder="e.g. 2x">
-              <div class="hint">Enter the boost multiplier for the specific pair above. Use this when the boost stays the same across the whole campaign and you have not added time slots below.</div>
+              <label style="font-size:12px;color:var(--gray)">Limit boost to specific pair(s)? (optional)</label>
+              <input type="text" id="ebb-pair" placeholder="e.g. BNB/USDT, BTC/USDT (leave blank for all pairs)">
+              <div class="hint">If the boost only counts on certain pairs, list them here separated by commas. Leave blank when the boost applies to every eligible pair. The countdown still comes from the time slots below.</div>
             </div>
             <div style="background:rgba(14,203,129,0.05);border:1px dashed rgba(14,203,129,0.35);border-radius:8px;padding:10px;margin-bottom:12px">
               <div style="font-size:11px;color:var(--green);font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px">⚡ Quick paste (auto-fill)</div>
@@ -1144,6 +1157,54 @@ async function promptAdmin(){
 window.promptAdmin=promptAdmin;
 async function authAction(cb){if(isAdmin){cb();return;}var p=prompt('Enter Admin Password:');if(await verifyAdminPass(p)){isAdmin=true;cb();}else if(p!==null)alert('Incorrect Password!');}
 
+/* ══ FLEXIBLE DATETIME PASTE (UTC) ══
+   Accepts the common formats admins actually copy from Binance / socials:
+     2026-07-15 16:00 | 2026/07/15 16:00 | 2026-07-15T16:00
+     2026-07-15 16:00:30 | 2026-07-15 04:00 PM | 2026-07-15 | 2026/07/15
+   All values are treated as UTC. When only a date is pasted, start-side
+   fields fall back to 00:00 and end-side fields to 23:59 so the full day
+   is covered. */
+function parseFlexibleDate(raw,fallbackHour){
+  if(!raw)return null;
+  var s=String(raw).trim().replace(/\u00a0/g,' ').replace(/\s+/g,' ');
+  s=s.replace(/\s*UTC\s*$/i,'').replace(/\s*\(UTC\)\s*$/i,'').trim();
+  var ampm=null;
+  var mA=s.match(/\s(AM|PM|am|pm)\s*$/);
+  if(mA){ampm=mA[1].toUpperCase();s=s.slice(0,mA.index).trim();}
+  var m=s.match(/^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/);
+  if(!m)return null;
+  var Y=+m[1],M=+m[2],D=+m[3];
+  var hasTime=m[4]!==undefined;
+  var h=hasTime?+m[4]:(typeof fallbackHour==='number'?fallbackHour:0);
+  var mi=hasTime?+m[5]:(fallbackHour===23?59:0);
+  if(ampm&&hasTime){if(ampm==='PM'&&h<12)h+=12;if(ampm==='AM'&&h===12)h=0;}
+  if(M<1||M>12||D<1||D>31||h<0||h>23||mi<0||mi>59)return null;
+  function pad(n){return(n<10?'0':'')+n;}
+  return Y+'-'+pad(M)+'-'+pad(D)+'T'+pad(h)+':'+pad(mi);
+}
+function fieldFallbackHour(id){
+  /* End-of-day for deadline-style fields, start-of-day for start-style fields. */
+  if(id==='end-date'||id==='reward-date')return 23;
+  return 0;
+}
+document.addEventListener('paste',function(ev){
+  var t=ev.target;
+  if(!t||t.tagName!=='INPUT')return;
+  if(t.type!=='datetime-local'&&t.type!=='date')return;
+  var dt=(ev.clipboardData||window.clipboardData);
+  if(!dt)return;
+  var raw=dt.getData('text');
+  if(!raw)return;
+  var norm=parseFlexibleDate(raw,fieldFallbackHour(t.id));
+  if(!norm)return; /* let the browser try */
+  ev.preventDefault();
+  if(t.type==='date')norm=norm.slice(0,10);
+  t.value=norm;
+  t.dispatchEvent(new Event('input',{bubbles:true}));
+  t.dispatchEvent(new Event('change',{bubbles:true}));
+},true);
+window.parseFlexibleDate=parseFlexibleDate;
+
 /* ══ EARLY BIRD BOOST ADMIN FUNCTIONS ══ */
 function onEbbToggle(){
   var cb=document.getElementById('has-ebb');
@@ -1336,7 +1397,7 @@ function saveCampaign(e){
     minVolume:hasMin?gn('min-volume'):0,start:gv('start-date')||null,end:gv('end-date')||null,
     rewardDate:(!rdTBD&&gv('reward-date'))||null,rewardDateTBD:rdTBD||null,rewardPostponed:rdPost||null,origRewardDate:(rdPost&&gv('orig-reward-date'))||null,
     hasEarlyBird:hasEbb||null,earlyBirdSlots:(hasEbb&&ebbSlots&&ebbSlots.length)?ebbSlots:null,
-    ebbPair:(hasEbb&&gv('ebb-pair').trim())?gv('ebb-pair').trim():null,ebbPairMult:(hasEbb&&gv('ebb-pair-mult').trim())?gv('ebb-pair-mult').trim():null,
+    ebbPair:(hasEbb&&gv('ebb-pair').trim())?gv('ebb-pair').trim():null,
     rumored:rumored||null,
     description:gv('camp-desc')||null,pairs:parsePairs(gv('camp-pairs')),distributing:dist||null
   });
@@ -1391,7 +1452,6 @@ function editCamp(id,ev){
       }
     }
     var ebbPairEl=document.getElementById('ebb-pair');if(ebbPairEl)ebbPairEl.value=c.ebbPair||'';
-    var ebbPairMultEl=document.getElementById('ebb-pair-mult');if(ebbPairMultEl)ebbPairMultEl.value=c.ebbPairMult||'';
     document.getElementById('modal-title').innerText='Edit Campaign';
     var ruEl=document.getElementById('is-rumored');if(ruEl){ruEl.checked=!!c.rumored;onRumoredToggle();}
     document.getElementById('submit-btn').innerText='Save Changes';
@@ -1456,6 +1516,42 @@ function renderNotices(){
 }
 
 /* ══ RENDER VIEWS ══ */
+/* Reward Board filter state — persists across renders within a page load. */
+var rbFilters={active:'time-asc',pending:'time-asc',ended:'reward-desc'};
+window.rbSetFilter=function(section,val){rbFilters[section]=val;renderViews();};
+function rbTimeLeft(c,section){
+  var now=Date.now();
+  if(section==='active'){var e=c.end?new Date(c.end).getTime():0;return Math.max(0,e-now);}
+  if(section==='pending'){var r=c.rewardDate?new Date(c.rewardDate).getTime():0;return Math.max(0,r-now);}
+  return 0;
+}
+function rbRewardUSD(c){return(c.poolAmt||0)*(priceOf(c.coinId)||0);}
+function rbSort(arr,mode,section){
+  var a=arr.slice();
+  switch(mode){
+    case'time-asc':a.sort(function(x,y){return rbTimeLeft(x,section)-rbTimeLeft(y,section);});break;
+    case'time-desc':a.sort(function(x,y){return rbTimeLeft(y,section)-rbTimeLeft(x,section);});break;
+    case'reward-desc':a.sort(function(x,y){return rbRewardUSD(y)-rbRewardUSD(x);});break;
+    case'reward-asc':a.sort(function(x,y){return rbRewardUSD(x)-rbRewardUSD(y);});break;
+    case'joined-first':a.sort(function(x,y){var jx=isJoined(x.id)?1:0,jy=isJoined(y.id)?1:0;if(jy!==jx)return jy-jx;return rbRewardUSD(y)-rbRewardUSD(x);});break;
+    case'notjoined-first':a.sort(function(x,y){var jx=isJoined(x.id)?1:0,jy=isJoined(y.id)?1:0;if(jx!==jy)return jx-jy;return rbRewardUSD(y)-rbRewardUSD(x);});break;
+  }
+  return a;
+}
+function rbFilterBar(section,count,defaultMode){
+  var cur=rbFilters[section]||defaultMode;
+  var opts;
+  if(section==='ended'){
+    opts=[['reward-desc','💎 Reward: high → low'],['reward-asc','💰 Reward: low → high'],['joined-first','⭐ Joined first'],['notjoined-first','☆ Not joined first']];
+  }else{
+    opts=[['time-asc','⏳ Time: ending soon'],['time-desc','⌛ Time: ending late'],['reward-desc','💎 Reward: high → low'],['reward-asc','💰 Reward: low → high'],['joined-first','⭐ Joined first'],['notjoined-first','☆ Not joined first']];
+  }
+  var isActive=cur!==defaultMode;
+  var sel='<select class="rb-fl-sel'+(isActive?' active-filter':'')+'" onchange="rbSetFilter(\''+section+'\',this.value)">';
+  opts.forEach(function(o){sel+='<option value="'+o[0]+'"'+(o[0]===cur?' selected':'')+'>'+o[1]+'</option>';});
+  sel+='</select>';
+  return '<div class="rb-filter-bar"><span class="rb-fl-lbl">Sort</span>'+sel+'<span class="rb-fl-count">'+count+' campaign'+(count===1?'':'s')+'</span></div>';
+}
 function renderViews(){
   var empty='<div class="empty-state"><h3>No Campaigns Yet</h3><p>Click "+ Add" to get started.</p></div>';
   if(!campaigns.length){
@@ -1475,13 +1571,33 @@ function renderViews(){
   });
   function byVal(arr){return arr.slice().sort(function(a,b){return((b.poolAmt||0)*(priceOf(b.coinId)||0))-((a.poolAmt||0)*(priceOf(a.coinId)||0));});}
   var sorted=byVal(running);
+  /* Home / featured picks stay driven by value; the reward board uses its own filters below. */
 
   /* Reward Board */
   if(campaigns.length){
-    var rHtml=sorted.length?sorted.map(function(c){return buildListCard(c,false);}).join(''):'<div class="empty-state"><h3>No Active Campaigns</h3></div>';
+    var rHtml='';
+    if(running.length){
+      var activeSorted=rbSort(running,rbFilters.active||'time-asc','active');
+      rHtml+=rbFilterBar('active',running.length,'time-asc');
+      rHtml+=activeSorted.map(function(c){return buildListCard(c,false);}).join('');
+    }else{
+      rHtml+='<div class="empty-state"><h3>No Active Campaigns</h3></div>';
+    }
     if(rumored.length){rHtml+=divH('🔮 Possible Upcoming (Unconfirmed)','#a78bfa');rHtml+=rumored.map(function(c){return buildListCard(c,false);}).join('');}
-    if(rewPending.length){rewPending.sort(function(a,b){var ad=a.distributing?1:0,bd=b.distributing?1:0;if(ad!==bd)return ad-bd;return new Date(a.rewardDate)-new Date(b.rewardDate);});rHtml+=divH('⏳ Awaiting Reward Distribution','var(--green)');rHtml+=rewPending.map(function(c){return buildListCard(c,false);}).join('');}
-    if(fullyEnded.length){rHtml+=divH('✓ Ended Campaigns','var(--gray)');rHtml+=byVal(fullyEnded).map(function(c){return buildListCard(c,true);}).join('');}
+    if(rewPending.length){
+      rHtml+=divH('⏳ Awaiting Reward Distribution','var(--green)');
+      rHtml+=rbFilterBar('pending',rewPending.length,'time-asc');
+      var pendSorted=rbSort(rewPending,rbFilters.pending||'time-asc','pending');
+      /* Distributing campaigns always float to the top regardless of sort. */
+      pendSorted.sort(function(a,b){var ad=a.distributing?1:0,bd=b.distributing?1:0;return bd-ad;});
+      rHtml+=pendSorted.map(function(c){return buildListCard(c,false);}).join('');
+    }
+    if(fullyEnded.length){
+      rHtml+=divH('✓ Ended Campaigns','var(--gray)');
+      rHtml+=rbFilterBar('ended',fullyEnded.length,'reward-desc');
+      var endedSorted=rbSort(fullyEnded,rbFilters.ended||'reward-desc','ended');
+      rHtml+=endedSorted.map(function(c){return buildListCard(c,true);}).join('');
+    }
     document.getElementById('reward-content').innerHTML=rHtml;
   }else{
     document.getElementById('reward-content').innerHTML=empty;
@@ -1668,10 +1784,7 @@ function buildListCard(c,grayed){
     var activeSlot=getActiveEbbSlot(c);
     if(activeSlot)extra+='<span style="background:rgba(14,203,129,0.15);color:var(--green);border:1px solid rgba(14,203,129,0.3);border-radius:4px;padding:1px 5px;font-size:10px;font-weight:700;margin-left:2px">🚀 '+escHtml(activeSlot.multiplier)+'</span>';
   }
-  if(!grayed&&!ru&&c.ebbPair){
-    var actPS=c.hasEarlyBird?getActiveEbbSlot(c):null;
-    if(!actPS)extra+='<span style="background:rgba(252,213,53,0.15);color:var(--yellow);border:1px solid rgba(252,213,53,0.3);border-radius:4px;padding:1px 5px;font-size:10px;font-weight:700;margin-left:2px">⚡ '+escHtml(c.ebbPairMult||'2x')+' '+escHtml(c.ebbPair)+'</span>';
-  }
+  /* Pair-boost badge is only shown inside the EBB detail card, not on the list row. */
   var poolCellHtml=ru&&!c.poolAmt
     ? '<div class="pool-amt rumored-tba" style="'+gt+'">Pool TBA</div><div class="pool-usd">Not yet announced</div>'
     : '<div class="pool-amt" style="'+gt+'">'+(c.poolAmt||0).toLocaleString()+' '+escHtml(c.name)+'</div><div class="pool-usd">'+(p&&c.poolAmt?'approx '+fmtUSD(c.poolAmt*p):'...')+'</div>';
@@ -1748,28 +1861,10 @@ function buildEbbSlotMeta(slots){
   return meta;
 }
 
-function buildPairBoostCard(c){
-  if(!c||!c.ebbPair)return'';
-  var mult=(c.ebbPairMult&&c.ebbPairMult.trim())?c.ebbPairMult.trim():'2x';
-  var now=Date.now();
-  var s=c.start?new Date(c.start).getTime():NaN,e=c.end?new Date(c.end).getTime():NaN;
-  var status='Active for the entire campaign',pct=null;
-  if(!isNaN(s)&&!isNaN(e)&&e>s){
-    if(now<s){status='Starts soon';pct=0;}
-    else if(now>=e){status='Campaign ended';pct=100;}
-    else{status='Active now';pct=Math.max(0,Math.min(100,(now-s)/(e-s)*100));}
-  }
-  var html='<div class="ebb-section">';
-  html+='<div class="ebb-header"><div class="ebb-title-wrap"><span class="ebb-icon">\u26a1</span><span class="ebb-title">Pair Boost</span><span class="ebb-today-badge">'+escHtml(mult)+' Boost</span></div><span class="ebb-day-counter">'+escHtml(status)+'</span></div>';
-  html+='<div style="background:rgba(252,213,53,.08);border:1px solid rgba(252,213,53,.25);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--yellow);font-weight:600;line-height:1.6">\u26a1 <strong style="color:var(--white)">'+escHtml(mult)+'</strong> volume boost active only on <strong style="color:var(--white)">'+escHtml(c.ebbPair)+'</strong>.<div style="color:var(--gray);font-weight:500;font-size:11px;margin-top:4px">This boost counts for the entire campaign, from start to finish.</div></div>';
-  if(pct!==null){html+='<div class="ebb-bar-row" style="margin-top:12px"><div class="ebb-bar"><div class="ebb-bar-fill" style="clip-path:inset(0 '+(100-pct).toFixed(2)+'% 0 0)"></div></div></div>';}
-  html+='</div>';
-  return html;
-}
 function buildEbbDisplay(c){
-  if(!c||!c.hasEarlyBird)return c&&c.ebbPair?buildPairBoostCard(c):'';
+  if(!c||!c.hasEarlyBird)return'';
   var meta=buildEbbSlotMeta(c.earlyBirdSlots);
-  if(!meta.length)return c.ebbPair?buildPairBoostCard(c):'';
+  if(!meta.length)return'';
   var totalDays=meta[meta.length-1].startDay+meta[meta.length-1].days;
   var totalStart=meta[0].start;
   var totalEnd=meta[meta.length-1].end;
@@ -1793,7 +1888,7 @@ function buildEbbDisplay(c){
   html+='<div class="ebb-header"><div class="ebb-title-wrap"><span class="ebb-icon">🚀</span><span class="ebb-title">Early Bird Boost</span>';
   if(todayMult)html+='<span class="ebb-today-badge">Today: '+escHtml(todayMult)+' Boost</span>';
   html+='</div><span class="ebb-day-counter">Day '+curDayNum+' of '+totalDays+'</span></div>';
-  if(c.ebbPair)html+='<div style="display:flex;align-items:center;gap:6px;background:rgba(252,213,53,.08);border:1px solid rgba(252,213,53,.25);border-radius:7px;padding:7px 10px;margin-bottom:10px;font-size:11.5px;color:var(--yellow);font-weight:600">⚡ '+(c.ebbPairMult?escHtml(c.ebbPairMult)+' ':'')+'Boost active only on <strong style="color:var(--white)">'+escHtml(c.ebbPair)+'</strong></div>';
+  if(c.ebbPair)html+='<div style="display:flex;align-items:center;gap:6px;background:rgba(252,213,53,.08);border:1px solid rgba(252,213,53,.25);border-radius:7px;padding:7px 10px;margin-bottom:10px;font-size:11.5px;color:var(--yellow);font-weight:600">⚡ Boost active on <strong style="color:var(--white)">'+escHtml(c.ebbPair)+'</strong></div>';
 
   var sid=safeId(c.id);
   html+='<div class="ebb-track-wrap"><div class="ebb-track" id="ebb-track-'+sid+'">';
