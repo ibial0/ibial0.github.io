@@ -345,14 +345,34 @@ body.light .about-warn{color:#7f1d1d}
 .btn-submit:hover{transform:translateY(-2px)}
 .form-divider{border:none;border-top:1px solid var(--border);margin:11px 0}
 .form-section-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);font-weight:700;margin-bottom:8px;display:block}
-/* ── Reward Board filter bar ── */
-.rb-filter-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:linear-gradient(135deg,rgba(252,213,53,.05),rgba(252,213,53,.02));border:1px solid var(--border);border-radius:11px;padding:8px 12px;margin:0 0 14px 0}
-.rb-filter-bar .rb-fl-lbl{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--gray);font-weight:700;flex-shrink:0}
-.rb-filter-bar select.rb-fl-sel{background:var(--surface);border:1px solid var(--border);color:var(--white);border-radius:8px;padding:6px 10px;font-size:12px;font-weight:600;cursor:pointer;transition:border-color .2s,color .2s;min-width:0}
-.rb-filter-bar select.rb-fl-sel:hover,.rb-filter-bar select.rb-fl-sel:focus{border-color:var(--yellow);color:var(--yellow);outline:none}
-.rb-filter-bar select.rb-fl-sel.active-filter{border-color:var(--yellow);color:var(--yellow);background:rgba(252,213,53,.06)}
-.rb-filter-bar .rb-fl-count{margin-left:auto;font-size:11px;color:var(--gray);font-weight:600}
-@media (max-width:640px){.rb-filter-bar{padding:8px 10px;gap:7px}.rb-filter-bar select.rb-fl-sel{font-size:11.5px;padding:6px 8px;flex:1;min-width:0}.rb-filter-bar .rb-fl-count{width:100%;text-align:right;margin:0}}
+/* ── Reward Board filter (YouTube-style, multi-select) ── */
+.rb-fbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 12px 0}
+.rb-fbtn{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);color:var(--white);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;transition:all .18s ease;user-select:none;font-family:inherit}
+.rb-fbtn svg{width:16px;height:16px;flex-shrink:0}
+.rb-fbtn:hover{border-color:var(--yellow);color:var(--yellow);background:rgba(252,213,53,.05)}
+.rb-fbtn-open{border-color:var(--yellow);color:var(--yellow);background:rgba(252,213,53,.08)}
+.rb-fbar-active .rb-fbtn{border-color:var(--yellow);color:var(--yellow);background:rgba(252,213,53,.06)}
+.rb-fbadge{background:var(--yellow);color:#0b0e11;font-size:11px;font-weight:800;padding:1px 7px;border-radius:999px;min-width:18px;text-align:center;line-height:1.5}
+.rb-fcount{font-size:12px;color:var(--gray);font-weight:600;margin-left:auto}
+.rb-fclear{background:transparent;border:none;color:var(--gray);font-size:12px;font-weight:600;cursor:pointer;padding:6px 8px;border-radius:6px;transition:color .15s,background .15s;font-family:inherit}
+.rb-fclear:hover{color:var(--red);background:rgba(246,70,93,.06)}
+.rb-fpanel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin:0 0 14px 0;animation:rbFadeSlide .2s ease}
+@keyframes rbFadeSlide{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.rb-fgroup{display:flex;flex-direction:column;gap:8px}
+.rb-fgroup + .rb-fgroup{margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+.rb-flabel{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--gray);font-weight:700}
+.rb-fchips{display:flex;flex-wrap:wrap;gap:8px}
+.rb-chip{display:inline-flex;align-items:center;gap:7px;background:var(--bg);border:1px solid var(--border);color:var(--white);border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .16s ease;font-family:inherit;white-space:nowrap}
+.rb-chip svg{width:14px;height:14px;flex-shrink:0;opacity:.85}
+.rb-chip:hover{border-color:rgba(252,213,53,.55);color:var(--yellow)}
+.rb-chip-sel{background:var(--yellow);color:#0b0e11;border-color:var(--yellow)}
+.rb-chip-sel svg{opacity:1}
+@media (max-width:640px){
+  .rb-fbtn{padding:7px 13px;font-size:12.5px}
+  .rb-fcount{width:100%;text-align:right;margin:0;order:3}
+  .rb-fpanel{padding:12px 12px}
+  .rb-chip{padding:6px 11px;font-size:12px}
+}
 .det-header{text-align:center;margin-bottom:16px}
 .det-logo{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--border);margin-bottom:8px}
 .det-name{font-size:20px;font-weight:800;margin-bottom:3px}
@@ -492,9 +512,14 @@ body.light .ebb-bar{background:rgba(74,85,104,0.18)}
 
 /* ===== Description (collapsible + translate) ===== */
 .det-desc-box{margin:4px 0 12px}
-.det-desc-toggle{display:flex;align-items:center;gap:7px;width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--white);padding:10px 13px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
-.det-desc-toggle:hover{border-color:var(--yellow)}
-.det-desc-toggle .dd-caret{margin-left:auto;color:var(--gray);font-size:12px}
+@keyframes ddPulse{0%,100%{box-shadow:0 0 0 0 rgba(246,192,38,.55),0 0 14px 2px rgba(246,192,38,.25)}50%{box-shadow:0 0 0 6px rgba(246,192,38,0),0 0 22px 4px rgba(246,192,38,.45)}}
+@keyframes ddShine{0%{background-position:-140% 0}60%,100%{background-position:240% 0}}
+.det-desc-toggle{position:relative;display:flex;align-items:center;gap:8px;width:100%;background:linear-gradient(135deg,rgba(246,192,38,.14),rgba(167,139,250,.12));border:1px solid rgba(246,192,38,.55);color:var(--white);padding:11px 14px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;transition:transform .18s ease,border-color .2s,background .2s;animation:ddPulse 2.6s ease-in-out infinite;overflow:hidden}
+.det-desc-toggle::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.22) 50%,transparent 65%);background-size:220% 100%;background-repeat:no-repeat;animation:ddShine 3.2s ease-in-out infinite;pointer-events:none}
+.det-desc-toggle:hover{border-color:var(--yellow);transform:translateY(-1px)}
+.det-desc-toggle.is-open{animation:none;border-color:var(--border);background:var(--surface2)}
+.det-desc-toggle.is-open::before{display:none}
+.det-desc-toggle .dd-caret{margin-left:auto;color:var(--yellow);font-size:12px;font-weight:700}
 .det-desc-body{margin-top:9px;background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:12px 13px}
 .det-desc-tools{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
 .ddt-label{font-size:11px;color:var(--gray);font-weight:600}
@@ -729,6 +754,14 @@ body.light .bottom-nav{background:rgba(255,255,255,0.98);box-shadow:0 -1px 10px 
         <div class="form-group"><textarea id="camp-pairs" rows="3" placeholder="BTC/USDT, BTC/USDC, ETH/USDT ..." style="width:100%;resize:vertical;font-family:'Courier New',monospace"></textarea><div class="hint">Paste any number of pairs separated by commas or new lines. Shown to users in the campaign details.</div></div>
         <hr class="form-divider">
         <span class="form-section-label">Description (optional)</span>
+        <div style="background:linear-gradient(135deg,rgba(167,139,250,.08),rgba(139,92,246,.05));border:1px dashed rgba(167,139,250,.4);border-radius:9px;padding:10px 12px;margin-bottom:10px">
+          <div class="check-row as-toggle" style="margin:0">
+            <input type="checkbox" id="ai-desc-toggle" onchange="onAiDescToggle()" data-tone="purple">
+            <label for="ai-desc-toggle" style="color:#c4b5fd;font-weight:700">Auto-generate description with AI</label>
+          </div>
+          <div class="hint" style="color:#9ca3af;margin-top:4px;font-style:normal">When enabled, a smart human-style summary is generated from the campaign details on save. Toggle off to write it yourself. Re-enable on edit to refresh based on current data.</div>
+          <div id="ai-desc-status" class="hint" style="margin-top:6px;display:none"></div>
+        </div>
         <div class="form-group"><textarea id="camp-desc" rows="4" placeholder="Write detailed information in any language. No character limit." style="width:100%;resize:vertical"></textarea><div class="hint">Optional. Any language, unlimited length. Users see a "Description" button on the campaign card and can translate it.</div></div>
         <div class="form-group"><label>Total Reward Pool (Token Amount)</label><input type="number" id="reward-pool-amt" required></div>
         <div class="form-group"><label>Campaign Type</label>
@@ -1146,6 +1179,7 @@ async function promptAdmin(){
     document.getElementById('submit-btn').innerText='Publish Campaign';
     onTypeChange();onMinVolChange();
     var ru=document.getElementById('is-rumored');if(ru)ru.checked=false;onRumoredToggle();
+    var aiTg=document.getElementById('ai-desc-toggle');if(aiTg){aiTg.checked=false;if(window.onAiDescToggle)onAiDescToggle();}
     ebbSlotCount=0;
     document.getElementById('ebb-slots-container').innerHTML='';
     document.getElementById('fg-ebb').style.display='none';
@@ -1377,8 +1411,7 @@ window.onMinVolChange=onMinVolChange;
 function gv(id){var el=document.getElementById(id);return el?el.value:'';}
 function gn(id){return parseFloat(gv(id))||0;}
 
-function saveCampaign(e){
-  e.preventDefault();
+function _doSaveCampaign(){
   var id=gv('camp-id')||Date.now().toString(),t=gv('camp-type'),hasMin=gv('has-min-vol')==='yes';
   var rdTBD=document.getElementById('reward-tbd')?document.getElementById('reward-tbd').checked:false;
   var rdPost=document.getElementById('reward-postponed')?document.getElementById('reward-postponed').checked:false;
@@ -1399,11 +1432,217 @@ function saveCampaign(e){
     hasEarlyBird:hasEbb||null,earlyBirdSlots:(hasEbb&&ebbSlots&&ebbSlots.length)?ebbSlots:null,
     ebbPair:(hasEbb&&gv('ebb-pair').trim())?gv('ebb-pair').trim():null,
     rumored:rumored||null,
-    description:gv('camp-desc')||null,pairs:parsePairs(gv('camp-pairs')),distributing:dist||null
+    description:gv('camp-desc')||null,aiDescriptionEnabled:(document.getElementById('ai-desc-toggle')&&document.getElementById('ai-desc-toggle').checked)||null,pairs:parsePairs(gv('camp-pairs')),distributing:dist||null
   });
   closeModal('admin-modal');
 }
+function saveCampaign(e){
+  if(e)e.preventDefault();
+  var aiCb=document.getElementById('ai-desc-toggle');
+  var aiOn=aiCb&&aiCb.checked;
+  if(!aiOn){_doSaveCampaign();return;}
+  var status=document.getElementById('ai-desc-status');
+  var btn=document.getElementById('submit-btn');
+  var origBtn=btn?btn.innerText:'';
+  if(status){status.style.display='';status.style.color='#c4b5fd';status.textContent='Generating description with AI...';}
+  if(btn){btn.disabled=true;btn.innerText='Generating...';}
+  generateAiDescription().then(function(text){
+    document.getElementById('camp-desc').value=text;
+    if(status){status.style.color='#0ecb81';status.textContent='Description generated.';}
+    if(btn){btn.disabled=false;btn.innerText=origBtn;}
+    _doSaveCampaign();
+  }).catch(function(err){
+    if(status){status.style.color='#f6465d';status.textContent='AI failed ('+(err&&err.message?err.message:'error')+'). Nothing was saved. Please retry or turn AI off to save manually.';}
+    if(btn){btn.disabled=false;btn.innerText=origBtn;}
+  });
+}
 window.saveCampaign=saveCampaign;
+window.onAiDescToggle=function(){
+  var on=document.getElementById('ai-desc-toggle').checked;
+  var ta=document.getElementById('camp-desc');
+  var st=document.getElementById('ai-desc-status');
+  if(on){
+    ta.disabled=true;ta.style.opacity='0.55';ta.style.cursor='not-allowed';
+    ta.dataset._prevPh=ta.placeholder;
+    ta.placeholder='Description will be generated automatically when you save.';
+    if(st){st.style.display='';st.style.color='#c4b5fd';st.textContent='AI will write this on save based on current campaign details.';}
+  }else{
+    ta.disabled=false;ta.style.opacity='';ta.style.cursor='';
+    if(ta.dataset._prevPh)ta.placeholder=ta.dataset._prevPh;
+    if(st){st.style.display='none';st.textContent='';}
+  }
+};
+
+/* ══ AI DESCRIPTION (server-side Lovable AI) ══ */
+function _aiTypeLabel(t){return({volume:'Volume-based',equal:'Equal share',ranked_fixed:'Ranked fixed prize',points_lb:'Points with leaderboard',points_nl:'Points (no leaderboard)',unestimable:'Unestimable'})[t]||t||'Unknown';}
+function _aiFmtDate(v){if(!v)return'not set';try{var d=new Date(v);if(isNaN(d))return v;return d.toUTCString();}catch(e){return v;}}
+function _aiCollectFormFacts(){
+  var t=gv('camp-type');
+  var poolAmt=gn('reward-pool-amt');
+  var coinId=gv('coin-id').toLowerCase();
+  var px=(typeof priceOf==='function')?(priceOf(coinId)||0):0;
+  var poolUsd=poolAmt*px;
+  var start=gv('start-date'),end=gv('end-date'),rewardDate=gv('reward-date');
+  var now=Date.now();
+  var endMs=end?new Date(end).getTime():0;
+  var msLeft=endMs?endMs-now:0;
+  var daysLeft=msLeft>0?(msLeft/86400000):0;
+  var minVol=(gv('has-min-vol')==='yes')?gn('min-volume'):0;
+  var maxP=t==='equal'?gn('max-participants'):0;
+  var estPerK=t==='volume'?gn('est-reward'):0;
+  var facts={
+    tokenName:gv('token-name'),
+    title:gv('camp-title'),
+    coinId:coinId,
+    type:t,typeLabel:_aiTypeLabel(t),
+    difficulty:gv('camp-difficulty')||'',
+    poolTokens:poolAmt,
+    tokenPriceUsd:px,
+    poolUsd:poolUsd,
+    start:_aiFmtDate(start),
+    end:_aiFmtDate(end),
+    rewardDate:_aiFmtDate(rewardDate),
+    daysLeft:Number(daysLeft.toFixed(1)),
+    minVolumeUsd:minVol,
+    equalShareParticipants:maxP,
+    equalShareUsdPerUser:(t==='equal'&&maxP)?poolUsd/maxP:0,
+    volumeEstPerK:estPerK,
+    rumored:document.getElementById('is-rumored')?document.getElementById('is-rumored').checked:false,
+    postponed:document.getElementById('reward-postponed')?document.getElementById('reward-postponed').checked:false,
+    tbd:document.getElementById('reward-tbd')?document.getElementById('reward-tbd').checked:false,
+    distributing:document.getElementById('is-distributing')?document.getElementById('is-distributing').checked:false,
+    pairs:gv('camp-pairs')
+  };
+  // Standard trading cost math (per user instructions)
+  var vol=500;
+  facts.feeStd=vol*0.001;         // 0.10%
+  facts.feeBnb=vol*0.00075;       // 25% discount => 0.075%
+  facts.exampleVolume=vol;
+  return facts;
+}
+function _aiClassifyPool(usd){
+  if(!usd||usd<=0)return'unknown';
+  if(usd>=100000)return'very high';
+  if(usd>=25000)return'high';
+  if(usd>=5000)return'medium';
+  if(usd>=1000)return'modest';
+  return'low';
+}
+function _aiOpportunity(f,poolTier){
+  if(poolTier==='very high')return'Strong';
+  if(poolTier==='high')return'Good';
+  if(poolTier==='medium')return f.minVolumeUsd&&f.minVolumeUsd>1000?'Fair':'Decent';
+  if(poolTier==='modest')return'Mixed';
+  if(poolTier==='low')return'Weak';
+  return'Unclear';
+}
+function _aiPerUserEstimate(f){
+  // Rough per-user reward math for an "if you trade $500 volume" scenario
+  var vol=500;
+  if(f.type==='equal'&&f.equalShareParticipants>0){
+    return{scenario:'equal share among ~'+f.equalShareParticipants+' users',usd:f.equalShareUsdPerUser};
+  }
+  if(f.type==='volume'&&f.volumeEstPerK>0){
+    var tokens=(vol/1000)*f.volumeEstPerK;
+    return{scenario:'trading $'+vol+' volume',tokens:tokens,usd:tokens*(f.tokenPriceUsd||0)};
+  }
+  return null;
+}
+function _aiBuildPrompt(f){
+  var poolTier=_aiClassifyPool(f.poolUsd);
+  var opp=_aiOpportunity(f,poolTier);
+  var perUser=_aiPerUserEstimate(f);
+  var tone;
+  if(poolTier==='very high'||poolTier==='high')tone='hyped but grounded, like a crypto trader on Twitter sharing a solid opportunity';
+  else if(poolTier==='medium')tone='chill and balanced, decent play but nothing crazy';
+  else tone='cautious and honest, small pool so temper expectations';
+  var lines=[];
+  lines.push('You are writing a short, friendly, crypto-native description for a Binance spot trading campaign card.');
+  lines.push('Voice: sound like a real trader in a Discord/Twitter crypto community. Polite, modern, casual, but never rude or overly familiar. Think "smart crypto friend explaining a campaign".');
+  lines.push('');
+  lines.push('CAMPAIGN FACTS (use the actual numbers, do not invent):');
+  lines.push('- Token: '+(f.tokenName||'')+(f.title?' ('+f.title+')':''));
+  lines.push('- Type: '+f.typeLabel);
+  if(f.difficulty)lines.push('- Difficulty: '+f.difficulty);
+  lines.push('- Reward pool: '+(f.poolTokens||0)+' '+(f.tokenName||'tokens')+(f.poolUsd>0?' (about $'+Math.round(f.poolUsd).toLocaleString()+' at current price of $'+(f.tokenPriceUsd||0)+' per token)':''));
+  lines.push('- Pool size tier: '+poolTier);
+  lines.push('- Opportunity rating (internal, use as guidance): '+opp);
+  lines.push('- Start (UTC): '+f.start);
+  lines.push('- End (UTC): '+f.end);
+  lines.push('- Reward payout: '+(f.tbd?'not yet announced':f.rewardDate));
+  if(f.daysLeft>0)lines.push('- Roughly '+f.daysLeft+' days left');
+  if(f.minVolumeUsd>0)lines.push('- Minimum volume to qualify: $'+f.minVolumeUsd);
+  if(f.type==='equal'&&f.equalShareParticipants)lines.push('- Anticipated participants: '+f.equalShareParticipants+' users, so equal share is roughly $'+f.equalShareUsdPerUser.toFixed(2)+' per user');
+  if(f.type==='volume'&&f.volumeEstPerK)lines.push('- Estimated reward: '+f.volumeEstPerK+' tokens for every $1,000 of volume traded');
+  if(f.rumored)lines.push('- STATUS: rumored / unconfirmed');
+  if(f.postponed)lines.push('- STATUS: reward distribution postponed');
+  if(f.distributing)lines.push('- STATUS: rewards distributing right now');
+  lines.push('');
+  lines.push('COST MATH (fees are on both buy and sell):');
+  lines.push('- Standard spot fee is 0.1% of volume. With BNB fee discount it drops to 0.075%.');
+  lines.push('- Example: $500 total volume costs about $0.50 standard, or about $0.38 with BNB fee.');
+  if(perUser){
+    if(perUser.tokens!=null){
+      lines.push('- Personal estimate: if a user trades $500 volume in this campaign, they earn roughly '+perUser.tokens.toFixed(2)+' '+(f.tokenName||'tokens')+' (about $'+perUser.usd.toFixed(2)+').');
+    }else if(perUser.usd!=null){
+      lines.push('- Personal estimate: '+perUser.scenario+' works out to about $'+perUser.usd.toFixed(2)+' per user.');
+    }
+  }
+  lines.push('');
+  lines.push('WHAT THE DESCRIPTION MUST DO:');
+  lines.push('1) Explain the campaign in 2-4 short paragraphs, plain prose, no headings, no bullets, no markdown.');
+  lines.push('2) Walk the reader through a simple worked example ("if you trade $500 volume you could pick up around X tokens, roughly $Y after ~$0.38 in BNB fees"). Numbers must be written as digits (1, 2, 3, 500, 1,000), never spelled out.');
+  lines.push('3) Give a clear verdict: call the opportunity Strong, Good, Decent, Fair, Mixed, or Weak, and say why in one line (pool size, participant dilution, minimum volume, timing).');
+  lines.push('4) End with a short disclaimer on its own line, in casual crypto voice, for example: "NFA, always DYOR." Vary the wording slightly across campaigns but always make the not-financial-advice + do-your-own-research point.');
+  lines.push('');
+  lines.push('STYLE RULES (strict):');
+  lines.push('- English only. Casual, human, community-flavored, no corporate tone.');
+  lines.push('- Length adapts to opportunity: Strong/Good pools ~110-160 words, Decent/Fair ~80-120 words, Mixed/Weak ~50-90 words.');
+  lines.push('- All numbers as digits (0-9 and commas like 1,000). No spelled-out numbers like "five hundred" or "one thousand".');
+  lines.push('- No em-dashes, en-dashes, horizontal bars. Use commas, periods, or new sentences instead.');
+  lines.push('- No emojis, no hashtags, no markdown, no asterisks, no bullet points, no headings.');
+  lines.push('- Do not promise profit. Say "you could roughly make", "your net could be around".');
+  lines.push('- Do not mention that you are an AI. No signature. No wrapping quotes.');
+  lines.push('');
+  lines.push('OUTPUT: just the description text.');
+  return lines.join('\n');
+}
+function _aiClean(text){
+  if(!text)return'';
+  var t=String(text).trim();
+  // Strip wrapping quotes
+  t=t.replace(/^["'`\u201c\u201d\u2018\u2019]+|["'`\u201c\u201d\u2018\u2019]+$/g,'');
+  // Kill em/en dashes and typographic bars -> comma space
+  t=t.replace(/\s*[\u2014\u2013\u2015\u2212]\s*/g,', ');
+  // Collapse repeated punctuation
+  t=t.replace(/\.{3,}/g,'...');
+  t=t.replace(/,{2,}/g,',');
+  t=t.replace(/\s+([,.;:!?])/g,'$1');
+  // Remove markdown bold/italic/heading tokens
+  t=t.replace(/\*\*(.*?)\*\*/g,'$1').replace(/\*(.*?)\*/g,'$1').replace(/^#+\s*/gm,'');
+  // Kill stray leading bullets
+  t=t.replace(/^\s*[-•]\s+/gm,'');
+  // Trim spaces
+  t=t.replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim();
+  return t;
+}
+function generateAiDescription(){
+  var facts=_aiCollectFormFacts();
+  var prompt=_aiBuildPrompt(facts);
+  return fetch('/api/generate-description',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({prompt:prompt,facts:facts})
+  }).then(function(r){
+    if(!r.ok)return r.json().catch(function(){return{};}).then(function(d){throw new Error((d&&d.error)||('HTTP '+r.status));});
+    return r.json();
+  }).then(function(data){
+    var text=data&&data.description?data.description:'';
+    if(!text)throw new Error('empty reply');
+    return _aiClean(text);
+  });
+}
+window.generateAiDescription=generateAiDescription;
 
 /* ══ SAVE NOTICE (kept for Firebase ops, not shown in UI) ══ */
 function saveNotice(e){
@@ -1453,6 +1692,7 @@ function editCamp(id,ev){
     }
     var ebbPairEl=document.getElementById('ebb-pair');if(ebbPairEl)ebbPairEl.value=c.ebbPair||'';
     document.getElementById('modal-title').innerText='Edit Campaign';
+    var aiTg=document.getElementById('ai-desc-toggle');if(aiTg){aiTg.checked=!!c.aiDescriptionEnabled;if(window.onAiDescToggle)onAiDescToggle();}
     var ruEl=document.getElementById('is-rumored');if(ruEl){ruEl.checked=!!c.rumored;onRumoredToggle();}
     document.getElementById('submit-btn').innerText='Save Changes';
     var ls=document.getElementById('logo-upload-status');if(ls)ls.textContent='';
@@ -1516,9 +1756,28 @@ function renderNotices(){
 }
 
 /* ══ RENDER VIEWS ══ */
-/* Reward Board filter state — persists across renders within a page load. */
-var rbFilters={active:'time-asc',pending:'time-asc',ended:'reward-desc'};
-window.rbSetFilter=function(section,val){rbFilters[section]=val;renderViews();};
+/* Reward Board filter state — YouTube-style, multi-axis (sort + joined), persists across renders */
+var rbFilters={
+  active:{sort:'reward-desc',joined:'all'},
+  pending:{sort:'reward-desc',joined:'all'},
+  ended:{sort:'reward-desc',joined:'all'}
+};
+var rbFilterOpen={active:false,pending:false,ended:false};
+var RB_DEFAULT={sort:'reward-desc',joined:'all'};
+window.rbSetFilter=function(section,cat,val){
+  if(!rbFilters[section])return;
+  rbFilters[section][cat]=val;
+  rbFilterOpen[section]=true;
+  renderViews();
+};
+window.rbTogglePanel=function(section){
+  rbFilterOpen[section]=!rbFilterOpen[section];
+  renderViews();
+};
+window.rbClearFilters=function(section){
+  rbFilters[section]={sort:RB_DEFAULT.sort,joined:RB_DEFAULT.joined};
+  renderViews();
+};
 function rbTimeLeft(c,section){
   var now=Date.now();
   if(section==='active'){var e=c.end?new Date(c.end).getTime():0;return Math.max(0,e-now);}
@@ -1526,31 +1785,72 @@ function rbTimeLeft(c,section){
   return 0;
 }
 function rbRewardUSD(c){return(c.poolAmt||0)*(priceOf(c.coinId)||0);}
-function rbSort(arr,mode,section){
+function rbApply(arr,f,section){
   var a=arr.slice();
-  switch(mode){
+  if(f.joined==='joined')a=a.filter(function(c){return isJoined(c.id);});
+  else if(f.joined==='notjoined')a=a.filter(function(c){return !isJoined(c.id);});
+  switch(f.sort){
     case'time-asc':a.sort(function(x,y){return rbTimeLeft(x,section)-rbTimeLeft(y,section);});break;
     case'time-desc':a.sort(function(x,y){return rbTimeLeft(y,section)-rbTimeLeft(x,section);});break;
-    case'reward-desc':a.sort(function(x,y){return rbRewardUSD(y)-rbRewardUSD(x);});break;
     case'reward-asc':a.sort(function(x,y){return rbRewardUSD(x)-rbRewardUSD(y);});break;
-    case'joined-first':a.sort(function(x,y){var jx=isJoined(x.id)?1:0,jy=isJoined(y.id)?1:0;if(jy!==jx)return jy-jx;return rbRewardUSD(y)-rbRewardUSD(x);});break;
-    case'notjoined-first':a.sort(function(x,y){var jx=isJoined(x.id)?1:0,jy=isJoined(y.id)?1:0;if(jx!==jy)return jx-jy;return rbRewardUSD(y)-rbRewardUSD(x);});break;
+    case'reward-desc':
+    default:a.sort(function(x,y){return rbRewardUSD(y)-rbRewardUSD(x);});break;
   }
   return a;
 }
-function rbFilterBar(section,count,defaultMode){
-  var cur=rbFilters[section]||defaultMode;
-  var opts;
-  if(section==='ended'){
-    opts=[['reward-desc','💎 Reward: high → low'],['reward-asc','💰 Reward: low → high'],['joined-first','⭐ Joined first'],['notjoined-first','☆ Not joined first']];
-  }else{
-    opts=[['time-asc','⏳ Time: ending soon'],['time-desc','⌛ Time: ending late'],['reward-desc','💎 Reward: high → low'],['reward-asc','💰 Reward: low → high'],['joined-first','⭐ Joined first'],['notjoined-first','☆ Not joined first']];
+/* Back-compat wrapper (older callers): accepts (arr, modeString, section) or (arr, filterObj, section) */
+function rbSort(arr,modeOrF,section){
+  var f=(typeof modeOrF==='string')?{sort:modeOrF,joined:'all'}:modeOrF;
+  return rbApply(arr,f,section);
+}
+var RB_ICONS={
+  filter:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18M6 12h12M10 19h4"/></svg>',
+  rewardDesc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l3 6 6 .8-4.5 4 1.2 6L12 16.9 6.3 19.8l1.2-6L3 9.8 9 9z"/></svg>',
+  rewardAsc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/></svg>',
+  timeAsc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12M6 22h12M7 2c0 5 10 5 10 10s-10 5-10 10"/></svg>',
+  timeDesc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  all:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>',
+  joined:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+  notjoined:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>'
+};
+function rbFilterBar(section,total,shown){
+  var f=rbFilters[section]||RB_DEFAULT;
+  var active=(f.sort!==RB_DEFAULT.sort?1:0)+(f.joined!==RB_DEFAULT.joined?1:0);
+  var open=!!rbFilterOpen[section];
+  var sortOpts=[
+    ['reward-desc','Reward: high to low','rewardDesc'],
+    ['reward-asc','Reward: low to high','rewardAsc']
+  ];
+  if(section!=='ended'){
+    sortOpts.push(['time-asc','Ending soon','timeAsc']);
+    sortOpts.push(['time-desc','Ending late','timeDesc']);
   }
-  var isActive=cur!==defaultMode;
-  var sel='<select class="rb-fl-sel'+(isActive?' active-filter':'')+'" onchange="rbSetFilter(\''+section+'\',this.value)">';
-  opts.forEach(function(o){sel+='<option value="'+o[0]+'"'+(o[0]===cur?' selected':'')+'>'+o[1]+'</option>';});
-  sel+='</select>';
-  return '<div class="rb-filter-bar"><span class="rb-fl-lbl">Sort</span>'+sel+'<span class="rb-fl-count">'+count+' campaign'+(count===1?'':'s')+'</span></div>';
+  var joinedOpts=[
+    ['all','All','all'],
+    ['joined','Joined only','joined'],
+    ['notjoined','Not joined','notjoined']
+  ];
+  function chips(cat,cur,opts){
+    return opts.map(function(o){
+      var sel=(o[0]===cur);
+      return '<button type="button" class="rb-chip'+(sel?' rb-chip-sel':'')+'" onclick="rbSetFilter(\''+section+'\',\''+cat+'\',\''+o[0]+'\')">'+RB_ICONS[o[2]]+'<span>'+o[1]+'</span></button>';
+    }).join('');
+  }
+  var bar='<div class="rb-fbar'+(active?' rb-fbar-active':'')+'">'
+    +'<button type="button" class="rb-fbtn'+(open?' rb-fbtn-open':'')+'" onclick="rbTogglePanel(\''+section+'\')" aria-expanded="'+open+'">'
+    +RB_ICONS.filter+'<span>Filter</span>'
+    +(active?'<span class="rb-fbadge">'+active+'</span>':'')
+    +'</button>'
+    +(active?'<button type="button" class="rb-fclear" onclick="rbClearFilters(\''+section+'\')">Clear</button>':'')
+    +'<span class="rb-fcount">'+(shown===total?total:(shown+' / '+total))+' campaign'+(total===1?'':'s')+'</span>'
+    +'</div>';
+  if(open){
+    bar+='<div class="rb-fpanel">'
+      +'<div class="rb-fgroup"><div class="rb-flabel">Sort by</div><div class="rb-fchips">'+chips('sort',f.sort,sortOpts)+'</div></div>'
+      +'<div class="rb-fgroup"><div class="rb-flabel">Participation</div><div class="rb-fchips">'+chips('joined',f.joined,joinedOpts)+'</div></div>'
+      +'</div>';
+  }
+  return bar;
 }
 function renderViews(){
   var empty='<div class="empty-state"><h3>No Campaigns Yet</h3><p>Click "+ Add" to get started.</p></div>';
@@ -1577,26 +1877,38 @@ function renderViews(){
   if(campaigns.length){
     var rHtml='';
     if(running.length){
-      var activeSorted=rbSort(running,rbFilters.active||'time-asc','active');
-      rHtml+=rbFilterBar('active',running.length,'time-asc');
-      rHtml+=activeSorted.map(function(c){return buildListCard(c,false);}).join('');
+      var activeSorted=rbApply(running,rbFilters.active,'active');
+      rHtml+=rbFilterBar('active',running.length,activeSorted.length);
+      if(activeSorted.length){
+        rHtml+=activeSorted.map(function(c){return buildListCard(c,false);}).join('');
+      }else{
+        rHtml+='<div class="empty-state" style="padding:22px"><p style="margin:0;color:var(--gray)">No campaigns match your filters.</p></div>';
+      }
     }else{
       rHtml+='<div class="empty-state"><h3>No Active Campaigns</h3></div>';
     }
     if(rumored.length){rHtml+=divH('🔮 Possible Upcoming (Unconfirmed)','#a78bfa');rHtml+=rumored.map(function(c){return buildListCard(c,false);}).join('');}
     if(rewPending.length){
       rHtml+=divH('⏳ Awaiting Reward Distribution','var(--green)');
-      rHtml+=rbFilterBar('pending',rewPending.length,'time-asc');
-      var pendSorted=rbSort(rewPending,rbFilters.pending||'time-asc','pending');
+      var pendSorted=rbApply(rewPending,rbFilters.pending,'pending');
       /* Distributing campaigns always float to the top regardless of sort. */
       pendSorted.sort(function(a,b){var ad=a.distributing?1:0,bd=b.distributing?1:0;return bd-ad;});
-      rHtml+=pendSorted.map(function(c){return buildListCard(c,false);}).join('');
+      rHtml+=rbFilterBar('pending',rewPending.length,pendSorted.length);
+      if(pendSorted.length){
+        rHtml+=pendSorted.map(function(c){return buildListCard(c,false);}).join('');
+      }else{
+        rHtml+='<div class="empty-state" style="padding:22px"><p style="margin:0;color:var(--gray)">No campaigns match your filters.</p></div>';
+      }
     }
     if(fullyEnded.length){
       rHtml+=divH('✓ Ended Campaigns','var(--gray)');
-      rHtml+=rbFilterBar('ended',fullyEnded.length,'reward-desc');
-      var endedSorted=rbSort(fullyEnded,rbFilters.ended||'reward-desc','ended');
-      rHtml+=endedSorted.map(function(c){return buildListCard(c,true);}).join('');
+      var endedSorted=rbApply(fullyEnded,rbFilters.ended,'ended');
+      rHtml+=rbFilterBar('ended',fullyEnded.length,endedSorted.length);
+      if(endedSorted.length){
+        rHtml+=endedSorted.map(function(c){return buildListCard(c,true);}).join('');
+      }else{
+        rHtml+='<div class="empty-state" style="padding:22px"><p style="margin:0;color:var(--gray)">No campaigns match your filters.</p></div>';
+      }
     }
     document.getElementById('reward-content').innerHTML=rHtml;
   }else{
@@ -2065,7 +2377,7 @@ var TOP_LANGS=[['original','Original'],['en','English'],['zh-CN','中文 (Chines
 function parsePairs(str){if(!str)return null;var arr=str.split(/[\n,]+/).map(function(x){return x.trim().toUpperCase();}).filter(function(x){return x;});return arr.length?arr:null;}
 function buildPairsDisplay(c){if(!c.pairs||!c.pairs.length)return'';var chips=c.pairs.map(function(pr){return'<span class="pair-chip">'+escHtml(pr)+'</span>';}).join('');return'<div class="det-pairs-box"><div class="det-pairs-title">📋 Eligible Pair(s)</div><div class="det-pairs-list">'+chips+'</div></div>';}
 function buildDescDisplay(){return'<div class="det-desc-box"><button type="button" class="det-desc-toggle" id="det-desc-toggle" onclick="toggleDesc()">📄 Description<span class="dd-caret" id="dd-caret">▾ Show</span></button><div class="det-desc-body" id="det-desc-body" style="display:none"><div class="det-desc-tools"><span class="ddt-label">🌐 Translate:</span><select id="det-desc-lang" class="det-desc-langsel" onchange="translateDesc(this.value)"></select></div><div class="det-desc-text" id="det-desc-text"></div></div></div>';}
-function toggleDesc(){var body=document.getElementById('det-desc-body');var caret=document.getElementById('dd-caret');if(!body)return;var open=body.style.display!=='none';if(open){body.style.display='none';if(caret)caret.textContent='▾ Show';return;}body.style.display='block';if(caret)caret.textContent='▴ Hide';var txt=document.getElementById('det-desc-text');if(txt&&!txt.dataset.init){txt.innerText=curDescText;txt.dataset.init='1';}var sel=document.getElementById('det-desc-lang');if(sel&&!sel.dataset.init){sel.innerHTML=TOP_LANGS.map(function(l){return'<option value="'+l[0]+'">'+l[1]+'</option>';}).join('');sel.dataset.init='1';}}
+function toggleDesc(){var body=document.getElementById('det-desc-body');var caret=document.getElementById('dd-caret');var btn=document.getElementById('det-desc-toggle');if(!body)return;var open=body.style.display!=='none';if(open){body.style.display='none';if(caret)caret.textContent='▾ Show';if(btn)btn.classList.remove('is-open');return;}body.style.display='block';if(caret)caret.textContent='▴ Hide';if(btn)btn.classList.add('is-open');var txt=document.getElementById('det-desc-text');if(txt&&!txt.dataset.init){txt.innerText=curDescText;txt.dataset.init='1';}var sel=document.getElementById('det-desc-lang');if(sel&&!sel.dataset.init){sel.innerHTML=TOP_LANGS.map(function(l){return'<option value="'+l[0]+'">'+l[1]+'</option>';}).join('');sel.dataset.init='1';}}
 window.toggleDesc=toggleDesc;
 async function gTranslate(text,toLang){try{var chunks=[],s=text;while(s.length>1400){var idx=s.lastIndexOf('\n',1400);if(idx<400)idx=s.lastIndexOf(' ',1400);if(idx<400)idx=1400;chunks.push(s.slice(0,idx));s=s.slice(idx);}chunks.push(s);var res='';for(var i=0;i<chunks.length;i++){var r=await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl='+toLang+'&dt=t&q='+encodeURIComponent(chunks[i]));var d=await r.json();if(d&&d[0]){res+=d[0].filter(function(x){return x&&x[0];}).map(function(x){return x[0];}).join('');}else res+=chunks[i];}return res||text;}catch(e){return text;}}
 async function translateDesc(lang){var box=document.getElementById('det-desc-text');if(!box)return;if(!lang||lang==='original'){box.innerText=curDescText;return;}var key='dd_'+lang;if(descTxCache[key]){box.innerText=descTxCache[key];return;}box.style.opacity='0.45';var out=await gTranslate(curDescText,lang);descTxCache[key]=out;box.innerText=out;box.style.opacity='1';}
